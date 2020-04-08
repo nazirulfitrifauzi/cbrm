@@ -11,7 +11,7 @@
                 </h2>
                 <p class="mt-2 text-sm leading-5 text-gray-600 max-w">
                     atau
-                <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150">
+                <a href="{{ route('register') }}" class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150">
                     daftar akaun anda sekarang
                 </a>
                 </p>
