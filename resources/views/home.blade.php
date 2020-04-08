@@ -13,7 +13,7 @@
                         <div class="flex items-center justify-between h-16 px-4 sm:px-0">
                             <div class="flex items-center">
                                 <div class="flex-shrink-0">
-                                    <img class="h-8 w-8" src="{{ asset('img') }}/logo_tekun.png" />
+                                    <img class="h-16 w-16" src="{{ asset('img') }}/logo_tekun.png" />
                                 </div>
                                 <div class="hidden md:block">
                                     <div class="ml-10 flex items-baseline">

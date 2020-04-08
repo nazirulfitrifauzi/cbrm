@@ -15,13 +15,10 @@
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-
-    @stack('js_head')
-    
 </head>
-<body class="bg-white h-screen antialiased leading-none">
+<body class="bg-gray-300 h-screen antialiased leading-none">
     <div id="app">
-            @yield('content')
+        @yield('content')
     </div>
 
     @stack('js')
