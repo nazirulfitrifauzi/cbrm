@@ -9,7 +9,7 @@ class RedirectController extends Controller
     public function index()
     {
         if (Auth::user()) {
-            return redirect('dashboard');
+            return redirect('home');
         } else {
             return view('auth.login');
         }

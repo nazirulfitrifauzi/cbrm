@@ -17,4 +17,4 @@ Route::get('/', 'RedirectController@index');
 
 Auth::routes();
 
-Route::get('/dashboard', 'HomeController@index')->name('dashboard');
+Route::get('/home', 'HomeController@index')->name('home');
