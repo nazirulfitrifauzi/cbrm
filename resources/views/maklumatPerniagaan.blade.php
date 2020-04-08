@@ -14,19 +14,23 @@
                     <div class="px-4 py-5 bg-white sm:p-6">
                         <div class="grid grid-cols-6 gap-6">
                             <div class="col-span-6 sm:col-span-6">
-                                <label for="business_name" class="block text-sm font-medium leading-5 text-gray-700">Nama
+                                <label for="business_name"
+                                    class="block text-sm font-medium leading-5 text-gray-700">Nama
                                     Perniagaan / Syarikat</label>
                                 <input id="business_name" name="business_name" value="{{old('business_name')}}"
                                     class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                             </div>
 
                             <div class="col-span-6 sm:col-span-6">
-                                <label for="business_activity" class="block text-sm font-medium leading-5 text-gray-700">Aktiviti
+                                <label for="business_activity"
+                                    class="block text-sm font-medium leading-5 text-gray-700">Aktiviti
                                     Perniagaan/Project</label>
-                                <select id="business_activity" name="business_activity" 
+                                <select id="business_activity" name="business_activity"
                                     class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
-                                    <option value="1" {{ old('role_id') == 1 ? 'selected' : '' }}>Pendawaian elektrik</option>
-                                    <option value="2" {{ old('role_id') == 2 ? 'selected' : '' }}>Kedai pajak gadai</option>
+                                    <option value="1" {{ old('role_id') == 1 ? 'selected' : '' }}>Pendawaian elektrik
+                                    </option>
+                                    <option value="2" {{ old('role_id') == 2 ? 'selected' : '' }}>Kedai pajak gadai
+                                    </option>
                                 </select>
                             </div>
 
@@ -99,17 +103,32 @@
                                 <select id="business_ownership" name="business_ownership"
                                     class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                                     <option value="1" {{ old('role_id') == 1 ? 'selected' : '' }}>Individu</option>
-                                    <option value="2" {{ old('role_id') == 2 ? 'selected' : '' }}>Pemilikan Tunggal</option>
+                                    <option value="2" {{ old('role_id') == 2 ? 'selected' : '' }}>Pemilikan Tunggal
+                                    </option>
                                     <option value="3" {{ old('role_id') == 3 ? 'selected' : '' }}>Perkongsian</option>
-                                    <option value="4" {{ old('role_id') == 4 ? 'selected' : '' }}>Sendirian Berhad</option>
+                                    <option value="4" {{ old('role_id') == 4 ? 'selected' : '' }}>Sendirian Berhad
+                                    </option>
                                 </select>
                             </div>
 
-                            <div class="col-span-6 sm:col-span-3 lg:col-span-6">
-                                <label for="business_modal"
-                                    class="block text-sm font-medium leading-5 text-gray-700">Modal Berbayar</label>
-                                <input id="business_modal" name="business_modal" value="{{old('business_modal')}}"
-                                    class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                            <div class="col-span-6 sm:col-span-6">
+                                <fieldset>
+                                    <legend class="block text-sm font-medium leading-5 text-gray-700">Jumlah Pembiayaan
+                                        Yang Diperlukan</legend>
+                                    {{-- <p class="text-sm leading-5 text-gray-500">These are delivered via SMS to your mobile phone.</p> --}}
+                                    <div class="mt-3">
+                                        <div class="flex items-center">
+                                            <label for="business_modal"
+                                                class="block text-sm font-medium leading-5 text-gray-700">RM</label>
+                                            <label for="business_modal" class="ml-3">
+                                                <span class="block text-sm leading-5 font-medium text-gray-700"><input
+                                                        id="business_modal" name="business_modal"
+                                                        value="{{old('business_modal')}}"
+                                                        class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" /></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </fieldset>
                             </div>
 
                             <div class="col-span-6 sm:col-span-3 lg:col-span-6">
@@ -119,14 +138,16 @@
                             <div class="col-span-6 sm:col-span-3 lg:col-span-3">
                                 <label for="business_open"
                                     class="block text-sm font-medium leading-5 text-gray-700">Dari</label>
-                                <input id="business_open" name="business_open" type="time" value="{{old('business_open')}}"
+                                <input id="business_open" name="business_open" type="time"
+                                    value="{{old('business_open')}}"
                                     class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                             </div>
 
                             <div class="col-span-6 sm:col-span-3 lg:col-span-3">
                                 <label for="business_closed"
                                     class="block text-sm font-medium leading-5 text-gray-700">hingga</label>
-                                <input id="business_closed" name="business_close" type="time" value="{{old('business_close')}}"
+                                <input id="business_closed" name="business_close" type="time"
+                                    value="{{old('business_close')}}"
                                     class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                             </div>
                         </div>

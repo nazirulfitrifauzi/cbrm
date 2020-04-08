@@ -13,67 +13,84 @@
                 <div class="shadow sm:rounded-md sm:overflow-hidden">
                     <div class="px-4 py-5 bg-white sm:p-6">
                         <div class="grid grid-cols-6 gap-6">
-                            <div class="col-span-6 sm:col-span-4">
+                            <div class="col-span-6 sm:col-span-3">
                                 <label for="state"
                                     class="block text-sm font-medium leading-5 text-gray-700">Negeri</label>
                                 <select id="state" name="state"
                                     class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
-                                    <option>Johor</option>
-                                    <option>Kedah</option>
+                                    <option value="1" {{ old('role_id') == 1 ? 'selected' : '' }}>Johor</option>
+                                    <option value="2" {{ old('role_id') == 2 ? 'selected' : '' }}>Kedah</option>
                                 </select>
                             </div>
 
-                            <div class="col-span-6 sm:col-span-4">
+                            <div class="col-span-6 sm:col-span-3">
                                 <label for="branch"
                                     class="block text-sm font-medium leading-5 text-gray-700">Cawangan</label>
                                 <select id="branch" name="branch"
                                     class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
-                                    <option>Ayer Hitam</option>
-                                    <option>Bakri</option>
-                                </select>
-                            </div>
-
-                            <div class="col-span-6 sm:col-span-4">
-                                <label for="business_status"
-                                    class="block text-sm font-medium leading-5 text-gray-700">Status Perniagaan</label>
-                                <select id="business_status" name="business_status"
-                                    class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
-                                    <option>Sedang Berniaga</option>
-                                    <option>Memulakan Perniagaan</option>
+                                    <option value="1" {{ old('role_id') == 1 ? 'selected' : '' }}>Ayer Hitam</option>
+                                    <option value="2" {{ old('role_id') == 2 ? 'selected' : '' }}>Bakri</option>
                                 </select>
                             </div>
                         </div>
 
-                        <fieldset class="mt-6">
-                            <legend class="text-base leading-6 font-medium text-gray-900">Usahawan TEKUN</legend>
-                            {{-- <p class="text-sm leading-5 text-gray-500">These are delivered via SMS to your mobile phone.</p> --}}
-                            <div class="mt-4">
-                                <div class="flex items-center">
-                                    <input id="business_type_yes" name="business_type" value="Y" type="radio"
-                                        class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out" />
-                                    <label for="business_type_yes" class="ml-3">
-                                        <span class="block text-sm leading-5 font-medium text-gray-700">Ya</span>
-                                    </label>
-                                    <input id="business_type_no" name="business_type" value="N" type="radio"
-                                        class="ml-8 form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out" />
-                                    <label for="business_type_no" class="ml-3">
-                                        <span class="block text-sm leading-5 font-medium text-gray-700">Tidak</span>
-                                    </label>
-                                </div>
+                        <div class="grid grid-cols-6 gap-6 mt-6">
+                            <div class="col-span-6 sm:col-span-3">
+                                <label for="business_status"
+                                    class="block text-sm font-medium leading-5 text-gray-700">Status Perniagaan</label>
+                                <select id="business_status" name="business_status"
+                                    class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                                    <option value="1" {{ old('role_id') == 1 ? 'selected' : '' }}>Sedang Berniaga
+                                    </option>
+                                    <option value="2" {{ old('role_id') == 2 ? 'selected' : '' }}>Memulakan Perniagaan
+                                    </option>
+                                </select>
                             </div>
-                        </fieldset>
+
+                            <div class="col-span-6 sm:col-span-3">
+                                <fieldset>
+                                    <legend class="block text-sm font-medium leading-5 text-gray-700">Usahawan TEKUN
+                                    </legend>
+                                    {{-- <p class="text-sm leading-5 text-gray-500">These are delivered via SMS to your mobile phone.</p> --}}
+                                    <div class="mt-4">
+                                        <div class="flex items-center">
+                                            <input id="business_type_yes" name="business_type" value="Y" type="radio"
+                                                {{ old('business_type') == "Y" ? 'checked' : '' }}
+                                                class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out" />
+                                            <label for="business_type_yes" class="ml-3">
+                                                <span
+                                                    class="block text-sm leading-5 font-medium text-gray-700">Ya</span>
+                                            </label>
+                                            <input id="business_type_no" name="business_type" value="N" type="radio"
+                                                {{ old('business_type') == "N" ? 'checked' : '' }}
+                                                class="ml-8 form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out" />
+                                            <label for="business_type_no" class="ml-3">
+                                                <span
+                                                    class="block text-sm leading-5 font-medium text-gray-700">Tidak</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
 
                         <div class="grid grid-cols-6 gap-6 mt-6">
-                            <div class="col-span-6 sm:col-span-4">
-                                <label for="sector" class="block text-sm font-medium leading-5 text-gray-700">Sektor
+                            <div class="col-span-6 sm:col-span-6">
+                                <label for="business_sector"
+                                    class="block text-sm font-medium leading-5 text-gray-700">Sektor
                                     Perniagaan</label>
-                                <select id="sector" name="sector"
+                                <select id="business_sector" name="business_sector"
                                     class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
-                                    <option>PERTANIAN & PERUSAHAAN ASAS TANI</option>
-                                    <option>PERUNCITAN</option>
-                                    <option>PERKHIDMATAN</option>
-                                    <option>PEMBUATAN</option>
-                                    <option>KONTRAKTOR KECIL</option>
+                                    <option value="1" {{ old('business_sector') == 1 ? 'selected' : '' }}>PERTANIAN &
+                                        PERUSAHAAN ASAS TANI</option>
+                                    <option value="2" {{ old('business_sector') == 2 ? 'selected' : '' }}>PERUNCITAN
+                                    </option>
+                                    <option value="3" {{ old('business_sector') == 3 ? 'selected' : '' }}>PERKHIDMATAN
+                                    </option>
+                                    <option value="4" {{ old('business_sector') == 4 ? 'selected' : '' }}>PEMBUATAN
+                                    </option>
+                                    <option value="5" {{ old('business_sector') == 5 ? 'selected' : '' }}>KONTRAKTOR
+                                        KECIL</option>
                                 </select>
                             </div>
                         </div>
@@ -81,37 +98,37 @@
                         <div class="grid grid-cols-6 gap-6 mt-6">
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="bank1" class="block text-sm font-medium leading-5 text-gray-700">Nama
-                                    Bank</label>
+                                    Bank 1</label>
                                 <select id="bank1" name="bank1"
                                     class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
-                                    <option>Maybank</option>
-                                    <option>Bank Muamalat</option>
-                                    <option>Bank Islam</option>
+                                    <option value="1" {{ old('bank1') == 1 ? 'selected' : '' }}>Maybank</option>
+                                    <option value="2" {{ old('bank1') == 2 ? 'selected' : '' }}>Bank Muamalat</option>
+                                    <option value="3" {{ old('bank1') == 3 ? 'selected' : '' }}>Bank Islam</option>
                                 </select>
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="bank1_acct" class="block text-sm font-medium leading-5 text-gray-700">No
-                                    Akaun Bank</label>
-                                <input id="bank1_acct" name="bank1_acct"
+                                    Akaun Bank 1</label>
+                                <input id="bank1_acct" name="bank1_acct" value="{{old('bank1_acct')}}"
                                     class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="bank2" class="block text-sm font-medium leading-5 text-gray-700">Nama
-                                    Bank</label>
+                                    Bank 2</label>
                                 <select id="bank2" name="bank2"
                                     class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
-                                    <option>Maybank</option>
-                                    <option>Bank Muamalat</option>
-                                    <option>Bank Islam</option>
+                                    <option value="1" {{ old('bank2') == 1 ? 'selected' : '' }}>Maybank</option>
+                                    <option value="2" {{ old('bank2') == 2 ? 'selected' : '' }}>Bank Muamalat</option>
+                                    <option value="3" {{ old('bank2') == 3 ? 'selected' : '' }}>Bank Islam</option>
                                 </select>
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="bank2_acct" class="block text-sm font-medium leading-5 text-gray-700">No
-                                    Akaun Bank</label>
-                                <input id="bank2_acct" name="bank2_acct"
+                                    Akaun Bank 2</label>
+                                <input id="bank2_acct" name="bank2_acct" value="{{old('bank2_acct')}}"
                                     class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                             </div>
                         </div>
@@ -171,21 +188,21 @@
                             <div class="col-span-6 sm:col-span-6">
                                 <label for="name" class="block text-sm font-medium leading-5 text-gray-700">Nama
                                     Pemohon</label>
-                                <input id="name" name="name"
+                                <input id="name" name="name" value="{{old('name')}}"
                                     class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="ic_no" class="block text-sm font-medium leading-5 text-gray-700">No. KP
                                     (Baru)</label>
-                                <input id="ic_no" name="ic_no"
+                                <input id="ic_no" name="ic_no" value="{{old('ic_no')}}"
                                     class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="ic_old" class="block text-sm font-medium leading-5 text-gray-700">No. KP
                                     (Lama)</label>
-                                <input id="ic_old" name="ic_old"
+                                <input id="ic_old" name="ic_old" value="{{old('ic_old')}}"
                                     class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                             </div>
                         </div>
@@ -198,12 +215,14 @@
                                     <div class="mt-3">
                                         <div class="flex items-center">
                                             <input id="genderL" name="gender" value="L" type="radio"
+                                                {{ old('gender') == "L" ? 'checked' : '' }}
                                                 class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out" />
                                             <label for="genderL" class="ml-3">
                                                 <span
                                                     class="block text-sm leading-5 font-medium text-gray-700">Lelaki</span>
                                             </label>
                                             <input id="genderF" name="gender" value="P" type="radio"
+                                                {{ old('gender') == "P" ? 'checked' : '' }}
                                                 class="ml-8 form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out" />
                                             <label for="genderF" class="ml-3">
                                                 <span
@@ -221,12 +240,14 @@
                                     <div class="mt-3">
                                         <div class="flex items-center">
                                             <input id="religionI" name="religion" value="I" type="radio"
+                                                {{ old('religion') == "I" ? 'checked' : '' }}
                                                 class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out" />
                                             <label for="religionI" class="ml-3">
                                                 <span
                                                     class="block text-sm leading-5 font-medium text-gray-700">Islam</span>
                                             </label>
                                             <input id="religionB" name="religion" value="B" type="radio"
+                                                {{ old('religion') == "B" ? 'checked' : '' }}
                                                 class="ml-8 form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out" />
                                             <label for="religionB" class="ml-3">
                                                 <span class="block text-sm leading-5 font-medium text-gray-700">Bukan
@@ -242,7 +263,7 @@
                             <div class="col-span-6 sm:col-span-2">
                                 <label for="birthdate" class="block text-sm font-medium leading-5 text-gray-700">Tarikh
                                     Lahir</label>
-                                <input id="birthdate" name="birthdate" type="date"
+                                <input id="birthdate" name="birthdate" type="date" value="{{old('birthdate')}}"
                                     class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                             </div>
 
@@ -251,15 +272,15 @@
                                     Kaum</label>
                                 <select id="race" name="race"
                                     class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
-                                    <option>Melayu</option>
-                                    <option>Cina</option>
-                                    <option>India</option>
+                                    <option value="1" {{ old('race') == 1 ? 'selected' : '' }}>Melayu</option>
+                                    <option value="2" {{ old('race') == 2 ? 'selected' : '' }}>Cina</option>
+                                    <option value="3" {{ old('race') == 3 ? 'selected' : '' }}>India</option>
                                 </select>
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
                                 <label for="age" class="block text-sm font-medium leading-5 text-gray-700">Umur</label>
-                                <input id="age" name="age"
+                                <input id="age" name="age" value="{{old('age')}}"
                                     class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                             </div>
 
@@ -268,11 +289,11 @@
                                     Perkahwinan</label>
                                 <select id="marital" name="marital"
                                     class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
-                                    <option>Bujang</option>
-                                    <option>Berkahwin</option>
-                                    <option>Duda</option>
-                                    <option>Janda</option>
-                                    <option>Ibu Tunggal</option>
+                                    <option value="1" {{ old('bank2') == 1 ? 'selected' : '' }}>Bujang</option>
+                                    <option value="2" {{ old('bank2') == 2 ? 'selected' : '' }}>Berkahwin</option>
+                                    <option value="3" {{ old('bank2') == 3 ? 'selected' : '' }}>Duda</option>
+                                    <option value="4" {{ old('bank2') == 4 ? 'selected' : '' }}>Janda</option>
+                                    <option value="5" {{ old('bank2') == 5 ? 'selected' : '' }}>Ibu Tunggal</option>
                                 </select>
                             </div>
 
@@ -280,7 +301,7 @@
                                 <label for="dependent"
                                     class="block text-sm font-medium leading-5 text-gray-700">Bilangan
                                     Tanggungan</label>
-                                <input id="dependent" name="dependent"
+                                <input id="dependent" name="dependent" value="{{old('dependent')}}"
                                     class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                             </div>
 
@@ -292,12 +313,14 @@
                                     <div class="mt-3">
                                         <div class="flex items-center">
                                             <input id="okuY" name="oku" value="Y" type="radio"
+                                                {{ old('oku') == "Y" ? 'checked' : '' }}
                                                 class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out" />
                                             <label for="okuY" class="ml-3">
                                                 <span
                                                     class="block text-sm leading-5 font-medium text-gray-700">Ya</span>
                                             </label>
                                             <input id="okuN" name="oku" value="N" type="radio"
+                                                {{ old('oku') == "N" ? 'checked' : '' }}
                                                 class="ml-8 form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out" />
                                             <label for="okuN" class="ml-3">
                                                 <span
@@ -311,24 +334,24 @@
                             <div class="col-span-6">
                                 <label for="address1"
                                     class="block text-sm font-medium leading-5 text-gray-700">Alamat</label>
-                                <input id="address1" name="address1"
+                                <input id="address1" name="address1" value="{{old('address1')}}"
                                     class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
 
-                                <input id="address2" name="address2"
+                                <input id="address2" name="address2" value="{{old('address2')}}"
                                     class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                             </div>
 
                             <div class="col-span-6 sm:col-span-3 lg:col-span-2">
                                 <label for="postcode"
                                     class="block text-sm font-medium leading-5 text-gray-700">Poskod</label>
-                                <input id="postcode" name="postcode"
+                                <input id="postcode" name="postcode" value="{{old('postcode')}}"
                                     class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                             </div>
 
                             <div class="col-span-6 sm:col-span-6 lg:col-span-2">
                                 <label for="city"
                                     class="block text-sm font-medium leading-5 text-gray-700">Bandar</label>
-                                <input id="city" name="city"
+                                <input id="city" name="city" value="{{old('city')}}"
                                     class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                             </div>
 
@@ -337,46 +360,43 @@
                                     class="block text-sm font-medium leading-5 text-gray-700">Negeri</label>
                                 <select id="state" name="state"
                                     class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
-                                    <option>Johor</option>
-                                    <option>Kedah</option>
-                                    <option>Duda</option>
-                                    <option>Janda</option>
-                                    <option>Ibu Tunggal</option>
+                                    <option value="1" {{ old('bank2') == 1 ? 'selected' : '' }}>Johor</option>
+                                    <option value="2" {{ old('bank2') == 2 ? 'selected' : '' }}>Kedah</option>
                                 </select>
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="phone1" class="block text-sm font-medium leading-5 text-gray-700">No Telefon
                                     (Rumah)</label>
-                                <input id="phone1" name="phone1"
+                                <input id="phone1" name="phone1" value="{{old('phone1')}}"
                                     class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="phone2" class="block text-sm font-medium leading-5 text-gray-700">No Telefon
                                     (HP)</label>
-                                <input id="phone2" name="phone2"
+                                <input id="phone2" name="phone2" value="{{old('phone2')}}"
                                     class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
                                 <label for="email"
                                     class="block text-sm font-medium leading-5 text-gray-700">Emel</label>
-                                <input id="email" name="email"
+                                <input id="email" name="email" value="{{old('email')}}"
                                     class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
                                 <label for="facebook"
                                     class="block text-sm font-medium leading-5 text-gray-700">Facebook</label>
-                                <input id="facebook" name="facebook"
+                                <input id="facebook" name="facebook" value="{{old('facebook')}}"
                                     class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
                                 <label for="instagram"
                                     class="block text-sm font-medium leading-5 text-gray-700">Instagram</label>
-                                <input id="instagram" name="instagram"
+                                <input id="instagram" name="instagram" value="{{old('instagram')}}"
                                     class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                             </div>
 
@@ -384,21 +404,21 @@
                                 <label for="profession"
                                     class="block text-sm font-medium leading-5 text-gray-700">Perkerjaan
                                     Sekarang</label>
-                                <input id="profession" name="profession"
+                                <input id="profession" name="profession" value="{{old('profession')}}"
                                     class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
                                 <label for="income" class="block text-sm font-medium leading-5 text-gray-700">Pendapatan
                                     (Bulanan)</label>
-                                <input id="income" name="income"
+                                <input id="income" name="income" value="{{old('income')}}"
                                     class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
                                 <label for="phone_employer" class="block text-sm font-medium leading-5 text-gray-700">No
                                     Telefon Majikan</label>
-                                <input id="phone_employer" name="phone_employer"
+                                <input id="phone_employer" name="phone_employer" value="{{old('phone_employer')}}"
                                     class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                             </div>
 
@@ -406,9 +426,11 @@
                                 <label for="address1_employer"
                                     class="block text-sm font-medium leading-5 text-gray-700">Alamat Majikan</label>
                                 <input id="address1_employer" name="address1_employer"
+                                    value="{{old('address1_employer')}}"
                                     class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
 
                                 <input id="address2_employer" name="address2_employer"
+                                    value="{{old('address2_employer')}}"
                                     class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                             </div>
 
@@ -416,13 +438,14 @@
                                 <label for="postcode_employer"
                                     class="block text-sm font-medium leading-5 text-gray-700">Poskod</label>
                                 <input id="postcode_employer" name="postcode_employer"
+                                    value="{{old('postcode_employer')}}"
                                     class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                             </div>
 
                             <div class="col-span-6 sm:col-span-6 lg:col-span-2">
                                 <label for="city_employer"
                                     class="block text-sm font-medium leading-5 text-gray-700">Bandar</label>
-                                <input id="city_employer" name="city_employer"
+                                <input id="city_employer" name="city_employer" value="{{old('city_employer')}}"
                                     class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                             </div>
 
@@ -431,11 +454,8 @@
                                     class="block text-sm font-medium leading-5 text-gray-700">Negeri</label>
                                 <select id="state_employer" name="state_employer"
                                     class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
-                                    <option>Johor</option>
-                                    <option>Kedah</option>
-                                    <option>Duda</option>
-                                    <option>Janda</option>
-                                    <option>Ibu Tunggal</option>
+                                    <option value="1" {{ old('state_employer') == 1 ? 'selected' : '' }}>Johor</option>
+                                    <option value="2" {{ old('state_employer') == 2 ? 'selected' : '' }}>Kedah</option>
                                 </select>
                             </div>
                         </div>
@@ -466,16 +486,16 @@
                     <div class="px-4 py-5 bg-white sm:p-6">
                         <div class="grid grid-cols-6 gap-6 mt-6">
                             <div class="col-span-6 sm:col-span-6">
-                                <label for="spouse_name" class="block text-sm font-medium leading-5 text-gray-700">NAMA
-                                    * SUAMI / ISTERI / WARIS</label>
-                                <input id="spouse_name" name="spouse_name"
+                                <label for="spouse_name" class="block text-sm font-medium leading-5 text-gray-700">Nama
+                                    * Suami/Isteri/Waris</label>
+                                <input id="spouse_name" name="spouse_name" value="{{old('city_employer')}}"
                                     class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                             </div>
 
                             <div class="col-span-6 sm:col-span-6">
                                 <label for="spouse_ic_no" class="block text-sm font-medium leading-5 text-gray-700">No.
                                     KP (Baru)</label>
-                                <input id="spouse_ic_no" name="spouse_ic_no"
+                                <input id="spouse_ic_no" name="spouse_ic_no" value="{{old('city_employer')}}"
                                     class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                             </div>
 
@@ -483,7 +503,7 @@
                                 <label for="spouse_profession"
                                     class="block text-sm font-medium leading-5 text-gray-700">Perkerjaan
                                     Sekarang</label>
-                                <input id="spouse_profession" name="spouse_profession"
+                                <input id="spouse_profession" name="spouse_profession" value="{{old('city_employer')}}"
                                     class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                             </div>
 
@@ -501,9 +521,11 @@
                                 <label for="spouse_address1_employer"
                                     class="block text-sm font-medium leading-5 text-gray-700">Alamat Majikan</label>
                                 <input id="spouse_address1_employer" name="spouse_address1_employer"
+                                    value="{{old('spouse_address1_employer')}}"
                                     class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
 
-                                <input id="address2_employer" name="address2_employer"
+                                <input id="spouse_address2_employer" name="spouse_address2_employer"
+                                    value="{{old('spouse_address2_employer')}}"
                                     class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                             </div>
 
@@ -511,6 +533,7 @@
                                 <label for="spouse_postcode_employer"
                                     class="block text-sm font-medium leading-5 text-gray-700">Poskod</label>
                                 <input id="spouse_postcode_employer" name="spouse_postcode_employer"
+                                    value="{{old('spouse_postcode_employer')}}"
                                     class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                             </div>
 
@@ -518,6 +541,7 @@
                                 <label for="spouse_city_employer"
                                     class="block text-sm font-medium leading-5 text-gray-700">Bandar</label>
                                 <input id="spouse_city_employer" name="spouse_city_employer"
+                                    value="{{old('spouse_city_employer')}}"
                                     class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                             </div>
 
@@ -526,11 +550,8 @@
                                     class="block text-sm font-medium leading-5 text-gray-700">Negeri</label>
                                 <select id="spouse_state_employer" name="spouse_state_employer"
                                     class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
-                                    <option>Johor</option>
-                                    <option>Kedah</option>
-                                    <option>Duda</option>
-                                    <option>Janda</option>
-                                    <option>Ibu Tunggal</option>
+                                    <option {{ old('spouse_state_employer') == 2 ? 'selected' : '' }}>Johor</option>
+                                    <option {{ old('spouse_state_employer') == 2 ? 'selected' : '' }}>Kedah</option>
                                 </select>
                             </div>
                         </div>
