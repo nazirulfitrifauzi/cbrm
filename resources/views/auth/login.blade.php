@@ -20,7 +20,9 @@
             <div class="mt-8">
                 
                 <div class="mt-6">
-                    <form action="#" method="POST">
+                    <form action="{{ route('login') }}" method="POST">
+                        @csrf
+                        
                         <div>
                             <label for="email" class="block text-sm font-medium leading-5 text-gray-700">
                                 Alamat emel
