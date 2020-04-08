@@ -1,12 +1,8 @@
 @component('mail::message')
-# Introduction
+# Salam Sejahtera {{$name}},
 
-The body of your message.
+Sukacita dimaklumkan bahawa permohonan anda telah berjaya dihantar. <br> Sila tunggu panggilan daripada pihak kami untuk tindakan selanjutnya.
 
-@component('mail::button', ['url' => ''])
-Button Text
-@endcomponent
-
-Thanks,<br>
-{{ config('app.name') }}
+Sekian, Terima kasih<br>
+TEKUN Nasional
 @endcomponent
