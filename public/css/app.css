@@ -427,7 +427,7 @@ ul {
  */
 
 html {
-  font-family: Inter var; /* 1 */
+  font-family: Inter; /* 1 */
   line-height: 1.5; /* 2 */
 }
 
@@ -3996,7 +3996,7 @@ video {
 }
 
 .font-sans {
-  font-family: Inter var;
+  font-family: Inter;
 }
 
 .font-serif {
@@ -17335,7 +17335,7 @@ video {
   }
 
   .sm\:font-sans {
-    font-family: Inter var;
+    font-family: Inter;
   }
 
   .sm\:font-serif {
@@ -30660,7 +30660,7 @@ video {
   }
 
   .md\:font-sans {
-    font-family: Inter var;
+    font-family: Inter;
   }
 
   .md\:font-serif {
@@ -43985,7 +43985,7 @@ video {
   }
 
   .lg\:font-sans {
-    font-family: Inter var;
+    font-family: Inter;
   }
 
   .lg\:font-serif {
@@ -57310,7 +57310,7 @@ video {
   }
 
   .xl\:font-sans {
-    font-family: Inter var;
+    font-family: Inter;
   }
 
   .xl\:font-serif {
