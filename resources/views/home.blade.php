@@ -66,7 +66,7 @@
                         </select>
                     </div>
                     <div class="hidden sm:block">
-                        <form action="{{ route('home.store') }}" method="POST">
+                        <form action="{{ route('home.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
 
                             <nav class="flex">

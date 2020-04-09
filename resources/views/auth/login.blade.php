@@ -53,13 +53,13 @@
                             </div>
                         </div>
 
-                        <div class="mt-6 flex items-center justify-between">
+                        {{-- <div class="mt-6 flex items-center justify-between">
                             <div class="flex items-center text-sm">
                                 <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150">
                                 Lupa kata laluan?
                                 </a>
                             </div>
-                        </div>
+                        </div> --}}
 
                         <div class="mt-6">
                             <span class="block w-full rounded-md shadow-sm">
