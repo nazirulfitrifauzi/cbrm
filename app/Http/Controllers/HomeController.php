@@ -26,8 +26,11 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $email = auth()->user()->email;
+        $url = 'https://fas.tekun.gov.my/tekunonline/pendaftaran/permohonanOnline/indexbaru.cfm?mode_produk=1&email=';
         Auth::logout();
-        return redirect('https://fas.tekun.gov.my/tekunonline/pendaftaran/permohonanOnline/indexbaru.cfm?mode_produk=1');
+
+        return redirect($url . '' . $email);
 
         //return view('home');
     }
