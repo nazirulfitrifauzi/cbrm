@@ -1,4 +1,4 @@
-<div id="maklumatPeribadi_content" class="block">
+<div x-show="tab === 'tab1'">
     <div class="my-8 px-4">
         <div class="md:grid md:grid-cols-3 md:gap-6">
             <div class="md:col-span-1">

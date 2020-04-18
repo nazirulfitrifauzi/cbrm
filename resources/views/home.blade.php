@@ -57,12 +57,12 @@
         <div class="max-w-7xl mx-auto pb-12 px-4 sm:px-6 lg:px-20">
             <!-- Replace with your content -->
             <div class="bg-gray-100 rounded-lg shadow px-5 py-6 sm:px-6">
-                <div>
+                <div x-data="{ tab: 'tab1' }">
                     <div class="sm:hidden">
-                        <select class="form-select block w-full" id="selectPage" onchange="changePage()">
-                            <option value="opt_maklumatPeribadi" selected>Maklumat Peribadi</option>
-                            <option value="opt_maklumatPerniagaan">Maklumat Perniagaan</option>
-                            <option value="opt_maklumatPinjaman">Maklumat Pinjaman</option>
+                        <select class="form-select block w-full">
+                            <option value="opt_maklumatPeribadi" selected @click.prevent="tab='tab1'">Maklumat Peribadi</option>
+                            <option value="opt_maklumatPerniagaan" @click.prevent="tab='tab2'">Maklumat Perniagaan</option>
+                            <option value="opt_maklumatPinjaman" @click.prevent="tab='tab3'">Maklumat Pinjaman</option>
                         </select>
                     </div>
                     <div class="hidden sm:block">
@@ -70,19 +70,25 @@
                             @csrf
 
                             <nav class="flex">
-                                <a href="#" id="maklumatPeribadi"
-                                    class="px-3 py-2 font-medium text-sm leading-5 rounded-md text-indigo-700 bg-indigo-100 focus:outline-none focus:text-indigo-800 focus:bg-indigo-200"
-                                    onclick="changeClass1()">
+                                <a href="#"
+                                    class="px-3 py-2 font-medium text-sm leading-5 rounded-md text-gray-500 hover:text-gray-700 focus:outline-none focus:text-indigo-600 focus:bg-indigo-50"
+                                    :class="{ 'text-indigo-700 bg-indigo-100 focus:outline-none focus:text-indigo-800 focus:bg-indigo-200' : tab === 'tab1' }"
+                                    @click.prevent="tab='tab1'"
+                                >
                                     Maklumat Peribadi
                                 </a>
-                                <a href="#" id="maklumatPerniagaan"
+                                <a href="#"
                                     class="ml-4 px-3 py-2 font-medium text-sm leading-5 rounded-md text-gray-500 hover:text-gray-700 focus:outline-none focus:text-indigo-600 focus:bg-indigo-50"
-                                    onclick="changeClass2()">
+                                    :class="{ 'text-indigo-700 bg-indigo-100 focus:outline-none focus:text-indigo-800 focus:bg-indigo-200' : tab === 'tab2' }"
+                                    @click.prevent="tab='tab2'"
+                                >
                                     Maklumat Perniagaan
                                 </a>
-                                <a href="#" id="maklumatPinjaman"
+                                <a href="#"
                                     class="ml-4 px-3 py-2 font-medium text-sm leading-5 rounded-md text-gray-500 hover:text-gray-700 focus:outline-none focus:text-indigo-600 focus:bg-indigo-50"
-                                    onclick="changeClass3()">
+                                    :class="{ 'text-indigo-700 bg-indigo-100 focus:outline-none focus:text-indigo-800 focus:bg-indigo-200' : tab === 'tab3' }"
+                                    @click.prevent="tab='tab3'"
+                                >
                                     Maklumat Pinjaman
                                 </a>
 
@@ -127,115 +133,3 @@
     </main>
 </div>
 @endsection
-
-@push('js')
-<script>
-    var maklumatPeribadi = document.getElementById("maklumatPeribadi");
-    var maklumatPeribadi_content = document.getElementById("maklumatPeribadi_content");
-    var maklumatPerniagaan = document.getElementById("maklumatPerniagaan");
-    var maklumatPerniagaan_content = document.getElementById("maklumatPerniagaan_content");
-    var maklumatPinjaman = document.getElementById("maklumatPinjaman");
-    var maklumatPinjaman_content = document.getElementById("maklumatPinjaman_content");
-
-    function changePage() {
-        var selectPage = document.getElementById("selectPage").value;
-
-        if (selectPage == "opt_maklumatPeribadi") {
-            maklumatPeribadi_content.classList.remove("hidden");
-            maklumatPeribadi_content.classList.add("block");
-            maklumatPerniagaan_content.classList.remove("block");
-            maklumatPerniagaan_content.classList.add("hidden");
-            maklumatPinjaman_content.classList.remove("block");
-            maklumatPinjaman_content.classList.add("hidden");
-        }
-
-        if (selectPage == "opt_maklumatPerniagaan") {
-            maklumatPerniagaan_content.classList.remove("hidden");
-            maklumatPerniagaan_content.classList.add("block");
-            maklumatPeribadi_content.classList.remove("block");
-            maklumatPeribadi_content.classList.add("hidden");
-            maklumatPinjaman_content.classList.remove("block");
-            maklumatPinjaman_content.classList.add("hidden");
-        }
-
-        if (selectPage == "opt_maklumatPinjaman") {
-            maklumatPinjaman_content.classList.remove("hidden");
-            maklumatPinjaman_content.classList.add("block");
-            maklumatPerniagaan_content.classList.remove("block");
-            maklumatPerniagaan_content.classList.add("hidden");
-            maklumatPeribadi_content.classList.remove("block");
-            maklumatPeribadi_content.classList.add("hidden");
-        }
-    }
-
-    function changeClass1() {
-        maklumatPeribadi.classList.remove("text-gray-500", "hover:text-gray-700", "focus:outline-none",
-            "focus:text-indigo-600", "focus:bg-indigo-50");
-        maklumatPeribadi.classList.add("text-indigo-700", "bg-indigo-100", "focus:outline-none",
-            "focus:text-indigo-800", "focus:bg-indigo-200");
-        maklumatPeribadi_content.classList.remove("hidden");
-        maklumatPeribadi_content.classList.add("block");
-
-        maklumatPerniagaan.classList.remove("text-indigo-700", "bg-indigo-100", "focus:outline-none",
-            "focus:text-indigo-800", "focus:bg-indigo-200");
-        maklumatPerniagaan.classList.add("text-gray-500", "hover:text-gray-700", "focus:outline-none",
-            "focus:text-indigo-600", "focus:bg-indigo-50");
-        maklumatPerniagaan_content.classList.remove("block");
-        maklumatPerniagaan_content.classList.add("hidden");
-
-        maklumatPinjaman.classList.remove("text-indigo-700", "bg-indigo-100", "focus:outline-none",
-            "focus:text-indigo-800", "focus:bg-indigo-200");
-        maklumatPinjaman.classList.add("text-gray-500", "hover:text-gray-700", "focus:outline-none",
-            "focus:text-indigo-600", "focus:bg-indigo-50");
-        maklumatPinjaman_content.classList.remove("block");
-        maklumatPinjaman_content.classList.add("hidden");
-    }
-
-    function changeClass2() {
-        maklumatPerniagaan.classList.remove("text-gray-500", "hover:text-gray-700", "focus:outline-none",
-            "focus:text-indigo-600", "focus:bg-indigo-50");
-        maklumatPerniagaan.classList.add("text-indigo-700", "bg-indigo-100", "focus:outline-none",
-            "focus:text-indigo-800", "focus:bg-indigo-200");
-        maklumatPerniagaan_content.classList.remove("hidden");
-        maklumatPerniagaan_content.classList.add("block");
-
-        maklumatPeribadi.classList.remove("text-indigo-700", "bg-indigo-100", "focus:outline-none",
-            "focus:text-indigo-800", "focus:bg-indigo-200");
-        maklumatPeribadi.classList.add("text-gray-500", "hover:text-gray-700", "focus:outline-none",
-            "focus:text-indigo-600", "focus:bg-indigo-50");
-        maklumatPeribadi_content.classList.remove("block");
-        maklumatPeribadi_content.classList.add("hidden");
-
-        maklumatPinjaman.classList.remove("text-indigo-700", "bg-indigo-100", "focus:outline-none",
-            "focus:text-indigo-800", "focus:bg-indigo-200");
-        maklumatPinjaman.classList.add("text-gray-500", "hover:text-gray-700", "focus:outline-none",
-            "focus:text-indigo-600", "focus:bg-indigo-50");
-        maklumatPinjaman_content.classList.remove("block");
-        maklumatPinjaman_content.classList.add("hidden");
-    }
-
-    function changeClass3() {
-        maklumatPinjaman.classList.remove("text-gray-500", "hover:text-gray-700", "focus:outline-none",
-            "focus:text-indigo-600", "focus:bg-indigo-50");
-        maklumatPinjaman.classList.add("text-indigo-700", "bg-indigo-100", "focus:outline-none",
-            "focus:text-indigo-800", "focus:bg-indigo-200");
-        maklumatPinjaman_content.classList.remove("hidden");
-        maklumatPinjaman_content.classList.add("block");
-
-        maklumatPerniagaan.classList.remove("text-indigo-700", "bg-indigo-100", "focus:outline-none",
-            "focus:text-indigo-800", "focus:bg-indigo-200");
-        maklumatPerniagaan.classList.add("text-gray-500", "hover:text-gray-700", "focus:outline-none",
-            "focus:text-indigo-600", "focus:bg-indigo-50");
-        maklumatPerniagaan_content.classList.remove("block");
-        maklumatPerniagaan_content.classList.add("hidden");
-
-        maklumatPeribadi.classList.remove("text-indigo-700", "bg-indigo-100", "focus:outline-none",
-            "focus:text-indigo-800", "focus:bg-indigo-200");
-        maklumatPeribadi.classList.add("text-gray-500", "hover:text-gray-700", "focus:outline-none",
-            "focus:text-indigo-600", "focus:bg-indigo-50");
-        maklumatPeribadi_content.classList.remove("block");
-        maklumatPeribadi_content.classList.add("hidden");
-    }
-
-</script>
-@endpush
