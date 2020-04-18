@@ -26,13 +26,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $email = auth()->user()->email;
-        $url = 'https://fas.tekun.gov.my/tekunonline/pendaftaran/permohonanOnline/indexbaru.cfm?mode_produk=1&email=';
-        Auth::logout();
+        // $email = auth()->user()->email;
+        // $url = 'https://fas.tekun.gov.my/tekunonline/pendaftaran/permohonanOnline/indexbaru.cfm?mode_produk=1&email=';
+        // Auth::logout();
 
-        return redirect($url . '' . $email);
+        // return redirect($url . '' . $email);
 
-        //return view('home');
+        return view('home');
     }
 
     public function store(Request $request)
@@ -41,10 +41,10 @@ class HomeController extends Controller
 
         // File::create([]);
 
-        // $name = auth()->user()->name;
-        // $email = auth()->user()->email;
-        // Mail::to($email)->send(new successfulApplication($name));
+        $name = auth()->user()->name;
+        $email = auth()->user()->email;
+        Mail::to($email)->send(new successfulApplication($name));
 
-        // return 'Permohonan anda telah berjaya dihantar';
+        return 'Permohonan anda telah berjaya dihantar';
     }
 }

@@ -10,7 +10,6 @@ class RedirectController extends Controller
     {
         if (Auth::user()) {
             return redirect('home');
-            //return redirect('https://fas.tekun.gov.my/tekunonline/pendaftaran/permohonanOnline/indexbaru.cfm?mode_produk=1');
         } else {
             return view('auth.login');
         }
