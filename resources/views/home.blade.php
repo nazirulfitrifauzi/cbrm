@@ -47,7 +47,7 @@
         <header class="py-10">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-20">
                 <h1 class="text-3xl leading-9 font-bold text-white">
-                    Program Pemulihan Perniagaan TEKUN NASIONAL
+                    Program Pemulihan Perniagaan TEKUN NASIONAL (CBRM)
                 </h1>
             </div>
         </header>
@@ -60,7 +60,7 @@
                 <div x-data="{ tab: 'tab1' }">
                     <div class="sm:hidden">
                         <select class="form-select block w-full">
-                            <option value="opt_maklumatPeribadi" selected @click.prevent="tab='tab1'">Maklumat Peribadi</option>
+                            <option value="opt_maklumatPeribadi" @click.prevent="tab='tab1'" selected>Maklumat Peribadi</option>
                             <option value="opt_maklumatPerniagaan" @click.prevent="tab='tab2'">Maklumat Perniagaan</option>
                             <option value="opt_maklumatPinjaman" @click.prevent="tab='tab3'">Maklumat Pinjaman</option>
                         </select>

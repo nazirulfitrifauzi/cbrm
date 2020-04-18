@@ -75,7 +75,7 @@
 
                 <div>
                     <p class="mt-6 text-sm leading-5 text-gray-600 max-w text-center">
-                        Applikasi ini hanya boleh dilayari menggunakan Internet Explorer.
+                        Applikasi ini hanya sesuai dilayari menggunakan Firefox & Google Chrome.
                     </p>
                 </div>
 

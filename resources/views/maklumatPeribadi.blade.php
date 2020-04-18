@@ -161,9 +161,9 @@
                             <label for="profile_pic" class="block text-sm leading-5 font-medium text-gray-700">
                                 Gambar
                             </label>
-                            <div
-                                class="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                            <div id="gambar-div" class="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md cursor-pointer" style="display: block;">
                                 <div class="text-center">
+                                    <input type="file" name="gambar" id="gambar" class="hidden" />
                                     <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none"
                                         viewBox="0 0 48 48">
                                         <path
@@ -182,6 +182,18 @@
                                     </p>
                                 </div>
                             </div>
+                            {{-- test --}}
+                            <div id="uploaded-div" class="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md cursor-pointer" style="display:none">
+                                    <img id="uploaded" src="" class="h-40">
+                                    <p class="mt-1 text-sm text-gray-600">
+                                        <button
+                                            class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition duration-150 ease-in-out">
+                                            Muat naik
+                                        </button>
+                                        atau <i>drag and drop</i>
+                                    </p>
+                            </div>
+                            {{-- end test --}}
                         </div>
 
                         <div class="grid grid-cols-6 gap-6 mt-6">
@@ -561,3 +573,38 @@
         </div>
     </div>
 </div>
+
+@push('js')
+    <script>
+        $("#gambar-div").click(function(event) {
+            if ( !$(event.target).is('#gambar') ) {
+                $(this).find("#gambar").trigger('click');
+            }
+        });
+
+        $("input[id='gambar']").on('change', function(){
+            readURL(this);
+            checkFiles();
+        });
+
+        var checkFiles = function () {
+            if( document.getElementById("gambar").files.length > 0 ){
+                $('#uploaded-div').css('display', 'block');
+                $('#gambar-div').css('display', 'none');
+            } else {
+                $('#uploadeddiv').css('display', 'none');
+                $('#gambar-div').css('display', 'block');
+            }
+        }
+
+        var readURL = function(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#uploaded').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+@endpush
