@@ -171,27 +171,27 @@
                                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                                     </svg>
                                     <p class="mt-1 text-sm text-gray-600">
-                                        <button
-                                            class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition duration-150 ease-in-out">
+                                        <a class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition duration-150 ease-in-out">
                                             Muat naik
-                                        </button>
-                                        atau <i>drag and drop</i>
+                                        </a>
                                     </p>
                                     <p class="mt-1 text-xs text-gray-500">
-                                        PNG, JPG, GIF up to 10MB
+                                        PNG & JPG sahaja.
                                     </p>
                                 </div>
                             </div>
                             {{-- test --}}
                             <div id="uploaded-div" class="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md cursor-pointer" style="display:none">
-                                    <img id="uploaded" src="" class="h-40">
-                                    <p class="mt-1 text-sm text-gray-600">
-                                        <button
-                                            class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition duration-150 ease-in-out">
-                                            Muat naik
-                                        </button>
-                                        atau <i>drag and drop</i>
-                                    </p>
+                                <img id="uploaded" src="" class="h-40">
+                                <span class="mt-3 inline-flex rounded-md shadow-sm">
+                                    <a id="buttonDel" type="button"
+                                        class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700 transition ease-in-out duration-150" onclick="delPicture()">
+                                        <svg fill="currentColor" viewBox="0 0 20 20" class="w-8 h-8">
+                                            <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd">
+                                        </svg>
+                                        Buang Gambar
+                                    </a>
+                                </span>
                             </div>
                             {{-- end test --}}
                         </div>
@@ -605,6 +605,12 @@
                 }
                 reader.readAsDataURL(input.files[0]);
             }
+        }
+
+        function delPicture() {
+            $("#gambar").val('');
+            $('#uploaded-div').css('display', 'none');
+            $('#gambar-div').css('display', 'block');
         }
     </script>
 @endpush
