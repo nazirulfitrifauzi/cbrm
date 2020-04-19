@@ -110,13 +110,15 @@
                                         class="block text-sm font-medium leading-5 text-gray-700">Negeri</label>
                                     <select id="reference_state" name="reference_state"
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
-                                        <option value="1" @if(isset(auth()->user()->pinjaman->reference_state))
-                                            @if(auth()->user()->pinjaman->reference_state == '1') selected @endif @else
-                                            @endif>Johor</option>
-                                        <option value="2" @if(isset(auth()->user()->pinjaman->reference_state))
-                                            @if(auth()->user()->pinjaman->reference_state == '2') selected @endif @else
-                                            @endif>Kedah</option>
-                                        <!-- kene pkai cmni sbb aku buat insert & update & show dlm satu form-->
+                                        @foreach($negerix as $negerix5)
+                                            <option value="{{ $negerix5->kodnegeri }}"
+                                                @if(isset(auth()->user()->peribadi->reference_state))
+                                                    @if(auth()->user()->peribadi->reference_state == $negerix5->kodnegeri) 
+                                                        selected 
+                                                    @endif @else
+                                                @endif
+                                            >{{ $negerix5->namanegeri }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
 

@@ -73,8 +73,15 @@
                                     class="block text-sm font-medium leading-5 text-gray-700">Negeri</label>
                                 <select id="business_state" name="business_state"
                                     class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
-                                    <option value="1" @if(isset(auth()->user()->perniagaan->business_state)) @if(auth()->user()->perniagaan->business_state == '1') selected @endif @else @endif>Johor</option>
-                                    <option value="2" @if(isset(auth()->user()->perniagaan->business_state)) @if(auth()->user()->perniagaan->business_state == '2') selected @endif @else @endif>Kedah</option>
+                                    @foreach($negerix as $negerix4)
+                                        <option value="{{ $negerix4->kodnegeri }}" 
+                                            @if(isset(auth()->user()->peribadi->business_state))
+                                                    @if(auth()->user()->peribadi->business_state == $negerix4->kodnegeri) 
+                                                        selected 
+                                                    @endif @else
+                                                @endif
+                                        >{{ $negerix4->namanegeri }}</option>
+                                    @endforeach
                                 </select>
                             </div>
 
