@@ -27,20 +27,13 @@
                                             <label for="purchase_price"
                                                 class="block text-sm font-medium leading-5 text-gray-700">RM</label>
                                             <label for="purchase_price" class="ml-3">
-<<<<<<< Updated upstream
-                                                <span class="block text-sm leading-5 font-medium text-gray-700">
+                                                <span class="block text-sm leading-5 font-medium text-gray-700"> <!-- number xyah checking kat front end.. kite accept string je, kat controlloer bru kite validate number -->
                                                     <input
                                                         id="purchase_price" name="purchase_price"
                                                         value="{{ isset(auth()->user()->pinjaman->purchase_price) ? auth()->user()->pinjaman->purchase_price : '' }}"
                                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
                                                         />
                                                 </span>
-=======
-                                                <span class="block text-sm leading-5 font-medium text-gray-700"><input
-                                                        id="purchase_price" name="purchase_price" type="number" step="0.01"
-                                                        value="{{old('purchase_price')}}"
-                                                        class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" /></span>
->>>>>>> Stashed changes
                                             </label>
                                         </div>
                                     </div>
@@ -116,13 +109,8 @@
                                     class="block text-sm font-medium leading-5 text-gray-700">Negeri</label>
                                 <select id="reference_state" name="reference_state"
                                     class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
-<<<<<<< Updated upstream
                                     <option value="1" @if(isset(auth()->user()->pinjaman->reference_state)) @if(auth()->user()->pinjaman->reference_state == '1') selected @endif @else @endif>Johor</option>
-                                    <option value="2" @if(isset(auth()->user()->pinjaman->reference_state)) @if(auth()->user()->pinjaman->reference_state == '2') selected @endif @else @endif>Kedah</option>
-=======
-                                    <option value="1" {{ old('reference_state') == 1 ? 'selected' : '' }}>Johor</option>
-                                    <option value="2" {{ old('reference_state') == 2 ? 'selected' : '' }}>Kedah</option>
->>>>>>> Stashed changes
+                                    <option value="2" @if(isset(auth()->user()->pinjaman->reference_state)) @if(auth()->user()->pinjaman->reference_state == '2') selected @endif @else @endif>Kedah</option> <!-- kene pkai cmni sbb aku buat insert & update & show dlm satu form-->
                                 </select>
                             </div>
 
@@ -148,21 +136,6 @@
         </div>
     </div>
 
-<<<<<<< Updated upstream
-    <div class="mt-6 flex justify-center">
-        <span class="inline-flex rounded-md shadow-sm">
-            <button type="submit"
-                class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:border-green-700 focus:shadow-outline-green active:bg-green-700 transition ease-in-out duration-150">
-                {{--add this to disable button: opacity-50 cursor-not-allowed --}}
-                <svg fill="currentColor" viewBox="0 0 20 20" class="w-8 h-8">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                </svg>
-                Simpan
-            </button>
-        </span>
-    </div>
-    </form>
-=======
     <div class="hidden sm:block">
         <div class="py-5">
             <div class="border-t border-gray-200"></div>
@@ -421,5 +394,4 @@
             </div>
         </div>
     </div>
->>>>>>> Stashed changes
 </div>
