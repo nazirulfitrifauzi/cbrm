@@ -1,4 +1,7 @@
 <div x-show="tab === 'tab3'">
+    <form method="post" action="{{ route('home.storePinjaman') }}">
+    @csrf
+
     <div class="my-8 px-4">
         <div class="md:grid md:grid-cols-3 md:gap-6">
             <div class="md:col-span-1">
@@ -24,10 +27,13 @@
                                             <label for="purchase_price"
                                                 class="block text-sm font-medium leading-5 text-gray-700">RM</label>
                                             <label for="purchase_price" class="ml-3">
-                                                <span class="block text-sm leading-5 font-medium text-gray-700"><input
+                                                <span class="block text-sm leading-5 font-medium text-gray-700">
+                                                    <input
                                                         id="purchase_price" name="purchase_price"
-                                                        value="{{old('purchase_price')}}"
-                                                        class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" /></span>
+                                                        value="{{ isset(auth()->user()->pinjaman->purchase_price) ? auth()->user()->pinjaman->purchase_price : '' }}"
+                                                        class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                                                        />
+                                                </span>
                                             </label>
                                         </div>
                                     </div>
@@ -63,8 +69,10 @@
                             <div class="col-span-6 sm:col-span-6">
                                 <label for="reference_name"
                                     class="block text-sm font-medium leading-5 text-gray-700">Nama</label>
-                                <input id="reference_name" name="reference_name" value="{{old('reference_name')}}"
-                                    class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                <input id="reference_name" name="reference_name"
+                                    class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" 
+                                    value="{{ isset(auth()->user()->pinjaman->reference_name) ? auth()->user()->pinjaman->reference_name : '' }}"
+                                    />
                             </div>
                         </div>
 
@@ -73,11 +81,11 @@
                                 <label for="reference_address1"
                                     class="block text-sm font-medium leading-5 text-gray-700">Alamat</label>
                                 <input id="reference_address1" name="reference_address1"
-                                    value="{{old('reference_address1')}}"
+                                    value="{{ isset(auth()->user()->pinjaman->reference_address1) ? auth()->user()->pinjaman->reference_address1 : '' }}"
                                     class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
 
                                 <input id="reference_address2" name="reference_address2"
-                                    value="{{old('reference_address2')}}"
+                                    value="{{ isset(auth()->user()->pinjaman->reference_address2) ? auth()->user()->pinjaman->reference_address2 : '' }}"
                                     class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                             </div>
 
@@ -85,14 +93,14 @@
                                 <label for="reference_postcode"
                                     class="block text-sm font-medium leading-5 text-gray-700">Poskod</label>
                                 <input id="reference_postcode" name="reference_postcode"
-                                    value="{{old('reference_postcode')}}"
+                                    value="{{ isset(auth()->user()->pinjaman->reference_postcode) ? auth()->user()->pinjaman->reference_postcode : '' }}"
                                     class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                             </div>
 
                             <div class="col-span-6 sm:col-span-6 lg:col-span-2">
                                 <label for="reference_city"
                                     class="block text-sm font-medium leading-5 text-gray-700">Bandar</label>
-                                <input id="reference_city" name="reference_city" value="{{old('reference_city')}}"
+                                <input id="reference_city" name="reference_city" value="{{ isset(auth()->user()->pinjaman->reference_city) ? auth()->user()->pinjaman->reference_city : '' }}"
                                     class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                             </div>
 
@@ -101,8 +109,8 @@
                                     class="block text-sm font-medium leading-5 text-gray-700">Negeri</label>
                                 <select id="reference_state" name="reference_state"
                                     class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
-                                    <option value="1" {{ old('role_id') == 1 ? 'selected' : '' }}>Johor</option>
-                                    <option value="2" {{ old('role_id') == 2 ? 'selected' : '' }}>Kedah</option>
+                                    <option value="1" @if(isset(auth()->user()->pinjaman->reference_state)) @if(auth()->user()->pinjaman->reference_state == '1') selected @endif @else @endif>Johor</option>
+                                    <option value="2" @if(isset(auth()->user()->pinjaman->reference_state)) @if(auth()->user()->pinjaman->reference_state == '2') selected @endif @else @endif>Kedah</option>
                                 </select>
                             </div>
 
@@ -111,15 +119,15 @@
                                     class="block text-sm font-medium leading-5 text-gray-700">Hubungan Dengan
                                     Pemohon</label>
                                 <input id="reference_relation" name="reference_relation"
-                                    value="{{old('reference_relation')}}"
+                                    value="{{ isset(auth()->user()->pinjaman->reference_relation) ? auth()->user()->pinjaman->reference_relation : '' }}"
                                     class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="reference_phone"
                                     class="block text-sm font-medium leading-5 text-gray-700">No Telefon</label>
-                                <input id="reference_phone" name="reference_phone" value="{{old('reference_phone')}}"
-                                    class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                <input id="reference_phone" name="reference_phone" 
+                                    value="{{ isset(auth()->user()->pinjaman->reference_phone) ? auth()->user()->pinjaman->reference_phone : '' }}" class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                             </div>
                         </div>
                     </div>
@@ -140,5 +148,5 @@
             </button>
         </span>
     </div>
-    
+    </form>
 </div>
