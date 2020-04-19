@@ -51,7 +51,114 @@ class HomeController extends Controller
 
     public function storePeribadi(Request $request)
     {
-        //
+        // dd($request->all());
+
+        $this->validate($request, [
+            "tekun_state"               => ['required'],
+            "tekun_branch"              => ['required'],
+            "business_status"           => ['required'],
+            "business_type"             => ['required'],
+            "business_sector"           => ['required'],
+            "bank1"                     => ['required'],
+            "bank1_acct"                => ['required', 'string'],
+            "bank2"                     => ['required'],
+            "bank2_acct"                => ['required', 'string'],
+            // "gambar"                    => null,
+            "name"                      => ['required', 'string'],
+            "ic_no"                     => ['required', 'numeric', 'min:12'],
+            "gender"                    => ['required'],
+            "religion"                  => ['required'],
+            "birthdate"                 => ['required'],
+            "race"                      => ['required'],
+            "age"                       => ['required', 'numeric'],
+            "marital"                   => ['required'],
+            "dependent"                 => ['required', 'numeric'],
+            "oku"                       => ['required'],
+            "address1"                  => ['required', 'string'],
+            "address2"                  => ['string'],
+            "postcode"                  => ['required', 'numeric'],
+            "city"                      => ['required', 'string'],
+            "state"                     => ['required'],
+            "phone_home"                => ['numeric'],
+            "phone_hp"                  => ['required', 'numeric'],
+            "email"                     => ['required'],
+            "profession"                => ['required', 'string'],
+            "income"                    => ['required', 'numeric'],
+            "employer_phone"            => ['required', 'numeric'],
+            "employer_address1"         => ['required', 'string'],
+            "employer_postcode"         => ['required', 'numeric'],
+            "employer_city"             => ['required', 'string'],
+            "employer_state"            => ['required'],
+            "spouse_type"               => ['required'],
+            "spouse_name"               => ['required', 'string'],
+            "spouse_ic_no"              => ['required', 'numeric', 'min:12'],
+            "spouse_profession"         => ['required', 'string'],
+            "spouse_employer_address1"  => ['required', 'string'],
+            "spouse_employer_postcode"  => ['required', 'numeric'],
+            "spouse_employer_city"      => ['required', 'string'],
+            "spouse_employer_state"     => ['required']
+        ]);
+
+        $peribadi = Peribadi::updateOrCreate([
+            'user_id'               => auth()->user()->id
+        ], [
+            "tekun_state"               => $request->get('tekun_state'),
+            "tekun_branch"              => $request->get('tekun_branch'),
+            "business_status"           => $request->get('business_status'),
+            "business_type"             => $request->get('business_type'),
+            "business_sector"           => $request->get('business_sector'),
+            "bank1"                     => $request->get('bank1'),
+            "bank1_acct"                => $request->get('bank1_acct'),
+            "bank2"                     => $request->get('bank2'),
+            "bank2_acct"                => $request->get('bank2_acct'),
+            // "gambar"                    => null,
+            "name"                      => $request->get('name'),
+            "ic_no"                     => $request->get('ic_no'),
+            "ic_old"                    => $request->get('ic_old'),
+            "gender"                    => $request->get('gender'),
+            "religion"                  => $request->get('religion'),
+            "birthdate"                 => $request->get('birthdate'),
+            "race"                      => $request->get('race'),
+            "age"                       => $request->get('age'),
+            "marital"                   => $request->get('marital'),
+            "dependent"                 => $request->get('dependent'),
+            "oku"                       => $request->get('oku'),
+            "address1"                  => $request->get('address1'),
+            "address2"                  => $request->get('address2'),
+            "postcode"                  => $request->get('postcode'),
+            "city"                      => $request->get('city'),
+            "state"                     => $request->get('state'),
+            "phone_home"                => $request->get('phone_home'),
+            "phone_hp"                  => $request->get('phone_hp'),
+            "email"                     => $request->get('email'),
+            "facebook"                  => $request->get('facebook'),
+            "instagram"                 => $request->get('instagram'),
+            "profession"                => $request->get('profession'),
+            "income"                    => $request->get('income'),
+            "employer_phone"            => $request->get('employer_phone'),
+            "employer_address1"         => $request->get('employer_address1'),
+            "employer_address2"         => $request->get('employer_address2'),
+            "employer_postcode"         => $request->get('employer_postcode'),
+            "employer_city"             => $request->get('employer_city'),
+            "employer_state"            => $request->get('employer_state'),
+            "spouse_type"               => $request->get('spouse_type'),
+            "spouse_name"               => $request->get('spouse_name'),
+            "spouse_ic_no"              => $request->get('spouse_ic_no'),
+            "spouse_profession"         => $request->get('spouse_profession'),
+            "spouse_employer_address1"  => $request->get('spouse_employer_address1'),
+            "spouse_employer_address2"  => $request->get('spouse_employer_address2'),
+            "spouse_employer_postcode"  => $request->get('spouse_employer_postcode'),
+            "spouse_employer_city"      => $request->get('spouse_employer_city'),
+            "spouse_employer_state"     => $request->get('spouse_employer_state'),
+        ]);
+
+        $peribadi->save();
+        $id = auth()->user()->id;
+        Peribadi::where('user_id', $id)->update(['completed' => 1]);
+
+        $this->checkCompleted();
+
+        return redirect('home');
     }
 
     public function storePerniagaan(Request $request)
@@ -68,7 +175,7 @@ class HomeController extends Controller
             'business_ownership'  => ['required'],
             'business_modal'      => ['required'],
             'business_open'       => ['required'],
-            'business_closed'      => ['required']
+            'business_closed'     => ['required']
         ]);
 
         $perniagaan = Perniagaan::updateOrCreate([
