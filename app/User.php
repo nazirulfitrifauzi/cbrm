@@ -2,6 +2,9 @@
 
 namespace App;
 
+use App\Models\Peribadi;
+use App\Models\Perniagaan;
+use App\Models\Pinjaman;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -36,4 +39,19 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function peribadi()
+    {
+        return $this->hasOne(Peribadi::class, 'user_id');
+    }
+
+    public function perniagaan()
+    {
+        return $this->hasOne(Perniagaan::class, 'user_id');
+    }
+
+    public function pinjaman()
+    {
+        return $this->hasOne(Pinjaman::class, 'user_id');
+    }
 }

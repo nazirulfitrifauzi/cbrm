@@ -94,9 +94,6 @@
                     </div>
 
                     <div class="hidden sm:block">
-                        <form action="{{ route('home.store') }}" method="POST" enctype="multipart/form-data">
-                            @csrf
-
                             <nav class="flex">
                                 <a href="#"
                                     class="px-3 py-2 font-medium text-sm leading-5 rounded-md text-gray-500 hover:text-gray-700 focus:outline-none focus:text-indigo-600 focus:bg-indigo-50"
@@ -134,8 +131,11 @@
                                     </span>
                                     <span class="inline-flex rounded-md shadow-sm">
                                         <button type="submit"
-                                            class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:border-green-700 focus:shadow-outline-green active:bg-green-700 transition ease-in-out duration-150">
-                                            {{--add this to disable button: opacity-50 cursor-not-allowed --}}
+                                            class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:border-green-700 focus:shadow-outline-green active:bg-green-700 transition ease-in-out duration-150
+                                            @if(auth()->user()->completed === '0')
+                                                opacity-50 cursor-not-allowed
+                                            @endif
+                                            ">
                                             <svg class="-ml-0.5 mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
                                                 <path fill-rule="evenodd"
                                                     d="M2 10a4 4 0 004 4h3v3a1 1 0 102 0v-3h3a4 4 0 000-8 4 4 0 00-8 0 4 4 0 00-4 4zm9 4H9V9.414l-1.293 1.293a1 1 0 01-1.414-1.414l3-3a1 1 0 011.414 0l3 3a1 1 0 01-1.414 1.414L11 9.414V14z"
@@ -155,7 +155,6 @@
                     {{-- end content --}}
                 </div>
             </div>
-            </form>
             <!-- /End replace -->
         </div>
     </main>
