@@ -10,6 +10,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Storage;
 
 class HomeController extends Controller
 {
@@ -60,10 +61,10 @@ class HomeController extends Controller
             "business_type"             => ['required'],
             "business_sector"           => ['required'],
             "bank1"                     => ['required'],
-            "bank1_acct"                => ['required', 'string'],
+            "bank1_acct"                => ['required', 'numeric'],
             "bank2"                     => ['required'],
-            "bank2_acct"                => ['required', 'string'],
-            // "gambar"                    => null,
+            "bank2_acct"                => ['required', 'numeric'],
+            "gambar"                    => ['mimes:jpeg,jpg,png'],
             "name"                      => ['required', 'string'],
             "ic_no"                     => ['required', 'numeric', 'min:12'],
             "gender"                    => ['required'],
@@ -99,6 +100,10 @@ class HomeController extends Controller
             "spouse_employer_state"     => ['required']
         ]);
 
+        $gambar = $request->file('gambar');
+        $gambar_name = auth()->user()->ic_no . '_gambar.' . $gambar->getClientOriginalExtension();
+        Storage::disk('local')->putFileAs('public/Pictures', $gambar, $gambar_name);
+
         $peribadi = Peribadi::updateOrCreate([
             'user_id'               => auth()->user()->id
         ], [
@@ -111,7 +116,7 @@ class HomeController extends Controller
             "bank1_acct"                => $request->get('bank1_acct'),
             "bank2"                     => $request->get('bank2'),
             "bank2_acct"                => $request->get('bank2_acct'),
-            // "gambar"                    => null,
+            "gambar"                    => $gambar_name,
             "name"                      => $request->get('name'),
             "ic_no"                     => $request->get('ic_no'),
             "ic_old"                    => $request->get('ic_old'),
@@ -252,5 +257,14 @@ class HomeController extends Controller
         if ($pinjaman == 1 && $peribadi == 1 && $perniagaan == 1) {
             User::where('id', $id)->update(['completed' => 1]);
         }
+    }
+
+    public function deleteGambar($id)
+    {
+        $id = auth()->user()->id;
+        $file = Peribadi::where('user_id', $id)->value('gambar');
+
+        Peribadi::where('user_id', $id)->update(['gambar' => NULL]);
+        unlink(storage_path('app/public/Pictures/' . $file));
     }
 }

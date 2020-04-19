@@ -23,4 +23,5 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::post('/storePeribadi', 'HomeController@storePeribadi')->name('home.storePeribadi');
     Route::post('/storePerniagaan', 'HomeController@storePerniagaan')->name('home.storePerniagaan');
     Route::post('/storePinjaman', 'HomeController@storePinjaman')->name('home.storePinjaman');
+    Route::delete('/deleteGambar/{id}', 'HomeController@deleteGambar')->name('home.deleteGambar');
 });
