@@ -56,7 +56,47 @@ class HomeController extends Controller
 
     public function storePerniagaan(Request $request)
     {
-        dd($request->all());
+        $this->validate($request, [
+            'business_name'       => ['required', 'string'],
+            'business_activity'   => ['required'],
+            'business_address1'   => ['required', 'string'],
+            'business_postcode'   => ['required', 'numeric', 'min:5'],
+            'business_city'       => ['required', 'string'],
+            'business_state'      => ['required', 'string'],
+            'business_phone_hp'   => ['required', 'numeric', 'min:10'],
+            'business_premise'    => ['required'],
+            'business_ownership'  => ['required'],
+            'business_modal'      => ['required'],
+            'business_open'       => ['required'],
+            'business_closed'      => ['required']
+        ]);
+
+        $perniagaan = Perniagaan::updateOrCreate([
+            'user_id'               => auth()->user()->id
+        ], [
+            'business_name'         => $request->get('business_name'),
+            'business_activity'     => $request->get('business_activity'),
+            'business_address1'     => $request->get('business_address1'),
+            'business_address2'     => $request->get('business_address2'),
+            'business_postcode'     => $request->get('business_postcode'),
+            'business_city'         => $request->get('business_city'),
+            'business_state'        => $request->get('business_state'),
+            'business_phone'        => $request->get('business_phone'),
+            'business_phone_hp'     => $request->get('business_phone_hp'),
+            'business_premise'      => $request->get('business_premise'),
+            'business_ownership'    => $request->get('business_ownership'),
+            'business_modal'        => $request->get('business_modal'),
+            'business_open'         => $request->get('business_open'),
+            'business_closed'       => $request->get('business_closed')
+        ]);
+
+        $perniagaan->save();
+        $id = auth()->user()->id;
+        Perniagaan::where('user_id', $id)->update(['completed' => 1]);
+
+        $this->checkCompleted();
+
+        return redirect('home');
     }
 
     public function storePinjaman(Request $request)
