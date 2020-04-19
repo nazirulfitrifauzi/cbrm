@@ -30,7 +30,7 @@
                                                 <span class="block text-sm leading-5 font-medium text-gray-700"> <!-- number xyah checking kat front end.. kite accept string je, kat controlloer bru kite validate number -->
                                                     <input
                                                         id="purchase_price" name="purchase_price"
-                                                        value="{{ isset(auth()->user()->pinjaman->purchase_price) ? auth()->user()->pinjaman->purchase_price : '' }}"
+                                                        value="{{ isset(auth()->user()->pinjaman->purchase_price) ? auth()->user()->pinjaman->purchase_price : old('purchase_price') }}"
                                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
                                                         />
                                                 </span>
@@ -71,7 +71,7 @@
                                     class="block text-sm font-medium leading-5 text-gray-700">Nama</label>
                                 <input id="reference_name" name="reference_name"
                                     class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" 
-                                    value="{{ isset(auth()->user()->pinjaman->reference_name) ? auth()->user()->pinjaman->reference_name : '' }}"
+                                    value="{{ isset(auth()->user()->pinjaman->reference_name) ? auth()->user()->pinjaman->reference_name : old('reference_name') }}"
                                     />
                             </div>
                         </div>
@@ -81,11 +81,11 @@
                                 <label for="reference_address1"
                                     class="block text-sm font-medium leading-5 text-gray-700">Alamat</label>
                                 <input id="reference_address1" name="reference_address1"
-                                    value="{{ isset(auth()->user()->pinjaman->reference_address1) ? auth()->user()->pinjaman->reference_address1 : '' }}"
+                                    value="{{ isset(auth()->user()->pinjaman->reference_address1) ? auth()->user()->pinjaman->reference_address1 : old('reference_address1') }}"
                                     class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
 
                                 <input id="reference_address2" name="reference_address2"
-                                    value="{{ isset(auth()->user()->pinjaman->reference_address2) ? auth()->user()->pinjaman->reference_address2 : '' }}"
+                                    value="{{ isset(auth()->user()->pinjaman->reference_address2) ? auth()->user()->pinjaman->reference_address2 : old('reference_address2') }}"
                                     class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                             </div>
 
@@ -93,14 +93,14 @@
                                 <label for="reference_postcode"
                                     class="block text-sm font-medium leading-5 text-gray-700">Poskod</label>
                                 <input id="reference_postcode" name="reference_postcode"
-                                    value="{{ isset(auth()->user()->pinjaman->reference_postcode) ? auth()->user()->pinjaman->reference_postcode : '' }}"
+                                    value="{{ isset(auth()->user()->pinjaman->reference_postcode) ? auth()->user()->pinjaman->reference_postcode : old('reference_postcode') }}"
                                     class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                             </div>
 
                             <div class="col-span-6 sm:col-span-6 lg:col-span-2">
                                 <label for="reference_city"
                                     class="block text-sm font-medium leading-5 text-gray-700">Bandar</label>
-                                <input id="reference_city" name="reference_city" value="{{ isset(auth()->user()->pinjaman->reference_city) ? auth()->user()->pinjaman->reference_city : '' }}"
+                                <input id="reference_city" name="reference_city" value="{{ isset(auth()->user()->pinjaman->reference_city) ? auth()->user()->pinjaman->reference_city : old('reference_city') }}"
                                     class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                             </div>
 
@@ -119,7 +119,7 @@
                                     class="block text-sm font-medium leading-5 text-gray-700">Hubungan Dengan
                                     Pemohon</label>
                                 <input id="reference_relation" name="reference_relation"
-                                    value="{{ isset(auth()->user()->pinjaman->reference_relation) ? auth()->user()->pinjaman->reference_relation : '' }}"
+                                    value="{{ isset(auth()->user()->pinjaman->reference_relation) ? auth()->user()->pinjaman->reference_relation : old('reference_relation') }}"
                                     class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                             </div>
 
@@ -127,7 +127,7 @@
                                 <label for="reference_phone"
                                     class="block text-sm font-medium leading-5 text-gray-700">No Telefon</label>
                                 <input id="reference_phone" name="reference_phone" 
-                                    value="{{ isset(auth()->user()->pinjaman->reference_phone) ? auth()->user()->pinjaman->reference_phone : '' }}" class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                    value="{{ isset(auth()->user()->pinjaman->reference_phone) ? auth()->user()->pinjaman->reference_phone : old('reference_phone') }}" class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                             </div>
                         </div>
                     </div>
