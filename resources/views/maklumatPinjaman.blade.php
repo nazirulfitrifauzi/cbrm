@@ -1,397 +1,1154 @@
 <div x-show="tab === 'tab3'">
-    <form method="post" action="{{ route('home.storePinjaman') }}">
-    @csrf
+    <form method="post" action="{{ route('home.storePinjaman') }}" enctype="multipart/form-data">
+        @csrf
 
-    <div class="my-8 px-4">
-        <div class="md:grid md:grid-cols-3 md:gap-6">
-            <div class="md:col-span-1">
-                <div class="px-4 sm:px-0">
-                    <h3 class="text-lg font-medium leading-6 text-gray-900">Keterangan Mengenai Pembiayaan Yang Dipohon
-                    </h3>
-                    {{-- <p class="mt-1 text-sm leading-5 text-gray-500">
+        <div class="my-8 px-4">
+            <div class="md:grid md:grid-cols-3 md:gap-6">
+                <div class="md:col-span-1">
+                    <div class="px-4 sm:px-0">
+                        <h3 class="text-lg font-medium leading-6 text-gray-900">Keterangan Mengenai Pembiayaan Yang
+                            Dipohon
+                        </h3>
+                        {{-- <p class="mt-1 text-sm leading-5 text-gray-500">
         This information will be displayed publicly so be careful what you share.
         </p> --}}
+                    </div>
                 </div>
-            </div>
-            <div class="mt-5 md:mt-0 md:col-span-2">
-                <div class="shadow sm:rounded-md sm:overflow-hidden">
-                    <div class="px-4 py-5 bg-white sm:p-6">
-                        <div class="grid grid-cols-6 gap-6">
-                            <div class="col-span-6 sm:col-span-6">
-                                <fieldset>
-                                    <legend class="block text-sm font-medium leading-5 text-gray-700">Jumlah Pembiayaan
-                                        Yang Diperlukan</legend>
-                                    {{-- <p class="text-sm leading-5 text-gray-500">These are delivered via SMS to your mobile phone.</p> --}}
-                                    <div class="mt-3">
-                                        <div class="flex items-center">
-                                            <label for="purchase_price"
-                                                class="block text-sm font-medium leading-5 text-gray-700">RM</label>
-                                            <label for="purchase_price" class="ml-3">
-                                                <span class="block text-sm leading-5 font-medium text-gray-700"> <!-- number xyah checking kat front end.. kite accept string je, kat controlloer bru kite validate number -->
-                                                    <input
-                                                        id="purchase_price" name="purchase_price"
-                                                        value="{{ isset(auth()->user()->pinjaman->purchase_price) ? auth()->user()->pinjaman->purchase_price : old('purchase_price') }}"
-                                                        class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
-                                                        />
-                                                </span>
-                                            </label>
+                <div class="mt-5 md:mt-0 md:col-span-2">
+                    <div class="shadow sm:rounded-md sm:overflow-hidden">
+                        <div class="px-4 py-5 bg-white sm:p-6">
+                            <div class="grid grid-cols-6 gap-6">
+                                <div class="col-span-6 sm:col-span-6">
+                                    <fieldset>
+                                        <legend class="block text-sm font-medium leading-5 text-gray-700">Jumlah
+                                            Pembiayaan
+                                            Yang Diperlukan</legend>
+                                        {{-- <p class="text-sm leading-5 text-gray-500">These are delivered via SMS to your mobile phone.</p> --}}
+                                        <div class="mt-3">
+                                            <div class="flex items-center">
+                                                <label for="purchase_price"
+                                                    class="block text-sm font-medium leading-5 text-gray-700">RM</label>
+                                                <label for="purchase_price" class="ml-3">
+                                                    <span class="block text-sm leading-5 font-medium text-gray-700">
+                                                        <!-- number xyah checking kat front end.. kite accept string je, kat controlloer bru kite validate number -->
+                                                        <input id="purchase_price" name="purchase_price"
+                                                            value="{{ isset(auth()->user()->pinjaman->purchase_price) ? auth()->user()->pinjaman->purchase_price : old('purchase_price') }}"
+                                                            class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                                    </span>
+                                                </label>
+                                            </div>
                                         </div>
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="hidden sm:block">
+            <div class="py-5">
+                <div class="border-t border-gray-200"></div>
+            </div>
+        </div>
+
+        <div class="mt-10 sm:mt-0 my-8 px-4">
+            <div class="md:grid md:grid-cols-3 md:gap-6">
+                <div class="md:col-span-1">
+                    <div class="px-4 sm:px-0">
+                        <h3 class="text-lg font-medium leading-6 text-gray-900">Perujuk</h3>
+                        {{-- <p class="mt-1 text-sm leading-5 text-gray-500">
+        Use a permanent address where you can receive mail.
+        </p> --}}
+                    </div>
+                </div>
+                <div class="mt-5 md:mt-0 md:col-span-2">
+                    <div class="shadow overflow-hidden sm:rounded-md">
+                        <div class="px-4 py-5 bg-white sm:p-6">
+                            <div class="grid grid-cols-6 gap-6 mt-6">
+                                <div class="col-span-6 sm:col-span-6">
+                                    <label for="reference_name"
+                                        class="block text-sm font-medium leading-5 text-gray-700">Nama</label>
+                                    <input id="reference_name" name="reference_name"
+                                        class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                                        value="{{ isset(auth()->user()->pinjaman->reference_name) ? auth()->user()->pinjaman->reference_name : old('reference_name') }}" />
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-6 gap-6 mt-6">
+                                <div class="col-span-6">
+                                    <label for="reference_address1"
+                                        class="block text-sm font-medium leading-5 text-gray-700">Alamat</label>
+                                    <input id="reference_address1" name="reference_address1"
+                                        value="{{ isset(auth()->user()->pinjaman->reference_address1) ? auth()->user()->pinjaman->reference_address1 : old('reference_address1') }}"
+                                        class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+
+                                    <input id="reference_address2" name="reference_address2"
+                                        value="{{ isset(auth()->user()->pinjaman->reference_address2) ? auth()->user()->pinjaman->reference_address2 : old('reference_address2') }}"
+                                        class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+                                    <label for="reference_postcode"
+                                        class="block text-sm font-medium leading-5 text-gray-700">Poskod</label>
+                                    <input id="reference_postcode" name="reference_postcode"
+                                        value="{{ isset(auth()->user()->pinjaman->reference_postcode) ? auth()->user()->pinjaman->reference_postcode : old('reference_postcode') }}"
+                                        class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-6 lg:col-span-2">
+                                    <label for="reference_city"
+                                        class="block text-sm font-medium leading-5 text-gray-700">Bandar</label>
+                                    <input id="reference_city" name="reference_city"
+                                        value="{{ isset(auth()->user()->pinjaman->reference_city) ? auth()->user()->pinjaman->reference_city : old('reference_city') }}"
+                                        class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+                                    <label for="reference_state"
+                                        class="block text-sm font-medium leading-5 text-gray-700">Negeri</label>
+                                    <select id="reference_state" name="reference_state"
+                                        class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                                        <option value="1" @if(isset(auth()->user()->pinjaman->reference_state))
+                                            @if(auth()->user()->pinjaman->reference_state == '1') selected @endif @else
+                                            @endif>Johor</option>
+                                        <option value="2" @if(isset(auth()->user()->pinjaman->reference_state))
+                                            @if(auth()->user()->pinjaman->reference_state == '2') selected @endif @else
+                                            @endif>Kedah</option>
+                                        <!-- kene pkai cmni sbb aku buat insert & update & show dlm satu form-->
+                                    </select>
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label for="reference_relation"
+                                        class="block text-sm font-medium leading-5 text-gray-700">Hubungan Dengan
+                                        Pemohon</label>
+                                    <input id="reference_relation" name="reference_relation"
+                                        value="{{ isset(auth()->user()->pinjaman->reference_relation) ? auth()->user()->pinjaman->reference_relation : old('reference_relation') }}"
+                                        class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label for="reference_phone"
+                                        class="block text-sm font-medium leading-5 text-gray-700">No Telefon</label>
+                                    <input id="reference_phone" name="reference_phone"
+                                        value="{{ isset(auth()->user()->pinjaman->reference_phone) ? auth()->user()->pinjaman->reference_phone : old('reference_phone') }}"
+                                        class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="hidden sm:block">
+            <div class="py-5">
+                <div class="border-t border-gray-200"></div>
+            </div>
+        </div>
+
+        <div class="mt-10 sm:mt-0 my-8 px-4">
+            <div class="md:grid md:grid-cols-3 md:gap-6">
+                <div class="md:col-span-1">
+                    <div class="px-4 sm:px-0">
+                        <h3 class="text-lg font-medium leading-6 text-gray-900">Dokumen Sokongan</h3>
+                        {{-- <p class="mt-1 text-sm leading-5 text-gray-500">
+        Use a permanent address where you can receive mail.
+        </p> --}}
+                    </div>
+                </div>
+                <div class="mt-5 md:mt-0 md:col-span-2">
+                    <div class="shadow overflow-hidden sm:rounded-md">
+                        <div class="px-4 py-5 bg-white sm:p-6">
+                            <div class="mt-1">
+                                <label for="profile_pic" class="block text-sm leading-5 font-medium text-gray-700">
+                                    Kad Pengenalan
+                                </label>
+                                <div id="ic-div"
+                                    class="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md cursor-pointer"
+                                    style="display: block;">
+
+                                    @if(isset(auth()->user()->pinjaman->document_ic_no))
+                                    <div class="flex" x-data="{ open: false }">
+                                        <div class="justify-center">
+                                            <span class="inline-flex rounded-md shadow-sm">
+                                                <a href="{{ asset('storage/KP/' . auth()->user()->pinjaman->document_ic_no) }}" target="_blank"
+                                                    type="button"
+                                                    class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150">
+                                                    <svg fill="currentColor" viewBox="0 0 20 20" class="w-8 h-8">
+                                                        <path fill-rule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v3.586l-1.293-1.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V8z" clip-rule="evenodd"></path>
+                                                    </svg>
+                                                    Muat Turun
+                                                </a>
+                                            </span>
+                                            <span class="inline-flex rounded-md shadow-sm">
+                                                <button type="submit" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700 transition ease-in-out duration-150" @click.prevent="open = true">
+                                                    <svg fill="currentColor" viewBox="0 0 20 20" class="w-8 h-8">
+                                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+                                                    </svg>
+                                                    Padam Fail
+                                                </button>
+                                            </span>
+                                        </div>
+
+                                        {{-- delete gambar modal --}}
+                                        <div
+                                            class="fixed bottom-0 inset-x-0 px-4 pb-4 sm:inset-0 sm:flex sm:items-center sm:justify-center"
+                                            x-show="open"
+                                        >
+                                            <div class="fixed inset-0 transition-opacity"
+                                                x-show="open"
+                                                x-transition:enter="ease-out duration-300""
+                                                x-transition:enter-start="opacity-0"
+                                                x-transition:enter-end="opacity-100"
+                                                x-transition:leave="ease-in duration-200"
+                                                x-transition:leave-start="opacity-100"
+                                                x-transition:leave-end="opacity-0"
+                                            >
+                                                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+                                            </div>
+
+                                            <div
+                                                class="bg-white rounded-lg px-4 pt-5 pb-4 overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full sm:p-6"
+                                                x-show="open"
+                                                x-transition:enter="ease-out duration-300""
+                                                x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                                x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+                                                x-transition:leave="ease-in duration-200"
+                                                x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+                                                x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                            >
+                                                <div class="sm:flex sm:items-start">
+                                                    <div
+                                                        class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+                                                        <svg class="h-6 w-6 text-red-600" stroke="currentColor" fill="none"
+                                                            viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="2"
+                                                                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                                        </svg>
+                                                    </div>
+                                                    <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                                                        <h3 class="text-lg leading-6 font-medium text-gray-900">
+                                                            Padam Fail Kad Pengenalan!
+                                                        </h3>
+                                                        <div class="mt-2">
+                                                            <p class="text-sm leading-5 text-gray-500">
+                                                                Adakah anda pasti untuk memadam fail kad pengenalan ini?
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
+                                                    <span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
+                                                        <button type="button"
+                                                            class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-red-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red transition ease-in-out duration-150 sm:text-sm sm:leading-5"
+                                                            onclick="event.preventDefault();deleteKP({{auth()->user()->pinjaman->id}})">
+                                                            Padam!
+                                                        </button>
+                                                    </span>
+                                                    <span class="mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">
+                                                        <button type="button"
+                                                            class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline transition ease-in-out duration-150 sm:text-sm sm:leading-5"
+                                                            @click="open = false">
+                                                            Batal
+                                                        </button>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{-- end delete gambar modal --}}
                                     </div>
-                                </fieldset>
+                                    @else
+                                    <div class="text-center">
+                                        <input type="file" name="doc_ic_no" id="ic" class="hidden" />
+                                        <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none"
+                                            viewBox="0 0 48 48">
+                                            <path
+                                                d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                        <p class="mt-1 text-sm text-gray-600">
+                                            <a
+                                                class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition duration-150 ease-in-out">
+                                                Muat naik
+                                            </a>
+                                        </p>
+                                        <p class="mt-1 text-xs text-gray-500">
+                                            PDF sahaja
+                                        </p>
+                                    </div>
+                                    @endif
+                                </div>
+                                {{-- test --}}
+                                <div id="ic-uploaded-div"
+                                    class="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md cursor-pointer"
+                                    style="display:none">
+                                    <span id="ic-uploaded">Tiada fail diupload.</span>
+                                    {{-- <img id="ic-uploaded" src="" class="h-40"> --}}
+                                    <span class="mt-3 inline-flex rounded-md shadow-sm">
+                                        <a id="ic-buttonDel" type="button"
+                                            class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700 transition ease-in-out duration-150"
+                                            onclick="icDelFile()">
+                                            <svg fill="currentColor" viewBox="0 0 20 20" class="w-8 h-8">
+                                                <path fill-rule="evenodd"
+                                                    d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                                                    clip-rule="evenodd">
+                                            </svg>
+                                            Buang File
+                                        </a>
+                                    </span>
+                                </div>
+                                {{-- end test --}}
+                            </div>
+
+                            <div class="mt-6">
+                                <label for="profile_pic" class="block text-sm leading-5 font-medium text-gray-700">
+                                    SSM
+                                </label>
+                                <div id="ssm-div"
+                                    class="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md cursor-pointer"
+                                    style="display: block;">
+                                    @if(isset(auth()->user()->pinjaman->document_ssm))
+                                    <div class="flex" x-data="{ open: false }">
+                                        <div class="justify-center">
+                                            <span class="inline-flex rounded-md shadow-sm">
+                                                <a href="{{ asset('storage/SSM/' . auth()->user()->pinjaman->document_ssm) }}" target="_blank"
+                                                    type="button"
+                                                    class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150">
+                                                    <svg fill="currentColor" viewBox="0 0 20 20" class="w-8 h-8">
+                                                        <path fill-rule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v3.586l-1.293-1.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V8z" clip-rule="evenodd"></path>
+                                                    </svg>
+                                                    Muat Turun
+                                                </a>
+                                            </span>
+                                            <span class="inline-flex rounded-md shadow-sm">
+                                                <button type="submit" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700 transition ease-in-out duration-150" @click.prevent="open = true">
+                                                    <svg fill="currentColor" viewBox="0 0 20 20" class="w-8 h-8">
+                                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+                                                    </svg>
+                                                    Padam Fail
+                                                </button>
+                                            </span>
+                                        </div>
+
+                                        {{-- delete gambar modal --}}
+                                        <div
+                                            class="fixed bottom-0 inset-x-0 px-4 pb-4 sm:inset-0 sm:flex sm:items-center sm:justify-center"
+                                            x-show="open"
+                                        >
+                                            <div class="fixed inset-0 transition-opacity"
+                                                x-show="open"
+                                                x-transition:enter="ease-out duration-300""
+                                                x-transition:enter-start="opacity-0"
+                                                x-transition:enter-end="opacity-100"
+                                                x-transition:leave="ease-in duration-200"
+                                                x-transition:leave-start="opacity-100"
+                                                x-transition:leave-end="opacity-0"
+                                            >
+                                                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+                                            </div>
+
+                                            <div
+                                                class="bg-white rounded-lg px-4 pt-5 pb-4 overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full sm:p-6"
+                                                x-show="open"
+                                                x-transition:enter="ease-out duration-300""
+                                                x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                                x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+                                                x-transition:leave="ease-in duration-200"
+                                                x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+                                                x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                            >
+                                                <div class="sm:flex sm:items-start">
+                                                    <div
+                                                        class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+                                                        <svg class="h-6 w-6 text-red-600" stroke="currentColor" fill="none"
+                                                            viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="2"
+                                                                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                                        </svg>
+                                                    </div>
+                                                    <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                                                        <h3 class="text-lg leading-6 font-medium text-gray-900">
+                                                            Padam Fail SSM!
+                                                        </h3>
+                                                        <div class="mt-2">
+                                                            <p class="text-sm leading-5 text-gray-500">
+                                                                Adakah anda pasti untuk memadam fail SSM ini?
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
+                                                    <span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
+                                                        <button type="button"
+                                                            class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-red-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red transition ease-in-out duration-150 sm:text-sm sm:leading-5"
+                                                            onclick="event.preventDefault();deleteSSM({{auth()->user()->peribadi->id}})">
+                                                            Padam!
+                                                        </button>
+                                                    </span>
+                                                    <span class="mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">
+                                                        <button type="button"
+                                                            class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline transition ease-in-out duration-150 sm:text-sm sm:leading-5"
+                                                            @click="open = false">
+                                                            Batal
+                                                        </button>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{-- end delete gambar modal --}}
+                                    </div>
+                                    @else
+                                    <div class="text-center">
+                                        <input type="file" name="doc_ssm" id="ssm" class="hidden" />
+                                        <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none"
+                                            viewBox="0 0 48 48">
+                                            <path
+                                                d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                        <p class="mt-1 text-sm text-gray-600">
+                                            <a
+                                                class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition duration-150 ease-in-out">
+                                                Muat naik
+                                            </a>
+                                        </p>
+                                        <p class="mt-1 text-xs text-gray-500">
+                                            PDF sahaja
+                                        </p>
+                                    </div>
+                                    @endif
+                                </div>
+                                {{-- test --}}
+                                <div id="ssm-uploaded-div"
+                                    class="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md cursor-pointer"
+                                    style="display:none">
+                                    <span id="ssm-uploaded">Tiada fail diupload.</span>
+                                    {{-- <img id="ic-uploaded" src="" class="h-40"> --}}
+                                    <span class="mt-3 inline-flex rounded-md shadow-sm">
+                                        <a id="ssm-buttonDel" type="button"
+                                            class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700 transition ease-in-out duration-150"
+                                            onclick="ssmDelFile()">
+                                            <svg fill="currentColor" viewBox="0 0 20 20" class="w-8 h-8">
+                                                <path fill-rule="evenodd"
+                                                    d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                                                    clip-rule="evenodd">
+                                            </svg>
+                                            Buang File
+                                        </a>
+                                    </span>
+                                </div>
+                                {{-- end test --}}
+                            </div>
+
+                            <div class="mt-6">
+                                <label for="profile_pic" class="block text-sm leading-5 font-medium text-gray-700">
+                                    Penyata Bank
+                                </label>
+                                <div id="bank-div"
+                                    class="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md cursor-pointer"
+                                    style="display: block;">
+                                    @if(isset(auth()->user()->pinjaman->document_bank_statements))
+                                    <div class="flex" x-data="{ open: false }">
+                                        <div class="justify-center">
+                                            <span class="inline-flex rounded-md shadow-sm">
+                                                <a href="{{ asset('storage/Bank/' . auth()->user()->pinjaman->document_bank_statements) }}" target="_blank"
+                                                    type="button"
+                                                    class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150">
+                                                    <svg fill="currentColor" viewBox="0 0 20 20" class="w-8 h-8">
+                                                        <path fill-rule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v3.586l-1.293-1.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V8z" clip-rule="evenodd"></path>
+                                                    </svg>
+                                                    Muat Turun
+                                                </a>
+                                            </span>
+                                            <span class="inline-flex rounded-md shadow-sm">
+                                                <button type="submit" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700 transition ease-in-out duration-150" @click.prevent="open = true">
+                                                    <svg fill="currentColor" viewBox="0 0 20 20" class="w-8 h-8">
+                                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+                                                    </svg>
+                                                    Padam Fail
+                                                </button>
+                                            </span>
+                                        </div>
+
+                                        {{-- delete gambar modal --}}
+                                        <div
+                                            class="fixed bottom-0 inset-x-0 px-4 pb-4 sm:inset-0 sm:flex sm:items-center sm:justify-center"
+                                            x-show="open"
+                                        >
+                                            <div class="fixed inset-0 transition-opacity"
+                                                x-show="open"
+                                                x-transition:enter="ease-out duration-300""
+                                                x-transition:enter-start="opacity-0"
+                                                x-transition:enter-end="opacity-100"
+                                                x-transition:leave="ease-in duration-200"
+                                                x-transition:leave-start="opacity-100"
+                                                x-transition:leave-end="opacity-0"
+                                            >
+                                                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+                                            </div>
+
+                                            <div
+                                                class="bg-white rounded-lg px-4 pt-5 pb-4 overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full sm:p-6"
+                                                x-show="open"
+                                                x-transition:enter="ease-out duration-300""
+                                                x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                                x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+                                                x-transition:leave="ease-in duration-200"
+                                                x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+                                                x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                            >
+                                                <div class="sm:flex sm:items-start">
+                                                    <div
+                                                        class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+                                                        <svg class="h-6 w-6 text-red-600" stroke="currentColor" fill="none"
+                                                            viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="2"
+                                                                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                                        </svg>
+                                                    </div>
+                                                    <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                                                        <h3 class="text-lg leading-6 font-medium text-gray-900">
+                                                            Padam Fail Penyata Bank!
+                                                        </h3>
+                                                        <div class="mt-2">
+                                                            <p class="text-sm leading-5 text-gray-500">
+                                                                Adakah anda pasti untuk memadam fail Penyata Bank ini?
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
+                                                    <span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
+                                                        <button type="button"
+                                                            class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-red-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red transition ease-in-out duration-150 sm:text-sm sm:leading-5"
+                                                            onclick="event.preventDefault();deleteBank({{auth()->user()->peribadi->id}})">
+                                                            Padam!
+                                                        </button>
+                                                    </span>
+                                                    <span class="mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">
+                                                        <button type="button"
+                                                            class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline transition ease-in-out duration-150 sm:text-sm sm:leading-5"
+                                                            @click="open = false">
+                                                            Batal
+                                                        </button>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{-- end delete gambar modal --}}
+                                    </div>
+                                    @else
+                                    <div class="text-center">
+                                        <input type="file" name="doc_bank" id="bank" class="hidden" />
+                                        <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none"
+                                            viewBox="0 0 48 48">
+                                            <path
+                                                d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                        <p class="mt-1 text-sm text-gray-600">
+                                            <a
+                                                class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition duration-150 ease-in-out">
+                                                Muat naik
+                                            </a>
+                                        </p>
+                                        <p class="mt-1 text-xs text-gray-500">
+                                            PDF sahaja
+                                        </p>
+                                    </div>
+                                    @endif
+                                </div>
+                                {{-- test --}}
+                                <div id="bank-uploaded-div"
+                                    class="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md cursor-pointer"
+                                    style="display:none">
+                                    <span id="bank-uploaded">Tiada fail diupload.</span>
+                                    {{-- <img id="ic-uploaded" src="" class="h-40"> --}}
+                                    <span class="mt-3 inline-flex rounded-md shadow-sm">
+                                        <a id="bank-buttonDel" type="button"
+                                            class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700 transition ease-in-out duration-150"
+                                            onclick="bankDelFile()">
+                                            <svg fill="currentColor" viewBox="0 0 20 20" class="w-8 h-8">
+                                                <path fill-rule="evenodd"
+                                                    d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                                                    clip-rule="evenodd">
+                                            </svg>
+                                            Buang File
+                                        </a>
+                                    </span>
+                                </div>
+                                {{-- end test --}}
+                            </div>
+
+                            <div class="mt-6">
+                                <label for="profile_pic" class="block text-sm leading-5 font-medium text-gray-700">
+                                    Bil Utiliti
+                                </label>
+                                <div id="bil-div"
+                                    class="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md cursor-pointer"
+                                    style="display: block;">
+                                    @if(isset(auth()->user()->pinjaman->document_utility))
+                                    <div class="flex" x-data="{ open: false }">
+                                        <div class="justify-center">
+                                            <span class="inline-flex rounded-md shadow-sm">
+                                                <a href="{{ asset('storage/BilUtiliti/' . auth()->user()->pinjaman->document_utility) }}" target="_blank"
+                                                    type="button"
+                                                    class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150">
+                                                    <svg fill="currentColor" viewBox="0 0 20 20" class="w-8 h-8">
+                                                        <path fill-rule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v3.586l-1.293-1.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V8z" clip-rule="evenodd"></path>
+                                                    </svg>
+                                                    Muat Turun
+                                                </a>
+                                            </span>
+                                            <span class="inline-flex rounded-md shadow-sm">
+                                                <button type="submit" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700 transition ease-in-out duration-150" @click.prevent="open = true">
+                                                    <svg fill="currentColor" viewBox="0 0 20 20" class="w-8 h-8">
+                                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+                                                    </svg>
+                                                    Padam Fail
+                                                </button>
+                                            </span>
+                                        </div>
+
+                                        {{-- delete gambar modal --}}
+                                        <div
+                                            class="fixed bottom-0 inset-x-0 px-4 pb-4 sm:inset-0 sm:flex sm:items-center sm:justify-center"
+                                            x-show="open"
+                                        >
+                                            <div class="fixed inset-0 transition-opacity"
+                                                x-show="open"
+                                                x-transition:enter="ease-out duration-300""
+                                                x-transition:enter-start="opacity-0"
+                                                x-transition:enter-end="opacity-100"
+                                                x-transition:leave="ease-in duration-200"
+                                                x-transition:leave-start="opacity-100"
+                                                x-transition:leave-end="opacity-0"
+                                            >
+                                                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+                                            </div>
+
+                                            <div
+                                                class="bg-white rounded-lg px-4 pt-5 pb-4 overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full sm:p-6"
+                                                x-show="open"
+                                                x-transition:enter="ease-out duration-300""
+                                                x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                                x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+                                                x-transition:leave="ease-in duration-200"
+                                                x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+                                                x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                            >
+                                                <div class="sm:flex sm:items-start">
+                                                    <div
+                                                        class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+                                                        <svg class="h-6 w-6 text-red-600" stroke="currentColor" fill="none"
+                                                            viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="2"
+                                                                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                                        </svg>
+                                                    </div>
+                                                    <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                                                        <h3 class="text-lg leading-6 font-medium text-gray-900">
+                                                            Padam Fail Bil Utiliti!
+                                                        </h3>
+                                                        <div class="mt-2">
+                                                            <p class="text-sm leading-5 text-gray-500">
+                                                                Adakah anda pasti untuk memadam fail Bil Utiliti ini?
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
+                                                    <span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
+                                                        <button type="button"
+                                                            class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-red-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red transition ease-in-out duration-150 sm:text-sm sm:leading-5"
+                                                            onclick="event.preventDefault();deleteBil({{auth()->user()->peribadi->id}})">
+                                                            Padam!
+                                                        </button>
+                                                    </span>
+                                                    <span class="mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">
+                                                        <button type="button"
+                                                            class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline transition ease-in-out duration-150 sm:text-sm sm:leading-5"
+                                                            @click="open = false">
+                                                            Batal
+                                                        </button>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{-- end delete gambar modal --}}
+                                    </div>
+                                    @else
+                                    <div class="text-center">
+                                        <input type="file" name="doc_bil" id="bil" class="hidden" />
+                                        <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none"
+                                            viewBox="0 0 48 48">
+                                            <path
+                                                d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                        <p class="mt-1 text-sm text-gray-600">
+                                            <a
+                                                class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition duration-150 ease-in-out">
+                                                Muat naik
+                                            </a>
+                                        </p>
+                                        <p class="mt-1 text-xs text-gray-500">
+                                            PDF sahaja
+                                        </p>
+                                    </div>
+                                    @endif
+                                </div>
+                                {{-- test --}}
+                                <div id="bil-uploaded-div"
+                                    class="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md cursor-pointer"
+                                    style="display:none">
+                                    <span id="bil-uploaded">Tiada fail diupload.</span>
+                                    {{-- <img id="ic-uploaded" src="" class="h-40"> --}}
+                                    <span class="mt-3 inline-flex rounded-md shadow-sm">
+                                        <a id="bil-buttonDel" type="button"
+                                            class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700 transition ease-in-out duration-150"
+                                            onclick="bilDelFile()">
+                                            <svg fill="currentColor" viewBox="0 0 20 20" class="w-8 h-8">
+                                                <path fill-rule="evenodd"
+                                                    d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                                                    clip-rule="evenodd">
+                                            </svg>
+                                            Buang File
+                                        </a>
+                                    </span>
+                                </div>
+                                {{-- end test --}}
+                            </div>
+
+                            <div class="mt-6">
+                                <label for="profile_pic" class="block text-sm leading-5 font-medium text-gray-700">
+                                    Borang Penzahiran
+                                </label>
+                                <div id="borang-div"
+                                    class="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md cursor-pointer"
+                                    style="display: block;">
+                                    @if(isset(auth()->user()->pinjaman->document_penzahiran))
+                                    <div class="flex" x-data="{ open: false }">
+                                        <div class="justify-center">
+                                            <span class="inline-flex rounded-md shadow-sm">
+                                                <a href="{{ asset('storage/BorangPenzahiran/' . auth()->user()->pinjaman->document_penzahiran) }}" target="_blank"
+                                                    type="button"
+                                                    class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150">
+                                                    <svg fill="currentColor" viewBox="0 0 20 20" class="w-8 h-8">
+                                                        <path fill-rule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v3.586l-1.293-1.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V8z" clip-rule="evenodd"></path>
+                                                    </svg>
+                                                    Muat Turun
+                                                </a>
+                                            </span>
+                                            <span class="inline-flex rounded-md shadow-sm">
+                                                <button type="submit" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700 transition ease-in-out duration-150" @click.prevent="open = true">
+                                                    <svg fill="currentColor" viewBox="0 0 20 20" class="w-8 h-8">
+                                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+                                                    </svg>
+                                                    Padam Fail
+                                                </button>
+                                            </span>
+                                        </div>
+
+                                        {{-- delete gambar modal --}}
+                                        <div
+                                            class="fixed bottom-0 inset-x-0 px-4 pb-4 sm:inset-0 sm:flex sm:items-center sm:justify-center"
+                                            x-show="open"
+                                        >
+                                            <div class="fixed inset-0 transition-opacity"
+                                                x-show="open"
+                                                x-transition:enter="ease-out duration-300""
+                                                x-transition:enter-start="opacity-0"
+                                                x-transition:enter-end="opacity-100"
+                                                x-transition:leave="ease-in duration-200"
+                                                x-transition:leave-start="opacity-100"
+                                                x-transition:leave-end="opacity-0"
+                                            >
+                                                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+                                            </div>
+
+                                            <div
+                                                class="bg-white rounded-lg px-4 pt-5 pb-4 overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full sm:p-6"
+                                                x-show="open"
+                                                x-transition:enter="ease-out duration-300""
+                                                x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                                x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+                                                x-transition:leave="ease-in duration-200"
+                                                x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+                                                x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                            >
+                                                <div class="sm:flex sm:items-start">
+                                                    <div
+                                                        class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+                                                        <svg class="h-6 w-6 text-red-600" stroke="currentColor" fill="none"
+                                                            viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="2"
+                                                                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                                        </svg>
+                                                    </div>
+                                                    <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                                                        <h3 class="text-lg leading-6 font-medium text-gray-900">
+                                                            Padam Fail Borang Penzahiran!
+                                                        </h3>
+                                                        <div class="mt-2">
+                                                            <p class="text-sm leading-5 text-gray-500">
+                                                                Adakah anda pasti untuk memadam fail Borang Penzahiran ini?
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
+                                                    <span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
+                                                        <button type="button"
+                                                            class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-red-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red transition ease-in-out duration-150 sm:text-sm sm:leading-5"
+                                                            onclick="event.preventDefault();deleteBorang({{auth()->user()->peribadi->id}})">
+                                                            Padam!
+                                                        </button>
+                                                    </span>
+                                                    <span class="mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">
+                                                        <button type="button"
+                                                            class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline transition ease-in-out duration-150 sm:text-sm sm:leading-5"
+                                                            @click="open = false">
+                                                            Batal
+                                                        </button>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{-- end delete gambar modal --}}
+                                    </div>
+                                    @else
+                                    <div class="text-center">
+                                        <input type="file" name="doc_borang" id="borang" class="hidden" />
+                                        <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none"
+                                            viewBox="0 0 48 48">
+                                            <path
+                                                d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                        <p class="mt-1 text-sm text-gray-600">
+                                            <a
+                                                class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition duration-150 ease-in-out">
+                                                Muat naik
+                                            </a>
+                                        </p>
+                                        <p class="mt-1 text-xs text-gray-500">
+                                            PDF sahaja
+                                        </p>
+                                    </div>
+                                    @endif
+                                </div>
+                                {{-- test --}}
+                                <div id="borang-uploaded-div"
+                                    class="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md cursor-pointer"
+                                    style="display:none">
+                                    <span id="borang-uploaded">Tiada fail diupload.</span>
+                                    {{-- <img id="ic-uploaded" src="" class="h-40"> --}}
+                                    <span class="mt-3 inline-flex rounded-md shadow-sm">
+                                        <a id="borang-buttonDel" type="button"
+                                            class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700 transition ease-in-out duration-150"
+                                            onclick="borangDelFile()">
+                                            <svg fill="currentColor" viewBox="0 0 20 20" class="w-8 h-8">
+                                                <path fill-rule="evenodd"
+                                                    d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                                                    clip-rule="evenodd">
+                                            </svg>
+                                            Buang File
+                                        </a>
+                                    </span>
+                                </div>
+                                {{-- end test --}}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="hidden sm:block">
-        <div class="py-5">
-            <div class="border-t border-gray-200"></div>
+        <div class="mt-6 flex justify-center">
+            <span class="inline-flex rounded-md shadow-sm">
+                <button type="submit"
+                    class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:border-green-700 focus:shadow-outline-green active:bg-green-700 transition ease-in-out duration-150">
+                    {{--add this to disable button: opacity-50 cursor-not-allowed --}}
+                    <svg fill="currentColor" viewBox="0 0 20 20" class="w-8 h-8">
+                        <path fill-rule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                    Simpan
+                </button>
+            </span>
         </div>
-    </div>
-
-    <div class="mt-10 sm:mt-0 my-8 px-4">
-        <div class="md:grid md:grid-cols-3 md:gap-6">
-            <div class="md:col-span-1">
-                <div class="px-4 sm:px-0">
-                    <h3 class="text-lg font-medium leading-6 text-gray-900">Perujuk</h3>
-                    {{-- <p class="mt-1 text-sm leading-5 text-gray-500">
-        Use a permanent address where you can receive mail.
-        </p> --}}
-                </div>
-            </div>
-            <div class="mt-5 md:mt-0 md:col-span-2">
-                <div class="shadow overflow-hidden sm:rounded-md">
-                    <div class="px-4 py-5 bg-white sm:p-6">
-                        <div class="grid grid-cols-6 gap-6 mt-6">
-                            <div class="col-span-6 sm:col-span-6">
-                                <label for="reference_name"
-                                    class="block text-sm font-medium leading-5 text-gray-700">Nama</label>
-                                <input id="reference_name" name="reference_name"
-                                    class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" 
-                                    value="{{ isset(auth()->user()->pinjaman->reference_name) ? auth()->user()->pinjaman->reference_name : old('reference_name') }}"
-                                    />
-                            </div>
-                        </div>
-
-                        <div class="grid grid-cols-6 gap-6 mt-6">
-                            <div class="col-span-6">
-                                <label for="reference_address1"
-                                    class="block text-sm font-medium leading-5 text-gray-700">Alamat</label>
-                                <input id="reference_address1" name="reference_address1"
-                                    value="{{ isset(auth()->user()->pinjaman->reference_address1) ? auth()->user()->pinjaman->reference_address1 : old('reference_address1') }}"
-                                    class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-
-                                <input id="reference_address2" name="reference_address2"
-                                    value="{{ isset(auth()->user()->pinjaman->reference_address2) ? auth()->user()->pinjaman->reference_address2 : old('reference_address2') }}"
-                                    class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-                            </div>
-
-                            <div class="col-span-6 sm:col-span-3 lg:col-span-2">
-                                <label for="reference_postcode"
-                                    class="block text-sm font-medium leading-5 text-gray-700">Poskod</label>
-                                <input id="reference_postcode" name="reference_postcode"
-                                    value="{{ isset(auth()->user()->pinjaman->reference_postcode) ? auth()->user()->pinjaman->reference_postcode : old('reference_postcode') }}"
-                                    class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-                            </div>
-
-                            <div class="col-span-6 sm:col-span-6 lg:col-span-2">
-                                <label for="reference_city"
-                                    class="block text-sm font-medium leading-5 text-gray-700">Bandar</label>
-                                <input id="reference_city" name="reference_city" value="{{ isset(auth()->user()->pinjaman->reference_city) ? auth()->user()->pinjaman->reference_city : old('reference_city') }}"
-                                    class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-                            </div>
-
-                            <div class="col-span-6 sm:col-span-3 lg:col-span-2">
-                                <label for="reference_state"
-                                    class="block text-sm font-medium leading-5 text-gray-700">Negeri</label>
-                                <select id="reference_state" name="reference_state"
-                                    class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
-                                    <option value="1" @if(isset(auth()->user()->pinjaman->reference_state)) @if(auth()->user()->pinjaman->reference_state == '1') selected @endif @else @endif>Johor</option>
-                                    <option value="2" @if(isset(auth()->user()->pinjaman->reference_state)) @if(auth()->user()->pinjaman->reference_state == '2') selected @endif @else @endif>Kedah</option> <!-- kene pkai cmni sbb aku buat insert & update & show dlm satu form-->
-                                </select>
-                            </div>
-
-                            <div class="col-span-6 sm:col-span-3">
-                                <label for="reference_relation"
-                                    class="block text-sm font-medium leading-5 text-gray-700">Hubungan Dengan
-                                    Pemohon</label>
-                                <input id="reference_relation" name="reference_relation"
-                                    value="{{ isset(auth()->user()->pinjaman->reference_relation) ? auth()->user()->pinjaman->reference_relation : old('reference_relation') }}"
-                                    class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-                            </div>
-
-                            <div class="col-span-6 sm:col-span-3">
-                                <label for="reference_phone"
-                                    class="block text-sm font-medium leading-5 text-gray-700">No Telefon</label>
-                                <input id="reference_phone" name="reference_phone" 
-                                    value="{{ isset(auth()->user()->pinjaman->reference_phone) ? auth()->user()->pinjaman->reference_phone : old('reference_phone') }}" class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="hidden sm:block">
-        <div class="py-5">
-            <div class="border-t border-gray-200"></div>
-        </div>
-    </div>
-
-    <div class="mt-10 sm:mt-0 my-8 px-4">
-        <div class="md:grid md:grid-cols-3 md:gap-6">
-            <div class="md:col-span-1">
-                <div class="px-4 sm:px-0">
-                    <h3 class="text-lg font-medium leading-6 text-gray-900">Dokumen Sokongan</h3>
-                    {{-- <p class="mt-1 text-sm leading-5 text-gray-500">
-        Use a permanent address where you can receive mail.
-        </p> --}}
-                </div>
-            </div>
-            <div class="mt-5 md:mt-0 md:col-span-2">
-                <div class="shadow overflow-hidden sm:rounded-md">
-                    <div class="px-4 py-5 bg-white sm:p-6">
-                        <div class="mt-1">
-                            <label for="profile_pic" class="block text-sm leading-5 font-medium text-gray-700">
-                                Kad Pengenalan
-                            </label>
-                            <div id="ic-no-div"
-                                class="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md cursor-pointer"
-                                style="display: block;">
-                                <div class="text-center">
-                                    <input type="file" name="doc_ic_no" id="doc_ic_no" class="hidden" />
-                                    <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none"
-                                        viewBox="0 0 48 48">
-                                        <path
-                                            d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                    <p class="mt-1 text-sm text-gray-600">
-                                        <a
-                                            class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition duration-150 ease-in-out">
-                                            Muat naik
-                                        </a>
-                                    </p>
-                                    <p class="mt-1 text-xs text-gray-500">
-                                        PDF sahaja
-                                    </p>
-                                </div>
-                            </div>
-                            {{-- test --}}
-                            <div id="uploaded-div"
-                                class="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md cursor-pointer"
-                                style="display:none">
-                                <img id="uploaded" src="" class="h-40">
-                                <span class="mt-3 inline-flex rounded-md shadow-sm">
-                                    <a id="buttonDel" type="button"
-                                        class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700 transition ease-in-out duration-150"
-                                        onclick="delPicture()">
-                                        <svg fill="currentColor" viewBox="0 0 20 20" class="w-8 h-8">
-                                            <path fill-rule="evenodd"
-                                                d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                                                clip-rule="evenodd">
-                                        </svg>
-                                        Buang File
-                                    </a>
-                                </span>
-                            </div>
-                            {{-- end test --}}
-                        </div>
-
-                        <div class="mt-6">
-                            <label for="profile_pic" class="block text-sm leading-5 font-medium text-gray-700">
-                                SSM
-                            </label>
-                            <div id="ssm-div"
-                                class="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md cursor-pointer"
-                                style="display: block;">
-                                <div class="text-center">
-                                    <input type="file" name="doc_ssm" id="doc_ssm" class="hidden" />
-                                    <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none"
-                                        viewBox="0 0 48 48">
-                                        <path
-                                            d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                    <p class="mt-1 text-sm text-gray-600">
-                                        <a
-                                            class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition duration-150 ease-in-out">
-                                            Muat naik
-                                        </a>
-                                    </p>
-                                    <p class="mt-1 text-xs text-gray-500">
-                                        PDF sahaja
-                                    </p>
-                                </div>
-                            </div>
-                            {{-- test --}}
-                            <div id="uploaded-div"
-                                class="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md cursor-pointer"
-                                style="display:none">
-                                <img id="uploaded" src="" class="h-40">
-                                <span class="mt-3 inline-flex rounded-md shadow-sm">
-                                    <a id="buttonDel" type="button"
-                                        class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700 transition ease-in-out duration-150"
-                                        onclick="delPicture()">
-                                        <svg fill="currentColor" viewBox="0 0 20 20" class="w-8 h-8">
-                                            <path fill-rule="evenodd"
-                                                d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                                                clip-rule="evenodd">
-                                        </svg>
-                                        Buang File
-                                    </a>
-                                </span>
-                            </div>
-                            {{-- end test --}}
-                        </div>
-
-                        <div class="mt-6">
-                            <label for="profile_pic" class="block text-sm leading-5 font-medium text-gray-700">
-                                Penyata Bank
-                            </label>
-                            <div id="bank-statements-div"
-                                class="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md cursor-pointer"
-                                style="display: block;">
-                                <div class="text-center">
-                                    <input type="file" name="doc_bank_statements" id="doc_bank_statements" class="hidden" />
-                                    <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none"
-                                        viewBox="0 0 48 48">
-                                        <path
-                                            d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                    <p class="mt-1 text-sm text-gray-600">
-                                        <a
-                                            class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition duration-150 ease-in-out">
-                                            Muat naik
-                                        </a>
-                                    </p>
-                                    <p class="mt-1 text-xs text-gray-500">
-                                        PDF sahaja
-                                    </p>
-                                </div>
-                            </div>
-                            {{-- test --}}
-                            <div id="uploaded-div"
-                                class="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md cursor-pointer"
-                                style="display:none">
-                                <img id="uploaded" src="" class="h-40">
-                                <span class="mt-3 inline-flex rounded-md shadow-sm">
-                                    <a id="buttonDel" type="button"
-                                        class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700 transition ease-in-out duration-150"
-                                        onclick="delPicture()">
-                                        <svg fill="currentColor" viewBox="0 0 20 20" class="w-8 h-8">
-                                            <path fill-rule="evenodd"
-                                                d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                                                clip-rule="evenodd">
-                                        </svg>
-                                        Buang File
-                                    </a>
-                                </span>
-                            </div>
-                            {{-- end test --}}
-                        </div>
-
-                        <div class="mt-6">
-                            <label for="profile_pic" class="block text-sm leading-5 font-medium text-gray-700">
-                                Bil Utiliti
-                            </label>
-                            <div id="utility-div"
-                                class="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md cursor-pointer"
-                                style="display: block;">
-                                <div class="text-center">
-                                    <input type="file" name="doc_utility" id="doc_utility" class="hidden" />
-                                    <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none"
-                                        viewBox="0 0 48 48">
-                                        <path
-                                            d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                    <p class="mt-1 text-sm text-gray-600">
-                                        <a
-                                            class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition duration-150 ease-in-out">
-                                            Muat naik
-                                        </a>
-                                    </p>
-                                    <p class="mt-1 text-xs text-gray-500">
-                                        PDF sahaja
-                                    </p>
-                                </div>
-                            </div>
-                            {{-- test --}}
-                            <div id="uploaded-div"
-                                class="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md cursor-pointer"
-                                style="display:none">
-                                <img id="uploaded" src="" class="h-40">
-                                <span class="mt-3 inline-flex rounded-md shadow-sm">
-                                    <a id="buttonDel" type="button"
-                                        class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700 transition ease-in-out duration-150"
-                                        onclick="delPicture()">
-                                        <svg fill="currentColor" viewBox="0 0 20 20" class="w-8 h-8">
-                                            <path fill-rule="evenodd"
-                                                d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                                                clip-rule="evenodd">
-                                        </svg>
-                                        Buang File
-                                    </a>
-                                </span>
-                            </div>
-                            {{-- end test --}}
-                        </div>
-
-                        <div class="mt-6">
-                            <label for="profile_pic" class="block text-sm leading-5 font-medium text-gray-700">
-                                Borang Penzahiran
-                            </label>
-                            <div id="penzahiran-div"
-                                class="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md cursor-pointer"
-                                style="display: block;">
-                                <div class="text-center">
-                                    <input type="file" name="penzahiran" id="penzahiran" class="hidden" />
-                                    <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none"
-                                        viewBox="0 0 48 48">
-                                        <path
-                                            d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                    <p class="mt-1 text-sm text-gray-600">
-                                        <a
-                                            class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition duration-150 ease-in-out">
-                                            Muat naik
-                                        </a>
-                                    </p>
-                                    <p class="mt-1 text-xs text-gray-500">
-                                        PDF sahaja
-                                    </p>
-                                </div>
-                            </div>
-                            {{-- test --}}
-                            <div id="uploaded-div"
-                                class="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md cursor-pointer"
-                                style="display:none">
-                                <img id="uploaded" src="" class="h-40">
-                                <span class="mt-3 inline-flex rounded-md shadow-sm">
-                                    <a id="buttonDel" type="button"
-                                        class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700 transition ease-in-out duration-150"
-                                        onclick="delPicture()">
-                                        <svg fill="currentColor" viewBox="0 0 20 20" class="w-8 h-8">
-                                            <path fill-rule="evenodd"
-                                                d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                                                clip-rule="evenodd">
-                                        </svg>
-                                        Buang File
-                                    </a>
-                                </span>
-                            </div>
-                            {{-- end test --}}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    </form>
 </div>
+
+@push('js')
+<script>
+    $("#ic-div").click(function (event) {
+        if (!$(event.target).is('#ic')) {
+            $(this).find("#ic").trigger('click');
+        }
+    });
+
+    $("input[id='ic']").on('change', function () {
+        icreadURL(this);
+        iccheckFiles();
+    });
+
+    var iccheckFiles = function () {
+        if (document.getElementById("ic").files.length > 0) {
+            $('#ic-uploaded-div').css('display', 'block');
+            $('#ic-div').css('display', 'none');
+        } else {
+            $('#ic-uploaded-div').css('display', 'none');
+            $('#ic-div').css('display', 'block');
+        }
+    }
+
+    var icreadURL = function (input) {
+        var fullPath = document.getElementById('ic').value;
+        if (fullPath) {
+            var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
+            var filename = fullPath.substring(startIndex);
+            if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
+                filename = filename.substring(1);
+            }
+            document.getElementById("ic-uploaded").textContent = filename;
+        }
+    }
+
+    function icDelFile() {
+        $("#ic").val('');
+        $('#ic-uploaded-div').css('display', 'none');
+        $('#ic-div').css('display', 'block');
+    }
+
+    function deleteKP(id) {
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            type: 'POST',
+            url: "{{ url('deleteKP')}}" + '/' + id,
+            data: {'_token' : CSRF_TOKEN, '_method' : 'DELETE'},
+            success: function () {
+                window.location = "{{ url('home')}}";
+            }
+        });
+    }
+</script>
+<script>
+    $("#ssm-div").click(function (event) {
+        if (!$(event.target).is('#ssm')) {
+            $(this).find("#ssm").trigger('click');
+        }
+    });
+
+    $("input[id='ssm']").on('change', function () {
+        ssmreadURL(this);
+        ssmcheckFiles();
+    });
+
+    var ssmcheckFiles = function () {
+        if (document.getElementById("ssm").files.length > 0) {
+            $('#ssm-uploaded-div').css('display', 'block');
+            $('#ssm-div').css('display', 'none');
+        } else {
+            $('#ssm-uploaded-div').css('display', 'none');
+            $('#ssm-div').css('display', 'block');
+        }
+    }
+
+    var ssmreadURL = function (input) {
+        var fullPath = document.getElementById('ssm').value;
+        if (fullPath) {
+            var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
+            var filename = fullPath.substring(startIndex);
+            if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
+                filename = filename.substring(1);
+            }
+            document.getElementById("ssm-uploaded").textContent = filename;
+        }
+    }
+
+    function ssmDelFile() {
+        $("#ssm").val('');
+        $('#ssm-uploaded-div').css('display', 'none');
+        $('#ssm-div').css('display', 'block');
+    }
+
+    function deleteSSM(id) {
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            type: 'POST',
+            url: "{{ url('deleteSSM')}}" + '/' + id,
+            data: {'_token' : CSRF_TOKEN, '_method' : 'DELETE'},
+            success: function () {
+                window.location = "{{ url('home')}}";
+            }
+        });
+    }
+</script>
+<script>
+    $("#bank-div").click(function (event) {
+        if (!$(event.target).is('#bank')) {
+            $(this).find("#bank").trigger('click');
+        }
+    });
+
+    $("input[id='bank']").on('change', function () {
+        bankreadURL(this);
+        bankcheckFiles();
+    });
+
+    var bankcheckFiles = function () {
+        if (document.getElementById("bank").files.length > 0) {
+            $('#bank-uploaded-div').css('display', 'block');
+            $('#bank-div').css('display', 'none');
+        } else {
+            $('#bank-uploaded-div').css('display', 'none');
+            $('#bank-div').css('display', 'block');
+        }
+    }
+
+    var bankreadURL = function (input) {
+        var fullPath = document.getElementById('bank').value;
+        if (fullPath) {
+            var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
+            var filename = fullPath.substring(startIndex);
+            if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
+                filename = filename.substring(1);
+            }
+            document.getElementById("bank-uploaded").textContent = filename;
+        }
+    }
+
+    function bankDelFile() {
+        $("#bank").val('');
+        $('#bank-uploaded-div').css('display', 'none');
+        $('#bank-div').css('display', 'block');
+    }
+
+    function deleteBank(id) {
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            type: 'POST',
+            url: "{{ url('deleteBank')}}" + '/' + id,
+            data: {'_token' : CSRF_TOKEN, '_method' : 'DELETE'},
+            success: function () {
+                window.location = "{{ url('home')}}";
+            }
+        });
+    }
+</script>
+<script>
+    $("#bil-div").click(function (event) {
+        if (!$(event.target).is('#bil')) {
+            $(this).find("#bil").trigger('click');
+        }
+    });
+
+    $("input[id='bil']").on('change', function () {
+        bilreadURL(this);
+        bilcheckFiles();
+    });
+
+    var bilcheckFiles = function () {
+        if (document.getElementById("bil").files.length > 0) {
+            $('#bil-uploaded-div').css('display', 'block');
+            $('#bil-div').css('display', 'none');
+        } else {
+            $('#bil-uploaded-div').css('display', 'none');
+            $('#bil-div').css('display', 'block');
+        }
+    }
+
+    var bilreadURL = function (input) {
+        var fullPath = document.getElementById('bil').value;
+        if (fullPath) {
+            var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
+            var filename = fullPath.substring(startIndex);
+            if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
+                filename = filename.substring(1);
+            }
+            document.getElementById("bil-uploaded").textContent = filename;
+        }
+    }
+
+    function bilDelFile() {
+        $("#bil").val('');
+        $('#bil-uploaded-div').css('display', 'none');
+        $('#bil-div').css('display', 'block');
+    }
+
+    function deleteBil(id) {
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            type: 'POST',
+            url: "{{ url('deleteBil')}}" + '/' + id,
+            data: {'_token' : CSRF_TOKEN, '_method' : 'DELETE'},
+            success: function () {
+                window.location = "{{ url('home')}}";
+            }
+        });
+    }
+</script>
+<script>
+    $("#borang-div").click(function (event) {
+        if (!$(event.target).is('#borang')) {
+            $(this).find("#borang").trigger('click');
+        }
+    });
+
+    $("input[id='borang']").on('change', function () {
+        borangreadURL(this);
+        borangcheckFiles();
+    });
+
+    var borangcheckFiles = function () {
+        if (document.getElementById("borang").files.length > 0) {
+            $('#borang-uploaded-div').css('display', 'block');
+            $('#borang-div').css('display', 'none');
+        } else {
+            $('#borang-uploaded-div').css('display', 'none');
+            $('#borang-div').css('display', 'block');
+        }
+    }
+
+    var borangreadURL = function (input) {
+        var fullPath = document.getElementById('borang').value;
+        if (fullPath) {
+            var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
+            var filename = fullPath.substring(startIndex);
+            if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
+                filename = filename.substring(1);
+            }
+            document.getElementById("borang-uploaded").textContent = filename;
+        }
+    }
+
+    function borangDelFile() {
+        $("#borang").val('');
+        $('#borang-uploaded-div').css('display', 'none');
+        $('#borang-div').css('display', 'block');
+    }
+
+    function deleteBorang(id) {
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            type: 'POST',
+            url: "{{ url('deleteBorang')}}" + '/' + id,
+            data: {'_token' : CSRF_TOKEN, '_method' : 'DELETE'},
+            success: function () {
+                window.location = "{{ url('home')}}";
+            }
+        });
+    }
+</script>
+@endpush
