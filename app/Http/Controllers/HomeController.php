@@ -56,7 +56,7 @@ class HomeController extends Controller
 
     public function storePerniagaan(Request $request)
     {
-        //
+        dd($request->all());
     }
 
     public function storePinjaman(Request $request)

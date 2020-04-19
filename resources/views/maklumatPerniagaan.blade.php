@@ -1,4 +1,7 @@
 <div x-show="tab === 'tab2'">
+    <form method="post" action="{{ route('home.storePerniagaan') }}">
+    @csrf
+
     <div class="my-8 px-4">
         <div class="md:grid md:grid-cols-3 md:gap-6">
             <div class="md:col-span-1">
@@ -171,4 +174,18 @@
             </div>
         </div>
     </div>
+
+    <div class="mt-6 flex justify-center">
+        <span class="inline-flex rounded-md shadow-sm">
+            <button type="submit"
+                class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:border-green-700 focus:shadow-outline-green active:bg-green-700 transition ease-in-out duration-150">
+                {{--add this to disable button: opacity-50 cursor-not-allowed --}}
+                <svg fill="currentColor" viewBox="0 0 20 20" class="w-8 h-8">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                </svg>
+                Simpan
+            </button>
+        </span>
+    </div>
+    </form>
 </div>
