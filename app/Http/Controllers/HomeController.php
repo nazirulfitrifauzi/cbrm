@@ -221,21 +221,51 @@ class HomeController extends Controller
             'reference_city'        => ['required', 'string'],
             'reference_state'       => ['required', 'string'],
             'reference_relation'    => ['required', 'string'],
-            'reference_phone'       => ['required', 'numeric', 'min:10']
+            'reference_phone'       => ['required', 'numeric', 'min:10'],
+            "doc_ic_no"             => ['mimes:pdf'],
+            "doc_ssm"               => ['mimes:pdf'],
+            "doc_bank"              => ['mimes:pdf'],
+            "doc_bil"               => ['mimes:pdf'],
+            "doc_borang"            => ['mimes:pdf'],
         ]);
+
+        $ic = $request->file('doc_ic_no');
+        $ic_name = auth()->user()->ic_no . '_ic.' . $ic->getClientOriginalExtension();
+        Storage::disk('local')->putFileAs('public/KP', $ic, $ic_name);
+
+        $ssm = $request->file('doc_ssm');
+        $ssm_name = auth()->user()->ic_no . '_ssm.' . $ssm->getClientOriginalExtension();
+        Storage::disk('local')->putFileAs('public/SSM', $ssm, $ssm_name);
+
+        $bank = $request->file('doc_bank');
+        $bank_name = auth()->user()->ic_no . '_bank.' . $bank->getClientOriginalExtension();
+        Storage::disk('local')->putFileAs('public/Bank', $bank, $bank_name);
+
+        $bil = $request->file('doc_bil');
+        $bil_name = auth()->user()->ic_no . '_bilUtiliti.' . $bil->getClientOriginalExtension();
+        Storage::disk('local')->putFileAs('public/BilUtiliti', $bil, $bil_name);
+
+        $borang = $request->file('doc_borang');
+        $borang_name = auth()->user()->ic_no . '_borang.' . $borang->getClientOriginalExtension();
+        Storage::disk('local')->putFileAs('public/BorangPenzahiran', $borang, $borang_name);
 
         $pinjaman = Pinjaman::updateOrCreate([
             'user_id'               => auth()->user()->id
         ], [
-            'purchase_price'        => $request->get('purchase_price'),
-            'reference_name'        => $request->get('reference_name'),
-            'reference_address1'    => $request->get('reference_address1'),
-            'reference_address2'    => $request->get('reference_address2'),
-            'reference_postcode'    => $request->get('reference_postcode'),
-            'reference_city'        => $request->get('reference_city'),
-            'reference_state'       => $request->get('reference_state'),
-            'reference_relation'    => $request->get('reference_relation'),
-            'reference_phone'       => $request->get('reference_phone')
+            'purchase_price'                => $request->get('purchase_price'),
+            'reference_name'                => $request->get('reference_name'),
+            'reference_address1'            => $request->get('reference_address1'),
+            'reference_address2'            => $request->get('reference_address2'),
+            'reference_postcode'            => $request->get('reference_postcode'),
+            'reference_city'                => $request->get('reference_city'),
+            'reference_state'               => $request->get('reference_state'),
+            'reference_relation'            => $request->get('reference_relation'),
+            'reference_phone'               => $request->get('reference_phone'),
+            'document_ic_no'                => $ic_name,
+            'document_ssm'                  => $ssm_name,
+            'document_bank_statements'      => $bank_name,
+            'document_utility'              => $bil_name,
+            'document_penzahiran'           => $borang_name
         ]);
 
         $pinjaman->save();
@@ -266,5 +296,50 @@ class HomeController extends Controller
 
         Peribadi::where('user_id', $id)->update(['gambar' => NULL]);
         unlink(storage_path('app/public/Pictures/' . $file));
+    }
+
+    public function deleteKP($id)
+    {
+        $id = auth()->user()->id;
+        $file = Pinjaman::where('user_id', $id)->value('document_ic_no');
+
+        Pinjaman::where('user_id', $id)->update(['document_ic_no' => NULL]);
+        unlink(storage_path('app/public/KP/' . $file));
+    }
+
+    public function deleteSSM($id)
+    {
+        $id = auth()->user()->id;
+        $file = Pinjaman::where('user_id', $id)->value('document_ssm');
+
+        Pinjaman::where('user_id', $id)->update(['document_ssm' => NULL]);
+        unlink(storage_path('app/public/SSM/' . $file));
+    }
+
+    public function deleteBank($id)
+    {
+        $id = auth()->user()->id;
+        $file = Pinjaman::where('user_id', $id)->value('document_bank_statements');
+
+        Pinjaman::where('user_id', $id)->update(['document_bank_statements' => NULL]);
+        unlink(storage_path('app/public/Bank/' . $file));
+    }
+
+    public function deleteBil($id)
+    {
+        $id = auth()->user()->id;
+        $file = Pinjaman::where('user_id', $id)->value('document_utility');
+
+        Pinjaman::where('user_id', $id)->update(['document_utility' => NULL]);
+        unlink(storage_path('app/public/BilUtiliti/' . $file));
+    }
+
+    public function deleteBorang($id)
+    {
+        $id = auth()->user()->id;
+        $file = Pinjaman::where('user_id', $id)->value('document_penzahiran');
+
+        Pinjaman::where('user_id', $id)->update(['document_penzahiran' => NULL]);
+        unlink(storage_path('app/public/BorangPenzahiran/' . $file));
     }
 }
