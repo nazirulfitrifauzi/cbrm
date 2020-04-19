@@ -45,6 +45,7 @@ class HomeController extends Controller
         $email = auth()->user()->email;
         Mail::to($email)->send(new successfulApplication($name));
 
-        return 'Permohonan anda telah berjaya dihantar';
+        session()->flash('success');
+        return view('status');
     }
 }
