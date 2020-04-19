@@ -25,12 +25,16 @@
                                         class="block text-sm font-medium leading-5 text-gray-700">Negeri</label>
                                     <select id="tekun_state" name="tekun_state"
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
-                                        <option value="1" @if(isset(auth()->user()->peribadi->tekun_state))
-                                            @if(auth()->user()->peribadi->tekun_state == '1') selected @endif @else
-                                            @endif>Johor</option>
-                                        <option value="2" @if(isset(auth()->user()->peribadi->tekun_state))
-                                            @if(auth()->user()->peribadi->tekun_state == '2') selected @endif @else
-                                            @endif>Kedah</option>
+                                        <option value="">Sila Pilih Negeri</option>
+                                        @foreach($negeri as $negeris)
+                                            <option value="{{ $negeris->kodnegeri }}" 
+                                                @if(isset(auth()->user()->peribadi->tekun_state))
+                                                    @if(auth()->user()->peribadi->tekun_state == $negeris->kodnegeri) 
+                                                        selected 
+                                                    @endif @else
+                                                @endif
+                                            >{{ $negeris->namanegeri }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
 
@@ -39,13 +43,7 @@
                                         class="block text-sm font-medium leading-5 text-gray-700">Cawangan</label>
                                     <select id="tekun_branch" name="tekun_branch"
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
-                                        <option value="1" @if(isset(auth()->user()->peribadi->tekun_branch))
-                                            @if(auth()->user()->peribadi->tekun_branch == '1') selected @endif @else
-                                            @endif>Ayer Hitam
-                                        </option>
-                                        <option value="2" @if(isset(auth()->user()->peribadi->tekun_branch))
-                                            @if(auth()->user()->peribadi->tekun_branch == '2') selected @endif @else
-                                            @endif>Bakri</option>
+                                        <option value="">Sila Pilih Cawangan</option>
                                     </select>
                                 </div>
                             </div>
@@ -108,33 +106,15 @@
                                         Perniagaan</label>
                                     <select id="business_sector" name="business_sector"
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
-                                        <option value="PERTANIAN & PERUSAHAAN ASAS TANI" @if(isset(auth()->
-                                            user()->peribadi->business_sector))
-                                            @if(auth()->user()->peribadi->business_sector == 'PERTANIAN & PERUSAHAAN
-                                            ASAS TANI') selected @endif @else @endif>
-                                            PERTANIAN & PERUSAHAAN ASAS TANI
-                                        </option>
-                                        <option value="PERUNCITAN" @if(isset(auth()->user()->peribadi->business_sector))
-                                            @if(auth()->user()->peribadi->business_sector == 'PERUNCITAN') selected
-                                            @endif @else @endif>
-                                            PERUNCITAN
-                                        </option>
-                                        <option value="PERKHIDMATAN" @if(isset(auth()->
-                                            user()->peribadi->business_sector))
-                                            @if(auth()->user()->peribadi->business_sector == 'PERKHIDMATAN') selected
-                                            @endif @else @endif>
-                                            PERKHIDMATAN
-                                        </option>
-                                        <option value="PEMBUATAN" @if(isset(auth()->user()->peribadi->business_sector))
-                                            @if(auth()->user()->peribadi->business_sector == 'PEMBUATAN') selected
-                                            @endif @else @endif>
-                                            PEMBUATAN
-                                        </option>
-                                        <option value="KONTRAKTOR KECIL" @if(isset(auth()->
-                                            user()->peribadi->business_sector))
-                                            @if(auth()->user()->peribadi->business_sector == 'KONTRAKTOR KECIL')
-                                            selected @endif @else @endif>
-                                            KONTRAKTOR KECIL</option>
+                                        @foreach($aktiviti as $aktivitis)
+                                            <option value="{{ $aktivitis->idaktiviti }}" 
+                                                @if(isset(auth()->user()->peribadi->business_sector))
+                                                    @if(auth()->user()->peribadi->business_sector == $aktivitis->idaktiviti) 
+                                                        selected 
+                                                    @endif @else
+                                                @endif
+                                            >{{ $aktivitis->keterangan }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -145,15 +125,15 @@
                                         Bank 1</label>
                                     <select id="bank1" name="bank1"
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
-                                        <option value="1" @if(isset(auth()->user()->peribadi->bank1))
-                                            @if(auth()->user()->peribadi->bank1 == '1') selected @endif @else
-                                            @endif>Maybank</option>
-                                        <option value="2" @if(isset(auth()->user()->peribadi->bank1))
-                                            @if(auth()->user()->peribadi->bank1 == '2') selected @endif @else
-                                            @endif>Bank Muamalat</option>
-                                        <option value="3" @if(isset(auth()->user()->peribadi->bank1))
-                                            @if(auth()->user()->peribadi->bank1 == '3') selected @endif @else
-                                            @endif>Bank Islam</option>
+                                        @foreach($bank as $banks)
+                                            <option value="{{ $banks->id }}" 
+                                                @if(isset(auth()->user()->peribadi->bank1))
+                                                    @if(auth()->user()->peribadi->bank1 == $banks->id) 
+                                                        selected 
+                                                    @endif @else
+                                                @endif
+                                            >{{ $banks->nama_bank }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
 
@@ -170,15 +150,15 @@
                                         Bank 2</label>
                                     <select id="bank2" name="bank2"
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
-                                        <option value="1" @if(isset(auth()->user()->peribadi->bank2))
-                                            @if(auth()->user()->peribadi->bank2 == '1') selected @endif @else
-                                            @endif>Maybank</option>
-                                        <option value="2" @if(isset(auth()->user()->peribadi->bank2))
-                                            @if(auth()->user()->peribadi->bank2 == '2') selected @endif @else
-                                            @endif>Bank Muamalat</option>
-                                        <option value="3" @if(isset(auth()->user()->peribadi->bank2))
-                                            @if(auth()->user()->peribadi->bank2 == '3') selected @endif @else
-                                            @endif>Bank Islam</option>
+                                        @foreach($bank as $banks2)
+                                            <option value="{{ $banks2->id }}" 
+                                                @if(isset(auth()->user()->peribadi->bank2))
+                                                    @if(auth()->user()->peribadi->bank2 == $banks2->id) 
+                                                        selected 
+                                                    @endif @else
+                                                @endif
+                                            >{{ $banks->nama_bank }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
 
@@ -594,12 +574,15 @@
                                         class="block text-sm font-medium leading-5 text-gray-700">Negeri</label>
                                     <select id="state" name="state"
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
-                                        <option value="1" @if(isset(auth()->user()->peribadi->state))
-                                            @if(auth()->user()->peribadi->state == '1') selected @endif @else
-                                            @endif>Johor</option>
-                                        <option value="2" @if(isset(auth()->user()->peribadi->state))
-                                            @if(auth()->user()->peribadi->state == '2') selected @endif @else
-                                            @endif>Kedah</option>
+                                        @foreach($negerix as $negerix1)
+                                            <option value="{{ $negerix1->kodnegeri }}"
+                                                @if(isset(auth()->user()->peribadi->state))
+                                                    @if(auth()->user()->peribadi->state == $negerix1->kodnegeri) 
+                                                        selected 
+                                                    @endif @else
+                                                @endif
+                                            >{{ $negerix1->namanegeri }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
 
@@ -716,12 +699,15 @@
                                         class="block text-sm font-medium leading-5 text-gray-700">Negeri</label>
                                     <select id="employer_state" name="employer_state"
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
-                                        <option value="1" @if(isset(auth()->user()->peribadi->employer_state))
-                                            @if(auth()->user()->peribadi->employer_state == '1') selected @endif @else
-                                            @endif>Johor</option>
-                                        <option value="2" @if(isset(auth()->user()->peribadi->employer_state))
-                                            @if(auth()->user()->peribadi->employer_state == '2') selected @endif @else
-                                            @endif>Kedah</option>
+                                        @foreach($negerix as $negerix2)
+                                            <option value="{{ $negerix2->kodnegeri }}"
+                                                @if(isset(auth()->user()->peribadi->employer_state))
+                                                    @if(auth()->user()->peribadi->employer_state == $negerix2->kodnegeri) 
+                                                        selected 
+                                                    @endif @else
+                                                @endif
+                                            >{{ $negerix2->namanegeri }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -854,14 +840,15 @@
                                         class="block text-sm font-medium leading-5 text-gray-700">Negeri</label>
                                     <select id="spouse_employer_state" name="spouse_employer_state"
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
-                                        <option value="1" @if(isset(auth()->user()->peribadi->spouse_employer_state))
-                                            @if(auth()->user()->peribadi->spouse_employer_state == '1') selected @endif
-                                            @else
-                                            @endif>Johor</option>
-                                        <option value="2" @if(isset(auth()->user()->peribadi->spouse_employer_state))
-                                            @if(auth()->user()->peribadi->spouse_employer_state == '2') selected @endif
-                                            @else
-                                            @endif>Kedah</option>
+                                        @foreach($negerix as $negerix3)
+                                            <option value="{{ $negerix3->kodnegeri }}" 
+                                                @if(isset(auth()->user()->peribadi->spouse_employer_state))
+                                                    @if(auth()->user()->peribadi->spouse_employer_state == $negerix3->kodnegeri) 
+                                                        selected 
+                                                    @endif @else
+                                                @endif
+                                            >{{ $negerix3->namanegeri }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -889,6 +876,20 @@
 </div>
 
 @push('js')
+<script>
+    $(document).ready(function(){
+        $('select[name=tekun_state]').on('change', function () {
+            var selected = $(this).find(":selected").attr('value');
+            $.ajax({
+                url: "{{ route('home.getCawangan') }}?negeri=" + selected,
+                method: 'GET',
+                success: function(data) {
+                    $('#tekun_branch').html(data.html);
+                }
+            });
+        });
+    });
+</script>
 <script>
     $("#gambar-div").click(function (event) {
         if (!$(event.target).is('#gambar')) {

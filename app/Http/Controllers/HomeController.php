@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Mail\successfulApplication;
+use App\Models\Aktiviti;
+use App\Models\Bank;
+use App\Models\Cawangan;
+use App\Models\Negeri;
 use App\Models\Peribadi;
 use App\Models\Perniagaan;
 use App\Models\Pinjaman;
@@ -11,6 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Storage;
+
 
 class HomeController extends Controller
 {
@@ -31,13 +36,26 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // $email = auth()->user()->email;
-        // $url = 'https://fas.tekun.gov.my/tekunonline/pendaftaran/permohonanOnline/indexbaru.cfm?mode_produk=1&email=';
-        // Auth::logout();
+        return view('home', [
+            'negeri' => Negeri::select(['kodnegeri', 'namanegeri'])->whereNotNull('id_waes')->orderby('namanegeri', 'ASC')->get(),
+            'cawangan' => Cawangan::where('kodcawangan', '!=', '0000')->orderby('namacawangan', 'ASC')->get(),
+            'negerix' => Negeri::select(['kodnegeri', 'namanegeri'])->where('kodnegeri', '!=', 'HQ')->whereNotNull('id_waes')->orderby('namanegeri', 'ASC')->get(),
+            'aktiviti' => Aktiviti::orderby('idaktiviti', 'ASC')->get(),
+            'bank' => Bank::orderby('id', 'ASC')->get(),
+        ]);
+    }
 
-        // return redirect($url . '' . $email);
+    public function getCawangan(Request $request)
+    {
+        $html = '';
+        $cawangan = Cawangan::where('kodnegeri', $request->negeri)->orderBy('namacawangan', 'ASC')->get();
 
-        return view('home');
+        $html = '<option value="">Sila Pilih Cawangan</option>';
+        foreach ($cawangan as $cawanganx) {
+            $html .= '<option value="' . $cawanganx->kodcawangan . '">' . $cawanganx->namacawangan . '</option>';
+        }
+
+        return response()->json(['html' => $html]);
     }
 
     public function store(Request $request)
