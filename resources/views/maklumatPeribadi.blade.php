@@ -167,7 +167,7 @@
                                                         selected 
                                                     @endif @else
                                                 @endif
-                                            >{{ $banks->nama_bank }}</option>
+                                            >{{ $banks2->nama_bank }}</option>
                                         @endforeach
                                     </select>
                                 </div>

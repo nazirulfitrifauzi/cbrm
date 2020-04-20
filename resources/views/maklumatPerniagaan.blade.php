@@ -37,16 +37,15 @@
                                         Perniagaan/Projek</label>
                                     <select id="business_activity" name="business_activity"
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
-                                        <option value="1" @if(isset(auth()->user()->perniagaan->business_activity))
-                                            @if(auth()->user()->perniagaan->business_activity == '1') selected @endif
-                                            @else @endif>Pendawaian
-                                            elektrik
-                                        </option>
-                                        <option value="2" @if(isset(auth()->user()->perniagaan->business_activity))
-                                            @if(auth()->user()->perniagaan->business_activity == '2') selected @endif
-                                            @else @endif>Kedai pajak
-                                            gadai
-                                        </option>
+                                        @foreach($aktiviti as $aktivitis)
+                                            <option value="{{ $aktivitis->idaktiviti }}" 
+                                                @if(isset(auth()->user()->perniagaan->business_sector))
+                                                    @if(auth()->user()->perniagaan->business_sector == $aktivitis->idaktiviti) 
+                                                        selected 
+                                                    @endif @else
+                                                @endif
+                                            >{{ $aktivitis->keterangan }}</option>
+                                        @endforeach
                                     </select>
                                     @error('business_activity')
                                     <p class="text-red-500 text-xs italic mt-4">

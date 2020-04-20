@@ -141,8 +141,8 @@
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                                         @foreach($negerix as $negerix5)
                                         <option value="{{ $negerix5->kodnegeri }}" 
-                                            @if(isset(auth()->user()->peribadi->reference_state))
-                                                @if(auth()->user()->peribadi->reference_state == $negerix5->kodnegeri)
+                                            @if(isset(auth()->user()->pinjaman->reference_state))
+                                                @if(auth()->user()->pinjaman->reference_state == $negerix5->kodnegeri)
                                                     selected
                                                 @endif 
                                             @else
@@ -435,7 +435,7 @@
                                                     <span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
                                                         <button type="button"
                                                             class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-red-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red transition ease-in-out duration-150 sm:text-sm sm:leading-5"
-                                                            onclick="event.preventDefault();deleteSSM({{auth()->user()->peribadi->id}})">
+                                                            onclick="event.preventDefault();deleteSSM({{auth()->user()->pinjaman->id}})">
                                                             Padam!
                                                         </button>
                                                     </span>
@@ -577,7 +577,7 @@
                                                     <span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
                                                         <button type="button"
                                                             class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-red-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red transition ease-in-out duration-150 sm:text-sm sm:leading-5"
-                                                            onclick="event.preventDefault();deleteBank({{auth()->user()->peribadi->id}})">
+                                                            onclick="event.preventDefault();deleteBank({{auth()->user()->pinjaman->id}})">
                                                             Padam!
                                                         </button>
                                                     </span>
@@ -718,7 +718,7 @@
                                                     <span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
                                                         <button type="button"
                                                             class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-red-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red transition ease-in-out duration-150 sm:text-sm sm:leading-5"
-                                                            onclick="event.preventDefault();deleteBil({{auth()->user()->peribadi->id}})">
+                                                            onclick="event.preventDefault();deleteBil({{auth()->user()->pinjaman->id}})">
                                                             Padam!
                                                         </button>
                                                     </span>
@@ -860,7 +860,7 @@
                                                     <span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
                                                         <button type="button"
                                                             class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-red-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red transition ease-in-out duration-150 sm:text-sm sm:leading-5"
-                                                            onclick="event.preventDefault();deleteBorang({{auth()->user()->peribadi->id}})">
+                                                            onclick="event.preventDefault();deleteBorang({{auth()->user()->pinjaman->id}})">
                                                             Padam!
                                                         </button>
                                                     </span>
