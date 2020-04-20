@@ -9,7 +9,11 @@ class RedirectController extends Controller
     public function index()
     {
         if (Auth::user()) {
-            return redirect('home');
+            if (auth()->user()->completed === '1') {
+                return redirect('status');
+            } else {
+                return redirect('home');
+            }
         } else {
             return view('auth.login');
         }

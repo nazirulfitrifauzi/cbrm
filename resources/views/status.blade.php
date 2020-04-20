@@ -50,17 +50,11 @@
                     Program Pemulihan Perniagaan TEKUN NASIONAL (CBRM)
                 </h1>
             </div>
-            <div class="fixed inset-0 flex items-end justify-center px-4 py-6 pointer-events-none sm:p-20 sm:items-start sm:justify-end"
-                x-data="{ open: true }"
+
+            @if (Session::has('success'))
+            <div id="notification" class="fixed inset-0 flex items-end justify-center px-4 py-6 pointer-events-none sm:p-20 sm:items-start sm:justify-end opacity-0"
             >
                 <div class="max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto"
-                    x-show="open"
-                    x-transition:enter="transition ease-out duration-1000"
-                    x-transition:enter-start="opacity-0"
-                    x-transition:enter-end="opacity-100"
-                    x-transition:leave="transition ease-in duration-300"
-                    x-transition:leave-start="opacity-100"
-                    x-transition:leave-end="opacity-0"
                 >
                     <div class="rounded-lg shadow-xs overflow-hidden">
                         <div class="p-4">
@@ -83,7 +77,6 @@
                                 <div class="ml-4 flex-shrink-0 flex">
                                     <button
                                         class="inline-flex text-gray-400 focus:outline-none focus:text-gray-500 transition ease-in-out duration-150"
-                                        @click="open = false"
                                     >
                                         <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                             <path fill-rule="evenodd"
@@ -97,6 +90,7 @@
                     </div>
                 </div>
             </div>
+            @endif 
         </header>
     </div>
 
@@ -133,3 +127,19 @@
     </main>
 </div>
 @endsection
+
+@push('js')
+    @if (Session::has('success'))
+    <script>
+        $(document).ready(function(){
+            setTimeout(function(){ 
+                $("#notification").animate({opacity: "1"}); 
+            }, 1000);
+            
+            setTimeout(function(){ 
+                $("#notification").animate({opacity: "0"}); 
+            }, 10000);
+        });
+    </script>
+    @endif
+@endpush

@@ -70,18 +70,22 @@ class HomeController extends Controller
 
     public function status()
     {
-        $name = auth()->user()->name;
-        $email = auth()->user()->email;
-        Mail::to($email)->send(new successfulApplication($name));
+        if (auth()->user()->completed == '0') {
+            $id = auth()->user()->id;
+            User::where('id', $id)->update(['completed' => 1]);
 
-        session()->flash('success');
+            $name = auth()->user()->name;
+            $email = auth()->user()->email;
+            Mail::to($email)->send(new successfulApplication($name));
+
+            session()->flash('success');
+        }
+
         return view('status');
     }
 
     public function storePeribadi(Request $request)
     {
-        // dd($request->all());
-
         $this->validate($request, [
             "tekun_state"               => ['required'],
             "tekun_branch"              => ['required'],
