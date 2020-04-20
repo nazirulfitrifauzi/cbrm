@@ -32,7 +32,7 @@ class LoginController extends Controller
     protected function authenticated()
     {
         if (Auth::check()) {
-            if (auth()->user()->completed === '1') {
+            if (auth()->user()->submit === '1') {
                 return redirect('status');
             } else {
                 return redirect('home');
