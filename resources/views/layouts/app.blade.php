@@ -17,7 +17,7 @@
     @stack('js_head')
 
     <!-- Styles -->
-    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Inter" rel="stylesheet">
 </head>
 <body class="bg-gray-300 h-screen antialiased leading-none">
