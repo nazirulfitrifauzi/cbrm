@@ -110,21 +110,46 @@
                                         Perniagaan</label>
                                     <select id="business_sector" name="business_sector"
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
-                                            <option value="PERTANIAN & PERUSAHAAN ASAS TANI" @if(isset(auth()->user()->perniagaan->business_sector))
-                                                @if(auth()->user()-perniagaan->business_sector == 'PERTANIAN & PERUSAHAAN ASAS TANI') selected @endif
-                                            @else @endif>PERTANIAN & PERUSAHAAN ASAS TANI</option>
-                                            <option value="PERUNCITAN" @if(isset(auth()->user()->perniagaan->business_sector))
-                                                    @if(auth()->user()-perniagaan->business_sector == 'PERUNCITAN') selected @endif
-                                                @else @endif>PERUNCITAN</option>
-                                            <option value="PERKHIDMATAN" @if(isset(auth()->user()->perniagaan->business_sector))
-                                                    @if(auth()->user()-perniagaan->business_sector == 'PERKHIDMATAN') selected @endif
-                                                @else @endif>PERKHIDMATAN</option>
-                                            <option value="PEMBUATAN" @if(isset(auth()->user()->perniagaan->business_sector))
-                                                    @if(auth()->user()-perniagaan->business_sector == 'PEMBUATAN') selected @endif
-                                                @else @endif>PEMBUATAN</option>
-                                            <option value="KONTRAKTOR KECIL" @if(isset(auth()->user()->perniagaan->business_sector))
-                                                    @if(auth()->user()-perniagaan->business_sector == 'KONTRAKTOR KECIL') selected @endif
-                                                @else @endif>KONTRAKTOR KECIL</option>
+                                            <option value="PERTANIAN & PERUSAHAAN ASAS TANI" 
+                                                @if(isset(auth()->user()->perniagaan->business_sector))
+                                                    @if(auth()->user()->perniagaan->business_sector == 'PERTANIAN & PERUSAHAAN ASAS TANI') 
+                                                        selected 
+                                                    @endif
+                                                @else 
+                                                @endif
+                                            >PERTANIAN & PERUSAHAAN ASAS TANI</option>
+                                            <option value="PERUNCITAN" 
+                                                @if(isset(auth()->user()->perniagaan->business_sector))
+                                                    @if(auth()->user()->perniagaan->business_sector == 'PERUNCITAN') 
+                                                        selected 
+                                                    @endif
+                                                @else 
+                                                @endif
+                                            >PERUNCITAN</option>
+                                            <option value="PERKHIDMATAN" 
+                                                @if(isset(auth()->user()->perniagaan->business_sector))
+                                                    @if(auth()->user()->perniagaan->business_sector == 'PERKHIDMATAN') 
+                                                        selected 
+                                                    @endif
+                                                @else 
+                                                @endif
+                                            >PERKHIDMATAN</option>
+                                            <option value="PEMBUATAN" 
+                                                @if(isset(auth()->user()->perniagaan->business_sector))
+                                                    @if(auth()->user()->perniagaan->business_sector == 'PEMBUATAN') 
+                                                        selected 
+                                                    @endif
+                                                @else 
+                                                @endif
+                                            >PEMBUATAN</option>
+                                            <option value="KONTRAKTOR KECIL" 
+                                                @if(isset(auth()->user()->perniagaan->business_sector))
+                                                    @if(auth()->user()->perniagaan->business_sector == 'KONTRAKTOR KECIL') 
+                                                        selected 
+                                                    @endif
+                                                @else 
+                                                @endif
+                                            >KONTRAKTOR KECIL</option>
                                     </select>
                                 </div>
                             </div>

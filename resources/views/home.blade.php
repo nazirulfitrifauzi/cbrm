@@ -18,12 +18,20 @@
                             <div class="hidden md:block">
                                 <div class="ml-10 flex items-baseline">
                                     <a href="#"
-                                        class="px-3 py-2 rounded-md text-sm font-medium text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700">Laman
-                                        Utama</a>
+                                        class="px-3 py-2 rounded-md text-sm font-medium text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700">Laman Utama
+                                    </a>
                                 </div>
                             </div>
                         </div>
-                        <div class="block">
+                        <div class="ml-auto ">
+                            <div class="items-baseline">
+                                <a href="#"
+                                    class="px-3 py-2 rounded-md text-sm font-medium text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700">
+                                    {{ substr(auth()->user()->ic_no,0,6) }}-{{ substr(auth()->user()->ic_no,6,2) }}-{{ substr(auth()->user()->ic_no,8,4) }}
+                                </a>
+                            </div>
+                        </div>
+                        <div class="block ml-2">
                             <span class="inline-flex rounded-md shadow-sm">
                                 <a href="{{ route('logout') }}" type="button"
                                     class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700 transition ease-in-out duration-150"
@@ -52,10 +60,9 @@
             </div>
 
             @if (Session::has('success'))
-            <div class="fixed inset-0 flex items-end justify-center px-4 py-6 pointer-events-none sm:p-20 sm:items-start sm:justify-end opacity-0 notification"
-            >
-                <div class="max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto"
-                >
+            <div
+                class="fixed inset-0 flex items-end justify-center px-4 py-6 pointer-events-none sm:p-20 sm:items-start sm:justify-end opacity-0 notification">
+                <div class="max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto">
                     <div class="rounded-lg shadow-xs overflow-hidden">
                         <div class="p-4">
                             <div class="flex items-start">
@@ -90,19 +97,21 @@
                     </div>
                 </div>
             </div>
-            @endif 
+            @endif
 
             @if (Session::has('error'))
-            <div class="fixed inset-0 flex items-end justify-center px-4 py-6 pointer-events-none sm:p-20 sm:items-start sm:justify-end opacity-0 notification"
-            >
-                <div class="max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto"
-                >
+            <div
+                class="fixed inset-0 flex items-end justify-center px-4 py-6 pointer-events-none sm:p-20 sm:items-start sm:justify-end opacity-0 notification">
+                <div class="max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto">
                     <div class="rounded-lg shadow-xs overflow-hidden">
                         <div class="p-4">
                             <div class="flex items-start">
                                 <div class="flex-shrink-0">
-                                    <svg class="h-6 w-6 text-red-400" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
-                                        <path d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    <svg class="h-6 w-6 text-red-400" fill="none" stroke="currentColor"
+                                        stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        viewBox="0 0 24 24">
+                                        <path d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z">
+                                        </path>
                                     </svg>
                                 </div>
                                 <div class="ml-3 w-0 flex-1 pt-0.5">
@@ -152,8 +161,7 @@
                             </a>
                         </span>
                         <span class="inline-flex rounded-md shadow-sm">
-                            <a href="{{ route('home.status') }}" type="button"
-                                class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:border-green-700 focus:shadow-outline-green active:bg-green-700 transition ease-in-out duration-150
+                            <a href="{{ route('home.status') }}" type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:border-green-700 focus:shadow-outline-green active:bg-green-700 transition ease-in-out duration-150
                                 @if(auth()->user()->completed === '1')
                                 @else
                                     hidden
@@ -172,66 +180,168 @@
 
                     <div class="sm:hidden">
                         <select class="form-select block w-full">
-                            <option value="opt_maklumatPeribadi" @click.prevent="tab='tab1'" selected>Maklumat Peribadi</option>
-                            <option value="opt_maklumatPerniagaan" @click.prevent="tab='tab2'">Maklumat Perniagaan</option>
+                            <option value="opt_maklumatPeribadi" @click.prevent="tab='tab1'" selected>Maklumat Peribadi
+                            </option>
+                            <option value="opt_maklumatPerniagaan" @click.prevent="tab='tab2'">Maklumat Perniagaan
+                            </option>
                             <option value="opt_maklumatPinjaman" @click.prevent="tab='tab3'">Maklumat Pinjaman</option>
                         </select>
                     </div>
 
                     <div class="hidden sm:block">
-                            <nav class="flex">
-                                <a href="#"
-                                    class="px-3 py-2 font-medium text-sm leading-5 rounded-md text-gray-500 hover:text-gray-700 focus:outline-none focus:text-indigo-600 focus:bg-indigo-50"
-                                    :class="{ 'text-indigo-700 bg-indigo-100 focus:outline-none focus:text-indigo-800 focus:bg-indigo-200' : tab === 'tab1' }"
-                                    @click.prevent="tab='tab1'"
-                                >
-                                    Maklumat Peribadi
-                                </a>
-                                <a href="#"
-                                    class="ml-4 px-3 py-2 font-medium text-sm leading-5 rounded-md text-gray-500 hover:text-gray-700 focus:outline-none focus:text-indigo-600 focus:bg-indigo-50"
-                                    :class="{ 'text-indigo-700 bg-indigo-100 focus:outline-none focus:text-indigo-800 focus:bg-indigo-200' : tab === 'tab2' }"
-                                    @click.prevent="tab='tab2'"
-                                >
-                                    Maklumat Perniagaan
-                                </a>
-                                <a href="#"
-                                    class="ml-4 px-3 py-2 font-medium text-sm leading-5 rounded-md text-gray-500 hover:text-gray-700 focus:outline-none focus:text-indigo-600 focus:bg-indigo-50"
-                                    :class="{ 'text-indigo-700 bg-indigo-100 focus:outline-none focus:text-indigo-800 focus:bg-indigo-200' : tab === 'tab3' }"
-                                    @click.prevent="tab='tab3'"
-                                >
-                                    Maklumat Pinjaman
-                                </a>
+                        <nav class="flex">
+                            <a href="#"
+                                class="px-3 py-2 font-medium text-sm leading-5 rounded-md text-gray-500 hover:text-gray-700 focus:outline-none focus:text-indigo-600 focus:bg-indigo-50"
+                                :class="{ 'text-indigo-700 bg-indigo-100 focus:outline-none focus:text-indigo-800 focus:bg-indigo-200' : tab === 'tab1' }"
+                                @click.prevent="tab='tab1'">
+                                Maklumat Peribadi
+                            </a>
+                            <a href="#"
+                                class="ml-4 px-3 py-2 font-medium text-sm leading-5 rounded-md text-gray-500 hover:text-gray-700 focus:outline-none focus:text-indigo-600 focus:bg-indigo-50"
+                                :class="{ 'text-indigo-700 bg-indigo-100 focus:outline-none focus:text-indigo-800 focus:bg-indigo-200' : tab === 'tab2' }"
+                                @click.prevent="tab='tab2'">
+                                Maklumat Perniagaan
+                            </a>
+                            <a href="#"
+                                class="ml-4 px-3 py-2 font-medium text-sm leading-5 rounded-md text-gray-500 hover:text-gray-700 focus:outline-none focus:text-indigo-600 focus:bg-indigo-50"
+                                :class="{ 'text-indigo-700 bg-indigo-100 focus:outline-none focus:text-indigo-800 focus:bg-indigo-200' : tab === 'tab3' }"
+                                @click.prevent="tab='tab3'">
+                                Maklumat Pinjaman
+                            </a>
 
-                                <div class="ml-auto">
-                                    <span class="inline-flex rounded-md shadow-sm">
-                                        <a href="{{ asset('img') }}/cbrm/FAQ_cbrm.pdf" target="_blank" type="button"
-                                            class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150">
-                                            <svg class="-ml-0.5 mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
-                                                <path fill-rule="evenodd"
-                                                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
-                                                    clip-rule="evenodd"></path>
-                                            </svg>
-                                            FAQ
-                                        </a>
-                                    </span>
-                                    <span class="inline-flex rounded-md shadow-sm">
-                                        <a href="{{ route('home.status') }}" type="button"
-                                            class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:border-green-700 focus:shadow-outline-green active:bg-green-700 transition ease-in-out duration-150
+                            <div class="ml-auto">
+                                <span class="inline-flex rounded-md shadow-sm">
+                                    <a href="{{ asset('img') }}/cbrm/FAQ_cbrm.pdf" target="_blank" type="button"
+                                        class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150">
+                                        <svg class="-ml-0.5 mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd"
+                                                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                        FAQ
+                                    </a>
+                                </span>
+                                <span class="inline-flex rounded-md shadow-sm" x-data="{ open: false }">
+                                    <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:border-green-700 focus:shadow-outline-green active:bg-green-700 transition ease-in-out duration-150
                                             @if(auth()->user()->completed === '1')
                                             @else
                                                 hidden
                                             @endif
-                                            ">
-                                            <svg class="-ml-0.5 mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
-                                                <path fill-rule="evenodd"
-                                                    d="M2 10a4 4 0 004 4h3v3a1 1 0 102 0v-3h3a4 4 0 000-8 4 4 0 00-8 0 4 4 0 00-4 4zm9 4H9V9.414l-1.293 1.293a1 1 0 01-1.414-1.414l3-3a1 1 0 011.414 0l3 3a1 1 0 01-1.414 1.414L11 9.414V14z"
-                                                    clip-rule="evenodd"></path>
-                                            </svg>
-                                            Hantar Permohonan
-                                        </a>
-                                    </span>
-                                </div>
-                            </nav>
+                                            "
+                                            @click.prevent="open = true">
+                                        <svg class="-ml-0.5 mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd"
+                                                d="M2 10a4 4 0 004 4h3v3a1 1 0 102 0v-3h3a4 4 0 000-8 4 4 0 00-8 0 4 4 0 00-4 4zm9 4H9V9.414l-1.293 1.293a1 1 0 01-1.414-1.414l3-3a1 1 0 011.414 0l3 3a1 1 0 01-1.414 1.414L11 9.414V14z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                        Hantar Permohonan
+                                    </button>
+
+                                    {{-- modal penzahiran --}}
+                                    <div
+                                        class="fixed bottom-0 inset-x-0 px-4 pb-6 sm:inset-0 sm:p-0 sm:flex sm:items-center sm:justify-center" 
+                                        x-show="open"
+                                    >
+                                        <div class="fixed inset-0 transition-opacity"
+                                            x-show="open"
+                                            x-transition:enter="ease-out duration-300"
+                                            x-transition:enter-start=" opacity-0"
+                                            x-transition:enter-end="opacity-100"
+                                            x-transition:leave="ease-in duration-200"
+                                            x-transition:leave-start="opacity-100"
+                                            x-transition:leave-end="opacity-0"
+                                        >
+                                            <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+                                        </div>
+
+                                        <div
+                                            class="bg-white rounded-lg px-4 pt-5 pb-4 overflow-hidden shadow-xl transform transition-all sm:max-w-xl sm:w-full sm:p-6"
+                                            x-show="open" 
+                                            x-transition:enter="ease-out duration-300""
+                                            x-transition:enter-start=" opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                            x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+                                            x-transition:leave="ease-in duration-200"
+                                            x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+                                            x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                        >
+                                            <div>
+                                                <div class="text-center">
+                                                    <h3 class="text-xl leading-6 font-medium text-gray-900">
+                                                        Penzahiran
+                                                    </h3>
+                                                    <div class="mt-2">
+                                                        <p class="text-base leading-5 text-gray-700 mb-2">
+                                                            Adalah dengan ini saya mengaku bahawa:
+                                                        </p>
+                                                        <table width="100%" class="table-auto">
+                                                            <tr class="text-sm text-gray-600">
+                                                                <td class="align-top px-2 py-1">1.</td>
+                                                                <td class="text-left px-2 py-1">Segala maklumat dan keterangan yang diberikan adalah benar.</td>
+                                                            </tr>
+                                                            <tr class="text-sm text-gray-600">
+                                                                <td class="align-top px-2 py-1">2.</td>
+                                                                <td class="text-left px-2 py-1">Pihak TEKUN berhak menolak permohonan ini jika didapati butir yang diberikan tidak benar.</td>
+                                                            </tr>
+                                                            <tr class="text-sm text-gray-600">
+                                                                <td class="align-top px-2 py-1">3.</td>
+                                                                <td class="text-left px-2 py-1">Saya berikrar untuk membayar jumlah terhutang sepertimana yang dijanjikan.</td>
+                                                            </tr>
+                                                            <tr class="text-sm text-gray-600">
+                                                                <td class="align-top px-2 py-1">4.</td>
+                                                                <td class="text-left px-2 py-1">Saya memperakukan bahawa kemudahan pembiayaan ini tidak akan disalahgunakan..</td>
+                                                            </tr>
+                                                            <tr class="text-sm text-gray-600">
+                                                                <td class="align-top px-2 py-1">5.</td>
+                                                                <td class="text-left px-2 py-1">Saya bukan seorang yang bankrap.</td>
+                                                            </tr>
+                                                            <tr class="text-sm text-gray-600">
+                                                                <td class="align-top px-2 py-1">6.</td>
+                                                                <td class="text-left px-2 py-1">Saya dengan ini membenarkan pihak TEKUN Nasional memproses data-data peribadi bagi tujuan permohonan pembiayaan.</td>
+                                                            </tr>
+                                                            <tr class="text-sm text-gray-600">
+                                                                <td class="align-top px-2 py-1">7.</td>
+                                                                <td class="text-left px-2 py-1"><strong>Saya mengakui tidak pernah melantik / menggunakan khidmat ejen ( orang tengah ) bagi memproses permohonan ini. Borang dan proses permohonan ini juga tidak dikenakan sebarang bayaran oleh mana-mana pihak.</strong></td>
+                                                            </tr>
+                                                            <tr class="text-sm text-gray-600">
+                                                                <td class="align-top px-2 py-1">8.</td>
+                                                                <td class="text-left px-2 py-1">Pemohon dengan ini membenarkan <b>TEKUN Nasional</b> / atau pegawainya untuk menggunakan, mendedahkan, memberitahu apa-apa maklumat berhubung dengan akaun pembiayaan TEKUN / untuk tujuan atau berhubung dengan apa-apa tindakan atau prosiding diambil bagi tujuan penilaian kredit atau bayaran balik di bawah Terma dan Syarat ini</td>
+                                                            </tr>
+                                                            <tr class="text-sm text-gray-600">
+                                                                <td class="align-top px-2 py-1">9.</td>
+                                                                <td class="text-left px-2 py-1">Pemohon dengan ini membenarkan <b>TEKUN Nasional</b> / atau pegawainya untuk penzahiran apa-apa maklumat kredit individu yang berkaitan dengan kedudukan kredit, kemudahan atau butiran akaun pemohon kepada Experian Information Services (Malaysia) Sdn Bhd (dahulu dikenali sebagai RAMCI) ("Experian") dan / atau Credit Tip Off Service Sdn Bhd ("CTOS") serta pelanggan Experian / CTOS termasuk Bank, Institusi kewangan atau mana-mana agensi pelaporan kredit yang berkuat kuasa di Malaysia.</td>
+                                                            </tr>
+                                                            <tr class="text-sm text-gray-600">
+                                                                <td class="align-top px-2 py-1">10.</td>
+                                                                <td class="text-left px-2 py-1">Pemohon dengan ini memberi kebenaran kepada Experian dan / atau CTOS bagi pendedahan maklumat kredit, termasuk maklumat kredit perbankan kepada <b>TEKUN Nasional</b> / atau pegawainya bagi maksud yang berikut seperti yang dinyatakan di bawah seksyen 24, menurut Akta Pelaporan Kredit 2010. Persetujuan hendaklah kekal terpakai selagi pemohon mengekalkan akaun / pembiayaan / kredit / apa-apa transaksi dengan organisasi. </td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="mt-5 sm:mt-6 sm:grid sm:grid-cols-2 sm:gap-3 sm:grid-flow-row-dense">
+                                                <span class="flex w-full rounded-md shadow-sm sm:col-start-2">
+                                                    <a href="{{ route('home.status') }}" type="button"
+                                                        class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-indigo-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+                                                        Setuju & Hantar
+                                                    </a>
+                                                </span>
+                                                <span
+                                                    class="mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:col-start-1">
+                                                    <button type="button"
+                                                        class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline transition ease-in-out duration-150 sm:text-sm sm:leading-5"
+                                                        @click.prevent="open = false"
+                                                    >
+                                                        Tidak setuju
+                                                    </button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{-- end modal penzahiran --}}
+                                </span>
+                            </div>
+                        </nav>
                     </div>
 
                     {{-- card content --}}
@@ -248,17 +358,22 @@
 @endsection
 
 @push('js')
-    @if (Session::has('success') || Session::has('error'))
-    <script>
-        $(document).ready(function(){
-            setTimeout(function(){ 
-                $(".notification").animate({opacity: "1"}); 
-            }, 1000);
-            
-            setTimeout(function(){ 
-                $(".notification").animate({opacity: "0"}); 
-            }, 10000);
-        });
-    </script>
-    @endif
+@if (Session::has('success') || Session::has('error'))
+<script>
+    $(document).ready(function () {
+        setTimeout(function () {
+            $(".notification").animate({
+                opacity: "1"
+            });
+        }, 1000);
+
+        setTimeout(function () {
+            $(".notification").animate({
+                opacity: "0"
+            });
+        }, 10000);
+    });
+
+</script>
+@endif
 @endpush

@@ -65,19 +65,16 @@ class HomeController extends Controller
 
     public function status()
     {
-        if (auth()->user()->completed == '0') {
-            $id = auth()->user()->id;
-
-            if (auth()->user()->peribadi->completed == '1' && auth()->user()->perniagaan->completed == '1' && auth()->user()->pinjaman->completed == '1') {
-                User::where('id', $id)->update(['completed' => 1]);
-            }
-
+        if (auth()->user()->submit == 0) {
             $name = auth()->user()->name;
             $email = auth()->user()->email;
             Mail::to($email)->send(new successfulApplication($name));
 
             session()->flash('success');
         }
+
+        $id = auth()->user()->id;
+        User::where('id', $id)->update(['submit' => 1, 'submit_at' => now()]);
 
         return view('status');
     }
