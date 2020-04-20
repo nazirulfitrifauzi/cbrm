@@ -335,6 +335,8 @@ class HomeController extends Controller
 
         Pinjaman::where('user_id', $id)->update(['document_ic_no' => NULL]);
         unlink(storage_path('app/public/KP/' . $file));
+
+        session()->flash('success', 'Fail Kad Pengenalan telah dipadam.');
     }
 
     public function deleteSSM($id)
@@ -344,6 +346,8 @@ class HomeController extends Controller
 
         Pinjaman::where('user_id', $id)->update(['document_ssm' => NULL]);
         unlink(storage_path('app/public/SSM/' . $file));
+
+        session()->flash('success', 'Fail SSM telah dipadam.');
     }
 
     public function deleteBank($id)
@@ -353,6 +357,8 @@ class HomeController extends Controller
 
         Pinjaman::where('user_id', $id)->update(['document_bank_statements' => NULL]);
         unlink(storage_path('app/public/Bank/' . $file));
+
+        session()->flash('success', 'Fail Penyata Bank telah dipadam.');
     }
 
     public function deleteBil($id)
@@ -362,6 +368,8 @@ class HomeController extends Controller
 
         Pinjaman::where('user_id', $id)->update(['document_utility' => NULL]);
         unlink(storage_path('app/public/BilUtiliti/' . $file));
+
+        session()->flash('success', 'Fail Bil Utiliti telah dipadam.');
     }
 
     public function deleteBorang($id)
