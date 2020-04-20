@@ -151,6 +151,12 @@
                                     <input id="bank1_acct" name="bank1_acct"
                                         value="{{ isset(auth()->user()->peribadi->bank1_acct) ? auth()->user()->peribadi->bank1_acct : old('bank1_acct') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                        @error('bank1_acct')
+                                                    <p class="text-red-500 text-xs italic mt-4">
+                                                        {{ $message }}
+                                                    </p>
+                                                @enderror
+
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
@@ -176,6 +182,11 @@
                                     <input id="bank2_acct" name="bank2_acct"
                                         value="{{ isset(auth()->user()->peribadi->bank2_acct) ? auth()->user()->peribadi->bank2_acct : old('bank2_acct') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                        @error('bank2_acct')
+                                                    <p class="text-red-500 text-xs italic mt-4">
+                                                        {{ $message }}
+                                                    </p>
+                                                @enderror
                                 </div>
                             </div>
                         </div>
@@ -350,6 +361,11 @@
                                         Pemohon</label>
                                     <input id="name" name="name" value="{{ strtoupper(auth()->user()->name) }}" readonly
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                        @error('name')
+                                                    <p class="text-red-500 text-xs italic mt-4">
+                                                        {{ $message }}
+                                                    </p>
+                                                @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
@@ -357,6 +373,11 @@
                                         (Baru)</label>
                                     <input id="ic_no" name="ic_no" value="{{ auth()->user()->ic_no }}" readonly
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                        @error('ic_no')
+                                                    <p class="text-red-500 text-xs italic mt-4">
+                                                        {{ $message }}
+                                                    </p>
+                                                @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
@@ -365,6 +386,11 @@
                                     <input id="ic_old" name="ic_old"
                                         value="{{ isset(auth()->user()->peribadi->ic_old) ? auth()->user()->peribadi->ic_old : old('ic_old') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                        @error('ic_old')
+                                                    <p class="text-red-500 text-xs italic mt-4">
+                                                        {{ $message }}
+                                                    </p>
+                                                @enderror
                                 </div>
                             </div>
 
@@ -477,6 +503,11 @@
                                     <input id="age" name="age" type="number"
                                         value="{{ isset(auth()->user()->peribadi->age) ? auth()->user()->peribadi->age : old('age') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                        @error('age')
+                                                    <p class="text-red-500 text-xs italic mt-4">
+                                                        {{ $message }}
+                                                    </p>
+                                                @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-2">
@@ -515,6 +546,11 @@
                                     <input id="dependent" name="dependent" type="number"
                                         value="{{ isset(auth()->user()->peribadi->dependent) ? auth()->user()->peribadi->dependent : old('dependent') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                        @error('dependent')
+                                                    <p class="text-red-500 text-xs italic mt-4">
+                                                        {{ $message }}
+                                                    </p>
+                                                @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-2">
@@ -555,10 +591,20 @@
                                     <input id="address1" name="address1"
                                         value="{{ isset(auth()->user()->peribadi->address1) ? auth()->user()->peribadi->address1 : old('address1') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                        @error('address1')
+                                                    <p class="text-red-500 text-xs italic mt-4">
+                                                        {{ $message }}
+                                                    </p>
+                                                @enderror
 
                                     <input id="address2" name="address2"
                                         value="{{ isset(auth()->user()->peribadi->address2) ? auth()->user()->peribadi->address1 : old('address2') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                        @error('address2')
+                                                    <p class="text-red-500 text-xs italic mt-4">
+                                                        {{ $message }}
+                                                    </p>
+                                                @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3 lg:col-span-2">
@@ -567,6 +613,11 @@
                                     <input id="postcode" name="postcode"
                                         value="{{ isset(auth()->user()->peribadi->postcode) ? auth()->user()->peribadi->postcode : old('postcode') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                        @error('postcode')
+                                                    <p class="text-red-500 text-xs italic mt-4">
+                                                        {{ $message }}
+                                                    </p>
+                                                @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-6 lg:col-span-2">
@@ -575,6 +626,11 @@
                                     <input id="city" name="city"
                                         value="{{ isset(auth()->user()->peribadi->city) ? auth()->user()->peribadi->city : old('city') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                        @error('city')
+                                                    <p class="text-red-500 text-xs italic mt-4">
+                                                        {{ $message }}
+                                                    </p>
+                                                @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3 lg:col-span-2">
@@ -601,6 +657,11 @@
                                     <input id="phone_home" name="phone_home"
                                         value="{{ isset(auth()->user()->peribadi->phone_home) ? auth()->user()->peribadi->phone_home : old('phone_home') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                        @error('phone_home')
+                                                    <p class="text-red-500 text-xs italic mt-4">
+                                                        {{ $message }}
+                                                    </p>
+                                                @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
@@ -610,6 +671,11 @@
                                     <input id="phone_hp" name="phone_hp"
                                         value="{{ isset(auth()->user()->peribadi->phone_hp) ? auth()->user()->peribadi->phone_hp : old('phone_hp') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                        @error('phone_hp')
+                                                    <p class="text-red-500 text-xs italic mt-4">
+                                                        {{ $message }}
+                                                    </p>
+                                                @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-2">
@@ -617,6 +683,11 @@
                                         class="block text-sm font-medium leading-5 text-gray-700">Emel</label>
                                     <input id="email" name="email" value="{{ auth()->user()->email }}" readonly
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                        @error('email')
+                                                    <p class="text-red-500 text-xs italic mt-4">
+                                                        {{ $message }}
+                                                    </p>
+                                                @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-2">
@@ -625,6 +696,11 @@
                                     <input id="facebook" name="facebook"
                                         value="{{ isset(auth()->user()->peribadi->facebook) ? auth()->user()->peribadi->facebook : old('facebook') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                        @error('facebook')
+                                                    <p class="text-red-500 text-xs italic mt-4">
+                                                        {{ $message }}
+                                                    </p>
+                                                @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-2">
@@ -633,6 +709,11 @@
                                     <input id="instagram" name="instagram"
                                         value="{{ isset(auth()->user()->peribadi->instagram) ? auth()->user()->peribadi->instagram : old('instagram') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                        @error('instagram')
+                                                    <p class="text-red-500 text-xs italic mt-4">
+                                                        {{ $message }}
+                                                    </p>
+                                                @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-2">
@@ -642,6 +723,11 @@
                                     <input id="profession" name="profession"
                                         value="{{ isset(auth()->user()->peribadi->profession) ? auth()->user()->peribadi->profession : old('profession') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                        @error('profession')
+                                                    <p class="text-red-500 text-xs italic mt-4">
+                                                        {{ $message }}
+                                                    </p>
+                                                @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-2">
@@ -659,7 +745,13 @@
                                                         id="income" name="income"
                                                         value="{{ isset(auth()->user()->peribadi->income) ? auth()->user()->peribadi->income : old('income') }}"
                                                         type="number" step="0.01"
-                                                        class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" /></span>
+                                                        class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                                        @error('income')
+                                                    <p class="text-red-500 text-xs italic mt-4">
+                                                        {{ $message }}
+                                                    </p>
+                                                @enderror
+                                                    </span>
                                             </label>
                                         </div>
                                     </fieldset>
@@ -672,6 +764,11 @@
                                     <input id="employer_phone" name="employer_phone"
                                         value="{{ isset(auth()->user()->peribadi->employer_phone) ? auth()->user()->peribadi->employer_phone : old('employer_phone') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                        @error('employer_phone')
+                                                    <p class="text-red-500 text-xs italic mt-4">
+                                                        {{ $message }}
+                                                    </p>
+                                                @enderror
                                 </div>
 
                                 <div class="col-span-6">
@@ -680,10 +777,20 @@
                                     <input id="employer_address1" name="employer_address1"
                                         value="{{ isset(auth()->user()->peribadi->employer_address1) ? auth()->user()->peribadi->employer_address1 : old('employer_address1') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                        @error('employer_address1')
+                                                    <p class="text-red-500 text-xs italic mt-4">
+                                                        {{ $message }}
+                                                    </p>
+                                                @enderror
 
                                     <input id="employer_address2" name="employer_address2"
                                         value="{{ isset(auth()->user()->peribadi->employer_address2) ? auth()->user()->peribadi->employer_address2 : old('employer_address2') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                        @error('employer_address2')
+                                                    <p class="text-red-500 text-xs italic mt-4">
+                                                        {{ $message }}
+                                                    </p>
+                                                @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3 lg:col-span-2">
@@ -692,6 +799,11 @@
                                     <input id="employer_postcode" name="employer_postcode"
                                         value="{{ isset(auth()->user()->peribadi->employer_postcode) ? auth()->user()->peribadi->employer_postcode : old('employer_postcode') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                        @error('employer_postcode')
+                                                    <p class="text-red-500 text-xs italic mt-4">
+                                                        {{ $message }}
+                                                    </p>
+                                                @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-6 lg:col-span-2">
@@ -700,6 +812,11 @@
                                     <input id="employer_city" name="employer_city"
                                         value="{{ isset(auth()->user()->peribadi->employer_city) ? auth()->user()->peribadi->employer_city : old('employer_city') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                        @error('employer_city')
+                                                    <p class="text-red-500 text-xs italic mt-4">
+                                                        {{ $message }}
+                                                    </p>
+                                                @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3 lg:col-span-2">
@@ -795,6 +912,11 @@
                                     <input id="spouse_name" name="spouse_name"
                                         value="{{ isset(auth()->user()->peribadi->spouse_name) ? auth()->user()->peribadi->spouse_name : old('spouse_name') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                        @error('spouse_name')
+                                                    <p class="text-red-500 text-xs italic mt-4">
+                                                        {{ $message }}
+                                                    </p>
+                                                @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-6">
@@ -804,6 +926,11 @@
                                     <input id="spouse_ic_no" name="spouse_ic_no"
                                         value="{{ isset(auth()->user()->peribadi->spouse_ic_no) ? auth()->user()->peribadi->spouse_ic_no : old('spouse_ic_no') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                        @error('spouse_ic_no')
+                                                    <p class="text-red-500 text-xs italic mt-4">
+                                                        {{ $message }}
+                                                    </p>
+                                                @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-6">
@@ -813,6 +940,11 @@
                                     <input id="spouse_profession" name="spouse_profession"
                                         value="{{ isset(auth()->user()->peribadi->spouse_profession) ? auth()->user()->peribadi->spouse_profession : old('spouse_profession') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                        @error('spouse_profession')
+                                                    <p class="text-red-500 text-xs italic mt-4">
+                                                        {{ $message }}
+                                                    </p>
+                                                @enderror
                                 </div>
 
                                 <div class="col-span-6">
@@ -821,10 +953,20 @@
                                     <input id="spouse_employer_address1" name="spouse_employer_address1"
                                         value="{{ isset(auth()->user()->peribadi->spouse_employer_address1) ? auth()->user()->peribadi->spouse_employer_address1 : old('spouse_employer_address1') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                        @error('spouse_employer_address1')
+                                                    <p class="text-red-500 text-xs italic mt-4">
+                                                        {{ $message }}
+                                                    </p>
+                                                @enderror
 
                                     <input id="spouse_employer_address2" name="spouse_employer_address2"
                                         value="{{ isset(auth()->user()->peribadi->spouse_employer_address2) ? auth()->user()->peribadi->spouse_employer_address2 : old('spouse_employer_address2') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                        @error('spouse_employer_address2')
+                                                    <p class="text-red-500 text-xs italic mt-4">
+                                                        {{ $message }}
+                                                    </p>
+                                                @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3 lg:col-span-2">
@@ -833,6 +975,11 @@
                                     <input id="spouse_employer_postcode" name="spouse_employer_postcode"
                                         value="{{ isset(auth()->user()->peribadi->spouse_employer_postcode) ? auth()->user()->peribadi->spouse_employer_postcode : old('spouse_employer_postcode') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                        @error('spouse_employer_postcode')
+                                                    <p class="text-red-500 text-xs italic mt-4">
+                                                        {{ $message }}
+                                                    </p>
+                                                @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-6 lg:col-span-2">
@@ -841,6 +988,11 @@
                                     <input id="spouse_employer_city" name="spouse_employer_city"
                                         value="{{ isset(auth()->user()->peribadi->spouse_employer_city) ? auth()->user()->peribadi->spouse_employer_city : old('spouse_employer_city') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                        @error('spouse_employer_city')
+                                                    <p class="text-red-500 text-xs italic mt-4">
+                                                        {{ $message }}
+                                                    </p>
+                                                @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3 lg:col-span-2">
@@ -947,5 +1099,132 @@
             }
         });
     }
+</script>
+
+<script>
+    $(document).ready(function () {
+        @error('bank1_acct')
+        $("#bank1_acct").addClass("border-red-500");
+        @enderror
+
+        @error('bank2_acct')
+        $("#bank2_acct").addClass("border-red-500");
+        @enderror
+
+        @error('name')
+        $("#name").addClass("border-red-500");
+        @enderror
+
+        @error('ic_no')
+        $("#ic_no").addClass("border-red-500");
+        @enderror
+
+        @error('ic_old')
+        $("#ic_old").addClass("border-red-500");
+        @enderror
+
+        @error('age')
+        $("#age").addClass("border-red-500");
+        @enderror
+
+        @error('dependent')
+        $("#depe").addClass("border-red-500");
+        @enderror
+
+        @error('address1')
+        $("#address1").addClass("border-red-500");
+        @enderror
+
+        @error('address2')
+        $("#address2").addClass("border-red-500");
+        @enderror
+
+        @error('postcode')
+        $("#postcode").addClass("border-red-500");
+        @enderror
+
+        @error('city')
+        $("#city").addClass("border-red-500");
+        @enderror
+
+        @error('phone_home')
+        $("#phone_home").addClass("border-red-500");
+        @enderror
+
+        @error('phone_hp')
+        $("#phone_hp").addClass("border-red-500");
+        @enderror
+
+        @error('email')
+        $("#email").addClass("border-red-500");
+        @enderror
+
+        @error('facebook')
+        $("#facebook").addClass("border-red-500");
+        @enderror
+
+        @error('instagram')
+        $("#instagram").addClass("border-red-500");
+        @enderror
+
+        @error('profession')
+        $("#profession").addClass("border-red-500");
+        @enderror
+
+        @error('income')
+        $("#income").addClass("border-red-500");
+        @enderror
+
+        @error('employer_phone')
+        $("#employer_phone").addClass("border-red-500");
+        @enderror
+
+        @error('employer_address1')
+        $("#employer_address1").addClass("border-red-500");
+        @enderror
+
+        @error('employer_address2')
+        $("#employer_address2").addClass("border-red-500");
+        @enderror
+
+        @error('employer_postcode')
+        $("#employer_postcode").addClass("border-red-500");
+        @enderror
+
+        @error('employer_city')
+        $("#employer_city").addClass("border-red-500");
+        @enderror
+
+        @error('spouse_name')
+        $("#spouse_name").addClass("border-red-500");
+        @enderror
+
+        @error('spouse_ic_no')
+        $("#spouse_ic_no").addClass("border-red-500");
+        @enderror
+
+        @error('spouse_profession')
+        $("#spouse_profession").addClass("border-red-500");
+        @enderror
+
+        @error('spouse_employer_address1')
+        $("#spouse_employer_address1").addClass("border-red-500");
+        @enderror
+
+        @error('spouse_employer_address2')
+        $("#spouse_employer_address2").addClass("border-red-500");
+        @enderror
+
+        @error('spouse_employer_postcode')
+        $("#spouse_employer_postcode").addClass("border-red-500");
+        @enderror
+
+        @error('spouse_employer_city')
+        $("#spouse_employer_city").addClass("border-red-500");
+        @enderror
+
+
+    });
+
 </script>
 @endpush
