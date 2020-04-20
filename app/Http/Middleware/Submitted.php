@@ -17,7 +17,7 @@ class Submitted
 
     public function handle($request, Closure $next)
     {
-        if (Auth::user()->completed == 0) {
+        if (Auth::user()->submit == 0) {
             return $next($request);
         }
         return redirect('status')->with('error', 'Anda tidak boleh membuat perubahan setelah permohonan berjaya dihantar.');

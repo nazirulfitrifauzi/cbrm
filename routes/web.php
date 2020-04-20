@@ -18,7 +18,7 @@ Route::get('/', 'RedirectController@index');
 Auth::routes(['verify' => true]);
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
-    Route::get('/home', 'HomeController@index')->name('home')->middleware('submit');;
+    Route::get('/home', 'HomeController@index')->name('home'); //->middleware('submit');;
     Route::post('/status', 'HomeController@store')->name('home.store');
     Route::post('/storePeribadi', 'HomeController@storePeribadi')->name('home.storePeribadi');
     Route::post('/storePerniagaan', 'HomeController@storePerniagaan')->name('home.storePerniagaan');
@@ -30,5 +30,5 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::delete('/deleteBil/{id}', 'HomeController@deleteBil')->name('home.deleteBil');
     Route::delete('/deleteBorang/{id}', 'HomeController@deleteBorang')->name('home.deleteBorang');
     Route::get('ajaxdata/getCawangan', 'HomeController@getCawangan')->name('home.getCawangan');
-    Route::get('/status', 'HomeController@status')->name('home.status')->middleware('notsubmit');
+    Route::get('/status', 'HomeController@status')->name('home.status'); //->middleware('notsubmit');
 });

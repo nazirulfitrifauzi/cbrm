@@ -16,7 +16,7 @@ class NotSubmitted
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::user()->completed == 1) {
+        if (Auth::user()->submit == 1) {
             return $next($request);
         }
         return redirect('home')->with('error', 'Anda belum menghantar sebarang permohonan.');
