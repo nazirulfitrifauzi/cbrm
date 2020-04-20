@@ -6,12 +6,9 @@
             <div class="md:grid md:grid-cols-3 md:gap-6">
                 <div class="md:col-span-1">
                     <div class="px-4 sm:px-0">
-                        <h3 class="text-lg font-medium leading-6 text-gray-900">Keterangan Mengenai Pembiayaan Yang
-                            Dipohon
+                        <h3 class="text-lg font-medium leading-6 text-gray-900">
+                            Keterangan Mengenai Pembiayaan Yang Dipohon
                         </h3>
-                        {{-- <p class="mt-1 text-sm leading-5 text-gray-500">
-        This information will be displayed publicly so be careful what you share.
-        </p> --}}
                     </div>
                 </div>
                 <div class="mt-5 md:mt-0 md:col-span-2">
@@ -20,17 +17,15 @@
                             <div class="grid grid-cols-6 gap-6">
                                 <div class="col-span-6 sm:col-span-6">
                                     <fieldset>
-                                        <legend class="block text-sm font-medium leading-5 text-gray-700">Jumlah
-                                            Pembiayaan
-                                            Yang Diperlukan</legend>
-                                        {{-- <p class="text-sm leading-5 text-gray-500">These are delivered via SMS to your mobile phone.</p> --}}
+                                        <legend class="block text-sm font-medium leading-5 text-gray-700">
+                                            Jumlah Pembiayaan Yang Diperlukan
+                                        </legend>
                                         <div class="mt-3">
                                             <div class="flex items-center">
                                                 <label for="purchase_price"
                                                     class="block text-sm font-medium leading-5 text-gray-700">RM</label>
                                                 <label for="purchase_price" class="ml-3">
                                                     <span class="block text-sm leading-5 font-medium text-gray-700">
-                                                        <!-- number xyah checking kat front end.. kite accept string je, kat controlloer bru kite validate number -->
                                                         <input id="purchase_price" name="purchase_price" type="number"
                                                             step="0.01" min="1000" max="10000"
                                                             value="{{ isset(auth()->user()->pinjaman->purchase_price) ? auth()->user()->pinjaman->purchase_price : old('purchase_price') }}"
@@ -65,9 +60,6 @@
                 <div class="md:col-span-1">
                     <div class="px-4 sm:px-0">
                         <h3 class="text-lg font-medium leading-6 text-gray-900">Perujuk</h3>
-                        {{-- <p class="mt-1 text-sm leading-5 text-gray-500">
-        Use a permanent address where you can receive mail.
-        </p> --}}
                     </div>
                 </div>
                 <div class="mt-5 md:mt-0 md:col-span-2">
@@ -148,11 +140,12 @@
                                     <select id="reference_state" name="reference_state"
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                                         @foreach($negerix as $negerix5)
-                                        <option value="{{ $negerix5->kodnegeri }}" @if(isset(auth()->
-                                            user()->peribadi->reference_state))
-                                            @if(auth()->user()->peribadi->reference_state == $negerix5->kodnegeri)
-                                            selected
-                                            @endif @else
+                                        <option value="{{ $negerix5->kodnegeri }}" 
+                                            @if(isset(auth()->user()->peribadi->reference_state))
+                                                @if(auth()->user()->peribadi->reference_state == $negerix5->kodnegeri)
+                                                    selected
+                                                @endif 
+                                            @else
                                             @endif
                                             >{{ $negerix5->namanegeri }}</option>
                                         @endforeach
@@ -211,9 +204,6 @@
                 <div class="md:col-span-1">
                     <div class="px-4 sm:px-0">
                         <h3 class="text-lg font-medium leading-6 text-gray-900">Dokumen Sokongan</h3>
-                        {{-- <p class="mt-1 text-sm leading-5 text-gray-500">
-        Use a permanent address where you can receive mail.
-        </p> --}}
                     </div>
                 </div>
                 <div class="mt-5 md:mt-0 md:col-span-2">
@@ -259,7 +249,8 @@
                                         {{-- delete gambar modal --}}
                                         <div class="fixed bottom-0 inset-x-0 px-4 pb-4 sm:inset-0 sm:flex sm:items-center sm:justify-center"
                                             x-show="open">
-                                            <div class="fixed inset-0 transition-opacity" x-show="open"
+                                            <div class="fixed inset-0 transition-opacity" 
+                                                x-show="open"
                                                 x-transition:enter="ease-out duration-300""
                                                 x-transition:enter-start=" opacity-0"
                                                 x-transition:enter-end="opacity-100"
@@ -270,9 +261,9 @@
                                             </div>
 
                                             <div class="bg-white rounded-lg px-4 pt-5 pb-4 overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full sm:p-6"
-                                                x-show="open" x-transition:enter="ease-out duration-300""
-                                                x-transition:enter-start=" opacity-0 translate-y-4 sm:translate-y-0
-                                                sm:scale-95"
+                                                x-show="open" 
+                                                x-transition:enter="ease-out duration-300""
+                                                x-transition:enter-start=" opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                                                 x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
                                                 x-transition:leave="ease-in duration-200"
                                                 x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
@@ -345,7 +336,6 @@
                                     class="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md cursor-pointer"
                                     style="display:none">
                                     <span id="ic-uploaded">Tiada fail diupload.</span>
-                                    {{-- <img id="ic-uploaded" src="" class="h-40"> --}}
                                     <span class="mt-3 inline-flex rounded-md shadow-sm">
                                         <a id="ic-buttonDel" type="button"
                                             class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700 transition ease-in-out duration-150"
@@ -401,7 +391,8 @@
                                         {{-- delete gambar modal --}}
                                         <div class="fixed bottom-0 inset-x-0 px-4 pb-4 sm:inset-0 sm:flex sm:items-center sm:justify-center"
                                             x-show="open">
-                                            <div class="fixed inset-0 transition-opacity" x-show="open"
+                                            <div class="fixed inset-0 transition-opacity" 
+                                                x-show="open"
                                                 x-transition:enter="ease-out duration-300""
                                                 x-transition:enter-start=" opacity-0"
                                                 x-transition:enter-end="opacity-100"
@@ -412,9 +403,9 @@
                                             </div>
 
                                             <div class="bg-white rounded-lg px-4 pt-5 pb-4 overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full sm:p-6"
-                                                x-show="open" x-transition:enter="ease-out duration-300""
-                                                x-transition:enter-start=" opacity-0 translate-y-4 sm:translate-y-0
-                                                sm:scale-95"
+                                                x-show="open" 
+                                                x-transition:enter="ease-out duration-300""
+                                                x-transition:enter-start=" opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                                                 x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
                                                 x-transition:leave="ease-in duration-200"
                                                 x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
@@ -543,7 +534,8 @@
                                         {{-- delete gambar modal --}}
                                         <div class="fixed bottom-0 inset-x-0 px-4 pb-4 sm:inset-0 sm:flex sm:items-center sm:justify-center"
                                             x-show="open">
-                                            <div class="fixed inset-0 transition-opacity" x-show="open"
+                                            <div class="fixed inset-0 transition-opacity" 
+                                                x-show="open"
                                                 x-transition:enter="ease-out duration-300""
                                                 x-transition:enter-start=" opacity-0"
                                                 x-transition:enter-end="opacity-100"
@@ -554,9 +546,8 @@
                                             </div>
 
                                             <div class="bg-white rounded-lg px-4 pt-5 pb-4 overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full sm:p-6"
-                                                x-show="open" x-transition:enter="ease-out duration-300""
-                                                x-transition:enter-start=" opacity-0 translate-y-4 sm:translate-y-0
-                                                sm:scale-95"
+                                                x-show="open" x-transition:enter="ease-out duration-300"
+                                                x-transition:enter-start=" opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                                                 x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
                                                 x-transition:leave="ease-in duration-200"
                                                 x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
@@ -697,8 +688,7 @@
 
                                             <div class="bg-white rounded-lg px-4 pt-5 pb-4 overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full sm:p-6"
                                                 x-show="open" x-transition:enter="ease-out duration-300""
-                                                x-transition:enter-start=" opacity-0 translate-y-4 sm:translate-y-0
-                                                sm:scale-95"
+                                                x-transition:enter-start=" opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                                                 x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
                                                 x-transition:leave="ease-in duration-200"
                                                 x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
@@ -839,8 +829,7 @@
 
                                             <div class="bg-white rounded-lg px-4 pt-5 pb-4 overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full sm:p-6"
                                                 x-show="open" x-transition:enter="ease-out duration-300""
-                                                x-transition:enter-start=" opacity-0 translate-y-4 sm:translate-y-0
-                                                sm:scale-95"
+                                                x-transition:enter-start=" opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                                                 x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
                                                 x-transition:leave="ease-in duration-200"
                                                 x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"

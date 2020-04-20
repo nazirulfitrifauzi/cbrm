@@ -72,7 +72,10 @@ class HomeController extends Controller
     {
         if (auth()->user()->completed == '0') {
             $id = auth()->user()->id;
-            User::where('id', $id)->update(['completed' => 1]);
+
+            if (auth()->user()->peribadi->completed == '1' && auth()->user()->perniagaan->completed == '1' && auth()->user()->pinjaman->completed == '1') {
+                User::where('id', $id)->update(['completed' => 1]);
+            }
 
             $name = auth()->user()->name;
             $email = auth()->user()->email;
