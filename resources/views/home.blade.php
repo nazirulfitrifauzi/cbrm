@@ -72,8 +72,13 @@
                             </a>
                         </span>
                         <span class="inline-flex rounded-md shadow-sm">
-                            <button type="submit"
-                                class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:border-green-700 focus:shadow-outline-green active:bg-green-700 transition ease-in-out duration-150">
+                            <a href="{{ route('home.status') }}" type="button"
+                                class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:border-green-700 focus:shadow-outline-green active:bg-green-700 transition ease-in-out duration-150
+                                @if(auth()->user()->peribadi->completed === '1' && auth()->user()->perniagaan->completed === '1' && auth()->user()->pinjaman->completed === '1')
+                                @else
+                                    hidden
+                                @endif
+                                ">
                                 {{--add this to disable button: opacity-50 cursor-not-allowed --}}
                                 <svg class="-ml-0.5 mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd"
@@ -81,7 +86,7 @@
                                         clip-rule="evenodd"></path>
                                 </svg>
                                 Hantar Permohonan
-                            </button>
+                            </a>
                         </span>
                     </div>
 
@@ -130,10 +135,11 @@
                                         </a>
                                     </span>
                                     <span class="inline-flex rounded-md shadow-sm">
-                                        <button type="submit"
+                                        <a href="{{ route('home.status') }}" type="button"
                                             class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:border-green-700 focus:shadow-outline-green active:bg-green-700 transition ease-in-out duration-150
-                                            @if(auth()->user()->completed === '0')
-                                                opacity-50 cursor-not-allowed
+                                            @if(auth()->user()->peribadi->completed === '1' && auth()->user()->perniagaan->completed === '1' && auth()->user()->pinjaman->completed === '1')
+                                            @else
+                                                hidden
                                             @endif
                                             ">
                                             <svg class="-ml-0.5 mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
@@ -142,7 +148,7 @@
                                                     clip-rule="evenodd"></path>
                                             </svg>
                                             Hantar Permohonan
-                                        </button>
+                                        </a>
                                     </span>
                                 </div>
                             </nav>

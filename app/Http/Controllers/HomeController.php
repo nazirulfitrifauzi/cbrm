@@ -60,6 +60,16 @@ class HomeController extends Controller
 
     public function store(Request $request)
     {
+        // $name = auth()->user()->name;
+        // $email = auth()->user()->email;
+        // Mail::to($email)->send(new successfulApplication($name));
+
+        // session()->flash('success');
+        // return view('status');
+    }
+
+    public function status()
+    {
         $name = auth()->user()->name;
         $email = auth()->user()->email;
         Mail::to($email)->send(new successfulApplication($name));

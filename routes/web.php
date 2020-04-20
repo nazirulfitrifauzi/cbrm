@@ -20,6 +20,7 @@ Auth::routes(['verify' => true]);
 Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::post('/status', 'HomeController@store')->name('home.store');
+    Route::get('/status', 'HomeController@status')->name('home.status');
     Route::post('/storePeribadi', 'HomeController@storePeribadi')->name('home.storePeribadi');
     Route::post('/storePerniagaan', 'HomeController@storePerniagaan')->name('home.storePerniagaan');
     Route::post('/storePinjaman', 'HomeController@storePinjaman')->name('home.storePinjaman');
