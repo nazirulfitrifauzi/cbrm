@@ -193,7 +193,7 @@ class HomeController extends Controller
 
         $this->checkCompleted();
 
-        return redirect('home');
+        return redirect('home')->with('success', 'Data telah disimpan.');
     }
 
     public function storePerniagaan(Request $request)
@@ -238,7 +238,7 @@ class HomeController extends Controller
 
         $this->checkCompleted();
 
-        return redirect('home');
+        return redirect('home')->with('success', 'Data telah disimpan.');
     }
 
     public function storePinjaman(Request $request)
@@ -304,7 +304,7 @@ class HomeController extends Controller
 
         $this->checkCompleted();
 
-        return redirect('home');
+        return redirect('home')->with('success', 'Data telah disimpan.');
     }
 
     public function checkCompleted()

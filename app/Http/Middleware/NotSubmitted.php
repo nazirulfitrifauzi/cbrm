@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Auth;
 
 class NotSubmitted
 {
@@ -15,6 +16,9 @@ class NotSubmitted
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
+        if (Auth::user()->completed == 1) {
+            return $next($request);
+        }
+        return redirect('home')->with('error', 'Anda belum menghantar sebarang permohonan.');
     }
 }

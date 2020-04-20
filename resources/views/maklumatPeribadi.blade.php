@@ -2,10 +2,6 @@
     <form method="post" action="{{ route('home.storePeribadi') }}" enctype="multipart/form-data">
         @csrf
 
-        @if($errors->any())
-        {{ implode('', $errors->all('<div>:message</div>')) }}
-        @endif
-
         <div class="my-8 px-4">
             <div class="md:grid md:grid-cols-3 md:gap-6">
                 <div class="md:col-span-1">

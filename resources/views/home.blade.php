@@ -27,7 +27,7 @@
                             <span class="inline-flex rounded-md shadow-sm">
                                 <a href="{{ route('logout') }}" type="button"
                                     class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700 transition ease-in-out duration-150"
-                                    onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                    onclick="event.preventDefault();getElementById('logout-form').submit();">
                                     <svg class="-ml-0.5 mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd"
                                             d="M3 3a1 1 0 011 1v12a1 1 0 11-2 0V4a1 1 0 011-1zm7.707 3.293a1 1 0 010 1.414L9.414 9H17a1 1 0 110 2H9.414l1.293 1.293a1 1 0 01-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0z"
@@ -50,6 +50,86 @@
                     Program Pemulihan Perniagaan TEKUN NASIONAL (CBRM)
                 </h1>
             </div>
+
+            @if (Session::has('success'))
+            <div class="fixed inset-0 flex items-end justify-center px-4 py-6 pointer-events-none sm:p-20 sm:items-start sm:justify-end opacity-0 notification"
+            >
+                <div class="max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto"
+                >
+                    <div class="rounded-lg shadow-xs overflow-hidden">
+                        <div class="p-4">
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0">
+                                    <svg class="h-6 w-6 text-green-400" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                </div>
+                                <div class="ml-3 w-0 flex-1 pt-0.5">
+                                    <p class="text-sm leading-5 font-medium text-gray-900">
+                                        Berjaya!
+                                    </p>
+                                    <p class="mt-1 text-sm leading-5 text-gray-500">
+                                        {{ Session::get('success') }}
+                                    </p>
+                                </div>
+                                <div class="ml-4 flex-shrink-0 flex">
+                                    <button
+                                        class="inline-flex text-gray-400 focus:outline-none focus:text-gray-500 transition ease-in-out duration-150"
+                                    >
+                                        <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd"
+                                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endif 
+
+            @if (Session::has('error'))
+            <div class="fixed inset-0 flex items-end justify-center px-4 py-6 pointer-events-none sm:p-20 sm:items-start sm:justify-end opacity-0 notification"
+            >
+                <div class="max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto"
+                >
+                    <div class="rounded-lg shadow-xs overflow-hidden">
+                        <div class="p-4">
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0">
+                                    <svg class="h-6 w-6 text-red-400" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+                                        <path d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
+                                <div class="ml-3 w-0 flex-1 pt-0.5">
+                                    <p class="text-sm leading-5 font-medium text-gray-900">
+                                        Ralat!
+                                    </p>
+                                    <p class="mt-1 text-sm leading-5 text-gray-500">
+                                        {{ Session::get('error') }}
+                                    </p>
+                                </div>
+                                <div class="ml-4 flex-shrink-0 flex">
+                                    <button
+                                        class="inline-flex text-gray-400 focus:outline-none focus:text-gray-500 transition ease-in-out duration-150"
+                                    >
+                                        <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd"
+                                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endif
         </header>
     </div>
 
@@ -74,7 +154,7 @@
                         <span class="inline-flex rounded-md shadow-sm">
                             <a href="{{ route('home.status') }}" type="button"
                                 class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:border-green-700 focus:shadow-outline-green active:bg-green-700 transition ease-in-out duration-150
-                                @if(auth()->user()->peribadi->completed === '1' && auth()->user()->perniagaan->completed === '1' && auth()->user()->pinjaman->completed === '1')
+                                @if(auth()->user()->completed === '1')
                                 @else
                                     hidden
                                 @endif
@@ -137,7 +217,7 @@
                                     <span class="inline-flex rounded-md shadow-sm">
                                         <a href="{{ route('home.status') }}" type="button"
                                             class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:border-green-700 focus:shadow-outline-green active:bg-green-700 transition ease-in-out duration-150
-                                            @if(auth()->user()->peribadi->completed === '1' && auth()->user()->perniagaan->completed === '1' && auth()->user()->pinjaman->completed === '1')
+                                            @if(auth()->user()->completed === '1')
                                             @else
                                                 hidden
                                             @endif
@@ -166,3 +246,19 @@
     </main>
 </div>
 @endsection
+
+@push('js')
+    @if (Session::has('success') || Session::has('error'))
+    <script>
+        $(document).ready(function(){
+            setTimeout(function(){ 
+                $(".notification").animate({opacity: "1"}); 
+            }, 1000);
+            
+            setTimeout(function(){ 
+                $(".notification").animate({opacity: "0"}); 
+            }, 10000);
+        });
+    </script>
+    @endif
+@endpush
