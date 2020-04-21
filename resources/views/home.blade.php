@@ -180,34 +180,34 @@
 
                     <div class="sm:hidden">
                         <select class="form-select block w-full">
-                            <option value="opt_maklumatPeribadi" @click.prevent="tab='tab1'" selected>Maklumat Peribadi
+                            <option value="opt_maklumatPeribadi" @click="tab = 'tab1'" selected>Maklumat Peribadi
                             </option>
-                            <option value="opt_maklumatPerniagaan" @click.prevent="tab='tab2'">Maklumat Perniagaan
+                            <option value="opt_maklumatPerniagaan" @click="tab = 'tab2'">Maklumat Perniagaan
                             </option>
-                            <option value="opt_maklumatPinjaman" @click.prevent="tab='tab3'">Maklumat Pinjaman</option>
+                            <option value="opt_maklumatPinjaman" @click="tab = 'tab3'">Maklumat Pinjaman</option>
                         </select>
                     </div>
 
                     <div class="hidden sm:block">
                         <nav class="flex">
-                            <a href="#"
+                            <button
                                 class="px-3 py-2 font-medium text-sm leading-5 rounded-md text-gray-500 hover:text-gray-700 focus:outline-none focus:text-indigo-600 focus:bg-indigo-50"
                                 :class="{ 'text-indigo-700 bg-indigo-100 focus:outline-none focus:text-indigo-800 focus:bg-indigo-200' : tab === 'tab1' }"
-                                @click.prevent="tab='tab1'">
+                                @click="tab='tab1'">
                                 Maklumat Peribadi
-                            </a>
-                            <a href="#"
+                            </button>
+                            <button
                                 class="ml-4 px-3 py-2 font-medium text-sm leading-5 rounded-md text-gray-500 hover:text-gray-700 focus:outline-none focus:text-indigo-600 focus:bg-indigo-50"
                                 :class="{ 'text-indigo-700 bg-indigo-100 focus:outline-none focus:text-indigo-800 focus:bg-indigo-200' : tab === 'tab2' }"
-                                @click.prevent="tab='tab2'">
+                                @click="tab='tab2'">
                                 Maklumat Perniagaan
-                            </a>
-                            <a href="#"
+                            </button>
+                            <button
                                 class="ml-4 px-3 py-2 font-medium text-sm leading-5 rounded-md text-gray-500 hover:text-gray-700 focus:outline-none focus:text-indigo-600 focus:bg-indigo-50"
                                 :class="{ 'text-indigo-700 bg-indigo-100 focus:outline-none focus:text-indigo-800 focus:bg-indigo-200' : tab === 'tab3' }"
-                                @click.prevent="tab='tab3'">
+                                @click="tab='tab3'">
                                 Maklumat Pinjaman
-                            </a>
+                            </button>
 
                             <div class="ml-auto">
                                 <span class="inline-flex rounded-md shadow-sm">
