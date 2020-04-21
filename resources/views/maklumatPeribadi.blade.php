@@ -490,6 +490,11 @@
                                     <input id="birthdate" name="birthdate" type="date"
                                         value="{{ isset(auth()->user()->peribadi->birthdate) ? auth()->user()->peribadi->birthdate : old('birthdate') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                        @error('birthdate')
+                                            <p class="text-red-500 text-xs italic mt-4">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-2">
@@ -1152,6 +1157,10 @@
 
         @error('age')
         $("#age").addClass("border-red-500");
+        @enderror
+
+        @error('birthdate')
+        $("#birthdate").addClass("border-red-500");
         @enderror
 
         @error('dependent')
