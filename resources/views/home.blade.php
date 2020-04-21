@@ -179,12 +179,12 @@
                     </div>
 
                     <div class="sm:hidden">
-                        <select class="form-select block w-full">
-                            <option value="opt_maklumatPeribadi" @click="tab = 'tab1'" selected>Maklumat Peribadi
+                        <select class="form-select block w-full" @change="tab = $event.target.value">
+                            <option value="opt_maklumatPeribadi" x-bind:value="'tab1'" selected>Maklumat Peribadi
                             </option>
-                            <option value="opt_maklumatPerniagaan" @click="tab = 'tab2'">Maklumat Perniagaan
+                            <option value="opt_maklumatPerniagaan" x-bind:value="'tab2'">Maklumat Perniagaan
                             </option>
-                            <option value="opt_maklumatPinjaman" @click="tab = 'tab3'">Maklumat Pinjaman</option>
+                            <option value="opt_maklumatPinjaman" x-bind:value="'tab3'">Maklumat Pinjaman</option>
                         </select>
                     </div>
 
