@@ -15,33 +15,125 @@
                     <div class="shadow sm:rounded-md sm:overflow-hidden">
                         <div class="px-4 py-5 bg-white sm:p-6">
                             <div class="grid grid-cols-6 gap-6">
-                                <div class="col-span-6 sm:col-span-6">
-                                    <fieldset>
-                                        <legend class="block text-sm font-medium leading-5 text-gray-700">
-                                            Jumlah Pembiayaan Yang Diperlukan
-                                        </legend>
-                                        <div class="mt-3">
-                                            <div class="flex items-center">
-                                                <label for="purchase_price"
-                                                    class="block text-sm font-medium leading-5 text-gray-700">RM</label>
-                                                <label for="purchase_price" class="ml-3">
-                                                    <span class="block text-sm leading-5 font-medium text-gray-700">
-                                                        <input id="purchase_price" name="purchase_price" type="number"
-                                                            step="0.01" min="1000" max="10000"
-                                                            value="{{ isset(auth()->user()->pinjaman->purchase_price) ? auth()->user()->pinjaman->purchase_price : old('purchase_price') }}"
-                                                            class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-                                                        @error('purchase_price')
-                                                        <p class="text-red-500 text-xs italic mt-4">
-                                                            {{ $message }}
-                                                        </p>
-                                                        @enderror
-
-                                                    </span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </fieldset>
-                                </div>
+                                    <div class="col-span-6 sm:col-span-3">
+                                        <label for="purchase_price"
+                                            class="block text-sm font-medium leading-5 text-gray-700">Jumlah Pembiayaan Yang Diperlukan</label>
+                                        <select id="purchase_price" name="purchase_price"
+                                            class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                                                <option value="1" 
+                                                    @if(isset(auth()->user()->pinjaman->purchase_price))
+                                                        @if(auth()->user()->pinjaman->purchase_price == '1') 
+                                                            selected 
+                                                        @endif
+                                                    @else 
+                                                    @endif
+                                                >RM 1,000.00</option>
+                                                <option value="2" 
+                                                    @if(isset(auth()->user()->pinjaman->purchase_price))
+                                                        @if(auth()->user()->pinjaman->purchase_price == '2') 
+                                                            selected 
+                                                        @endif
+                                                    @else 
+                                                    @endif
+                                                >RM 2,000.00</option>
+                                                <option value="3" 
+                                                    @if(isset(auth()->user()->pinjaman->purchase_price))
+                                                        @if(auth()->user()->pinjaman->purchase_price == '3') 
+                                                            selected 
+                                                        @endif
+                                                    @else 
+                                                    @endif
+                                                >RM 3,000.00</option>
+                                                <option value="4" 
+                                                    @if(isset(auth()->user()->pinjaman->purchase_price))
+                                                        @if(auth()->user()->pinjaman->purchase_price == '4') 
+                                                            selected 
+                                                        @endif
+                                                    @else 
+                                                    @endif
+                                                >RM 4,000.00</option>
+                                                <option value="5" 
+                                                    @if(isset(auth()->user()->pinjaman->purchase_price))
+                                                        @if(auth()->user()->pinjaman->purchase_price == '5') 
+                                                            selected 
+                                                        @endif
+                                                    @else 
+                                                    @endif
+                                                >RM 5,000.00</option>
+                                                <option value="6" 
+                                                    @if(isset(auth()->user()->pinjaman->purchase_price))
+                                                        @if(auth()->user()->pinjaman->purchase_price == '6') 
+                                                            selected 
+                                                        @endif
+                                                    @else 
+                                                    @endif
+                                                >RM 6,000.00</option>
+                                                <option value="7" 
+                                                    @if(isset(auth()->user()->pinjaman->purchase_price))
+                                                        @if(auth()->user()->pinjaman->purchase_price == '7') 
+                                                            selected 
+                                                        @endif
+                                                    @else 
+                                                    @endif
+                                                >RM 7,000.00</option>
+                                                <option value="8" 
+                                                    @if(isset(auth()->user()->pinjaman->purchase_price))
+                                                        @if(auth()->user()->pinjaman->purchase_price == '8') 
+                                                            selected 
+                                                        @endif
+                                                    @else 
+                                                    @endif
+                                                >RM 8,000.00</option>
+                                                <option value="9" 
+                                                    @if(isset(auth()->user()->pinjaman->purchase_price))
+                                                        @if(auth()->user()->pinjaman->purchase_price == '9') 
+                                                            selected 
+                                                        @endif
+                                                    @else 
+                                                    @endif
+                                                >RM 9,000.00</option>
+                                                <option value="10" 
+                                                    @if(isset(auth()->user()->pinjaman->purchase_price))
+                                                        @if(auth()->user()->pinjaman->purchase_price == '10') 
+                                                            selected 
+                                                        @endif
+                                                    @else 
+                                                    @endif
+                                                >RM 10,000.00</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-span-6 sm:col-span-3">
+                                        <label for="duration"
+                                            class="block text-sm font-medium leading-5 text-gray-700">Tempoh Pembayaran</label>
+                                        <select id="duration" name="duration"
+                                            class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                                                <option value="1" 
+                                                    @if(isset(auth()->user()->pinjaman->duration))
+                                                        @if(auth()->user()->pinjaman->duration == '1') 
+                                                            selected 
+                                                        @endif
+                                                    @else 
+                                                    @endif
+                                                >1 Tahun</option>
+                                                <option value="3" 
+                                                    @if(isset(auth()->user()->pinjaman->duration))
+                                                        @if(auth()->user()->pinjaman->duration == '3') 
+                                                            selected 
+                                                        @endif
+                                                    @else 
+                                                    @endif
+                                                >3 Tahun</option>
+                                                <option value="5" 
+                                                    @if(isset(auth()->user()->pinjaman->duration))
+                                                        @if(auth()->user()->pinjaman->duration == '5') 
+                                                            selected 
+                                                        @endif
+                                                    @else 
+                                                    @endif
+                                                >5 Tahun</option>
+                                                
+                                        </select>
+                                    </div>
                             </div>
                         </div>
                     </div>
