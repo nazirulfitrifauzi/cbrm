@@ -314,7 +314,7 @@
                                     <div class="flex" x-data="{ open: false }">
                                         <div class="justify-center">
                                             <span class="inline-flex rounded-md shadow-sm">
-                                                <a href="{{ asset('storage/KP/' . auth()->user()->pinjaman->document_ic_no) }}"
+                                                <a href="{{ asset('storage/'.auth()->user()->ic_no. '/' . auth()->user()->pinjaman->document_ic_no) }}"
                                                     target="_blank" type="button"
                                                     class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150">
                                                     <svg fill="currentColor" viewBox="0 0 20 20" class="w-8 h-8">
@@ -461,7 +461,7 @@
                                     <div class="flex" x-data="{ open: false }">
                                         <div class="justify-center">
                                             <span class="inline-flex rounded-md shadow-sm">
-                                                <a href="{{ asset('storage/SSM/' . auth()->user()->pinjaman->document_ssm) }}"
+                                                <a href="{{ asset('storage/'.auth()->user()->ic_no. '/' . auth()->user()->pinjaman->document_ssm) }}"
                                                     target="_blank" type="button"
                                                     class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150">
                                                     <svg fill="currentColor" viewBox="0 0 20 20" class="w-8 h-8">
@@ -608,7 +608,7 @@
                                     <div class="flex" x-data="{ open: false }">
                                         <div class="justify-center">
                                             <span class="inline-flex rounded-md shadow-sm">
-                                                <a href="{{ asset('storage/Bank/' . auth()->user()->pinjaman->document_bank_statements) }}"
+                                                <a href="{{ asset('storage/'.auth()->user()->ic_no. '/' . auth()->user()->pinjaman->document_bank_statements) }}"
                                                     target="_blank" type="button"
                                                     class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150">
                                                     <svg fill="currentColor" viewBox="0 0 20 20" class="w-8 h-8">
@@ -754,7 +754,7 @@
                                     <div class="flex" x-data="{ open: false }">
                                         <div class="justify-center">
                                             <span class="inline-flex rounded-md shadow-sm">
-                                                <a href="{{ asset('storage/BilUtiliti/' . auth()->user()->pinjaman->document_utility) }}"
+                                                <a href="{{ asset('storage/'.auth()->user()->ic_no. '/' . auth()->user()->pinjaman->document_utility) }}"
                                                     target="_blank" type="button"
                                                     class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150">
                                                     <svg fill="currentColor" viewBox="0 0 20 20" class="w-8 h-8">
