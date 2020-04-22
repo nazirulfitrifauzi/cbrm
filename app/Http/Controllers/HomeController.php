@@ -179,7 +179,7 @@ class HomeController extends Controller
                     "address1"                  => ['required', 'string'],
                     "postcode"                  => ['required', 'numeric'],
                     "city"                      => ['required', 'string'],
-                    "state"                     => ['required'],
+                    "state"                     => ['required', 'alpha'],
                     "phone_home"                => ['numeric'],
                     "phone_hp"                  => ['required', 'numeric'],
                     "email"                     => ['required'],
@@ -189,7 +189,7 @@ class HomeController extends Controller
                     "employer_address1"         => ['required', 'string'],
                     "employer_postcode"         => ['required', 'numeric'],
                     "employer_city"             => ['required', 'string'],
-                    "employer_state"            => ['required'],
+                    "employer_state"            => ['required', 'alpha'],
                     "spouse_type"               => ['required'],
                     "spouse_name"               => ['required', 'string'],
                     "spouse_ic_no"              => ['required', 'numeric', 'min:12'],
@@ -197,7 +197,7 @@ class HomeController extends Controller
                     "spouse_employer_address1"  => ['required', 'string'],
                     "spouse_employer_postcode"  => ['required', 'numeric'],
                     "spouse_employer_city"      => ['required', 'string'],
-                    "spouse_employer_state"     => ['required']
+                    "spouse_employer_state"     => ['required', 'alpha']
                 ]);
             } else {
                 $this->validate($request, [
@@ -224,7 +224,7 @@ class HomeController extends Controller
                     "address1"                  => ['required', 'string'],
                     "postcode"                  => ['required', 'numeric'],
                     "city"                      => ['required', 'string'],
-                    "state"                     => ['required'],
+                    "state"                     => ['required', 'alpha'],
                     "phone_home"                => ['numeric'],
                     "phone_hp"                  => ['required', 'numeric'],
                     "email"                     => ['required'],
@@ -234,7 +234,7 @@ class HomeController extends Controller
                     "employer_address1"         => ['required', 'string'],
                     "employer_postcode"         => ['required', 'numeric'],
                     "employer_city"             => ['required', 'string'],
-                    "employer_state"            => ['required'],
+                    "employer_state"            => ['required', 'alpha'],
                     "spouse_type"               => ['required'],
                     "spouse_name"               => ['required', 'string'],
                     "spouse_ic_no"              => ['required', 'numeric', 'min:12'],
@@ -242,7 +242,7 @@ class HomeController extends Controller
                     "spouse_employer_address1"  => ['required', 'string'],
                     "spouse_employer_postcode"  => ['required', 'numeric'],
                     "spouse_employer_city"      => ['required', 'string'],
-                    "spouse_employer_state"     => ['required']
+                    "spouse_employer_state"     => ['required', 'alpha']
                 ]);
             }
         }
@@ -388,7 +388,7 @@ class HomeController extends Controller
             'business_address1'   => ['required', 'string'],
             'business_postcode'   => ['required', 'numeric', 'min:5'],
             'business_city'       => ['required', 'string'],
-            'business_state'      => ['required', 'string'],
+            'business_state'      => ['required', 'alpha'],
             'business_phone_hp'   => ['required', 'numeric', 'min:10'],
             'business_premise'    => ['required'],
             'business_ownership'  => ['required'],
