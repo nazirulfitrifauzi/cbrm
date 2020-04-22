@@ -458,6 +458,7 @@ class HomeController extends Controller
         if (is_null(auth()->user()->pinjaman)) {
             $this->validate($request, [
                 'purchase_price'        => ['required', 'numeric'],
+                'duration'              => ['required', 'numeric'],
                 'reference_name'        => ['required', 'string'],
                 'reference_address1'    => ['required', 'string'],
                 'reference_postcode'    => ['required', 'numeric', 'min:5'],
@@ -527,6 +528,7 @@ class HomeController extends Controller
             'user_id'               => auth()->user()->id
         ], [
             'purchase_price'                => $request->get('purchase_price'),
+            'duration'                      => $request->get('duration'),
             'reference_name'                => $request->get('reference_name'),
             'reference_address1'            => $request->get('reference_address1'),
             'reference_address2'            => $request->get('reference_address2'),
@@ -553,6 +555,7 @@ class HomeController extends Controller
         $id = auth()->user()->id;
         $pinjamanArr = Pinjaman::select([
             'purchase_price',
+            'duration',
             'reference_name',
             'reference_address1',
             'reference_postcode',
