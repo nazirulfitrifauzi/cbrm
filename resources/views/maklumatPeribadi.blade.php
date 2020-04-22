@@ -26,9 +26,12 @@
                                             <option value="{{ $negeris->kodnegeri }}" 
                                                 @if(isset(auth()->user()->peribadi->tekun_state))
                                                     @if(auth()->user()->peribadi->tekun_state == $negeris->kodnegeri) 
-                                                        selected 
+                                                        selected
+                                                    @else
+                                                        {{ old('tekun_state') == ($negeris->kodnegeri) ? 'selected':'' }}
                                                     @endif 
                                                 @else
+                                                    {{ old('tekun_state') == ($negeris->kodnegeri) ? 'selected':'' }}
                                                 @endif
                                             >{{ $negeris->namanegeri }}</option>
                                         @endforeach
@@ -51,8 +54,11 @@
                                                 @if(isset(auth()->user()->peribadi->tekun_branch))
                                                     @if(auth()->user()->peribadi->tekun_branch == trim($cawangans->kodcawangan," ")) 
                                                         selected 
+                                                    @else
+                                                        {{ old('tekun_branch') == (trim($cawangans->kodcawangan," ")) ? 'selected':'' }}
                                                     @endif 
                                                 @else
+                                                    {{ old('tekun_branch') == (trim($cawangans->kodcawangan," ")) ? 'selected':'' }}
                                                 @endif
                                             >{{ $cawangans->namacawangan }}</option>
                                         @endforeach
@@ -73,14 +79,26 @@
                                     <select id="business_status" name="business_status"
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                                         <option value="">Sila Pilih Status Perniagaan</option>
-                                        <option value="Sedang Berniaga" @if(isset(auth()->
-                                            user()->peribadi->business_status))
-                                            @if(auth()->user()->peribadi->business_status == 'Sedang Berniaga') selected
-                                            @endif @else @endif>Sedang Berniaga</option>
-                                        <option value="Memulakan Perniagaan" @if(isset(auth()->
-                                            user()->peribadi->business_status))
-                                            @if(auth()->user()->peribadi->business_status == 'Memulakan Perniagaan')
-                                            selected @endif @else @endif> Memulakan Perniagaan </option>
+                                        <option value="Sedang Berniaga"
+                                            @if(isset(auth()->user()->peribadi->business_status))
+                                                @if(auth()->user()->peribadi->business_status == 'Sedang Berniaga')
+                                                    selected
+                                                @else
+                                                    {{ old('business_status') == 'Sedang Berniaga' ? 'selected':'' }}
+                                                @endif
+                                            @else
+                                                {{ old('business_status') == 'Sedang Berniaga' ? 'selected':'' }}
+                                            @endif>Sedang Berniaga</option>
+                                        <option value="Memulakan Perniagaan"
+                                            @if(isset(auth()->user()->peribadi->business_status))
+                                                @if(auth()->user()->peribadi->business_status == 'Memulakan Perniagaan')
+                                                    selected
+                                                @else
+                                                    {{ old('business_status') == 'Memulakan Perniagaan' ? 'selected':'' }}
+                                                @endif
+                                            @else
+                                                {{ old('business_status') == 'Memulakan Perniagaan' ? 'selected':'' }}
+                                            @endif> Memulakan Perniagaan </option>
                                     </select>
                                     @error('business_status')
                                         <p class="text-red-500 text-xs italic mt-4">
@@ -141,8 +159,12 @@
                                             <option value="{{ $banks->id }}" 
                                                 @if(isset(auth()->user()->peribadi->bank1))
                                                     @if(auth()->user()->peribadi->bank1 == $banks->id) 
-                                                        selected 
-                                                    @endif @else
+                                                        selected
+                                                    @else
+                                                        {{ old('bank1') == ($banks->id) ? 'selected':'' }}
+                                                    @endif
+                                                @else
+                                                    {{ old('bank1') == ($banks->id) ? 'selected':'' }}
                                                 @endif
                                             >{{ $banks->nama_bank }}</option>
                                         @endforeach
@@ -456,23 +478,33 @@
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                                         <option value="">Sila Pilih Agama</option>
                                         <option value="Islam" @if(isset(auth()->user()->peribadi->religion))
-                                            @if(auth()->user()->peribadi->religion == 'Islam') selected @endif @else
+                                            @if(auth()->user()->peribadi->religion == 'Islam') selected @else
+                                            {{ old('religion') == 'Islam' ? 'selected':'' }} @endif @else
+                                            {{ old('religion') == 'Islam' ? 'selected':'' }}
                                             @endif>Islam
                                         </option>
                                         <option value="Hindu" @if(isset(auth()->user()->peribadi->religion))
-                                            @if(auth()->user()->peribadi->religion == 'Hindu') selected @endif @else
+                                            @if(auth()->user()->peribadi->religion == 'Hindu') selected @else
+                                            {{ old('religion') == 'Hindu' ? 'selected':'' }} @endif @else
+                                            {{ old('religion') == 'Hindu' ? 'selected':'' }}
                                             @endif>Hindu
                                         </option>
                                         <option value="Buddha" @if(isset(auth()->user()->peribadi->religion))
-                                            @if(auth()->user()->peribadi->religion == 'Buddha') selected @endif @else
+                                            @if(auth()->user()->peribadi->religion == 'Buddha') selected @else
+                                            {{ old('religion') == 'Buddha' ? 'selected':'' }} @endif @else
+                                            {{ old('religion') == 'Buddha' ? 'selected':'' }}
                                             @endif>Buddha
                                         </option>
                                         <option value="Kristian" @if(isset(auth()->user()->peribadi->religion))
-                                            @if(auth()->user()->peribadi->religion == 'Kristian') selected @endif @else
+                                            @if(auth()->user()->peribadi->religion == 'Kristian') selected @else
+                                            {{ old('religion') == 'Kristian' ? 'selected':'' }} @endif @else
+                                            {{ old('religion') == 'Kristian' ? 'selected':'' }}
                                             @endif>
                                             Kristian</option>
                                         <option value="Lain" @if(isset(auth()->user()->peribadi->religion))
-                                            @if(auth()->user()->peribadi->religion == 'Lain') selected @endif @else
+                                            @if(auth()->user()->peribadi->religion == 'Lain') selected @else
+                                            {{ old('religion') == 'Lain' ? 'selected':'' }} @endif @else
+                                            {{ old('religion') == 'Lain' ? 'selected':'' }}
                                             @endif>Lain-lain</option>
                                     </select>
                                     @error('religion')
@@ -502,28 +534,42 @@
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                                         <option value="">Sila Pilih Bangsa/Kaum</option>
                                         <option value="Melayu" @if(isset(auth()->user()->peribadi->race))
-                                            @if(auth()->user()->peribadi->race == 'Melayu') selected @endif @else
+                                            @if(auth()->user()->peribadi->race == 'Melayu') selected @else
+                                            {{ old('race') == 'Melayu' ? 'selected':'' }} @endif @else
+                                            {{ old('race') == 'Melayu' ? 'selected':'' }}
                                             @endif>Melayu
                                         </option>
                                         <option value="Cina" @if(isset(auth()->user()->peribadi->race))
-                                            @if(auth()->user()->peribadi->race == 'Cina') selected @endif @else
+                                            @if(auth()->user()->peribadi->race == 'Cina') selected @else
+                                            {{ old('race') == 'Cina' ? 'selected':'' }} @endif @else
+                                            {{ old('race') == 'Cina' ? 'selected':'' }}
                                             @endif>Cina</option>
                                         <option value="India" @if(isset(auth()->user()->peribadi->race))
-                                            @if(auth()->user()->peribadi->race == 'India') selected @endif @else
+                                            @if(auth()->user()->peribadi->race == 'India') selected @else
+                                            {{ old('race') == 'India' ? 'selected':'' }} @endif @else
+                                            {{ old('race') == 'India' ? 'selected':'' }}
                                             @endif>India</option>
                                         <option value="Iban" @if(isset(auth()->user()->peribadi->race))
-                                            @if(auth()->user()->peribadi->race == 'Iban') selected @endif @else
+                                            @if(auth()->user()->peribadi->race == 'Iban') selected @else
+                                            {{ old('race') == 'Iban' ? 'selected':'' }} @endif @else
+                                            {{ old('race') == 'Iban' ? 'selected':'' }}
                                             @endif>Iban</option>
                                         <option value="Kadazan" @if(isset(auth()->user()->peribadi->race))
-                                            @if(auth()->user()->peribadi->race == 'Kadazan') selected @endif @else
+                                            @if(auth()->user()->peribadi->race == 'Kadazan') selected @else
+                                            {{ old('race') == 'Kadazan' ? 'selected':'' }} @endif @else
+                                            {{ old('race') == 'Kadazan' ? 'selected':'' }}
                                             @endif>Kadazan
                                         </option>
                                         <option value="Bumiputra" @if(isset(auth()->user()->peribadi->race))
-                                            @if(auth()->user()->peribadi->race == 'Bumiputra') selected @endif @else
+                                            @if(auth()->user()->peribadi->race == 'Bumiputra') selected @else
+                                            {{ old('race') == 'Bumiputra' ? 'selected':'' }} @endif @else
+                                            {{ old('race') == 'Bumiputra' ? 'selected':'' }}
                                             @endif>
                                             Bumiputra</option>
                                         <option value="Siam" @if(isset(auth()->user()->peribadi->race))
-                                            @if(auth()->user()->peribadi->race == 'Siam') selected @endif @else
+                                            @if(auth()->user()->peribadi->race == 'Siam') selected @else
+                                            {{ old('race') == 'Siam' ? 'selected':'' }} @endif @else
+                                            {{ old('race') == 'Siam' ? 'selected':'' }}
                                             @endif>Siam</option>
                                     </select>
                                     @error('race')
@@ -553,26 +599,35 @@
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                                         <option value="">Sila Pilih Taraf Perkahwinan</option>
                                         <option value="Bujang" @if(isset(auth()->user()->peribadi->marital))
-                                            @if(auth()->user()->peribadi->marital == 'Bujang') selected @endif @else
+                                            @if(auth()->user()->peribadi->marital == 'Bujang') selected @else
+                                            {{ old('marital') == 'Bujang' ? 'selected':'' }} @endif @else
+                                            {{ old('marital') == 'Bujang' ? 'selected':'' }}
                                             @endif>Bujang
                                         </option> 
                                         <option value="Berkahwin" @if(isset(auth()->user()->peribadi->marital))
-                                            @if(auth()->user()->peribadi->marital == 'Berkahwin') selected @endif @else
+                                            @if(auth()->user()->peribadi->marital == 'Berkahwin') selected @else
+                                            {{ old('marital') == 'Berkahwin' ? 'selected':'' }} @endif @else
+                                            {{ old('marital') == 'Berkahwin' ? 'selected':'' }}
                                             @endif>
                                             Berkahwin</option>
                                         <option value="Duda" @if(isset(auth()->user()->peribadi->marital))
-                                            @if(auth()->user()->peribadi->marital == 'Duda') selected @endif @else
+                                            @if(auth()->user()->peribadi->marital == 'Duda') selected @else
+                                            {{ old('marital') == 'Duda' ? 'selected':'' }} @endif @else
+                                            {{ old('marital') == 'Duda' ? 'selected':'' }}
                                             @endif>Duda
                                         </option>
                                         <option value="Janda" @if(isset(auth()->user()->peribadi->marital))
-                                            @if(auth()->user()->peribadi->marital == 'Janda') selected @endif @else
+                                            @if(auth()->user()->peribadi->marital == 'Janda') selected @else
+                                            {{ old('marital') == 'Janda' ? 'selected':'' }} @endif @else
+                                            {{ old('marital') == 'Janda' ? 'selected':'' }}
                                             @endif>Janda
                                         </option>
                                         <option value="Ibu Tunggal" @if(isset(auth()->user()->peribadi->marital))
-                                            @if(auth()->user()->peribadi->marital == 'Ibu Tunggal') selected @endif
-                                            @else
-                                            @endif>
-                                            Ibu Tunggal</option>
+                                            @if(auth()->user()->peribadi->marital == 'Ibu Tunggal') selected @else
+                                            {{ old('marital') == 'Ibu Tunggal' ? 'selected':'' }} @endif @else
+                                            {{ old('marital') == 'Ibu Tunggal' ? 'selected':'' }}
+                                            @endif>Ibu Tunggal
+                                        </option>
                                     </select>
                                     @error('marital')
                                                     <p class="text-red-500 text-xs italic mt-4">
@@ -693,11 +748,20 @@
                                                 @if(isset(auth()->user()->peribadi->state))
                                                     @if(auth()->user()->peribadi->state == $negerix1->kodnegeri) 
                                                         selected 
-                                                    @endif @else
+                                                    @else
+                                                        {{ old('state') == ($negerix1->kodnegeri) ? 'selected':'' }}
+                                                    @endif
+                                                @else
+                                                    {{ old('state') == ($negerix1->kodnegeri) ? 'selected':'' }}
                                                 @endif
                                             >{{ $negerix1->namanegeri }}</option>
                                         @endforeach
                                     </select>
+                                    @error('state')
+                                                    <p class="text-red-500 text-xs italic mt-4">
+                                                        {{ $message }}
+                                                    </p>
+                                                @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
@@ -880,7 +944,11 @@
                                                 @if(isset(auth()->user()->peribadi->employer_state))
                                                     @if(auth()->user()->peribadi->employer_state == $negerix2->kodnegeri) 
                                                         selected 
-                                                    @endif @else
+                                                    @else
+                                                        {{ old('employer_state') == ($negerix2->kodnegeri) ? 'selected':'' }}
+                                                    @endif
+                                                @else
+                                                    {{ old('employer_state') == ($negerix2->kodnegeri) ? 'selected':'' }}
                                                 @endif
                                             >{{ $negerix2->namanegeri }}</option>
                                         @endforeach
@@ -1073,7 +1141,11 @@
                                                 @if(isset(auth()->user()->peribadi->spouse_employer_state))
                                                     @if(auth()->user()->peribadi->spouse_employer_state == $negerix3->kodnegeri) 
                                                         selected 
-                                                    @endif @else
+                                                    @else
+                                                        {{ old('spouse_employer_state') == ($negerix3->kodnegeri) ? 'selected':'' }}
+                                                    @endif
+                                                @else
+                                                    {{ old('spouse_employer_state') == ($negerix3->kodnegeri) ? 'selected':'' }}
                                                 @endif
                                             >{{ $negerix3->namanegeri }}</option>
                                         @endforeach

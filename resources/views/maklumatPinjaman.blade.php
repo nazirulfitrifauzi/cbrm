@@ -237,8 +237,11 @@
                                             @if(isset(auth()->user()->pinjaman->reference_state))
                                                 @if(auth()->user()->pinjaman->reference_state == $negerix5->kodnegeri)
                                                     selected
+                                                @else
+                                                    {{ old('reference_state') == ($negerix5->kodnegeri) ? 'selected':'' }}
                                                 @endif 
                                             @else
+                                                {{ old('reference_state') == ($negerix5->kodnegeri) ? 'selected':'' }}
                                             @endif
                                             >{{ $negerix5->namanegeri }}</option>
                                         @endforeach

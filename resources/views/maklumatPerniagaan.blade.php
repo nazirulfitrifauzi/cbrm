@@ -40,40 +40,55 @@
                                                     @if(isset(auth()->user()->perniagaan->business_sector))
                                                         @if(auth()->user()->perniagaan->business_sector == 'PERTANIAN & PERUSAHAAN ASAS TANI') 
                                                             selected 
+                                                        @else
+                                                                {{ old('business_sector') == 'PERTANIAN & PERUSAHAAN ASAS TANI' ? 'selected':'' }}
+                                                            @endif
+                                                        @else
+                                                            {{ old('business_sector') == 'PERTANIAN & PERUSAHAAN ASAS TANI' ? 'selected':'' }}
                                                         @endif
-                                                    @else 
-                                                    @endif
                                                 >PERTANIAN & PERUSAHAAN ASAS TANI</option>
                                                 <option value="PERUNCITAN" 
                                                     @if(isset(auth()->user()->perniagaan->business_sector))
                                                         @if(auth()->user()->perniagaan->business_sector == 'PERUNCITAN') 
                                                             selected 
+                                                        @else
+                                                                {{ old('business_sector') == 'PERUNCITAN' ? 'selected':'' }}
+                                                            @endif
+                                                        @else
+                                                            {{ old('business_sector') == 'PERUNCITAN' ? 'selected':'' }}
                                                         @endif
-                                                    @else 
-                                                    @endif
                                                 >PERUNCITAN</option>
                                                 <option value="PERKHIDMATAN" 
                                                     @if(isset(auth()->user()->perniagaan->business_sector))
                                                         @if(auth()->user()->perniagaan->business_sector == 'PERKHIDMATAN') 
                                                             selected 
+                                                        @else
+                                                                {{ old('business_sector') == 'PERKHIDMATAN' ? 'selected':'' }}
+                                                            @endif
+                                                        @else
+                                                            {{ old('business_sector') == 'PERKHIDMATAN' ? 'selected':'' }}
                                                         @endif
-                                                    @else 
-                                                    @endif
                                                 >PERKHIDMATAN</option>
                                                 <option value="PEMBUATAN" 
                                                     @if(isset(auth()->user()->perniagaan->business_sector))
                                                         @if(auth()->user()->perniagaan->business_sector == 'PEMBUATAN') 
                                                             selected 
+                                                        @else
+                                                            {{ old('business_sector') == 'PEMBUATAN' ? 'selected':'' }}
                                                         @endif
-                                                    @else 
+                                                    @else
+                                                        {{ old('business_sector') == 'PEMBUATAN' ? 'selected':'' }}
                                                     @endif
                                                 >PEMBUATAN</option>
                                                 <option value="KONTRAKTOR KECIL" 
                                                     @if(isset(auth()->user()->perniagaan->business_sector))
                                                         @if(auth()->user()->perniagaan->business_sector == 'KONTRAKTOR KECIL') 
                                                             selected 
+                                                        @else
+                                                            {{ old('business_sector') == 'KONTRAKTOR KECIL' ? 'selected':'' }}
                                                         @endif
-                                                    @else 
+                                                    @else
+                                                        {{ old('business_sector') == 'KONTRAKTOR KECIL' ? 'selected':'' }}
                                                     @endif
                                                 >KONTRAKTOR KECIL</option>
                                         </select>
@@ -96,7 +111,11 @@
                                                 @if(isset(auth()->user()->perniagaan->business_activity))
                                                     @if(auth()->user()->perniagaan->business_activity == $aktivitis->idaktiviti) 
                                                         selected 
-                                                    @endif @else
+                                                    @else
+                                                        {{ old('business_activity') == ($aktivitis->idaktiviti) ? 'selected':'' }} 
+                                                    @endif
+                                                @else
+                                                    {{ old('business_activity') == ($aktivitis->idaktiviti) ? 'selected':'' }}
                                                 @endif
                                             >{{ $aktivitis->keterangan }}</option>
                                         @endforeach
@@ -167,8 +186,12 @@
                                         <option value="{{ $negerix4->kodnegeri }}" 
                                             @if(isset(auth()->user()->perniagaan->business_state))
                                                 @if(auth()->user()->perniagaan->business_state == $negerix4->kodnegeri)
-                                                selected
-                                            @endif @else
+                                                    selected
+                                                @else
+                                                    {{ old('business_state') == ($negerix4->kodnegeri) ? 'selected':'' }}
+                                                @endif 
+                                            @else
+                                                {{ old('business_state') == ($negerix4->kodnegeri) ? 'selected':'' }}
                                             @endif
                                             >{{ $negerix4->namanegeri }}</option>
                                         @endforeach
