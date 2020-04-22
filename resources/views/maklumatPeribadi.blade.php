@@ -422,7 +422,7 @@
                                                             checked 
                                                         @endif 
                                                     @else
-                                                        checked
+                                                        
                                                     @endif
                                                 class="form-radio h-4 w-4 text-indigo-600 transition duration-150
                                                 ease-in-out" />
@@ -441,6 +441,11 @@
                                                         class="block text-sm leading-5 font-medium text-gray-700">Perempuan</span>
                                                 </label>
                                             </div>
+                                            @error('gender')
+                                                <p class="text-red-500 text-xs italic mt-4">
+                                                    {{ $message }}
+                                                </p>
+                                            @enderror
                                         </div>
                                     </fieldset>
                                 </div>
@@ -450,6 +455,7 @@
                                         class="block text-sm font-medium leading-5 text-gray-700">Agama</label>
                                     <select id="religion" name="religion"
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                                        <option value="">Sila Pilih Agama</option>
                                         <option value="Islam" @if(isset(auth()->user()->peribadi->religion))
                                             @if(auth()->user()->peribadi->religion == 'Islam') selected @endif @else
                                             @endif>Islam
@@ -498,6 +504,7 @@
                                         class="block text-sm font-medium leading-5 text-gray-700">Bangsa/Kaum</label>
                                     <select id="race" name="race"
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                                        <option value="">Sila Pilih Bangsa/Kaum</option>
                                         <option value="Melayu" @if(isset(auth()->user()->peribadi->race))
                                             @if(auth()->user()->peribadi->race == 'Melayu') selected @endif @else
                                             @endif>Melayu
@@ -548,10 +555,11 @@
                                         Perkahwinan</label>
                                     <select id="marital" name="marital"
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                                        <option value="">Sila Pilih Taraf Perkahwinan</option>
                                         <option value="Bujang" @if(isset(auth()->user()->peribadi->marital))
                                             @if(auth()->user()->peribadi->marital == 'Bujang') selected @endif @else
                                             @endif>Bujang
-                                        </option>
+                                        </option> 
                                         <option value="Berkahwin" @if(isset(auth()->user()->peribadi->marital))
                                             @if(auth()->user()->peribadi->marital == 'Berkahwin') selected @endif @else
                                             @endif>
@@ -570,6 +578,11 @@
                                             @endif>
                                             Ibu Tunggal</option>
                                     </select>
+                                    @error('marital')
+                                                    <p class="text-red-500 text-xs italic mt-4">
+                                                        {{ $message }}
+                                                    </p>
+                                                @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-2">
@@ -1208,6 +1221,10 @@
 
         @error('age')
         $("#age").addClass("border-red-500");
+        @enderror
+
+        @error('marital')
+        $("#marital").addClass("border-red-500");
         @enderror
 		
 		@error('birthdate')
