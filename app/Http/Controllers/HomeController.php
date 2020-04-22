@@ -218,15 +218,17 @@ class HomeController extends Controller
             }
         }
 
+        $ic = auth()->user()->ic_no;
+
         if (is_null(auth()->user()->peribadi)) { //xde data
             $gambar = $request->file('gambar');
             $gambar_name = auth()->user()->ic_no . '_gambar.' . $gambar->getClientOriginalExtension();
-            Storage::disk('local')->putFileAs('public/Pictures', $gambar, $gambar_name);
+            Storage::disk('local')->putFileAs('public/' . $ic, $gambar, $gambar_name);
         } else { // ada data
             if (is_null(auth()->user()->peribadi->gambar)) { // xde data gambar
                 $gambar = $request->file('gambar');
                 $gambar_name = auth()->user()->ic_no . '_gambar.' . $gambar->getClientOriginalExtension();
-                Storage::disk('local')->putFileAs('public/Pictures', $gambar, $gambar_name);
+                Storage::disk('local')->putFileAs('public/' . $ic, $gambar, $gambar_name);
             } else { // ade rekod
                 $gambar_name = auth()->user()->peribadi->gambar;
             }
@@ -437,28 +439,30 @@ class HomeController extends Controller
             ]);
         }
 
+        $ic_no = auth()->user()->ic_no;
+
         if (is_null(auth()->user()->pinjaman)) { // pinjaman null
             $ic = $request->file('doc_ic_no');
             $ic_name = auth()->user()->ic_no . '_ic.' . $ic->getClientOriginalExtension();
-            Storage::disk('local')->putFileAs('public/KP', $ic, $ic_name);
+            Storage::disk('local')->putFileAs('public/' . $ic_no, $ic, $ic_name);
 
             $ssm = $request->file('doc_ssm');
             $ssm_name = auth()->user()->ic_no . '_ssm.' . $ssm->getClientOriginalExtension();
-            Storage::disk('local')->putFileAs('public/SSM', $ssm, $ssm_name);
+            Storage::disk('local')->putFileAs('public/' . $ic_no, $ssm, $ssm_name);
 
             $bank = $request->file('doc_bank');
             $bank_name = auth()->user()->ic_no . '_bank.' . $bank->getClientOriginalExtension();
-            Storage::disk('local')->putFileAs('public/Bank', $bank, $bank_name);
+            Storage::disk('local')->putFileAs('public/' . $ic_no, $bank, $bank_name);
 
             $bil = $request->file('doc_bil');
             $bil_name = auth()->user()->ic_no . '_bilUtiliti.' . $bil->getClientOriginalExtension();
-            Storage::disk('local')->putFileAs('public/BilUtiliti', $bil, $bil_name);
+            Storage::disk('local')->putFileAs('public/' . $ic_no, $bil, $bil_name);
         } else { //pinjaman ade rekod
 
             if (is_null(auth()->user()->pinjaman->document_ic_no)) {
                 $ic = $request->file('doc_ic_no');
                 $ic_name = auth()->user()->ic_no . '_ic.' . $ic->getClientOriginalExtension();
-                Storage::disk('local')->putFileAs('public/KP', $ic, $ic_name);
+                Storage::disk('local')->putFileAs('public/' . $ic_no, $ic, $ic_name);
             } else {
                 $ic_name = auth()->user()->pinjaman->document_ic_no;
             }
@@ -466,7 +470,7 @@ class HomeController extends Controller
             if (is_null(auth()->user()->pinjaman->document_ssm)) {
                 $ssm = $request->file('doc_ssm');
                 $ssm_name = auth()->user()->ic_no . '_ssm.' . $ssm->getClientOriginalExtension();
-                Storage::disk('local')->putFileAs('public/SSM', $ssm, $ssm_name);
+                Storage::disk('local')->putFileAs('public/' . $ic_no, $ssm, $ssm_name);
             } else {
                 $ssm_name = auth()->user()->pinjaman->document_ssm;
             }
@@ -474,7 +478,7 @@ class HomeController extends Controller
             if (is_null(auth()->user()->pinjaman->document_bank_statements)) {
                 $bank = $request->file('doc_bank');
                 $bank_name = auth()->user()->ic_no . '_bank.' . $bank->getClientOriginalExtension();
-                Storage::disk('local')->putFileAs('public/Bank', $bank, $bank_name);
+                Storage::disk('local')->putFileAs('public/' . $ic_no, $bank, $bank_name);
             } else {
                 $bank_name = auth()->user()->pinjaman->document_bank_statements;
             }
@@ -482,7 +486,7 @@ class HomeController extends Controller
             if (is_null(auth()->user()->pinjaman->document_utility)) {
                 $bil = $request->file('doc_bil');
                 $bil_name = auth()->user()->ic_no . '_bilUtiliti.' . $bil->getClientOriginalExtension();
-                Storage::disk('local')->putFileAs('public/BilUtiliti', $bil, $bil_name);
+                Storage::disk('local')->putFileAs('public/' . $ic_no, $bil, $bil_name);
             } else {
                 $bil_name = auth()->user()->pinjaman->document_utility;
             }
