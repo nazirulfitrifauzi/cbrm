@@ -685,10 +685,10 @@
                                         value="{{ isset(auth()->user()->peribadi->city) ? auth()->user()->peribadi->city : old('city') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                                         @error('city')
-                                                    <p class="text-red-500 text-xs italic mt-4">
-                                                        {{ $message }}
-                                                    </p>
-                                                @enderror
+                                            <p class="text-red-500 text-xs italic mt-4">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3 lg:col-span-2">
@@ -696,6 +696,7 @@
                                         class="block text-sm font-medium leading-5 text-gray-700">Negeri</label>
                                     <select id="state" name="state"
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                                        <option value="">Sila Pilih</option>
                                         @foreach($negerix as $negerix1)
                                             <option value="{{ $negerix1->kodnegeri }}"
                                                 @if(isset(auth()->user()->peribadi->state))
@@ -882,6 +883,7 @@
                                         class="block text-sm font-medium leading-5 text-gray-700">Negeri</label>
                                     <select id="employer_state" name="employer_state"
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                                        <option value="">Sila Pilih</option>
                                         @foreach($negerix as $negerix2)
                                             <option value="{{ $negerix2->kodnegeri }}"
                                                 @if(isset(auth()->user()->peribadi->employer_state))
@@ -1062,6 +1064,7 @@
                                         class="block text-sm font-medium leading-5 text-gray-700">Negeri</label>
                                     <select id="spouse_employer_state" name="spouse_employer_state"
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                                        <option value="">Sila Pilih</option>
                                         @foreach($negerix as $negerix3)
                                             <option value="{{ $negerix3->kodnegeri }}" 
                                                 @if(isset(auth()->user()->peribadi->spouse_employer_state))
@@ -1194,7 +1197,7 @@
         @enderror
 		
         @error('dependent')
-        $("#depe").addClass("border-red-500");
+        $("#dependent").addClass("border-red-500");
         @enderror
 
         @error('address1')
@@ -1211,6 +1214,10 @@
 
         @error('city')
         $("#city").addClass("border-red-500");
+        @enderror
+
+        @error('state')
+        $("#state").addClass("border-red-500");
         @enderror
 
         @error('phone_home')
@@ -1261,6 +1268,10 @@
         $("#employer_city").addClass("border-red-500");
         @enderror
 
+        @error('employer_state')
+        $("#employer_state").addClass("border-red-500");
+        @enderror
+
         @error('spouse_name')
         $("#spouse_name").addClass("border-red-500");
         @enderror
@@ -1289,7 +1300,9 @@
         $("#spouse_employer_city").addClass("border-red-500");
         @enderror
 
-
+        @error('spouse_employer_state')
+        $("#spouse_employer_state").addClass("border-red-500");
+        @enderror
     });
 
 </script>
