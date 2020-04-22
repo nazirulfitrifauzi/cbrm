@@ -201,7 +201,7 @@
                                 <div class="col-span-6 sm:col-span-3 lg:col-span-2">
                                     <label for="reference_postcode"
                                         class="block text-sm font-medium leading-5 text-gray-700">Poskod</label>
-                                    <input id="reference_postcode" name="reference_postcode"
+                                    <input id="reference_postcode" name="reference_postcode" minlength="5" maxlength="5"
                                         value="{{ isset(auth()->user()->pinjaman->reference_postcode) ? auth()->user()->pinjaman->reference_postcode : old('reference_postcode') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                                     @error('reference_postcode')
