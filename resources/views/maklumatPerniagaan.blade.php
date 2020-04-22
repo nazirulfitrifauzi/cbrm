@@ -28,8 +28,61 @@
                                         {{ $message }}
                                     </p>
                                     @enderror
-
                                 </div>
+
+                                    <div class="col-span-6 sm:col-span-6">
+                                        <label for="business_sector"
+                                            class="block text-sm font-medium leading-5 text-gray-700">Sektor Perniagaan</label>
+                                        <select id="business_sector" name="business_sector"
+                                            class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                                                <option value="">Sila Pilih Sektor Perniagaan</option>
+                                                <option value="PERTANIAN & PERUSAHAAN ASAS TANI" 
+                                                    @if(isset(auth()->user()->perniagaan->business_sector))
+                                                        @if(auth()->user()->perniagaan->business_sector == 'PERTANIAN & PERUSAHAAN ASAS TANI') 
+                                                            selected 
+                                                        @endif
+                                                    @else 
+                                                    @endif
+                                                >PERTANIAN & PERUSAHAAN ASAS TANI</option>
+                                                <option value="PERUNCITAN" 
+                                                    @if(isset(auth()->user()->perniagaan->business_sector))
+                                                        @if(auth()->user()->perniagaan->business_sector == 'PERUNCITAN') 
+                                                            selected 
+                                                        @endif
+                                                    @else 
+                                                    @endif
+                                                >PERUNCITAN</option>
+                                                <option value="PERKHIDMATAN" 
+                                                    @if(isset(auth()->user()->perniagaan->business_sector))
+                                                        @if(auth()->user()->perniagaan->business_sector == 'PERKHIDMATAN') 
+                                                            selected 
+                                                        @endif
+                                                    @else 
+                                                    @endif
+                                                >PERKHIDMATAN</option>
+                                                <option value="PEMBUATAN" 
+                                                    @if(isset(auth()->user()->perniagaan->business_sector))
+                                                        @if(auth()->user()->perniagaan->business_sector == 'PEMBUATAN') 
+                                                            selected 
+                                                        @endif
+                                                    @else 
+                                                    @endif
+                                                >PEMBUATAN</option>
+                                                <option value="KONTRAKTOR KECIL" 
+                                                    @if(isset(auth()->user()->perniagaan->business_sector))
+                                                        @if(auth()->user()->perniagaan->business_sector == 'KONTRAKTOR KECIL') 
+                                                            selected 
+                                                        @endif
+                                                    @else 
+                                                    @endif
+                                                >KONTRAKTOR KECIL</option>
+                                        </select>
+                                        @error('business_sector')
+                                            <p class="text-red-500 text-xs italic mt-4">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
+                                    </div>
 
                                 <div class="col-span-6 sm:col-span-6">
                                     <label for="business_activity"
@@ -37,6 +90,7 @@
                                         Perniagaan/Projek</label>
                                     <select id="business_activity" name="business_activity"
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                                        <option value="">Sila Pilih Aktiviti Perniagaan</option>
                                         @foreach($aktiviti as $aktivitis)
                                             <option value="{{ $aktivitis->idaktiviti }}" 
                                                 @if(isset(auth()->user()->perniagaan->business_activity))
@@ -80,7 +134,7 @@
                                 <div class="col-span-6 sm:col-span-3 lg:col-span-2">
                                     <label for="business_postcode"
                                         class="block text-sm font-medium leading-5 text-gray-700">Poskod</label>
-                                    <input id="business_postcode" name="business_postcode"
+                                    <input id="business_postcode" name="business_postcode" minlength="5" maxlength="5"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
                                         value="{{ isset(auth()->user()->perniagaan->business_postcode) ? auth()->user()->perniagaan->business_postcode : old('business_postcode') }}" />
                                     @error('business_postcode')
@@ -297,6 +351,10 @@
     $(document).ready(function () {
         @error('business_name')
         $("#business_name").addClass("border-red-500");
+        @enderror
+
+        @error('business_sector')
+        $("#business_sector").addClass("border-red-500");
         @enderror
 
         @error('business_activity')

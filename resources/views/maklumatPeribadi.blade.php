@@ -33,6 +33,11 @@
                                             >{{ $negeris->namanegeri }}</option>
                                         @endforeach
                                     </select>
+                                    @error('tekun_state')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
@@ -52,6 +57,11 @@
                                             >{{ $cawangans->namacawangan }}</option>
                                         @endforeach
                                     </select>
+                                    @error('tekun_branch')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -62,6 +72,7 @@
                                         Perniagaan</label>
                                     <select id="business_status" name="business_status"
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                                        <option value="">Sila Pilih Status Perniagaan</option>
                                         <option value="Sedang Berniaga" @if(isset(auth()->
                                             user()->peribadi->business_status))
                                             @if(auth()->user()->peribadi->business_status == 'Sedang Berniaga') selected
@@ -71,6 +82,11 @@
                                             @if(auth()->user()->peribadi->business_status == 'Memulakan Perniagaan')
                                             selected @endif @else @endif> Memulakan Perniagaan </option>
                                     </select>
+                                    @error('business_status')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
@@ -115,61 +131,12 @@
                             </div>
 
                             <div class="grid grid-cols-6 gap-6 mt-6">
-                                <div class="col-span-6 sm:col-span-6">
-                                    <label for="business_sector"
-                                        class="block text-sm font-medium leading-5 text-gray-700">Sektor Perniagaan</label>
-                                    <select id="business_sector" name="business_sector"
-                                        class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
-                                            <option value="PERTANIAN & PERUSAHAAN ASAS TANI" 
-                                                @if(isset(auth()->user()->peribadi->business_sector))
-                                                    @if(auth()->user()->peribadi->business_sector == 'PERTANIAN & PERUSAHAAN ASAS TANI') 
-                                                        selected 
-                                                    @endif
-                                                @else 
-                                                @endif
-                                            >PERTANIAN & PERUSAHAAN ASAS TANI</option>
-                                            <option value="PERUNCITAN" 
-                                                @if(isset(auth()->user()->peribadi->business_sector))
-                                                    @if(auth()->user()->peribadi->business_sector == 'PERUNCITAN') 
-                                                        selected 
-                                                    @endif
-                                                @else 
-                                                @endif
-                                            >PERUNCITAN</option>
-                                            <option value="PERKHIDMATAN" 
-                                                @if(isset(auth()->user()->peribadi->business_sector))
-                                                    @if(auth()->user()->peribadi->business_sector == 'PERKHIDMATAN') 
-                                                        selected 
-                                                    @endif
-                                                @else 
-                                                @endif
-                                            >PERKHIDMATAN</option>
-                                            <option value="PEMBUATAN" 
-                                                @if(isset(auth()->user()->peribadi->business_sector))
-                                                    @if(auth()->user()->peribadi->business_sector == 'PEMBUATAN') 
-                                                        selected 
-                                                    @endif
-                                                @else 
-                                                @endif
-                                            >PEMBUATAN</option>
-                                            <option value="KONTRAKTOR KECIL" 
-                                                @if(isset(auth()->user()->peribadi->business_sector))
-                                                    @if(auth()->user()->peribadi->business_sector == 'KONTRAKTOR KECIL') 
-                                                        selected 
-                                                    @endif
-                                                @else 
-                                                @endif
-                                            >KONTRAKTOR KECIL</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="grid grid-cols-6 gap-6 mt-6">
                                 <div class="col-span-6 sm:col-span-3">
                                     <label for="bank1" class="block text-sm font-medium leading-5 text-gray-700">Nama
-                                        Bank 1</label>
+                                        Bank</label>
                                     <select id="bank1" name="bank1"
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                                        <option value="">Sila Pilih Nama Bank</option>
                                         @foreach($bank as $banks)
                                             <option value="{{ $banks->id }}" 
                                                 @if(isset(auth()->user()->peribadi->bank1))
@@ -180,11 +147,16 @@
                                             >{{ $banks->nama_bank }}</option>
                                         @endforeach
                                     </select>
+                                    @error('bank1')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
                                     <label for="bank1_acct" class="block text-sm font-medium leading-5 text-gray-700">No
-                                        Akaun Bank 1</label>
+                                        Akaun Bank</label>
                                     <input id="bank1_acct" name="bank1_acct"
                                         value="{{ isset(auth()->user()->peribadi->bank1_acct) ? auth()->user()->peribadi->bank1_acct : old('bank1_acct') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
@@ -196,7 +168,7 @@
 
                                 </div>
 
-                                <div class="col-span-6 sm:col-span-3">
+                                {{-- <div class="col-span-6 sm:col-span-3">
                                     <label for="bank2" class="block text-sm font-medium leading-5 text-gray-700">Nama
                                         Bank 2</label>
                                     <select id="bank2" name="bank2"
@@ -224,7 +196,7 @@
                                                         {{ $message }}
                                                     </p>
                                                 @enderror
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
@@ -498,6 +470,11 @@
                                             @if(auth()->user()->peribadi->religion == 'Lain') selected @endif @else
                                             @endif>Lain-lain</option>
                                     </select>
+                                    @error('religion')
+                                                    <p class="text-red-500 text-xs italic mt-4">
+                                                        {{ $message }}
+                                                    </p>
+                                                @enderror
                                 </div>
                             </div>
 
@@ -546,6 +523,11 @@
                                             @if(auth()->user()->peribadi->race == 'Siam') selected @endif @else
                                             @endif>Siam</option>
                                     </select>
+                                    @error('race')
+                                                    <p class="text-red-500 text-xs italic mt-4">
+                                                        {{ $message }}
+                                                    </p>
+                                                @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-2">
@@ -645,7 +627,7 @@
 
                                 <div class="col-span-6">
                                     <label for="address1"
-                                        class="block text-sm font-medium leading-5 text-gray-700">Alamat</label>
+                                        class="block text-sm font-medium leading-5 text-gray-700">Alamat Kediaman</label>
                                     <input id="address1" name="address1"
                                         value="{{ isset(auth()->user()->peribadi->address1) ? auth()->user()->peribadi->address1 : old('address1') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
@@ -668,7 +650,7 @@
                                 <div class="col-span-6 sm:col-span-3 lg:col-span-2">
                                     <label for="postcode"
                                         class="block text-sm font-medium leading-5 text-gray-700">Poskod</label>
-                                    <input id="postcode" name="postcode"
+                                    <input id="postcode" name="postcode" minlength="5" maxlength="5"
                                         value="{{ isset(auth()->user()->peribadi->postcode) ? auth()->user()->peribadi->postcode : old('postcode') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                                         @error('postcode')
@@ -855,7 +837,7 @@
                                 <div class="col-span-6 sm:col-span-3 lg:col-span-2">
                                     <label for="employer_postcode"
                                         class="block text-sm font-medium leading-5 text-gray-700">Poskod</label>
-                                    <input id="employer_postcode" name="employer_postcode"
+                                    <input id="employer_postcode" name="employer_postcode" maxlength="5"
                                         value="{{ isset(auth()->user()->peribadi->employer_postcode) ? auth()->user()->peribadi->employer_postcode : old('employer_postcode') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                                         @error('employer_postcode')
@@ -1036,7 +1018,7 @@
                                 <div class="col-span-6 sm:col-span-3 lg:col-span-2">
                                     <label for="spouse_employer_postcode"
                                         class="block text-sm font-medium leading-5 text-gray-700">Poskod</label>
-                                    <input id="spouse_employer_postcode" name="spouse_employer_postcode"
+                                    <input id="spouse_employer_postcode" name="spouse_employer_postcode" maxlength="5"
                                         value="{{ isset(auth()->user()->peribadi->spouse_employer_postcode) ? auth()->user()->peribadi->spouse_employer_postcode : old('spouse_employer_postcode') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                                         @error('spouse_employer_postcode')
@@ -1168,6 +1150,22 @@
 
 <script>
     $(document).ready(function () {
+        @error('tekun_state')
+        $("#tekun_state").addClass("border-red-500");
+        @enderror
+
+        @error('tekun_branch')
+        $("#tekun_branch").addClass("border-red-500");
+        @enderror
+
+        @error('business_status')
+        $("#business_status").addClass("border-red-500");
+        @enderror
+
+        @error('bank1')
+        $("#bank1").addClass("border-red-500");
+        @enderror
+
         @error('bank1_acct')
         $("#bank1_acct").addClass("border-red-500");
         @enderror
@@ -1186,6 +1184,14 @@
 
         @error('ic_old')
         $("#ic_old").addClass("border-red-500");
+        @enderror
+
+        @error('religion')
+        $("#religion").addClass("border-red-500");
+        @enderror
+
+        @error('race')
+        $("#race").addClass("border-red-500");
         @enderror
 
         @error('age')

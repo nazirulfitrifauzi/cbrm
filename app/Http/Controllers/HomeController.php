@@ -123,11 +123,8 @@ class HomeController extends Controller
                 "tekun_branch"              => ['required'],
                 "business_status"           => ['required'],
                 "business_type"             => ['required'],
-                "business_sector"           => ['required'],
                 "bank1"                     => ['required'],
                 "bank1_acct"                => ['required', 'numeric'],
-                "bank2"                     => ['required'],
-                "bank2_acct"                => ['required', 'numeric'],
                 "gambar"                    => ['required', 'mimes:jpeg,jpg,png'],
                 "name"                      => ['required', 'string'],
                 "ic_no"                     => ['required', 'numeric', 'min:12'],
@@ -143,24 +140,14 @@ class HomeController extends Controller
                 "postcode"                  => ['required', 'numeric'],
                 "city"                      => ['required', 'string'],
                 "state"                     => ['required', 'alpha'],
-                "phone_home"                => ['numeric'],
                 "phone_hp"                  => ['required', 'numeric'],
                 "email"                     => ['required'],
                 "profession"                => ['required', 'string'],
                 "income"                    => ['required', 'numeric'],
-                "employer_phone"            => ['required', 'numeric'],
-                "employer_address1"         => ['required', 'string'],
-                "employer_postcode"         => ['required', 'numeric'],
-                "employer_city"             => ['required', 'string'],
-                "employer_state"            => ['required', 'alpha'],
                 "spouse_type"               => ['required'],
                 "spouse_name"               => ['required', 'string'],
                 "spouse_ic_no"              => ['required', 'numeric', 'min:12'],
-                "spouse_profession"         => ['required', 'string'],
-                "spouse_employer_address1"  => ['required', 'string'],
-                "spouse_employer_postcode"  => ['required', 'numeric'],
-                "spouse_employer_city"      => ['required', 'string'],
-                "spouse_employer_state"     => ['required', 'alpha']
+                "spouse_profession"         => ['required', 'string']
             ]);
         } else { //peribadi xde data
             if (is_null(auth()->user()->peribadi->gambar)) { //peribadi->gambar xde data
@@ -169,11 +156,8 @@ class HomeController extends Controller
                     "tekun_branch"              => ['required'],
                     "business_status"           => ['required'],
                     "business_type"             => ['required'],
-                    "business_sector"           => ['required'],
                     "bank1"                     => ['required'],
                     "bank1_acct"                => ['required', 'numeric'],
-                    "bank2"                     => ['required'],
-                    "bank2_acct"                => ['required', 'numeric'],
                     "gambar"                    => ['required', 'mimes:jpeg,jpg,png'],
                     "name"                      => ['required', 'string'],
                     "ic_no"                     => ['required', 'numeric', 'min:12'],
@@ -189,24 +173,14 @@ class HomeController extends Controller
                     "postcode"                  => ['required', 'numeric'],
                     "city"                      => ['required', 'string'],
                     "state"                     => ['required', 'alpha'],
-                    "phone_home"                => ['numeric'],
                     "phone_hp"                  => ['required', 'numeric'],
                     "email"                     => ['required'],
                     "profession"                => ['required', 'string'],
                     "income"                    => ['required', 'numeric'],
-                    "employer_phone"            => ['required', 'numeric'],
-                    "employer_address1"         => ['required', 'string'],
-                    "employer_postcode"         => ['required', 'numeric'],
-                    "employer_city"             => ['required', 'string'],
-                    "employer_state"            => ['required', 'alpha'],
                     "spouse_type"               => ['required'],
                     "spouse_name"               => ['required', 'string'],
                     "spouse_ic_no"              => ['required', 'numeric', 'min:12'],
-                    "spouse_profession"         => ['required', 'string'],
-                    "spouse_employer_address1"  => ['required', 'string'],
-                    "spouse_employer_postcode"  => ['required', 'numeric'],
-                    "spouse_employer_city"      => ['required', 'string'],
-                    "spouse_employer_state"     => ['required', 'alpha']
+                    "spouse_profession"         => ['required', 'string']
                 ]);
             } else {
                 $this->validate($request, [
@@ -214,11 +188,8 @@ class HomeController extends Controller
                     "tekun_branch"              => ['required'],
                     "business_status"           => ['required'],
                     "business_type"             => ['required'],
-                    "business_sector"           => ['required'],
                     "bank1"                     => ['required'],
                     "bank1_acct"                => ['required', 'numeric'],
-                    "bank2"                     => ['required'],
-                    "bank2_acct"                => ['required', 'numeric'],
                     "gambar"                    => ['mimes:jpeg,jpg,png'],
                     "name"                      => ['required', 'string'],
                     "ic_no"                     => ['required', 'numeric', 'min:12'],
@@ -234,24 +205,14 @@ class HomeController extends Controller
                     "postcode"                  => ['required', 'numeric'],
                     "city"                      => ['required', 'string'],
                     "state"                     => ['required', 'alpha'],
-                    "phone_home"                => ['numeric'],
                     "phone_hp"                  => ['required', 'numeric'],
                     "email"                     => ['required'],
                     "profession"                => ['required', 'string'],
                     "income"                    => ['required', 'numeric'],
-                    "employer_phone"            => ['required', 'numeric'],
-                    "employer_address1"         => ['required', 'string'],
-                    "employer_postcode"         => ['required', 'numeric'],
-                    "employer_city"             => ['required', 'string'],
-                    "employer_state"            => ['required', 'alpha'],
                     "spouse_type"               => ['required'],
                     "spouse_name"               => ['required', 'string'],
                     "spouse_ic_no"              => ['required', 'numeric', 'min:12'],
-                    "spouse_profession"         => ['required', 'string'],
-                    "spouse_employer_address1"  => ['required', 'string'],
-                    "spouse_employer_postcode"  => ['required', 'numeric'],
-                    "spouse_employer_city"      => ['required', 'string'],
-                    "spouse_employer_state"     => ['required', 'alpha']
+                    "spouse_profession"         => ['required', 'string']
                 ]);
             }
         }
@@ -279,7 +240,6 @@ class HomeController extends Controller
             "tekun_branch"              => $request->get('tekun_branch'),
             "business_status"           => $request->get('business_status'),
             "business_type"             => $request->get('business_type'),
-            "business_sector"           => $request->get('business_sector'),
             "bank1"                     => $request->get('bank1'),
             "bank1_acct"                => $request->get('bank1_acct'),
             "bank2"                     => $request->get('bank2'),
@@ -340,7 +300,6 @@ class HomeController extends Controller
             "tekun_branch",
             "business_status",
             "business_type",
-            "business_sector",
             "bank1",
             "bank1_acct",
             "gambar",
@@ -393,6 +352,7 @@ class HomeController extends Controller
     {
         $this->validate($request, [
             'business_name'       => ['required', 'string'],
+            'business_sector'   => ['required'],
             'business_activity'   => ['required'],
             'business_address1'   => ['required', 'string'],
             'business_postcode'   => ['required', 'numeric', 'min:5'],
@@ -410,6 +370,7 @@ class HomeController extends Controller
             'user_id'               => auth()->user()->id
         ], [
             'business_name'         => $request->get('business_name'),
+            'business_sector'     => $request->get('business_sector'),
             'business_activity'     => $request->get('business_activity'),
             'business_address1'     => $request->get('business_address1'),
             'business_address2'     => $request->get('business_address2'),
@@ -437,6 +398,7 @@ class HomeController extends Controller
         $id = auth()->user()->id;
         $perniagaanArr = Perniagaan::select([
             'business_name',
+            'business_sector',
             'business_activity',
             'business_address1',
             'business_postcode',
