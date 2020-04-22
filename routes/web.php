@@ -18,7 +18,7 @@ Route::get('/', 'RedirectController@index');
 Auth::routes(['verify' => true]);
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
-    Route::get('/home', 'HomeController@index')->name('home'); //->middleware('submit');;
+    Route::get('/home', 'HomeController@index')->name('home'); //->middleware('submit');
     Route::post('/status', 'HomeController@store')->name('home.store');
     Route::post('/storePeribadi', 'HomeController@storePeribadi')->name('home.storePeribadi');
     Route::post('/storePerniagaan', 'HomeController@storePerniagaan')->name('home.storePerniagaan');

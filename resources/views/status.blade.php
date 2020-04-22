@@ -23,7 +23,15 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="block">
+                        <div class="ml-auto ">
+                            <div class="items-baseline">
+                                <a href="#"
+                                    class="px-3 py-2 rounded-md text-sm font-medium text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700">
+                                    {{ substr(auth()->user()->ic_no,0,6) }}-{{ substr(auth()->user()->ic_no,6,2) }}-{{ substr(auth()->user()->ic_no,8,4) }}
+                                </a>
+                            </div>
+                        </div>
+                        <div class="block ml-2">
                             <span class="inline-flex rounded-md shadow-sm">
                                 <a href="{{ route('logout') }}" type="button"
                                     class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700 transition ease-in-out duration-150"
@@ -151,7 +159,7 @@
                                     Permohonan bagi
                                 </h4>
                                 <h4 class="flex justify-center text-lg leading-6 font-medium text-gray-900">
-                                    {{ strtoupper(auth()->user()->name) }} ( {{ auth()->user()->ic_no }} )
+                                    {{ strtoupper(auth()->user()->name) }} ( {{ substr(auth()->user()->ic_no,0,6) }}-{{ substr(auth()->user()->ic_no,6,2) }}-{{ substr(auth()->user()->ic_no,8,4) }} )
                                 </h4>
                                 <h2 class="mt-4 flex justify-center text-3xl leading-8 font-medium text-gray-900">
                                     Berjaya dihantar & sedang diproses.
