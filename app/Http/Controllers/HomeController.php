@@ -39,13 +39,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home', [
-            'negeri' => Negeri::select(['kodnegeri', 'namanegeri'])->whereNotNull('id_waes')->orderby('namanegeri', 'ASC')->get(),
-            'cawangan' => Cawangan::where('kodcawangan', '!=', '0000')->where('batal', '!=', '1')->orderby('namacawangan', 'ASC')->get(),
-            'negerix' => Negeri::select(['kodnegeri', 'namanegeri'])->where('kodnegeri', '!=', 'HQ')->whereNotNull('id_waes')->orderby('namanegeri', 'ASC')->get(),
-            'aktiviti' => Aktiviti::orderby('idaktiviti', 'ASC')->get(),
-            'bank' => Bank::orderby('id', 'ASC')->get(),
-        ]);
+        if (auth()->user()->submit == "1") {
+            return redirect('status');
+        } else {
+            return view('home', [
+                'negeri' => Negeri::select(['kodnegeri', 'namanegeri'])->whereNotNull('id_waes')->orderby('namanegeri', 'ASC')->get(),
+                'cawangan' => Cawangan::where('kodcawangan', '!=', '0000')->where('batal', '!=', '1')->orderby('namacawangan', 'ASC')->get(),
+                'negerix' => Negeri::select(['kodnegeri', 'namanegeri'])->where('kodnegeri', '!=', 'HQ')->whereNotNull('id_waes')->orderby('namanegeri', 'ASC')->get(),
+                'aktiviti' => Aktiviti::orderby('idaktiviti', 'ASC')->get(),
+                'bank' => Bank::orderby('id', 'ASC')->get(),
+            ]);
+        }
     }
 
     public function getCawangan(Request $request)
@@ -67,43 +71,48 @@ class HomeController extends Controller
 
     public function status()
     {
-        if (auth()->user()->submit == 0) {
-            $name = auth()->user()->name;
-            $email = auth()->user()->email;
-            Mail::to($email)->send(new successfulApplication($name));
+        // dd(auth()->user()->completed);
+        if (auth()->user()->completed == "0") {
+            return redirect('home');
+        } else {
+            if (auth()->user()->submit == 0) {
+                $name = auth()->user()->name;
+                $email = auth()->user()->email;
+                Mail::to($email)->send(new successfulApplication($name));
 
-            $mob = auth()->user()->peribadi->phone_hp;
+                $mob = auth()->user()->peribadi->phone_hp;
 
-            //to remove - from phone number
-            $valid_hp = str_replace('-', '', $mob);
-            $valid_hp = '6' . $mob;
+                //to remove - from phone number
+                $valid_hp = str_replace('-', '', $mob);
+                $valid_hp = '6' . $mob;
 
-            $destination = urlencode($valid_hp);
+                $destination = urlencode($valid_hp);
 
-            $message = 'TEKUN NASIONAL CBRM - Permohonan CBRM anda telah diterima dan sedang diproses.';
-            $message = html_entity_decode($message, ENT_QUOTES, 'utf-8');
-            $message = urlencode($message);
+                $message = 'TEKUN NASIONAL CBRM - Permohonan CBRM anda telah diterima dan sedang diproses.';
+                $message = html_entity_decode($message, ENT_QUOTES, 'utf-8');
+                $message = urlencode($message);
 
-            $username = urlencode("JPDKTN2018");
-            $password = urlencode("jpdkjpdk2018");
+                $username = urlencode("JPDKTN2018");
+                $password = urlencode("jpdkjpdk2018");
 
-            $fp = "https://www.isms.com.my/isms_send.php";
-            $fp .= "?un=$username&pwd=$password&dstno=$destination&msg=$message&type=1";
+                $fp = "https://www.isms.com.my/isms_send.php";
+                $fp .= "?un=$username&pwd=$password&dstno=$destination&msg=$message&type=1";
 
-            $http = curl_init($fp);
+                $http = curl_init($fp);
 
-            curl_setopt($http, CURLOPT_RETURNTRANSFER, TRUE);
-            curl_exec($http);
-            curl_getinfo($http, CURLINFO_HTTP_CODE);
-            curl_close($http);
+                curl_setopt($http, CURLOPT_RETURNTRANSFER, TRUE);
+                curl_exec($http);
+                curl_getinfo($http, CURLINFO_HTTP_CODE);
+                curl_close($http);
 
-            session()->flash('success');
+                session()->flash('success');
+            }
+
+            $id = auth()->user()->id;
+            User::where('id', $id)->update(['submit' => 1, 'submit_at' => now()]);
+
+            return view('status');
         }
-
-        $id = auth()->user()->id;
-        User::where('id', $id)->update(['submit' => 1, 'submit_at' => now()]);
-
-        return view('status');
     }
 
     public function storePeribadi(Request $request)
