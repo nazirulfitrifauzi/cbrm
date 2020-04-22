@@ -43,11 +43,11 @@ class HomeController extends Controller
             return redirect('status');
         } else {
             return view('home', [
-                'negeri' => Negeri::select(['kodnegeri', 'namanegeri'])->whereNotNull('id_waes')->orderby('namanegeri', 'ASC')->get(),
+                'negeri' => Negeri::select(['kodnegeri', 'namanegeri'])->where('kod', '!=', '1')->orderby('namanegeri', 'ASC')->get(),
                 'cawangan' => Cawangan::where('kodcawangan', '!=', '0000')->where('batal', '!=', '1')->orderby('namacawangan', 'ASC')->get(),
-                'negerix' => Negeri::select(['kodnegeri', 'namanegeri'])->where('kodnegeri', '!=', 'HQ')->whereNotNull('id_waes')->orderby('namanegeri', 'ASC')->get(),
+                'negerix' => Negeri::select(['kodnegeri', 'namanegeri'])->where('kod', '!=', '1')->orderby('namanegeri', 'ASC')->get(),
                 'aktiviti' => Aktiviti::orderby('idaktiviti', 'ASC')->get(),
-                'bank' => Bank::orderby('id', 'ASC')->get(),
+                'bank' => Bank::where('res', '0')->orderby('flag', 'DESC')->get(),
             ]);
         }
     }
@@ -55,7 +55,7 @@ class HomeController extends Controller
     public function getCawangan(Request $request)
     {
         $html = '';
-        $cawangan = Cawangan::where('kodnegeri', $request->negeri)->orderBy('namacawangan', 'ASC')->get();
+        $cawangan = Cawangan::where('kodnegeri', $request->negeri)->where('batal', '!=', '1')->orderBy('namacawangan', 'ASC')->get();
 
         $html = '<option value="">Sila Pilih Cawangan</option>';
         foreach ($cawangan as $cawanganx) {
@@ -434,7 +434,7 @@ class HomeController extends Controller
                 'reference_address1'    => ['required', 'string'],
                 'reference_postcode'    => ['required', 'numeric', 'min:5'],
                 'reference_city'        => ['required', 'string'],
-                'reference_state'       => ['required', 'string'],
+                'reference_state'       => ['required', 'alpha'],
                 'reference_relation'    => ['required', 'string'],
                 'reference_phone'       => ['required', 'numeric', 'min:10'],
                 "doc_ic_no"             => ['required', 'mimes:pdf,jpeg,jpg,png'],
