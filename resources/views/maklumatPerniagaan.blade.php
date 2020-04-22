@@ -39,8 +39,8 @@
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                                         @foreach($aktiviti as $aktivitis)
                                             <option value="{{ $aktivitis->idaktiviti }}" 
-                                                @if(isset(auth()->user()->perniagaan->business_sector))
-                                                    @if(auth()->user()->perniagaan->business_sector == $aktivitis->idaktiviti) 
+                                                @if(isset(auth()->user()->perniagaan->business_activity))
+                                                    @if(auth()->user()->perniagaan->business_activity == $aktivitis->idaktiviti) 
                                                         selected 
                                                     @endif @else
                                                 @endif
@@ -109,10 +109,10 @@
                                     <select id="business_state" name="business_state"
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                                         @foreach($negerix as $negerix4)
-                                        <option value="{{ $negerix4->kodnegeri }}" @if(isset(auth()->
-                                            user()->peribadi->business_state))
-                                            @if(auth()->user()->peribadi->business_state == $negerix4->kodnegeri)
-                                            selected
+                                        <option value="{{ $negerix4->kodnegeri }}" 
+                                            @if(isset(auth()->user()->perniagaan->business_state))
+                                                @if(auth()->user()->perniagaan->business_state == $negerix4->kodnegeri)
+                                                selected
                                             @endif @else
                                             @endif
                                             >{{ $negerix4->namanegeri }}</option>

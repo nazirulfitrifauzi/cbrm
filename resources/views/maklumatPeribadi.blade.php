@@ -27,7 +27,8 @@
                                                 @if(isset(auth()->user()->peribadi->tekun_state))
                                                     @if(auth()->user()->peribadi->tekun_state == $negeris->kodnegeri) 
                                                         selected 
-                                                    @endif @else
+                                                    @endif 
+                                                @else
                                                 @endif
                                             >{{ $negeris->namanegeri }}</option>
                                         @endforeach
@@ -39,12 +40,14 @@
                                         class="block text-sm font-medium leading-5 text-gray-700">Cawangan</label>
                                     <select id="tekun_branch" name="tekun_branch"
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                                        <option value="">Sila Pilih Cawangan</option>
                                         @foreach($cawangan as $cawangans)
-                                            <option value="{{ $cawangans->kodcawangan }}" 
+                                            <option value="{{ trim($cawangans->kodcawangan," ") }}" 
                                                 @if(isset(auth()->user()->peribadi->tekun_branch))
-                                                    @if(auth()->user()->peribadi->tekun_branch == $cawangans->kodcawangan) 
+                                                    @if(auth()->user()->peribadi->tekun_branch == trim($cawangans->kodcawangan," ")) 
                                                         selected 
-                                                    @endif @else
+                                                    @endif 
+                                                @else
                                                 @endif
                                             >{{ $cawangans->namacawangan }}</option>
                                         @endforeach
@@ -77,20 +80,28 @@
                                         {{-- <p class="text-sm leading-5 text-gray-500">These are delivered via SMS to your mobile phone.</p> --}}
                                         <div class="mt-4">
                                             <div class="flex items-center">
-                                                <input id="business_type_yes" name="business_type" value="1"
-                                                    type="radio" @if(isset(auth()->user()->peribadi->business_type))
-                                                @if(auth()->user()->peribadi->business_type == '1') checked @endif @else
-                                                @endif
+                                                <input id="business_type_yes" name="business_type" value="1" type="radio" 
+                                                    @if(isset(auth()->user()->peribadi->business_type))
+                                                        @if(auth()->user()->peribadi->business_type == '1') 
+                                                            checked 
+                                                        @endif 
+                                                    @else
+                                                    @endif
                                                 class="form-radio h-4 w-4 text-indigo-600 transition duration-150
                                                 ease-in-out" />
                                                 <label for="business_type_yes" class="ml-3">
                                                     <span
                                                         class="block text-sm leading-5 font-medium text-gray-700">Ya</span>
                                                 </label>
+
                                                 <input id="business_type_no" name="business_type" value="0" type="radio"
                                                     @if(isset(auth()->user()->peribadi->business_type))
-                                                @if(auth()->user()->peribadi->business_type == '0') checked @endif @else
-                                                @endif
+                                                        @if(auth()->user()->peribadi->business_type == '0') 
+                                                            checked 
+                                                        @endif 
+                                                    @else
+                                                        checked
+                                                    @endif
                                                 class="ml-8 form-radio h-4 w-4 text-indigo-600 transition duration-150
                                                 ease-in-out" />
                                                 <label for="business_type_no" class="ml-3">
@@ -106,45 +117,44 @@
                             <div class="grid grid-cols-6 gap-6 mt-6">
                                 <div class="col-span-6 sm:col-span-6">
                                     <label for="business_sector"
-                                        class="block text-sm font-medium leading-5 text-gray-700">Sektor
-                                        Perniagaan</label>
+                                        class="block text-sm font-medium leading-5 text-gray-700">Sektor Perniagaan</label>
                                     <select id="business_sector" name="business_sector"
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                                             <option value="PERTANIAN & PERUSAHAAN ASAS TANI" 
-                                                @if(isset(auth()->user()->perniagaan->business_sector))
-                                                    @if(auth()->user()->perniagaan->business_sector == 'PERTANIAN & PERUSAHAAN ASAS TANI') 
+                                                @if(isset(auth()->user()->peribadi->business_sector))
+                                                    @if(auth()->user()->peribadi->business_sector == 'PERTANIAN & PERUSAHAAN ASAS TANI') 
                                                         selected 
                                                     @endif
                                                 @else 
                                                 @endif
                                             >PERTANIAN & PERUSAHAAN ASAS TANI</option>
                                             <option value="PERUNCITAN" 
-                                                @if(isset(auth()->user()->perniagaan->business_sector))
-                                                    @if(auth()->user()->perniagaan->business_sector == 'PERUNCITAN') 
+                                                @if(isset(auth()->user()->peribadi->business_sector))
+                                                    @if(auth()->user()->peribadi->business_sector == 'PERUNCITAN') 
                                                         selected 
                                                     @endif
                                                 @else 
                                                 @endif
                                             >PERUNCITAN</option>
                                             <option value="PERKHIDMATAN" 
-                                                @if(isset(auth()->user()->perniagaan->business_sector))
-                                                    @if(auth()->user()->perniagaan->business_sector == 'PERKHIDMATAN') 
+                                                @if(isset(auth()->user()->peribadi->business_sector))
+                                                    @if(auth()->user()->peribadi->business_sector == 'PERKHIDMATAN') 
                                                         selected 
                                                     @endif
                                                 @else 
                                                 @endif
                                             >PERKHIDMATAN</option>
                                             <option value="PEMBUATAN" 
-                                                @if(isset(auth()->user()->perniagaan->business_sector))
-                                                    @if(auth()->user()->perniagaan->business_sector == 'PEMBUATAN') 
+                                                @if(isset(auth()->user()->peribadi->business_sector))
+                                                    @if(auth()->user()->peribadi->business_sector == 'PEMBUATAN') 
                                                         selected 
                                                     @endif
                                                 @else 
                                                 @endif
                                             >PEMBUATAN</option>
                                             <option value="KONTRAKTOR KECIL" 
-                                                @if(isset(auth()->user()->perniagaan->business_sector))
-                                                    @if(auth()->user()->perniagaan->business_sector == 'KONTRAKTOR KECIL') 
+                                                @if(isset(auth()->user()->peribadi->business_sector))
+                                                    @if(auth()->user()->peribadi->business_sector == 'KONTRAKTOR KECIL') 
                                                         selected 
                                                     @endif
                                                 @else 
@@ -339,7 +349,7 @@
                                 @else
 
                                 <div id="gambar-div"
-                                    class="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md cursor-pointer"
+                                    class="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 @error('gambar') border-red-500 @enderror border-dashed rounded-md cursor-pointer"
                                     style="display: block;">
                                     <div class="text-center">
                                         <input type="file" name="gambar" id="gambar" class="hidden" />
@@ -358,6 +368,11 @@
                                         <p class="mt-1 text-xs text-gray-500">
                                             PNG & JPG sahaja.
                                         </p>
+										@error('gambar')
+                                            <p class="text-red-500 text-xs italic mt-4">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
                                     </div>
                                 </div>
 
@@ -374,7 +389,7 @@
                                                     d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
                                                     clip-rule="evenodd">
                                             </svg>
-                                            Buang Gambar
+                                            Padam Gambar
                                         </a>
                                     </span>
                                 </div>
@@ -431,8 +446,12 @@
                                             <div class="flex items-center">
                                                 <input id="genderL" name="gender" value="Lelaki" type="radio"
                                                     @if(isset(auth()->user()->peribadi->gender))
-                                                @if(auth()->user()->peribadi->gender == 'Lelaki') checked @endif @else
-                                                @endif
+                                                        @if(auth()->user()->peribadi->gender == 'Lelaki') 
+                                                            checked 
+                                                        @endif 
+                                                    @else
+                                                        checked
+                                                    @endif
                                                 class="form-radio h-4 w-4 text-indigo-600 transition duration-150
                                                 ease-in-out" />
                                                 <label for="genderL" class="ml-3">
@@ -490,7 +509,12 @@
                                     <input id="birthdate" name="birthdate" type="date"
                                         value="{{ isset(auth()->user()->peribadi->birthdate) ? auth()->user()->peribadi->birthdate : old('birthdate') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-                                </div>
+										@error('birthdate')
+                                            <p class="text-red-500 text-xs italic mt-4">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
+								</div>
 
                                 <div class="col-span-6 sm:col-span-2">
                                     <label for="race"
@@ -589,8 +613,11 @@
                                             <div class="flex items-center">
                                                 <input id="oku_yes" name="oku" value="Ya" type="radio"
                                                     @if(isset(auth()->user()->peribadi->oku))
-                                                @if(auth()->user()->peribadi->oku == 'Ya') checked @endif @else
-                                                @endif
+                                                        @if(auth()->user()->peribadi->oku == 'Ya') 
+                                                            checked 
+                                                        @endif 
+                                                    @else
+                                                    @endif
                                                 class="form-radio h-4 w-4 text-indigo-600 transition duration-150
                                                 ease-in-out" />
                                                 <label for="oku_yes" class="ml-3">
@@ -599,8 +626,12 @@
                                                 </label>
                                                 <input id="oku_no" name="oku" value="Tidak" type="radio"
                                                     @if(isset(auth()->user()->peribadi->oku))
-                                                @if(auth()->user()->peribadi->oku == 'Tidak') checked @endif @else
-                                                @endif
+                                                        @if(auth()->user()->peribadi->oku == 'Tidak') 
+                                                            checked 
+                                                        @endif 
+                                                    @else
+                                                        checked
+                                                    @endif
                                                 class="ml-8 form-radio h-4 w-4 text-indigo-600 transition duration-150
                                                 ease-in-out" />
                                                 <label for="oku_no" class="ml-3">
@@ -625,7 +656,7 @@
                                                 @enderror
 
                                     <input id="address2" name="address2"
-                                        value="{{ isset(auth()->user()->peribadi->address2) ? auth()->user()->peribadi->address1 : old('address2') }}"
+                                        value="{{ isset(auth()->user()->peribadi->address2) ? auth()->user()->peribadi->address2 : old('address2') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                                         @error('address2')
                                                     <p class="text-red-500 text-xs italic mt-4">
@@ -917,10 +948,14 @@
                                                     <span
                                                         class="block text-sm leading-5 font-medium text-gray-700">Isteri</span>
                                                 </label>
-                                                <input id="spouse_type_beneficiary" name="spouse_type" value="B"
-                                                    type="radio" @if(isset(auth()->user()->peribadi->spouse_type))
-                                                @if(auth()->user()->peribadi->spouse_type == 'B') checked @endif @else
-                                                @endif
+                                                <input id="spouse_type_beneficiary" name="spouse_type" value="B" type="radio" 
+                                                    @if(isset(auth()->user()->peribadi->spouse_type))
+                                                        @if(auth()->user()->peribadi->spouse_type == 'B') 
+                                                            checked 
+                                                        @endif 
+                                                    @else
+                                                        checked
+                                                    @endif
                                                 class="ml-8 form-radio h-4 w-4 text-indigo-600 transition duration-150
                                                 ease-in-out" />
                                                 <label for="spouse_type_beneficiary" class="ml-3">
@@ -1153,7 +1188,11 @@
         @error('age')
         $("#age").addClass("border-red-500");
         @enderror
-
+		
+		@error('birthdate')
+        $("#birthdate").addClass("border-red-500");
+        @enderror
+		
         @error('dependent')
         $("#depe").addClass("border-red-500");
         @enderror

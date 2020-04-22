@@ -75,7 +75,10 @@
 
                 <div>
                     <p class="mt-6 text-sm leading-5 text-gray-600 max-w text-center">
-                        Applikasi ini hanya sesuai dilayari menggunakan Firefox & Google Chrome.
+                        Applikasi ini sesuai dilayari menggunakan Firefox & Google Chrome.
+                    </p>
+                    <p class="mt-6 text-xs leading-5 text-gray-600 max-w text-center">
+                        cbrm@version 2.00
                     </p>
                 </div>
 
