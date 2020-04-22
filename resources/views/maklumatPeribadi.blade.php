@@ -388,15 +388,14 @@
                                     <input id="ic_no" name="ic_no" value="{{ auth()->user()->ic_no }}" readonly
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                                         @error('ic_no')
-                                                    <p class="text-red-500 text-xs italic mt-4">
-                                                        {{ $message }}
-                                                    </p>
-                                                @enderror
+                                            <p class="text-red-500 text-xs italic mt-4">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
-                                    <label for="ic_old" class="block text-sm font-medium leading-5 text-gray-700">No. KP
-                                        (Lama)</label>
+                                    <label for="ic_old" class="block text-sm font-medium leading-5 text-gray-700">No. KP (Lama)</label>
                                     <input id="ic_old" name="ic_old"
                                         value="{{ isset(auth()->user()->peribadi->ic_old) ? auth()->user()->peribadi->ic_old : old('ic_old') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
@@ -481,16 +480,13 @@
                             <div class="grid grid-cols-6 gap-6 mt-6">
                                 <div class="col-span-6 sm:col-span-2">
                                     <label for="birthdate"
-                                        class="block text-sm font-medium leading-5 text-gray-700">Tarikh
-                                        Lahir</label>
-                                    <input id="birthdate" name="birthdate" type="date"
-                                        value="{{ isset(auth()->user()->peribadi->birthdate) ? auth()->user()->peribadi->birthdate : old('birthdate') }}"
-                                        class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-										@error('birthdate')
-                                            <p class="text-red-500 text-xs italic mt-4">
-                                                {{ $message }}
-                                            </p>
-                                        @enderror
+                                        class="block text-sm font-medium leading-5 text-gray-700">Tarikh Lahir</label>
+                                    <input id="birthdate" name="birthdate" value="" readonly class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                    @error('birthdate')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
 								</div>
 
                                 <div class="col-span-6 sm:col-span-2">
@@ -533,7 +529,7 @@
                                 <div class="col-span-6 sm:col-span-2">
                                     <label for="age"
                                         class="block text-sm font-medium leading-5 text-gray-700">Umur</label>
-                                    <input id="age" name="age" type="number"
+                                    <input id="age" name="age" readonly
                                         value="{{ isset(auth()->user()->peribadi->age) ? auth()->user()->peribadi->age : old('age') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                                         @error('age')
@@ -1159,9 +1155,41 @@
         });
     }
 </script>
+<script>
+    function findBirthday() {
+        var ic = String({{ auth()->user()->ic_no }});
+        
+        if(ic.match(/^(\d{2})(\d{2})(\d{2})-?\d{2}-?\d{4}$/)) {
+            var year = RegExp.$1;
+            var month = RegExp.$2;
+            var day = RegExp.$3;
 
+            var date = new Date(year,month,day);
+            var dd = date.getDate();
+            var mm = date.getMonth(); 
+            var yyyy = date.getFullYear();
+            
+            if(dd<10) 
+            {
+                dd='0'+dd;
+            } 
+
+            if(mm<10) 
+            {
+                mm='0'+mm;
+            } 
+
+            var age = {{ now()->year }} - yyyy;
+
+            $('#birthdate').val(dd+'/'+mm+'/'+yyyy); // get birth date
+            $('#age').val(age); // get age
+        }
+    }
+</script>
 <script>
     $(document).ready(function () {
+        findBirthday();
+
         @error('tekun_state')
         $("#tekun_state").addClass("border-red-500");
         @enderror
