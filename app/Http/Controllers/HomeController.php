@@ -12,6 +12,7 @@ use App\Models\Perniagaan;
 use App\Models\Pinjaman;
 use App\Notifications\sendSms;
 use App\User;
+use Carbon\Carbon;
 use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -137,7 +138,7 @@ class HomeController extends Controller
                 "dependent"                 => ['required', 'numeric'],
                 "oku"                       => ['required'],
                 "address1"                  => ['required', 'string'],
-                "postcode"                  => ['required', 'numeric'],
+                "postcode"                  => ['required', 'numeric', 'digits:5'],
                 "city"                      => ['required', 'string'],
                 "state"                     => ['required', 'alpha'],
                 "phone_hp"                  => ['required', 'numeric'],
@@ -170,7 +171,7 @@ class HomeController extends Controller
                     "dependent"                 => ['required', 'numeric'],
                     "oku"                       => ['required'],
                     "address1"                  => ['required', 'string'],
-                    "postcode"                  => ['required', 'numeric'],
+                    "postcode"                  => ['required', 'numeric', 'digits:5'],
                     "city"                      => ['required', 'string'],
                     "state"                     => ['required', 'alpha'],
                     "phone_hp"                  => ['required', 'numeric'],
@@ -202,7 +203,7 @@ class HomeController extends Controller
                     "dependent"                 => ['required', 'numeric'],
                     "oku"                       => ['required'],
                     "address1"                  => ['required', 'string'],
-                    "postcode"                  => ['required', 'numeric'],
+                    "postcode"                  => ['required', 'numeric', 'digits:5'],
                     "city"                      => ['required', 'string'],
                     "state"                     => ['required', 'alpha'],
                     "phone_hp"                  => ['required', 'numeric'],
@@ -231,7 +232,8 @@ class HomeController extends Controller
             }
         }
 
-
+        $birthdate = $request->get('birthdate');
+        $newBirthdate = Carbon::createFromFormat('d/m/Y', $birthdate)->format('Y-m-d');
 
         $peribadi = Peribadi::updateOrCreate([
             'user_id'               => auth()->user()->id
@@ -250,7 +252,7 @@ class HomeController extends Controller
             "ic_old"                    => $request->get('ic_old'),
             "gender"                    => $request->get('gender'),
             "religion"                  => $request->get('religion'),
-            "birthdate"                 => $request->get('birthdate'),
+            "birthdate"                 => $newBirthdate,
             "race"                      => $request->get('race'),
             "age"                       => $request->get('age'),
             "marital"                   => $request->get('marital'),
@@ -321,19 +323,10 @@ class HomeController extends Controller
             "email",
             "profession",
             "income",
-            "employer_phone",
-            "employer_address1",
-            "employer_postcode",
-            "employer_city",
-            "employer_state",
             "spouse_type",
             "spouse_name",
             "spouse_ic_no",
             "spouse_profession",
-            "spouse_employer_address1",
-            "spouse_employer_postcode",
-            "spouse_employer_city",
-            "spouse_employer_state",
         ])->where('user_id', $id)->get()->toArray();
 
         $commaList = implode(', ', $peribadiArr[0]);
