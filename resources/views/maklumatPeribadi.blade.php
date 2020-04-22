@@ -872,10 +872,10 @@
                                         value="{{ isset(auth()->user()->peribadi->employer_city) ? auth()->user()->peribadi->employer_city : old('employer_city') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                                         @error('employer_city')
-                                                    <p class="text-red-500 text-xs italic mt-4">
-                                                        {{ $message }}
-                                                    </p>
-                                                @enderror
+                                            <p class="text-red-500 text-xs italic mt-4">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3 lg:col-span-2">
@@ -930,9 +930,12 @@
                                         {{-- <p class="text-sm leading-5 text-gray-500">These are delivered via SMS to your mobile phone.</p> --}}
                                         <div class="mt-4">
                                             <div class="flex items-center">
-                                                <input id="spouse_type_husband" name="spouse_type" value="H"
-                                                    type="radio" @if(isset(auth()->user()->peribadi->spouse_type))
-                                                @if(auth()->user()->peribadi->spouse_type == 'H') checked @endif @else
+                                                <input id="spouse_type_husband" name="spouse_type" value="H"type="radio"
+                                                    @if(isset(auth()->user()->peribadi->spouse_type))
+                                                        @if(auth()->user()->peribadi->spouse_type == 'H') 
+                                                            checked 
+                                                        @endif 
+                                                    @else
                                                 @endif
                                                 class="form-radio h-4 w-4 text-indigo-600 transition duration-150
                                                 ease-in-out" />
@@ -940,23 +943,27 @@
                                                     <span
                                                         class="block text-sm leading-5 font-medium text-gray-700">Suami</span>
                                                 </label>
+
                                                 <input id="spouse_type_wife" name="spouse_type" value="W" type="radio"
                                                     @if(isset(auth()->user()->peribadi->spouse_type))
-                                                @if(auth()->user()->peribadi->spouse_type == 'W') checked @endif @else
-                                                @endif
+                                                        @if(auth()->user()->peribadi->spouse_type == 'W') 
+                                                            checked 
+                                                        @endif 
+                                                    @else
+                                                    @endif
                                                 class="ml-8 form-radio h-4 w-4 text-indigo-600 transition duration-150
                                                 ease-in-out" />
                                                 <label for="spouse_type_wife" class="ml-3">
                                                     <span
                                                         class="block text-sm leading-5 font-medium text-gray-700">Isteri</span>
                                                 </label>
+
                                                 <input id="spouse_type_beneficiary" name="spouse_type" value="B" type="radio" 
                                                     @if(isset(auth()->user()->peribadi->spouse_type))
                                                         @if(auth()->user()->peribadi->spouse_type == 'B') 
                                                             checked 
                                                         @endif 
                                                     @else
-                                                        checked
                                                     @endif
                                                 class="ml-8 form-radio h-4 w-4 text-indigo-600 transition duration-150
                                                 ease-in-out" />
@@ -965,6 +972,11 @@
                                                         class="block text-sm leading-5 font-medium text-gray-700">Waris</span>
                                                 </label>
                                             </div>
+                                            @error('spouse_type')
+                                                <p class="text-red-500 text-xs italic mt-4">
+                                                    {{ $message }}
+                                                </p>
+                                            @enderror
                                         </div>
                                     </fieldset>
                                 </div>
