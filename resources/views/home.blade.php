@@ -152,7 +152,7 @@
                             $errors->has('spouse_type') ||
                             $errors->has('spouse_name') ||
                             $errors->has('spouse_ic_no') ||
-                            $errors->has('spouse_profession') ||
+                            $errors->has('spouse_profession')
                         )
                             x-data="{ tab: 'tab1' }"
                         @elseif(
