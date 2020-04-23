@@ -441,13 +441,9 @@
                                         {{-- <p class="text-sm leading-5 text-gray-500">These are delivered via SMS to your mobile phone.</p> --}}
                                         <div class="mt-3">
                                             <div class="flex items-center">
-                                                <input id="genderL" name="gender" value="Lelaki" type="radio"
-                                                    @if(isset(auth()->user()->peribadi->gender))
-                                                        @if(auth()->user()->peribadi->gender == 'Lelaki') 
-                                                            checked 
-                                                        @endif 
-                                                    @else
-                                                        
+                                                <input id="genderL" name="gender" value="Lelaki" type="radio" readonly
+                                                    @if( substr((auth()->user()->ic_no),11)%2 == 1 )
+                                                        checked
                                                     @endif
                                                 class="form-radio h-4 w-4 text-indigo-600 transition duration-150
                                                 ease-in-out" />
@@ -455,10 +451,10 @@
                                                     <span
                                                         class="block text-sm leading-5 font-medium text-gray-700">Lelaki</span>
                                                 </label>
-                                                <input id="genderF" name="gender" value="Perempuan" type="radio"
-                                                    @if(isset(auth()->user()->peribadi->gender))
-                                                @if(auth()->user()->peribadi->gender == 'Perempuan') checked @endif
-                                                @else @endif
+                                                <input id="genderF" name="gender" value="Perempuan" type="radio" readonly
+                                                    @if( substr((auth()->user()->ic_no),11)%2 == 0 )
+                                                        checked
+                                                    @endif
                                                 class="ml-8 form-radio h-4 w-4 text-indigo-600 transition duration-150
                                                 ease-in-out" />
                                                 <label for="genderF" class="ml-3">
