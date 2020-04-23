@@ -15,7 +15,7 @@
                 <div class="mt-5 md:mt-0 md:col-span-2">
                     <div class="shadow sm:rounded-md sm:overflow-hidden">
                         <div class="px-4 py-5 bg-white sm:p-6">
-                            <div class="grid grid-cols-6 gap-6">
+                            <div class="grid grid-cols-6 gap-6" x-data="{ tab: '' }">
                                 <div class="col-span-6 sm:col-span-6">
                                     <label for="business_name"
                                         class="block text-sm font-medium leading-5 text-gray-700">Nama
@@ -217,13 +217,14 @@
                                     </p>
                                     @enderror
                                 </div>
-
+                                
                                 <div class="col-span-6 sm:col-span-3 lg:col-span-2">
                                     <label for="business_ownership"
                                         class="block text-sm font-medium leading-5 text-gray-700">Permilikan
                                         Perniagaan</label>
                                     <select id="business_ownership" name="business_ownership"
-                                        class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                                        class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                                        @change="tab = $event.target.value">
                                         <option value="">Sila Pilih Permilikan Perniagaan</option>
                                         <option value="Individu" @if(isset(auth()->
                                             user()->perniagaan->business_ownership))
@@ -240,7 +241,9 @@
                                         <option value="Sendirian Berhad" @if(isset(auth()->
                                             user()->perniagaan->business_ownership))
                                             @if(auth()->user()->perniagaan->business_ownership == 'Sendirian Berhad')
-                                            selected @endif @else @endif> Sendirian Berhad </option>
+                                            selected @endif @else @endif
+                                            x-bind:value="'tab1'"
+                                        > Sendirian Berhad </option>
                                     </select>
                                     @error('business_ownership')
                                     <p class="text-red-500 text-xs italic mt-4">
@@ -249,7 +252,7 @@
                                     @enderror
                                 </div>
 
-                                <div class="col-span-6 sm:col-span-2">
+                                <div class="col-span-6 sm:col-span-2" x-show="tab === 'tab1'">
                                     <fieldset>
                                         <legend class="block text-sm font-medium leading-5 text-gray-700">Modal Berbayar
                                         </legend>
