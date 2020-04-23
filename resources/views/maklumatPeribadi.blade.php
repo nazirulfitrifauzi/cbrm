@@ -134,7 +134,6 @@
                                                             checked 
                                                         @endif 
                                                     @else
-                                                        checked
                                                     @endif
                                                 class="ml-8 form-radio h-4 w-4 text-indigo-600 transition duration-150
                                                 ease-in-out" />
@@ -143,6 +142,11 @@
                                                         class="block text-sm leading-5 font-medium text-gray-700">Tidak</span>
                                                 </label>
                                             </div>
+                                            @error('business_type')
+                                                <p class="text-red-500 text-xs italic mt-4">
+                                                    {{ $message }}
+                                                </p>
+                                            @enderror
                                         </div>
                                     </fieldset>
                                 </div>
@@ -640,7 +644,7 @@
                                     <label for="dependent"
                                         class="block text-sm font-medium leading-5 text-gray-700">Bilangan
                                         Tanggungan</label>
-                                    <input id="dependent" name="dependent" type="number"
+                                    <input id="dependent" name="dependent" type="number" min="0"
                                         value="{{ isset(auth()->user()->peribadi->dependent) ? auth()->user()->peribadi->dependent : old('dependent') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                                         @error('dependent')
@@ -676,7 +680,6 @@
                                                             checked 
                                                         @endif 
                                                     @else
-                                                        checked
                                                     @endif
                                                 class="ml-8 form-radio h-4 w-4 text-indigo-600 transition duration-150
                                                 ease-in-out" />
@@ -685,6 +688,11 @@
                                                         class="block text-sm leading-5 font-medium text-gray-700">Tidak</span>
                                                 </label>
                                             </div>
+                                            @error('oku')
+                                                    <p class="text-red-500 text-xs italic mt-4">
+                                                        {{ $message }}
+                                                    </p>
+                                                @enderror
                                         </div>
                                     </fieldset>
                                 </div>
@@ -781,8 +789,8 @@
                                 <div class="col-span-6 sm:col-span-3">
                                     <label for="phone_hp" class="block text-sm font-medium leading-5 text-gray-700">No
                                         Telefon
-                                        (HP)</label>
-                                    <input id="phone_hp" name="phone_hp"
+                                        (HP) - cth (0123456789)</label>
+                                    <input id="phone_hp" name="phone_hp" 
                                         value="{{ isset(auth()->user()->peribadi->phone_hp) ? auth()->user()->peribadi->phone_hp : old('phone_hp') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                                         @error('phone_hp')
@@ -791,6 +799,8 @@
                                                     </p>
                                                 @enderror
                                 </div>
+
+                                
 
                                 <div class="col-span-6 sm:col-span-2">
                                     <label for="email"
@@ -856,7 +866,7 @@
                                                 class="block text-sm font-medium leading-5 text-gray-700">RM</label>
                                             <label for="income" class="ml-3">
                                                 <span class="block text-sm leading-5 font-medium text-gray-700"><input
-                                                        id="income" name="income"
+                                                        id="income" name="income" min="0"
                                                         value="{{ isset(auth()->user()->peribadi->income) ? auth()->user()->peribadi->income : old('income') }}"
                                                         type="number" step="0.01"
                                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
@@ -1057,7 +1067,7 @@
                                 <div class="col-span-6 sm:col-span-6">
                                     <label for="spouse_ic_no"
                                         class="block text-sm font-medium leading-5 text-gray-700">No.
-                                        KP (Baru)</label>
+                                        KP (Baru) - cth (900000010000)</label>
                                     <input id="spouse_ic_no" name="spouse_ic_no"
                                         value="{{ isset(auth()->user()->peribadi->spouse_ic_no) ? auth()->user()->peribadi->spouse_ic_no : old('spouse_ic_no') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />

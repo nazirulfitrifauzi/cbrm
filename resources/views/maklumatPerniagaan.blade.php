@@ -220,7 +220,7 @@
                                 <div class="col-span-6 sm:col-span-3">
                                     <label for="business_phone_hp"
                                         class="block text-sm font-medium leading-5 text-gray-700">No
-                                        Telefon (HP)</label>
+                                        Telefon (HP) - cth (0123456789)</label>
                                     <input id="business_phone_hp" name="business_phone_hp"
                                         value="{{ isset(auth()->user()->perniagaan->business_phone_hp) ? auth()->user()->perniagaan->business_phone_hp : old('business_phone_hp') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
@@ -236,6 +236,7 @@
                                         class="block text-sm font-medium leading-5 text-gray-700">Status Premis</label>
                                     <select id="business_premise" name="business_premise"
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                                        <option value="">Sila Pilih Status Premis</option>
                                         <option value="Sendiri" @if(isset(auth()->user()->perniagaan->business_premise))
                                             @if(auth()->user()->perniagaan->business_premise == 'Sendiri') selected
                                             @endif @else @endif>Sendiri</option>
@@ -265,6 +266,7 @@
                                         Perniagaan</label>
                                     <select id="business_ownership" name="business_ownership"
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                                        <option value="">Sila Pilih Permilikan Perniagaan</option>
                                         <option value="Individu" @if(isset(auth()->
                                             user()->perniagaan->business_ownership))
                                             @if(auth()->user()->perniagaan->business_ownership == 'Individu') selected
