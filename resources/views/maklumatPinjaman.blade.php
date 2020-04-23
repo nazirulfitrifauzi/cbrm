@@ -20,6 +20,7 @@
                                             class="block text-sm font-medium leading-5 text-gray-700">Jumlah Pembiayaan Yang Diperlukan</label>
                                         <select id="purchase_price" name="purchase_price"
                                             class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                                                <option value="">Sila Pilih Jumlah Pembiayaan</option>
                                                 <option value="1" 
                                                     @if(isset(auth()->user()->pinjaman->purchase_price))
                                                         @if(auth()->user()->pinjaman->purchase_price == '1') 
@@ -101,12 +102,18 @@
                                                     @endif
                                                 >RM 10,000.00</option>
                                         </select>
+                                        @error('purchase_price')
+                                            <p class="text-red-500 text-xs italic mt-4">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
                                     </div>
                                     <div class="col-span-6 sm:col-span-3">
                                         <label for="duration"
                                             class="block text-sm font-medium leading-5 text-gray-700">Tempoh Pembayaran</label>
                                         <select id="duration" name="duration"
                                             class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                                                <option value="">Sila Pilih Tempoh Pembayaran</option>
                                                 <option value="12" 
                                                     @if(isset(auth()->user()->pinjaman->duration))
                                                         @if(auth()->user()->pinjaman->duration == '12') 
@@ -131,8 +138,12 @@
                                                     @else 
                                                     @endif
                                                 >36 Bulan</option>
-                                                
                                         </select>
+                                        @error('duration')
+                                            <p class="text-red-500 text-xs italic mt-4">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
                                     </div>
                             </div>
                         </div>
@@ -271,7 +282,7 @@
 
                                 <div class="col-span-6 sm:col-span-3">
                                     <label for="reference_phone"
-                                        class="block text-sm font-medium leading-5 text-gray-700">No Telefon</label>
+                                        class="block text-sm font-medium leading-5 text-gray-700">No Telefon - cth (0123456789)</label>
                                     <input id="reference_phone" name="reference_phone"
                                         value="{{ isset(auth()->user()->pinjaman->reference_phone) ? auth()->user()->pinjaman->reference_phone : old('reference_phone') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
@@ -422,6 +433,9 @@
                                             </a>
                                         </p>
                                         <p class="mt-1 text-xs text-gray-500">
+                                            Salinan Kad Pengenalan Pemohon dan Pasangan (jika berkenaan) - Di Kedua-dua Bahagian (Depan dan Belakang)
+                                        </p>
+                                        <p class="mt-1 text-xs text-gray-500">
                                             PDF sahaja
                                         </p>
                                         @error('doc_ic_no')
@@ -567,6 +581,15 @@
                                                 class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition duration-150 ease-in-out">
                                                 Muat naik
                                             </a>
+                                        </p>
+                                        <p class="mt-1 text-xs text-gray-500">
+                                            Salinan lesen/permit daripada Pihak Berkuasa Tempatan (PBT)/Daftar Perniagaan (SSM) yang sah/Dokumen yang mengesahkan pemohon menjalankan perniagaan
+                                        </p>
+                                        <p class="mt-1 text-xs text-gray-500">
+                                            Bagi SSM : Borang E dan Maklumat Perniagaan
+                                        </p>
+                                        <p class="mt-1 text-xs text-gray-500">
+                                            Bagi Syarikat Perkongsian : Surat kebenaran rakan kongsi
                                         </p>
                                         <p class="mt-1 text-xs text-gray-500">
                                             PDF sahaja
@@ -715,6 +738,9 @@
                                             </a>
                                         </p>
                                         <p class="mt-1 text-xs text-gray-500">
+                                            Salinan Penyata Bank / Buku Simpanan Muka Hadapan serta Transaksi Terakhir (1 Bulan Terkini)
+                                        </p>
+                                        <p class="mt-1 text-xs text-gray-500">
                                             PDF sahaja
                                         </p>
                                         @error('doc_bank')
@@ -858,6 +884,9 @@
                                                 class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition duration-150 ease-in-out">
                                                 Muat naik
                                             </a>
+                                        </p>
+                                        <p class="mt-1 text-xs text-gray-500">
+                                            Salinan Salah Satu Bil Utiliti (Elektrik / Air / Telefon) Rumah atau Premis Perniagaan
                                         </p>
                                         <p class="mt-1 text-xs text-gray-500">
                                             PDF sahaja
@@ -1199,6 +1228,10 @@
     $(document).ready(function () {
         @error('purchase_price')
         $("#purchase_price").addClass("border-red-500");
+        @enderror
+
+        @error('duration')
+        $("#duration").addClass("border-red-500");
         @enderror
 
         @error('reference_name')
