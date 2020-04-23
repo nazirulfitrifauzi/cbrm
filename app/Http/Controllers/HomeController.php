@@ -84,7 +84,7 @@ class HomeController extends Controller
     public function getCawangan(Request $request)
     {
         $html = '';
-        $cawangan = Cawangan::where('kodnegeri', $request->negeri)->where('batal', '!=', '1')->orderBy('namacawangan', 'ASC')->get();
+        $cawangan = Cawangan::where('kodnegeri', $request->negeri)->where('batal', '!=', '1')->where('kodcawangan', '!=', '1412')->orderBy('namacawangan', 'ASC')->get();
 
         $html = '<option value="">Sila Pilih Cawangan</option>';
         foreach ($cawangan as $cawanganx) {
