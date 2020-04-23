@@ -1,4 +1,4 @@
-<div x-show="tab === 'tab2'">
+<div id="tab2" x-show="tab === 'tab2'">
     <form method="post" action="{{ route('home.storePerniagaan') }}">
         @csrf
 

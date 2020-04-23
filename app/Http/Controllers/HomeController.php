@@ -159,7 +159,7 @@ class HomeController extends Controller
 
     public function storePeribadi(Request $request)
     {
-        if (is_null(auth()->user()->peribadi)) { // peribadi ade data
+        if (is_null(auth()->user()->peribadi)) { // peribadi xde data
             $this->validate($request, [
                 "tekun_state"               => ['required'],
                 "tekun_branch"              => ['required'],
@@ -191,7 +191,7 @@ class HomeController extends Controller
                 "spouse_ic_no"              => ['required', 'numeric', 'min:12'],
                 "spouse_profession"         => ['required', 'string']
             ]);
-        } else { //peribadi xde data
+        } else { //peribadi ade data
             if (is_null(auth()->user()->peribadi->gambar)) { //peribadi->gambar xde data
                 $this->validate($request, [
                     "tekun_state"               => ['required'],
@@ -332,7 +332,10 @@ class HomeController extends Controller
 
         $this->checkPeribadi();
 
-        return redirect('home')->with('success', 'Data telah disimpan.');
+        Session::flash('success', 'Data telah disimpan.');
+        Session::flash('nextTab', 'tab2');
+
+        return redirect('home'); //->with('success', 'Data telah disimpan.');
     }
 
     public function checkPeribadi()
@@ -395,7 +398,7 @@ class HomeController extends Controller
             'business_phone_hp'   => ['required', 'numeric', 'min:10'],
             'business_premise'    => ['required'],
             'business_ownership'  => ['required'],
-            'business_modal'      => ['required'],
+            // 'business_modal'      => ['required'], required if business_ownership = 'Sendirian Berhad'
             'business_open'       => ['required'],
             'business_closed'     => ['required']
         ]);
@@ -424,7 +427,10 @@ class HomeController extends Controller
 
         $this->checkPerniagaan();
 
-        return redirect('home')->with('success', 'Data telah disimpan.');
+        Session::flash('success', 'Data telah disimpan.');
+        Session::flash('nextTab', 'tab3');
+
+        return redirect('home');
     }
 
     public function checkPerniagaan()
@@ -460,23 +466,21 @@ class HomeController extends Controller
 
     public function storePinjaman(Request $request)
     {
-        if (is_null(auth()->user()->pinjaman)) {
-            $this->validate($request, [
-                'purchase_price'        => ['required', 'numeric'],
-                'duration'              => ['required', 'numeric'],
-                'reference_name'        => ['required', 'string'],
-                'reference_address1'    => ['required', 'string'],
-                'reference_postcode'    => ['required', 'numeric', 'min:5'],
-                'reference_city'        => ['required', 'string'],
-                'reference_state'       => ['required', 'alpha'],
-                'reference_relation'    => ['required', 'string'],
-                'reference_phone'       => ['required', 'numeric', 'min:10'],
-                "doc_ic_no"             => ['required', 'mimes:pdf,jpeg,jpg,png'],
-                "doc_ssm"               => ['required', 'mimes:pdf,jpeg,jpg,png'],
-                "doc_bank"              => ['required', 'mimes:pdf,jpeg,jpg,png'],
-                "doc_bil"               => ['required', 'mimes:pdf,jpeg,jpg,png']
-            ]);
-        }
+        $this->validate($request, [
+            'purchase_price'        => ['required', 'numeric'],
+            'duration'              => ['required', 'numeric'],
+            'reference_name'        => ['required', 'string'],
+            'reference_address1'    => ['required', 'string'],
+            'reference_postcode'    => ['required', 'numeric', 'min:5'],
+            'reference_city'        => ['required', 'string'],
+            'reference_state'       => ['required', 'alpha'],
+            'reference_relation'    => ['required', 'string'],
+            'reference_phone'       => ['required', 'numeric', 'min:10'],
+            "doc_ic_no"             => ['required', 'mimes:pdf,jpeg,jpg,png'],
+            "doc_ssm"               => ['required', 'mimes:pdf,jpeg,jpg,png'],
+            "doc_bank"              => ['required', 'mimes:pdf,jpeg,jpg,png'],
+            "doc_bil"               => ['required', 'mimes:pdf,jpeg,jpg,png']
+        ]);
 
         $ic_no = auth()->user()->ic_no;
 
