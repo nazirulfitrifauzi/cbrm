@@ -30,5 +30,6 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::delete('/deleteBil/{id}', 'HomeController@deleteBil')->name('home.deleteBil');
     Route::delete('/deleteBorang/{id}', 'HomeController@deleteBorang')->name('home.deleteBorang');
     Route::get('ajaxdata/getCawangan', 'HomeController@getCawangan')->name('home.getCawangan');
+    Route::get('ajaxdata/getAktiviti', 'HomeController@getAktiviti')->name('home.getAktiviti');
     Route::get('/status', 'HomeController@status')->name('home.status'); //->middleware('notsubmit');
 });

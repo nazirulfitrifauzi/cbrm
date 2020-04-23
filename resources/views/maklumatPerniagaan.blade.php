@@ -36,62 +36,20 @@
                                         <select id="business_sector" name="business_sector"
                                             class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                                                 <option value="">Sila Pilih Sektor Perniagaan</option>
-                                                <option value="PERTANIAN & PERUSAHAAN ASAS TANI" 
-                                                    @if(isset(auth()->user()->perniagaan->business_sector))
-                                                        @if(auth()->user()->perniagaan->business_sector == 'PERTANIAN & PERUSAHAAN ASAS TANI') 
-                                                            selected 
-                                                        @else
-                                                                {{ old('business_sector') == 'PERTANIAN & PERUSAHAAN ASAS TANI' ? 'selected':'' }}
+                                                @foreach($sektor as $sektors)
+                                                    <option value="{{ $sektors->idPerniagaan }}" 
+                                                        @if(isset(auth()->user()->perniagaan->business_sector))
+                                                            @if(auth()->user()->perniagaan->business_sector == $sektors->idPerniagaan) 
+                                                                selected 
+                                                            @else
+                                                                {{ old('business_sector') == ($sektors->idPerniagaan) ? 'selected':'' }} 
                                                             @endif
                                                         @else
-                                                            {{ old('business_sector') == 'PERTANIAN & PERUSAHAAN ASAS TANI' ? 'selected':'' }}
+                                                            {{ old('business_sector') == ($sektors->idPerniagaan) ? 'selected':'' }}
                                                         @endif
-                                                >PERTANIAN & PERUSAHAAN ASAS TANI</option>
-                                                <option value="PERUNCITAN" 
-                                                    @if(isset(auth()->user()->perniagaan->business_sector))
-                                                        @if(auth()->user()->perniagaan->business_sector == 'PERUNCITAN') 
-                                                            selected 
-                                                        @else
-                                                                {{ old('business_sector') == 'PERUNCITAN' ? 'selected':'' }}
-                                                            @endif
-                                                        @else
-                                                            {{ old('business_sector') == 'PERUNCITAN' ? 'selected':'' }}
-                                                        @endif
-                                                >PERUNCITAN</option>
-                                                <option value="PERKHIDMATAN" 
-                                                    @if(isset(auth()->user()->perniagaan->business_sector))
-                                                        @if(auth()->user()->perniagaan->business_sector == 'PERKHIDMATAN') 
-                                                            selected 
-                                                        @else
-                                                                {{ old('business_sector') == 'PERKHIDMATAN' ? 'selected':'' }}
-                                                            @endif
-                                                        @else
-                                                            {{ old('business_sector') == 'PERKHIDMATAN' ? 'selected':'' }}
-                                                        @endif
-                                                >PERKHIDMATAN</option>
-                                                <option value="PEMBUATAN" 
-                                                    @if(isset(auth()->user()->perniagaan->business_sector))
-                                                        @if(auth()->user()->perniagaan->business_sector == 'PEMBUATAN') 
-                                                            selected 
-                                                        @else
-                                                            {{ old('business_sector') == 'PEMBUATAN' ? 'selected':'' }}
-                                                        @endif
-                                                    @else
-                                                        {{ old('business_sector') == 'PEMBUATAN' ? 'selected':'' }}
-                                                    @endif
-                                                >PEMBUATAN</option>
-                                                <option value="KONTRAKTOR KECIL" 
-                                                    @if(isset(auth()->user()->perniagaan->business_sector))
-                                                        @if(auth()->user()->perniagaan->business_sector == 'KONTRAKTOR KECIL') 
-                                                            selected 
-                                                        @else
-                                                            {{ old('business_sector') == 'KONTRAKTOR KECIL' ? 'selected':'' }}
-                                                        @endif
-                                                    @else
-                                                        {{ old('business_sector') == 'KONTRAKTOR KECIL' ? 'selected':'' }}
-                                                    @endif
-                                                >KONTRAKTOR KECIL</option>
-                                        </select>
+                                                    >{{ $sektors->jenisPerniagaan }}</option>
+                                                @endforeach
+                                            </select>
                                         @error('business_sector')
                                             <p class="text-red-500 text-xs italic mt-4">
                                                 {{ $message }}
@@ -107,17 +65,17 @@
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                                         <option value="">Sila Pilih Aktiviti Perniagaan</option>
                                         @foreach($aktiviti as $aktivitis)
-                                            <option value="{{ $aktivitis->idaktiviti }}" 
+                                            <option value="{{ $aktivitis->kodAktiviti }}" 
                                                 @if(isset(auth()->user()->perniagaan->business_activity))
-                                                    @if(auth()->user()->perniagaan->business_activity == $aktivitis->idaktiviti) 
+                                                    @if(auth()->user()->perniagaan->business_activity == $aktivitis->kodAktiviti) 
                                                         selected 
                                                     @else
-                                                        {{ old('business_activity') == ($aktivitis->idaktiviti) ? 'selected':'' }} 
+                                                        {{ old('business_activity') == ($aktivitis->kodAktiviti) ? 'selected':'' }} 
                                                     @endif
                                                 @else
-                                                    {{ old('business_activity') == ($aktivitis->idaktiviti) ? 'selected':'' }}
+                                                    {{ old('business_activity') == ($aktivitis->kodAktiviti) ? 'selected':'' }}
                                                 @endif
-                                            >{{ $aktivitis->keterangan }}</option>
+                                            >{{ $aktivitis->Aktiviti }}</option>
                                         @endforeach
                                     </select>
                                     @error('business_activity')
@@ -374,6 +332,18 @@
 @push('js')
 <script>
     $(document).ready(function () {
+
+        $('select[name=business_sector]').on('change', function () {
+            var selected = $(this).find(":selected").attr('value');
+            $.ajax({
+                url: "{{ route('home.getAktiviti') }}?sektor=" + selected,
+                method: 'GET',
+                success: function(data) {
+                    $('#business_activity').html(data.html);
+                }
+            });
+        });
+
         @error('business_name')
         $("#business_name").addClass("border-red-500");
         @enderror

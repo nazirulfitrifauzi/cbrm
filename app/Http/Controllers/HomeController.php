@@ -10,6 +10,7 @@ use App\Models\Negeri;
 use App\Models\Peribadi;
 use App\Models\Perniagaan;
 use App\Models\Pinjaman;
+use App\Models\Sektor;
 use App\Notifications\sendSms;
 use App\User;
 use Carbon\Carbon;
@@ -40,15 +41,42 @@ class HomeController extends Controller
      */
     public function index()
     {
+
         if (auth()->user()->submit == "1") {
             return redirect('status');
         } else {
             return view('home', [
-                'negeri' => Negeri::select(['kodnegeri', 'namanegeri'])->where('kod', '!=', '1')->orderby('namanegeri', 'ASC')->get(),
-                'cawangan' => Cawangan::where('kodcawangan', '!=', '0000')->where('batal', '!=', '1')->orderby('namacawangan', 'ASC')->get(),
-                'negerix' => Negeri::select(['kodnegeri', 'namanegeri'])->where('kod', '!=', '1')->orderby('namanegeri', 'ASC')->get(),
-                'aktiviti' => Aktiviti::orderby('idaktiviti', 'ASC')->get(),
-                'bank' => Bank::where('res', '0')->orderby('flag', 'DESC')->get(),
+                'negeri' => Negeri::select(['kodnegeri', 'namanegeri'])
+                    ->where('kod', '!=', '1')
+                    ->orderby('namanegeri', 'ASC')
+                    ->get(),
+
+                'cawangan' => Cawangan::where('kodcawangan', '!=', '0000')
+                    ->where('batal', '!=', '1')
+                    ->orderby('namacawangan', 'ASC')
+                    ->get(),
+
+                'sektor' => Sektor::where(function ($q) {
+                    $q->where('lain', '1')
+                        ->orWhere('sektor', 'Peruncitan')
+                        ->orWhere('sektor', 'Perkhidmatan')
+                        ->orWhere('sektor', 'Pembuatan')
+                        ->orWhere('sektor', 'Kontraktor Kecil')
+                        ->orWhere('sektor', 'Tani');
+                })->get(),
+
+                'aktiviti' => Aktiviti::where('status', '1')
+                    ->orderBy('aktiviti', 'ASC')
+                    ->get(),
+
+                'negerix' => Negeri::select(['kodnegeri', 'namanegeri'])
+                    ->where('kod', '!=', '1')
+                    ->orderby('namanegeri', 'ASC')
+                    ->get(),
+
+                'bank' => Bank::where('res', '0')
+                    ->orderby('flag', 'DESC')
+                    ->get(),
             ]);
         }
     }
@@ -61,6 +89,19 @@ class HomeController extends Controller
         $html = '<option value="">Sila Pilih Cawangan</option>';
         foreach ($cawangan as $cawanganx) {
             $html .= '<option value="' . $cawanganx->kodcawangan . '">' . $cawanganx->namacawangan . '</option>';
+        }
+
+        return response()->json(['html' => $html]);
+    }
+
+    public function getAktiviti(Request $request)
+    {
+        $html = '';
+        $aktiviti = Aktiviti::where('idsektor', $request->sektor)->where('status', '=', '1')->orderBy('Aktiviti', 'ASC')->get();
+
+        $html = '<option value="">Sila Pilih Aktiviti</option>';
+        foreach ($aktiviti as $aktivitix) {
+            $html .= '<option value="' . $aktivitix->kodAktiviti . '">' . $aktivitix->Aktiviti . '</option>';
         }
 
         return response()->json(['html' => $html]);
