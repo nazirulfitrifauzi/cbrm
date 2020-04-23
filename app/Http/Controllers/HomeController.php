@@ -615,6 +615,9 @@ class HomeController extends Controller
         unlink(storage_path('app/public/' . auth()->user()->ic_no . '/' . $file));
 
         $this->checkPeribadi();
+
+        Session::flash('success', 'Gambar telah dipadam');
+        Session::flash('Tab', 'tab1');
     }
 
     public function deleteKP($id)
@@ -626,6 +629,9 @@ class HomeController extends Controller
         unlink(storage_path('app/public/' . auth()->user()->ic_no . '/' . $file));
 
         $this->checkPinjaman();
+
+        Session::flash('success', 'Fail Kad Pengenalan telah dipadam');
+        Session::flash('Tab', 'tab3');
     }
 
     public function deleteSSM($id)
@@ -637,6 +643,9 @@ class HomeController extends Controller
         unlink(storage_path('app/public/' . auth()->user()->ic_no . '/' . $file));
 
         $this->checkPinjaman();
+
+        Session::flash('success', 'Fail SSM telah dipadam');
+        Session::flash('Tab', 'tab3');
     }
 
     public function deleteBank($id)
@@ -648,6 +657,9 @@ class HomeController extends Controller
         unlink(storage_path('app/public/' . auth()->user()->ic_no . '/' . $file));
 
         $this->checkPinjaman();
+
+        Session::flash('success', 'Fail Penyata Bank telah dipadam');
+        Session::flash('Tab', 'tab3');
     }
 
     public function deleteBil($id)
@@ -659,5 +671,8 @@ class HomeController extends Controller
         unlink(storage_path('app/public/' . auth()->user()->ic_no . '/' . $file));
 
         $this->checkPinjaman();
+
+        Session::flash('success', 'Fail Bil Utiliti telah dipadam');
+        Session::flash('Tab', 'tab3');
     }
 }

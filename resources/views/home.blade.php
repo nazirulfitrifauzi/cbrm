@@ -196,7 +196,15 @@
                                 x-data="{ tab: 'tab3' }"
                             @endif
                         @else
-                            x-data="{ tab: 'tab1' }"
+                            @if (Session::has('Tab'))
+                                @if (Session::get("Tab") === 'tab1' )
+                                    x-data="{ tab: 'tab1' }"
+                                @elseif(Session::get("Tab") === 'tab3')
+                                    x-data="{ tab: 'tab3' }"
+                                @endif
+                            @else
+                                x-data="{ tab: 'tab1' }"
+                            @endif
                         @endif
                     @endif
                     
