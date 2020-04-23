@@ -254,7 +254,7 @@
                                 <div class="mt-2 px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md"
                                     x-data="{ open: false }">
                                     <div class="w-full">
-                                        <img src="{{ asset('storage/Pictures/' . auth()->user()->peribadi->gambar) }}"
+                                        <img src="{{ asset('storage/'. auth()->user()->ic_no .'/' . auth()->user()->peribadi->gambar) }}"
                                             class="h-40">
                                     </div>
                                     <div class="w-full">
@@ -1293,10 +1293,6 @@
 
         @error('bank1_acct')
         $("#bank1_acct").addClass("border-red-500");
-        @enderror
-
-        @error('bank2_acct')
-        $("#bank2_acct").addClass("border-red-500");
         @enderror
 
         @error('name')

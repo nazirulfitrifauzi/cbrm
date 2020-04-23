@@ -246,8 +246,6 @@ class HomeController extends Controller
             "business_type"             => $request->get('business_type'),
             "bank1"                     => $request->get('bank1'),
             "bank1_acct"                => $request->get('bank1_acct'),
-            "bank2"                     => $request->get('bank2'),
-            "bank2_acct"                => $request->get('bank2_acct'),
             "gambar"                    => $gambar_name,
             "name"                      => $request->get('name'),
             "ic_no"                     => $request->get('ic_no'),
@@ -569,7 +567,7 @@ class HomeController extends Controller
         $file = Peribadi::where('user_id', $id)->value('gambar');
 
         Peribadi::where('user_id', $id)->update(['gambar' => NULL]);
-        unlink(storage_path('app/public/Pictures/' . $file));
+        unlink(storage_path('app/public/' . auth()->user()->ic_no . '/' . $file));
 
         $this->checkPeribadi();
     }
@@ -580,7 +578,7 @@ class HomeController extends Controller
         $file = Pinjaman::where('user_id', $id)->value('document_ic_no');
 
         Pinjaman::where('user_id', $id)->update(['document_ic_no' => NULL]);
-        unlink(storage_path('app/public/KP/' . $file));
+        unlink(storage_path('app/public/' . auth()->user()->ic_no . '/' . $file));
 
         $this->checkPinjaman();
     }
@@ -591,7 +589,7 @@ class HomeController extends Controller
         $file = Pinjaman::where('user_id', $id)->value('document_ssm');
 
         Pinjaman::where('user_id', $id)->update(['document_ssm' => NULL]);
-        unlink(storage_path('app/public/SSM/' . $file));
+        unlink(storage_path('app/public/' . auth()->user()->ic_no . '/' . $file));
 
         $this->checkPinjaman();
     }
@@ -602,7 +600,7 @@ class HomeController extends Controller
         $file = Pinjaman::where('user_id', $id)->value('document_bank_statements');
 
         Pinjaman::where('user_id', $id)->update(['document_bank_statements' => NULL]);
-        unlink(storage_path('app/public/Bank/' . $file));
+        unlink(storage_path('app/public/' . auth()->user()->ic_no . '/' . $file));
 
         $this->checkPinjaman();
     }
@@ -613,7 +611,7 @@ class HomeController extends Controller
         $file = Pinjaman::where('user_id', $id)->value('document_utility');
 
         Pinjaman::where('user_id', $id)->update(['document_utility' => NULL]);
-        unlink(storage_path('app/public/BilUtiliti/' . $file));
+        unlink(storage_path('app/public/' . auth()->user()->ic_no . '/' . $file));
 
         $this->checkPinjaman();
     }

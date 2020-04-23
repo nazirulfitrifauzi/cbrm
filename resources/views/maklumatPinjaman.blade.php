@@ -107,30 +107,30 @@
                                             class="block text-sm font-medium leading-5 text-gray-700">Tempoh Pembayaran</label>
                                         <select id="duration" name="duration"
                                             class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
-                                                <option value="1" 
+                                                <option value="12" 
                                                     @if(isset(auth()->user()->pinjaman->duration))
-                                                        @if(auth()->user()->pinjaman->duration == '1') 
+                                                        @if(auth()->user()->pinjaman->duration == '12') 
                                                             selected 
                                                         @endif
                                                     @else 
                                                     @endif
-                                                >1 Tahun</option>
-                                                <option value="3" 
+                                                >12 Bulan</option>
+                                                <option value="24" 
                                                     @if(isset(auth()->user()->pinjaman->duration))
-                                                        @if(auth()->user()->pinjaman->duration == '3') 
+                                                        @if(auth()->user()->pinjaman->duration == '24') 
                                                             selected 
                                                         @endif
                                                     @else 
                                                     @endif
-                                                >3 Tahun</option>
-                                                <option value="5" 
+                                                >24 Bulan</option>
+                                                <option value="36" 
                                                     @if(isset(auth()->user()->pinjaman->duration))
-                                                        @if(auth()->user()->pinjaman->duration == '5') 
+                                                        @if(auth()->user()->pinjaman->duration == '36') 
                                                             selected 
                                                         @endif
                                                     @else 
                                                     @endif
-                                                >5 Tahun</option>
+                                                >36 Bulan</option>
                                                 
                                         </select>
                                     </div>
