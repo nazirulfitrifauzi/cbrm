@@ -123,8 +123,94 @@
         <div class="max-w-7xl mx-auto pb-12 px-4 sm:px-6 lg:px-20">
             <!-- Replace with your content -->
             <div class="bg-gray-100 rounded-lg shadow px-5 py-6 sm:px-6">
-                <div x-data="{ tab: 'tab1' }">
+                <div 
+                    @if ($errors->any())
+                        @if (
+                            $errors->has('tekun_state') || 
+                            $errors->has('business_status') ||
+                            $errors->has('business_type') ||
+                            $errors->has('bank1') ||
+                            $errors->has('bank1_acct') ||
+                            $errors->has('name') ||
+                            $errors->has('ic_no') ||
+                            $errors->has('gender') ||
+                            $errors->has('religion') ||
+                            $errors->has('birthdate') ||
+                            $errors->has('race') ||
+                            $errors->has('age') ||
+                            $errors->has('marital') ||
+                            $errors->has('dependent') ||
+                            $errors->has('oku') ||
+                            $errors->has('address1') ||
+                            $errors->has('postcode') ||
+                            $errors->has('city') ||
+                            $errors->has('state') ||
+                            $errors->has('phone_hp') ||
+                            $errors->has('email') ||
+                            $errors->has('profession') ||
+                            $errors->has('income') ||
+                            $errors->has('spouse_type') ||
+                            $errors->has('spouse_name') ||
+                            $errors->has('spouse_ic_no') ||
+                            $errors->has('spouse_profession') ||
+                        )
+                            x-data="{ tab: 'tab1' }"
+                        @elseif(
+                            $errors->has('business_name') || 
+                            $errors->has('business_sector') || 
+                            $errors->has('business_activity') ||
+                            $errors->has('business_address1') ||
+                            $errors->has('business_postcode') ||
+                            $errors->has('business_city') ||
+                            $errors->has('business_state') ||
+                            $errors->has('business_phone_hp') ||
+                            $errors->has('business_premise') ||
+                            $errors->has('business_ownership') ||
+                            $errors->has('business_modal') ||
+                            $errors->has('business_open') ||
+                            $errors->has('business_closed')
+                        ) 
+                            x-data="{ tab: 'tab2' }"
+                        @elseif(
+                            $errors->has('purchase_price') || 
+                            $errors->has('duration') || 
+                            $errors->has('reference_name') ||
+                            $errors->has('reference_address1') ||
+                            $errors->has('reference_postcode') ||
+                            $errors->has('reference_city') ||
+                            $errors->has('reference_state') ||
+                            $errors->has('reference_relation') ||
+                            $errors->has('reference_phone') ||
+                            $errors->has('doc_ic_no') ||
+                            $errors->has('doc_ssm') ||
+                            $errors->has('doc_bank') ||
+                            $errors->has('doc_bil')
+                        )
+                            x-data="{ tab: 'tab3' }"
+                        @endif
+                    @else
+                        @if (Session::has('nextTab'))
+                            @if (Session::get("nextTab") === 'tab2' )
+                                x-data="{ tab: 'tab2' }"
+                            @elseif(Session::get("nextTab") === 'tab3')
+                                x-data="{ tab: 'tab3' }"
+                            @endif
+                        @else
+                            x-data="{ tab: 'tab1' }"
+                        @endif
+                    @endif
+                    
 
+                    @if ($errors->any())
+                        @if (
+                            $errors->has('tekun_state') || $errors->has('tekun_branch'))
+                            tab1
+                        @elseif($errors->has('business_ownership') || $errors->has('business_open') || $errors->has('business_closed')) 
+                            tab2
+                        @endif
+                    @endif
+                >
+                
                     <div class="sm:hidden mb-4 flex justify-between">
                         <span class="inline-flex rounded-md shadow-sm">
                             <a href="{{ asset('img') }}/cbrm/FAQ_cbrm.pdf" target="_blank" type="button"
@@ -245,19 +331,20 @@
                             <button
                                 class="px-3 py-2 font-medium text-sm leading-5 rounded-md text-gray-500 hover:text-gray-700 focus:outline-none focus:text-indigo-600 focus:bg-indigo-50"
                                 :class="{ 'text-indigo-700 bg-indigo-100 focus:outline-none focus:text-indigo-800 focus:bg-indigo-200' : tab === 'tab1' }"
-                                @click="tab='tab1'">
+                                @click="tab='tab1'; console.log(tab);">
                                 Maklumat Peribadi
                             </button>
                             <button
                                 class="ml-4 px-3 py-2 font-medium text-sm leading-5 rounded-md text-gray-500 hover:text-gray-700 focus:outline-none focus:text-indigo-600 focus:bg-indigo-50"
                                 :class="{ 'text-indigo-700 bg-indigo-100 focus:outline-none focus:text-indigo-800 focus:bg-indigo-200' : tab === 'tab2' }"
-                                @click="tab='tab2'">
+                                @click="tab='tab2'; console.log(tab);"
+                                >
                                 Maklumat Perniagaan
                             </button>
                             <button
                                 class="ml-4 px-3 py-2 font-medium text-sm leading-5 rounded-md text-gray-500 hover:text-gray-700 focus:outline-none focus:text-indigo-600 focus:bg-indigo-50"
                                 :class="{ 'text-indigo-700 bg-indigo-100 focus:outline-none focus:text-indigo-800 focus:bg-indigo-200' : tab === 'tab3' }"
-                                @click="tab='tab3'">
+                                @click="tab='tab3'; console.log(tab);">
                                 Maklumat Pinjaman
                             </button>
 
@@ -385,7 +472,7 @@
 @if (Session::has('success') || count($errors) > 0 )
 <script>
     $(document).ready(function () {
-        
+
         setTimeout(function () {
             $(".notification").animate({
                 opacity: "1"
