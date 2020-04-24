@@ -331,7 +331,11 @@
                         <select class="form-select block w-full" @change="tab = $event.target.value">
                             <option value="opt_maklumatPeribadi" 
                                 x-bind:value="'tab1'" 
-                                selected
+                                @if(is_null(auth()->user()->peribadi))
+                                    selected
+                                @else
+                                    
+                                @endif
                             >
                                 Maklumat Peribadi
                             </option>
@@ -340,6 +344,7 @@
                                     disabled
                                 @else
                                     x-bind:value="'tab2'"
+                                    selected
                                 @endif
                             >
                                 Maklumat Perniagaan
@@ -349,6 +354,7 @@
                                     disabled
                                 @else
                                     x-bind:value="'tab3'"
+                                    selected
                                 @endif
                             >
                                 Maklumat Pinjaman
