@@ -1,5 +1,5 @@
 <div id="tab2" x-show="tab === 'tab2'">
-    <form method="post" action="{{ route('home.storePerniagaan') }}" x-data="{ tab: '' }">
+    <form method="post" action="{{ route('home.storePerniagaan') }}" x-data="{ tabs: '' }">
         @csrf
 
         <div class="my-8 px-4">
@@ -231,7 +231,7 @@
                                         class="block text-sm font-medium leading-5 text-gray-700">Permilikan Perniagaan <span class="text-red-700">*</span></label>
                                     <select id="business_ownership" name="business_ownership"
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
-                                        @change="tab = $event.target.value">
+                                        @change="tabs = $event.target.value">
                                         <option value="">Sila Pilih Permilikan Perniagaan</option>
                                         <option value="Individu" @if(isset(auth()->
                                             user()->perniagaan->business_ownership))
@@ -245,13 +245,13 @@
                                             user()->perniagaan->business_ownership))
                                             @if(auth()->user()->perniagaan->business_ownership == 'Perkongsian')
                                             selected @endif @else @endif
-                                            x-bind:value="'tab2'"
+                                            x-bind:value="'tabs2'"
                                             >Perkongsian </option>
                                         <option value="Sendirian Berhad" @if(isset(auth()->
                                             user()->perniagaan->business_ownership))
                                             @if(auth()->user()->perniagaan->business_ownership == 'Sendirian Berhad')
                                             selected @endif @else @endif
-                                            x-bind:value="'tab1'"
+                                            x-bind:value="'tabs1'"
                                         > Sendirian Berhad </option>
                                     </select>
                                     @error('business_ownership')
@@ -261,7 +261,7 @@
                                     @enderror
                                 </div>
 
-                                <div class="col-span-6 sm:col-span-2" x-show="tab === 'tab1'">
+                                <div class="col-span-6 sm:col-span-2" x-show="tabs === 'tabs1'">
                                     <fieldset>
                                         <legend class="block text-sm font-medium leading-5 text-gray-700">Modal Berbayar <span class="text-red-700">*</span></legend>
 
@@ -335,13 +335,13 @@
             </div>
         </div>
 
-        <div class="hidden sm:block" x-show="tab === 'tab2'">
+        <div class="hidden sm:block" x-show="tabs === 'tabs2'">
             <div class="py-5">
                 <div class="border-t border-gray-200"></div>
             </div>
         </div>
 
-        <div class="my-8 px-4" x-show="tab === 'tab2'">
+        <div class="my-8 px-4" x-show="tabs === 'tabs2'">
             <div class="md:grid md:grid-cols-3 md:gap-6">
                 <div class="md:col-span-1">
                     <div class="px-4 sm:px-0">
