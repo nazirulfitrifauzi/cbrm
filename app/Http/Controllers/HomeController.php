@@ -431,7 +431,7 @@ class HomeController extends Controller
             'business_income'       => $request->get('business_income'),
             'partner_name'          => $request->get('partner_name'),
             'partner_ic'            => $request->get('partner_ic'),
-            'partner_addres1'       => $request->get('partner_addres1'),
+            'partner_address1'       => $request->get('partner_address1'),
             'partner_address2'      => $request->get('partner_address2'),
             'partner_postcode'      => $request->get('partner_postcode'),
             'partner_city'          => $request->get('partner_city'),
