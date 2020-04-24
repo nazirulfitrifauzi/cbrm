@@ -1,12 +1,16 @@
-<div id="tab2" x-show="tab === 'tab2'">
+<div x-show="tab === 'tab2'">
     <form method="post" action="{{ route('home.storePerniagaan') }}" 
-        @if(is_null(auth()->user()->perniagaan->business_ownership))
+        @if(is_null(auth()->user()->perniagaan))
             x-data="{ tabs: '' }"
         @else
             @if(auth()->user()->perniagaan->business_ownership === 'Sendirian Berhad')
                 x-data="{ tabs: 'Sendirian Berhad' }"
             @elseif(auth()->user()->perniagaan->business_ownership === 'Perkongsian')
                 x-data="{ tabs: 'Perkongsian' }"
+            @elseif(auth()->user()->perniagaan->business_ownership === 'Individu')
+                x-data="{ tabs: '' }"
+            @elseif(auth()->user()->perniagaan->business_ownership === 'Pemilikan Tunggal')
+                x-data="{ tabs: '' }"
             @endif
         @endif
     >
@@ -246,11 +250,13 @@
                                         <option value="Individu" @if(isset(auth()->
                                             user()->perniagaan->business_ownership))
                                             @if(auth()->user()->perniagaan->business_ownership == 'Individu') selected
-                                            @endif @else @endif>Individu</option>
+                                            @endif @else @endif
+                                            x-bind:value="''">Individu</option>
                                         <option value="Pemilikan Tunggal" @if(isset(auth()->
                                             user()->perniagaan->business_ownership))
                                             @if(auth()->user()->perniagaan->business_ownership == 'Pemilikan Tunggal')
-                                            selected @endif @else @endif> Pemilikan Tunggal </option>
+                                            selected @endif @else @endif
+                                            x-bind:value="''"> Pemilikan Tunggal </option>
                                         <option value="Perkongsian" @if(isset(auth()->
                                             user()->perniagaan->business_ownership))
                                             @if(auth()->user()->perniagaan->business_ownership == 'Perkongsian')
