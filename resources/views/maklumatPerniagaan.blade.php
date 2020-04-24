@@ -8,9 +8,9 @@
             @elseif(auth()->user()->perniagaan->business_ownership === 'Perkongsian')
                 x-data="{ tabs: 'Perkongsian' }"
             @elseif(auth()->user()->perniagaan->business_ownership === 'Individu')
-                x-data="{ tabs: 'Individu' }"
+                x-data="{ tabs: '' }"
             @elseif(auth()->user()->perniagaan->business_ownership === 'Pemilikan Tunggal')
-                x-data="{ tabs: 'Pemilikan Tunggal' }"
+                x-data="{ tabs: '' }"
             @endif
         @endif
     >
@@ -251,12 +251,12 @@
                                             user()->perniagaan->business_ownership))
                                             @if(auth()->user()->perniagaan->business_ownership == 'Individu') selected
                                             @endif @else @endif
-                                            x-bind:value="''">Individu</option>
+                                            x-bind:value="'Individu'">Individu</option>
                                         <option value="Pemilikan Tunggal" @if(isset(auth()->
                                             user()->perniagaan->business_ownership))
                                             @if(auth()->user()->perniagaan->business_ownership == 'Pemilikan Tunggal')
                                             selected @endif @else @endif
-                                            x-bind:value="''"> Pemilikan Tunggal </option>
+                                            x-bind:value="'Pemilikan Tunggal'"> Pemilikan Tunggal </option>
                                         <option value="Perkongsian" @if(isset(auth()->
                                             user()->perniagaan->business_ownership))
                                             @if(auth()->user()->perniagaan->business_ownership == 'Perkongsian')
