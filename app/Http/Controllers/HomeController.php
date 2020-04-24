@@ -441,12 +441,29 @@ class HomeController extends Controller
 
         $perniagaan->save();
 
+        if (auth()->user()->perniagaan->business_ownership === 'Perkongsian') {
+            Perniagaan::where('user_id', auth()->user()->id)->update([
+                'business_modal' => NULL
+            ]);
+        } elseif (auth()->user()->perniagaan->business_ownership === 'Sendirian Berhad') {
+            Perniagaan::where('user_id', auth()->user()->id)->update([
+                'business_modal'    => NULL,
+                'partner_name'      => NULL,
+                'partner_ic'        => NULL,
+                'partner_address1'  => NULL,
+                'partner_address2'  => NULL,
+                'partner_city'      => NULL,
+                'partner_postcode'  => NULL,
+                'partner_state'     => NULL,
+                'partner_phone'     => NULL
+            ]);
+        }
+
         $this->checkPerniagaan();
         $owner = Perniagaan::where('user_id', auth()->user()->id)->value('business_ownership');
 
         Session::flash('success', 'Data telah disimpan.');
         Session::flash('nextTab', 'tab3');
-        Session::flash('ownership', $owner);
 
         return redirect('home');
     }
