@@ -1,5 +1,5 @@
 <div id="tab2" x-show="tab === 'tab2'">
-    <form method="post" action="{{ route('home.storePerniagaan') }}">
+    <form method="post" action="{{ route('home.storePerniagaan') }}" x-data="{ tab: '' }">
         @csrf
 
         <div class="my-8 px-4">
@@ -15,7 +15,7 @@
                 <div class="mt-5 md:mt-0 md:col-span-2">
                     <div class="shadow sm:rounded-md sm:overflow-hidden">
                         <div class="px-4 py-5 bg-white sm:p-6">
-                            <div class="grid grid-cols-6 gap-6" x-data="{ tab: '' }">
+                            <div class="grid grid-cols-6 gap-6" >
                                 <div class="col-span-6 sm:col-span-6">
                                     <label for="business_name"
                                         class="block text-sm font-medium leading-5 text-gray-700">Nama Perniagaan/Syarikat <span class="text-red-700">*</span></label>
@@ -244,7 +244,9 @@
                                         <option value="Perkongsian" @if(isset(auth()->
                                             user()->perniagaan->business_ownership))
                                             @if(auth()->user()->perniagaan->business_ownership == 'Perkongsian')
-                                            selected @endif @else @endif>Perkongsian </option>
+                                            selected @endif @else @endif
+                                            x-bind:value="'tab2'"
+                                            >Perkongsian </option>
                                         <option value="Sendirian Berhad" @if(isset(auth()->
                                             user()->perniagaan->business_ownership))
                                             @if(auth()->user()->perniagaan->business_ownership == 'Sendirian Berhad')
@@ -325,6 +327,142 @@
                                         {{ $message }}
                                     </p>
                                     @enderror
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="hidden sm:block" x-show="tab === 'tab2'">
+            <div class="py-5">
+                <div class="border-t border-gray-200"></div>
+            </div>
+        </div>
+
+        <div class="my-8 px-4" x-show="tab === 'tab2'">
+            <div class="md:grid md:grid-cols-3 md:gap-6">
+                <div class="md:col-span-1">
+                    <div class="px-4 sm:px-0">
+                        <h3 class="text-lg font-medium leading-6 text-gray-900">Maklumat Rakan Kongsi/Pengarah</h3>
+                        <p class="mt-1 text-sm leading-5 text-gray-500">
+                            Selain daripada maklumat pemohon
+                        </p>
+                    </div>
+                </div>
+                <div class="mt-5 md:mt-0 md:col-span-2">
+                    <div class="shadow overflow-hidden sm:rounded-md">
+                        <div class="px-4 py-5 bg-white sm:p-6">
+                            <div class="grid grid-cols-6 gap-6 mt-1">
+
+                                <div class="col-span-6 sm:col-span-6">
+                                    <label for="partner_name"
+                                        class="block text-sm font-medium leading-5 text-gray-700">Nama <span class="text-red-700">*</span></label>
+                                    <input id="partner_name" name="partner_name"
+                                        value="{{ isset(auth()->user()->perniagaan->partner_name) ? auth()->user()->perniagaan->partner_name : old('partner_name') }}"
+                                        class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                        @error('partner_name')
+                                            <p class="text-red-500 text-xs italic mt-4">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-6">
+                                    <label for="partner_ic"
+                                        class="block text-sm font-medium leading-5 text-gray-700">No. KP (Baru) - cth (900000010000) <span class="text-red-700">*</span></label>
+                                    <input id="partner_ic" name="partner_ic"
+                                        value="{{ isset(auth()->user()->perniagaan->partner_ic) ? auth()->user()->perniagaan->partner_ic : old('partner_ic') }}"
+                                        class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                        @error('partner_ic')
+                                            <p class="text-red-500 text-xs italic mt-4">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
+                                </div>
+
+                                <div class="col-span-6">
+                                    <label for="partner_address1"
+                                        class="block text-sm font-medium leading-5 text-gray-700">Alamat <span class="text-red-700">*</span></label>
+                                    <input id="partner_address1" name="partner_address1"
+                                        value="{{ isset(auth()->user()->perniagaan->partner_address1) ? auth()->user()->perniagaan->partner_address1 : old('partner_address1') }}"
+                                        class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                        @error('partner_address1')
+                                            <p class="text-red-500 text-xs italic mt-4">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
+
+                                    <input id="partner_address2" name="partner_address2"
+                                        value="{{ isset(auth()->user()->perniagaan->partner_address2) ? auth()->user()->perniagaan->partner_address2 : old('partner_address2') }}"
+                                        class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                        @error('partner_address2')
+                                            <p class="text-red-500 text-xs italic mt-4">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+                                    <label for="partner_postcode"
+                                        class="block text-sm font-medium leading-5 text-gray-700">Poskod <span class="text-red-700">*</span></label>
+                                    <input id="partner_postcode" name="partner_postcode" maxlength="5"
+                                        value="{{ isset(auth()->user()->perniagaan->partner_postcode) ? auth()->user()->perniagaan->partner_postcode : old('partner_postcode') }}"
+                                        class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                        @error('partner_postcode')
+                                                    <p class="text-red-500 text-xs italic mt-4">
+                                                        {{ $message }}
+                                                    </p>
+                                                @enderror
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-6 lg:col-span-2">
+                                    <label for="partner_city"
+                                        class="block text-sm font-medium leading-5 text-gray-700">Bandar <span class="text-red-700">*</span></label>
+                                    <input id="partner_city" name="partner_city"
+                                        value="{{ isset(auth()->user()->perniagaan->partner_city) ? auth()->user()->perniagaan->partner_city : old('partner_city') }}"
+                                        class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                        @error('partner_city')
+                                                    <p class="text-red-500 text-xs italic mt-4">
+                                                        {{ $message }}
+                                                    </p>
+                                                @enderror
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+                                    <label for="partner_state"
+                                        class="block text-sm font-medium leading-5 text-gray-700">Negeri <span class="text-red-700">*</span></label>
+                                    <select id="partner_state" name="partner_state"
+                                        class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                                        <option value="">Sila Pilih</option>
+                                        @foreach($negerix as $negerix3)
+                                            <option value="{{ $negerix3->kodnegeri }}" 
+                                                @if(isset(auth()->user()->perniagaan->partner_state))
+                                                    @if(auth()->user()->perniagaan->partner_state == $negerix3->kodnegeri) 
+                                                        selected 
+                                                    @else
+                                                        {{ old('partner_state') == ($negerix3->kodnegeri) ? 'selected':'' }}
+                                                    @endif
+                                                @else
+                                                    {{ old('partner_state') == ($negerix3->kodnegeri) ? 'selected':'' }}
+                                                @endif
+                                            >{{ $negerix3->namanegeri }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label for="partner_phone"
+                                        class="block text-sm font-medium leading-5 text-gray-700">No Telefon (Rumah)</label>
+                                    <input id="partner_phone" name="partner_phone"
+                                        value="{{ isset(auth()->user()->perniagaan->partner_phone) ? auth()->user()->perniagaan->partner_phone : old('partner_phone') }}"
+                                        class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                        @error('partner_phone')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                        @enderror
                                 </div>
                             </div>
                         </div>
