@@ -505,7 +505,6 @@ class HomeController extends Controller
             'business_phone_hp',
             'business_premise',
             'business_ownership',
-            'business_modal',
             'business_open',
             'business_closed',
             'business_income'
