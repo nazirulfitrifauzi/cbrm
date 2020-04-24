@@ -535,10 +535,10 @@ class HomeController extends Controller
             'reference_state'       => ['required', 'alpha'],
             'reference_relation'    => ['required', 'string'],
             'reference_phone'       => ['required', 'numeric', 'min:10'],
-            "doc_ic_no"             => ['required', 'mimes:pdf,jpeg,jpg,png'],
-            "doc_ssm"               => ['required', 'mimes:pdf,jpeg,jpg,png'],
-            "doc_bank"              => ['required', 'mimes:pdf,jpeg,jpg,png'],
-            "doc_bil"               => ['required', 'mimes:pdf,jpeg,jpg,png']
+            "doc_ic_no"             => ['required', 'mimes:pdf'],
+            "doc_ssm"               => ['required', 'mimes:pdf'],
+            "doc_bank"              => ['required', 'mimes:pdf'],
+            "doc_bil"               => ['required', 'mimes:pdf']
         ]);
 
         $ic_no = auth()->user()->ic_no;
