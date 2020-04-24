@@ -654,7 +654,6 @@
                                     <fieldset>
                                         <legend class="block text-sm font-medium leading-5 text-gray-700">Orang Kelainan
                                             Upaya</legend>
-                                        {{-- <p class="text-sm leading-5 text-gray-500">These are delivered via SMS to your mobile phone.</p> --}}
                                         <div class="mt-3">
                                             <div class="flex items-center">
                                                 <input id="oku_yes" name="oku" value="Ya" type="radio"
@@ -796,8 +795,87 @@
                                                 @enderror
                                 </div>
 
-                                
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label for="education" class="block text-sm font-medium leading-5 text-gray-700">Taraf Pendidikan</label>
+                                    <select id="education" name="bank1"
+                                        class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                                        <option value="">Sila Pilih Taraf Pendidikan</option>
+                                        <option value="PMR/Setaraf" 
+                                            @if(isset(auth()->user()->peribadi->education))
+                                                @if(auth()->user()->peribadi->education == 'PMR/Setaraf') 
+                                                    selected
+                                                @else
+                                                    {{ old('education') == "PMR/Setaraf" ? 'selected':'' }}
+                                                @endif
+                                            @else
+                                                {{ old('education') == "PMR/Setaraf" ? 'selected':'' }}
+                                            @endif
+                                        >PMR/Setaraf</option>
+                                        <option value="SPM/Setaraf" 
+                                            @if(isset(auth()->user()->peribadi->education))
+                                                @if(auth()->user()->peribadi->education == 'SPM/Setaraf') 
+                                                    selected
+                                                @else
+                                                    {{ old('education') == "SPM/Setaraf" ? 'selected':'' }}
+                                                @endif
+                                            @else
+                                                {{ old('education') == "SPM/Setaraf" ? 'selected':'' }}
+                                            @endif
+                                        >SPM/Setaraf</option>
+                                        <option value="STPM/Setaraf" 
+                                            @if(isset(auth()->user()->peribadi->education))
+                                                @if(auth()->user()->peribadi->education == 'STPM/Setaraf') 
+                                                    selected
+                                                @else
+                                                    {{ old('education') == "STPM/Setaraf" ? 'selected':'' }}
+                                                @endif
+                                            @else
+                                                {{ old('education') == "STPM/Setaraf" ? 'selected':'' }}
+                                            @endif
+                                        >STPM/Setaraf</option>
+                                        <option value="Sijil" 
+                                            @if(isset(auth()->user()->peribadi->education))
+                                                @if(auth()->user()->peribadi->education == 'Sijil') 
+                                                    selected
+                                                @else
+                                                    {{ old('education') == "Sijil" ? 'selected':'' }}
+                                                @endif
+                                            @else
+                                                {{ old('education') == "Sijil" ? 'selected':'' }}
+                                            @endif
+                                        >Sijil</option>
+                                        <option value="Diploma" 
+                                            @if(isset(auth()->user()->peribadi->education))
+                                                @if(auth()->user()->peribadi->education == 'Diploma') 
+                                                    selected
+                                                @else
+                                                    {{ old('education') == "Diploma" ? 'selected':'' }}
+                                                @endif
+                                            @else
+                                                {{ old('education') == "Diploma" ? 'selected':'' }}
+                                            @endif
+                                        >Diploma</option>
+                                        <option value="Ijazah" 
+                                            @if(isset(auth()->user()->peribadi->education))
+                                                @if(auth()->user()->peribadi->education == 'Ijazah') 
+                                                    selected
+                                                @else
+                                                    {{ old('education') == "Ijazah" ? 'selected':'' }}
+                                                @endif
+                                            @else
+                                                {{ old('education') == "Ijazah" ? 'selected':'' }}
+                                            @endif
+                                        >Ijazah</option>
+                                    </select>
+                                    @error('education')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
+                                </div>
+                            </div>
 
+                            <div class="grid grid-cols-6 gap-6 mt-6">
                                 <div class="col-span-6 sm:col-span-2">
                                     <label for="email"
                                         class="block text-sm font-medium leading-5 text-gray-700">Emel</label>
@@ -1363,6 +1441,10 @@
 
         @error('phone_hp')
         $("#phone_hp").addClass("border-red-500");
+        @enderror
+
+        @error('education')
+        $("#education").addClass("border-red-500");
         @enderror
 
         @error('email')
