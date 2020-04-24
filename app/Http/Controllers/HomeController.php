@@ -11,7 +11,6 @@ use App\Models\Peribadi;
 use App\Models\Perniagaan;
 use App\Models\Pinjaman;
 use App\Models\Sektor;
-use App\Notifications\sendSms;
 use App\User;
 use Carbon\Carbon;
 use DB;
