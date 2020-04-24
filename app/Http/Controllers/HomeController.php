@@ -460,7 +460,6 @@ class HomeController extends Controller
         }
 
         $this->checkPerniagaan();
-        $owner = Perniagaan::where('user_id', auth()->user()->id)->value('business_ownership');
 
         Session::flash('success', 'Data telah disimpan.');
         Session::flash('nextTab', 'tab3');

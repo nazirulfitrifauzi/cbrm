@@ -8,9 +8,9 @@
             @elseif(auth()->user()->perniagaan->business_ownership === 'Perkongsian')
                 x-data="{ tabs: 'Perkongsian' }"
             @elseif(auth()->user()->perniagaan->business_ownership === 'Individu')
-                x-data="{ tabs: '' }"
+                x-data="{ tabs: 'Individu' }"
             @elseif(auth()->user()->perniagaan->business_ownership === 'Pemilikan Tunggal')
-                x-data="{ tabs: '' }"
+                x-data="{ tabs: 'Pemilikan Tunggal' }"
             @endif
         @endif
     >
