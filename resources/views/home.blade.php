@@ -521,13 +521,17 @@
             $(".notification").animate({
                 opacity: "1"
             });
-        }, 1000);
+        }, 500);
+
+        // setTimeout(function () {
+        //     $(".notification").animate({
+        //         opacity: "0"
+        //     });
+        // }, 10000);
 
         setTimeout(function () {
-            $(".notification").animate({
-                opacity: "0"
-            });
-        }, 10000);
+            $('.notification').fadeOut('fast');
+        }, 3000);
         
     });
 </script>
