@@ -893,12 +893,12 @@
                                             value="{{ isset(auth()->user()->peribadi->income) ? auth()->user()->peribadi->income : old('income') }}"
                                             type="number" step="0.01"
                                             class="mt-1 form-input block w-full pl-16 sm:pl-14 py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-                                            @error('income')
-                                                <p class="text-red-500 text-xs italic mt-4">
-                                                    {{ $message }}
-                                                </p>
-                                            @enderror
                                     </div>
+                                    @error('income')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-2">
