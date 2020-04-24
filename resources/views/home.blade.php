@@ -152,7 +152,8 @@
                             $errors->has('spouse_type') ||
                             $errors->has('spouse_name') ||
                             $errors->has('spouse_ic_no') ||
-                            $errors->has('spouse_profession')
+                            $errors->has('spouse_profession') ||
+                            $errors->has('education')
                         )
                             x-data="{ tab: 'tab1' }"
                         @elseif(
@@ -168,7 +169,9 @@
                             $errors->has('business_ownership') ||
                             $errors->has('business_modal') ||
                             $errors->has('business_open') ||
-                            $errors->has('business_closed')
+                            $errors->has('business_closed') ||
+                            $errors->has('business_no') ||
+                            $errors->has('business_income')
                         ) 
                             x-data="{ tab: 'tab2' }"
                         @elseif(
