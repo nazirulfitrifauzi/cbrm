@@ -1,5 +1,17 @@
 <div id="tab2" x-show="tab === 'tab2'">
-    <form method="post" action="{{ route('home.storePerniagaan') }}" x-data="{ tabs: '' }">
+    <form method="post" action="{{ route('home.storePerniagaan') }}" 
+        x-data="{ tabs: '' }"
+
+        @if (Session::has('ownership'))
+            @if (Session::get("ownership") === 'Sendirian Berhad' )
+                x-data="{ tabs: 'Sendirian Berhad' }"
+            @elseif(Session::get("Tab") === 'Perkongsian')
+                x-data="{ tabs: 'Perkongsian' }"
+            @endif
+        @else
+            x-data="{ tab: '' }"
+        @endif
+    >
         @csrf
 
         <div class="my-8 px-4">
