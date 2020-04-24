@@ -342,20 +342,28 @@
                             <button
                                 class="px-3 py-2 font-medium text-sm leading-5 rounded-md text-gray-500 hover:text-gray-700 focus:outline-none focus:text-indigo-600 focus:bg-indigo-50"
                                 :class="{ 'text-indigo-700 bg-indigo-100 focus:outline-none focus:text-indigo-800 focus:bg-indigo-200' : tab === 'tab1' }"
-                                @click="tab='tab1'; console.log(tab);">
+                                @click="tab='tab1'">
                                 Maklumat Peribadi
                             </button>
                             <button
                                 class="ml-4 px-3 py-2 font-medium text-sm leading-5 rounded-md text-gray-500 hover:text-gray-700 focus:outline-none focus:text-indigo-600 focus:bg-indigo-50"
                                 :class="{ 'text-indigo-700 bg-indigo-100 focus:outline-none focus:text-indigo-800 focus:bg-indigo-200' : tab === 'tab2' }"
-                                @click="tab='tab2'; console.log(tab);"
+                                @if(is_null(auth()->user()->peribadi))
+                                @else
+                                    @click="tab='tab2'"
+                                @endif
                                 >
                                 Maklumat Perniagaan
                             </button>
                             <button
                                 class="ml-4 px-3 py-2 font-medium text-sm leading-5 rounded-md text-gray-500 hover:text-gray-700 focus:outline-none focus:text-indigo-600 focus:bg-indigo-50"
                                 :class="{ 'text-indigo-700 bg-indigo-100 focus:outline-none focus:text-indigo-800 focus:bg-indigo-200' : tab === 'tab3' }"
-                                @click="tab='tab3'; console.log(tab);">
+                                
+                                @if(is_null(auth()->user()->perniagaan))
+                                @else
+                                    @click="tab='tab3'"
+                                @endif
+                                >
                                 Maklumat Pinjaman
                             </button>
 
