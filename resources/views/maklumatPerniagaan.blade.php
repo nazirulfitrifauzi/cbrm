@@ -1,7 +1,5 @@
 <div id="tab2" x-show="tab === 'tab2'">
     <form method="post" action="{{ route('home.storePerniagaan') }}" 
-        x-data="{ tabs: '' }"
-
         @if (Session::has('ownership'))
             @if (Session::get("ownership") === 'Sendirian Berhad' )
                 x-data="{ tabs: 'Sendirian Berhad' }"
@@ -9,7 +7,7 @@
                 x-data="{ tabs: 'Perkongsian' }"
             @endif
         @else
-            x-data="{ tab: '' }"
+            x-data="{ tabs: '' }"
         @endif
     >
         @csrf
