@@ -18,8 +18,7 @@
                             <div class="grid grid-cols-6 gap-6" x-data="{ tab: '' }">
                                 <div class="col-span-6 sm:col-span-6">
                                     <label for="business_name"
-                                        class="block text-sm font-medium leading-5 text-gray-700">Nama
-                                        Perniagaan/Syarikat</label>
+                                        class="block text-sm font-medium leading-5 text-gray-700">Nama Perniagaan/Syarikat <span class="text-red-700">*</span></label>
                                     <input id="business_name" name="business_name"
                                         value="{{ isset(auth()->user()->perniagaan->business_name) ? auth()->user()->perniagaan->business_name : old('business_name') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
@@ -32,7 +31,7 @@
 
                                     <div class="col-span-6 sm:col-span-6">
                                         <label for="business_sector"
-                                            class="block text-sm font-medium leading-5 text-gray-700">Sektor Perniagaan</label>
+                                            class="block text-sm font-medium leading-5 text-gray-700">Sektor Perniagaan <span class="text-red-700">*</span></label>
                                         <select id="business_sector" name="business_sector"
                                             class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                                                 <option value="">Sila Pilih Sektor Perniagaan</option>
@@ -59,8 +58,7 @@
 
                                 <div class="col-span-6 sm:col-span-6">
                                     <label for="business_activity"
-                                        class="block text-sm font-medium leading-5 text-gray-700">Aktiviti
-                                        Perniagaan/Projek</label>
+                                        class="block text-sm font-medium leading-5 text-gray-700">Aktiviti Perniagaan/Projek <span class="text-red-700">*</span></label>
                                     <select id="business_activity" name="business_activity"
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                                         <option value="">Sila Pilih Aktiviti Perniagaan</option>
@@ -87,8 +85,7 @@
 
                                 <div class="col-span-6">
                                     <label for="business_address1"
-                                        class="block text-sm font-medium leading-5 text-gray-700">Alamat
-                                        Perniagaan/Permis/Projek</label>
+                                        class="block text-sm font-medium leading-5 text-gray-700">Alamat Perniagaan/Permis/Projek <span class="text-red-700">*</span></label>
                                     <input id="business_address1" name="business_address1"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
                                         value="{{ isset(auth()->user()->perniagaan->business_address1) ? auth()->user()->perniagaan->business_address1 : old('business_address1') }}" />
@@ -110,7 +107,7 @@
 
                                 <div class="col-span-6 sm:col-span-3 lg:col-span-2">
                                     <label for="business_postcode"
-                                        class="block text-sm font-medium leading-5 text-gray-700">Poskod</label>
+                                        class="block text-sm font-medium leading-5 text-gray-700">Poskod <span class="text-red-700">*</span></label>
                                     <input id="business_postcode" name="business_postcode" minlength="5" maxlength="5"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
                                         value="{{ isset(auth()->user()->perniagaan->business_postcode) ? auth()->user()->perniagaan->business_postcode : old('business_postcode') }}" />
@@ -123,7 +120,7 @@
 
                                 <div class="col-span-6 sm:col-span-6 lg:col-span-2">
                                     <label for="business_city"
-                                        class="block text-sm font-medium leading-5 text-gray-700">Bandar</label>
+                                        class="block text-sm font-medium leading-5 text-gray-700">Bandar <span class="text-red-700">*</span></label>
                                     <input id="business_city" name="business_city"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
                                         value="{{ isset(auth()->user()->perniagaan->business_city) ? auth()->user()->perniagaan->business_city : old('business_city') }}" />
@@ -136,10 +133,10 @@
 
                                 <div class="col-span-6 sm:col-span-3 lg:col-span-2">
                                     <label for="business_state"
-                                        class="block text-sm font-medium leading-5 text-gray-700">Negeri</label>
+                                        class="block text-sm font-medium leading-5 text-gray-700">Negeri <span class="text-red-700">*</span></label>
                                     <select id="business_state" name="business_state"
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
-                                        <option value="">Sila Pilih Negeri</option>
+                                        <option value="">Sila Pilih Negeri <span class="text-red-700">*</span></option>
                                         @foreach($negerix as $negerix4)
                                         <option value="{{ $negerix4->kodnegeri }}" 
                                             @if(isset(auth()->user()->perniagaan->business_state))
@@ -163,8 +160,7 @@
 
                                 <div class="col-span-6 sm:col-span-3">
                                     <label for="business_phone"
-                                        class="block text-sm font-medium leading-5 text-gray-700">No
-                                        Telefon (Perniagaan)</label>
+                                        class="block text-sm font-medium leading-5 text-gray-700">No Telefon (Perniagaan)</label>
                                     <input id="business_phone" name="business_phone"
                                         value="{{ isset(auth()->user()->perniagaan->business_phone) ? auth()->user()->perniagaan->business_phone : old('business_phone') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
@@ -177,8 +173,7 @@
 
                                 <div class="col-span-6 sm:col-span-3">
                                     <label for="business_phone_hp"
-                                        class="block text-sm font-medium leading-5 text-gray-700">No
-                                        Telefon (HP) - cth (0123456789)</label>
+                                        class="block text-sm font-medium leading-5 text-gray-700">No Telefon (HP) - cth (0123456789) <span class="text-red-700">*</span></label>
                                     <input id="business_phone_hp" name="business_phone_hp"
                                         value="{{ isset(auth()->user()->perniagaan->business_phone_hp) ? auth()->user()->perniagaan->business_phone_hp : old('business_phone_hp') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
@@ -191,7 +186,7 @@
 
                                 <div class="col-span-6 sm:col-span-3 lg:col-span-2">
                                     <label for="business_premise"
-                                        class="block text-sm font-medium leading-5 text-gray-700">Status Premis</label>
+                                        class="block text-sm font-medium leading-5 text-gray-700">Status Premis <span class="text-red-700">*</span></label>
                                     <select id="business_premise" name="business_premise"
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                                         <option value="">Sila Pilih Status Premis</option>
@@ -220,8 +215,7 @@
                                 
                                 <div class="col-span-6 sm:col-span-3 lg:col-span-2">
                                     <label for="business_ownership"
-                                        class="block text-sm font-medium leading-5 text-gray-700">Permilikan
-                                        Perniagaan</label>
+                                        class="block text-sm font-medium leading-5 text-gray-700">Permilikan Perniagaan <span class="text-red-700">*</span></label>
                                     <select id="business_ownership" name="business_ownership"
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
                                         @change="tab = $event.target.value">
@@ -254,9 +248,7 @@
 
                                 <div class="col-span-6 sm:col-span-2" x-show="tab === 'tab1'">
                                     <fieldset>
-                                        <legend class="block text-sm font-medium leading-5 text-gray-700">Modal Berbayar
-                                        </legend>
-                                        {{-- <p class="text-sm leading-5 text-gray-500">These are delivered via SMS to your mobile phone.</p> --}}
+                                        <legend class="block text-sm font-medium leading-5 text-gray-700">Modal Berbayar <span class="text-red-700">*</span></legend>
 
                                         <div class="flex items-center">
                                             <label for="business_modal"
@@ -279,13 +271,12 @@
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3 lg:col-span-6">
-                                    <label class="block text-sm font-medium leading-5 text-gray-700">Masa
-                                        Berniaga</label>
+                                    <label class="block text-sm font-medium leading-5 text-gray-700">Masa Berniaga</label>
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3 lg:col-span-3">
                                     <label for="business_open"
-                                        class="block text-sm font-medium leading-5 text-gray-700">Dari</label>
+                                        class="block text-sm font-medium leading-5 text-gray-700">Dari <span class="text-red-700">*</span></label>
                                     <input id="business_open" name="business_open" type="time"
                                         value="{{ isset(auth()->user()->perniagaan->business_open) ? auth()->user()->perniagaan->business_open : old('business_open') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
@@ -298,7 +289,7 @@
 
                                 <div class="col-span-6 sm:col-span-3 lg:col-span-3">
                                     <label for="business_closed"
-                                        class="block text-sm font-medium leading-5 text-gray-700">hingga</label>
+                                        class="block text-sm font-medium leading-5 text-gray-700">hingga <span class="text-red-700">*</span></label>
                                     <input id="business_closed" name="business_closed" type="time"
                                         value="{{ isset(auth()->user()->perniagaan->business_closed) ? auth()->user()->perniagaan->business_closed : old('business_closed') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />

@@ -17,7 +17,7 @@
                             <div class="grid grid-cols-6 gap-6">
                                     <div class="col-span-6 sm:col-span-3">
                                         <label for="purchase_price"
-                                            class="block text-sm font-medium leading-5 text-gray-700">Jumlah Pembiayaan Yang Diperlukan</label>
+                                            class="block text-sm font-medium leading-5 text-gray-700">Jumlah Pembiayaan Yang Diperlukan <span class="text-red-700">*</span></label>
                                         <select id="purchase_price" name="purchase_price"
                                             class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                                                 <option value="">Sila Pilih Jumlah Pembiayaan</option>
@@ -110,7 +110,7 @@
                                     </div>
                                     <div class="col-span-6 sm:col-span-3">
                                         <label for="duration"
-                                            class="block text-sm font-medium leading-5 text-gray-700">Tempoh Pembayaran</label>
+                                            class="block text-sm font-medium leading-5 text-gray-700">Tempoh Pembayaran <span class="text-red-700">*</span></label>
                                         <select id="duration" name="duration"
                                             class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                                                 <option value="">Sila Pilih Tempoh Pembayaran</option>
@@ -171,7 +171,7 @@
                             <div class="grid grid-cols-6 gap-6 mt-6">
                                 <div class="col-span-6 sm:col-span-6">
                                     <label for="reference_name"
-                                        class="block text-sm font-medium leading-5 text-gray-700">Nama</label>
+                                        class="block text-sm font-medium leading-5 text-gray-700">Nama <span class="text-red-700">*</span></label>
                                     <input id="reference_name" name="reference_name"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
                                         value="{{ isset(auth()->user()->pinjaman->reference_name) ? auth()->user()->pinjaman->reference_name : old('reference_name') }}" />
@@ -187,7 +187,7 @@
                             <div class="grid grid-cols-6 gap-6 mt-6">
                                 <div class="col-span-6">
                                     <label for="reference_address1"
-                                        class="block text-sm font-medium leading-5 text-gray-700">Alamat</label>
+                                        class="block text-sm font-medium leading-5 text-gray-700">Alamat <span class="text-red-700">*</span></label>
                                     <input id="reference_address1" name="reference_address1"
                                         value="{{ isset(auth()->user()->pinjaman->reference_address1) ? auth()->user()->pinjaman->reference_address1 : old('reference_address1') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
@@ -211,7 +211,7 @@
 
                                 <div class="col-span-6 sm:col-span-3 lg:col-span-2">
                                     <label for="reference_postcode"
-                                        class="block text-sm font-medium leading-5 text-gray-700">Poskod</label>
+                                        class="block text-sm font-medium leading-5 text-gray-700">Poskod <span class="text-red-700">*</span></label>
                                     <input id="reference_postcode" name="reference_postcode" minlength="5" maxlength="5"
                                         value="{{ isset(auth()->user()->pinjaman->reference_postcode) ? auth()->user()->pinjaman->reference_postcode : old('reference_postcode') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
@@ -225,7 +225,7 @@
 
                                 <div class="col-span-6 sm:col-span-6 lg:col-span-2">
                                     <label for="reference_city"
-                                        class="block text-sm font-medium leading-5 text-gray-700">Bandar</label>
+                                        class="block text-sm font-medium leading-5 text-gray-700">Bandar <span class="text-red-700">*</span></label>
                                     <input id="reference_city" name="reference_city"
                                         value="{{ isset(auth()->user()->pinjaman->reference_city) ? auth()->user()->pinjaman->reference_city : old('reference_city') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
@@ -239,7 +239,7 @@
 
                                 <div class="col-span-6 sm:col-span-3 lg:col-span-2">
                                     <label for="reference_state"
-                                        class="block text-sm font-medium leading-5 text-gray-700">Negeri</label>
+                                        class="block text-sm font-medium leading-5 text-gray-700">Negeri <span class="text-red-700">*</span></label>
                                     <select id="reference_state" name="reference_state"
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                                         <option value="">Sila Pilih Negeri</option>
@@ -267,8 +267,7 @@
 
                                 <div class="col-span-6 sm:col-span-3">
                                     <label for="reference_relation"
-                                        class="block text-sm font-medium leading-5 text-gray-700">Hubungan Dengan
-                                        Pemohon</label>
+                                        class="block text-sm font-medium leading-5 text-gray-700">Hubungan Dengan Pemohon <span class="text-red-700">*</span></label>
                                     <input id="reference_relation" name="reference_relation"
                                         value="{{ isset(auth()->user()->pinjaman->reference_relation) ? auth()->user()->pinjaman->reference_relation : old('reference_relation') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
@@ -282,7 +281,7 @@
 
                                 <div class="col-span-6 sm:col-span-3">
                                     <label for="reference_phone"
-                                        class="block text-sm font-medium leading-5 text-gray-700">No Telefon - cth (0123456789)</label>
+                                        class="block text-sm font-medium leading-5 text-gray-700">No Telefon - cth (0123456789) <span class="text-red-700">*</span></label>
                                     <input id="reference_phone" name="reference_phone"
                                         value="{{ isset(auth()->user()->pinjaman->reference_phone) ? auth()->user()->pinjaman->reference_phone : old('reference_phone') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
@@ -318,7 +317,7 @@
                         <div class="px-4 py-5 bg-white sm:p-6">
                             <div class="mt-1">
                                 <label for="profile_pic" class="block text-sm leading-5 font-medium text-gray-700">
-                                    Kad Pengenalan
+                                    Kad Pengenalan <span class="text-red-700">*</span>
                                 </label>
                                 <div id="ic-div"
                                     class="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 @error('doc_ic_no') border-red-500 @enderror border-dashed rounded-md cursor-pointer"
@@ -469,7 +468,7 @@
 
                             <div class="mt-6">
                                 <label for="profile_pic" class="block text-sm leading-5 font-medium text-gray-700">
-                                    SSM
+                                    SSM <span class="text-red-700">*</span>
                                 </label>
                                 <div id="ssm-div"
                                     class="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 @error('doc_ssm') border-red-500 @enderror border-dashed rounded-md cursor-pointer"
@@ -625,7 +624,7 @@
 
                             <div class="mt-6">
                                 <label for="profile_pic" class="block text-sm leading-5 font-medium text-gray-700">
-                                    Penyata Bank
+                                    Penyata Bank <span class="text-red-700">*</span>
                                 </label>
                                 <div id="bank-div"
                                     class="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 @error('doc_bank') border-red-500 @enderror border-dashed rounded-md cursor-pointer"
@@ -774,7 +773,7 @@
 
                             <div class="mt-6">
                                 <label for="profile_pic" class="block text-sm leading-5 font-medium text-gray-700">
-                                    Bil Utiliti
+                                    Bil Utiliti <span class="text-red-700">*</span>
                                 </label>
                                 <div id="bil-div"
                                     class="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 @error('doc_bil') border-red-500 @enderror border-dashed rounded-md cursor-pointer"

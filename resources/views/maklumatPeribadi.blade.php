@@ -18,7 +18,7 @@
                             <div class="grid grid-cols-6 gap-6">
                                 <div class="col-span-6 sm:col-span-3">
                                     <label for="tekun_state"
-                                        class="block text-sm font-medium leading-5 text-gray-700">Negeri</label>
+                                        class="block text-sm font-medium leading-5 text-gray-700">Negeri <span class="text-red-700">*</span></label>
                                     <select id="tekun_state" name="tekun_state"
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                                         <option value="">Sila Pilih Negeri</option>
@@ -45,7 +45,7 @@
 
                                 <div class="col-span-6 sm:col-span-3">
                                     <label for="tekun_branch"
-                                        class="block text-sm font-medium leading-5 text-gray-700">Cawangan</label>
+                                        class="block text-sm font-medium leading-5 text-gray-700">Cawangan <span class="text-red-700">*</span></label>
                                     <select id="tekun_branch" name="tekun_branch"
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                                         <option value="">Sila Pilih Cawangan</option>
@@ -74,8 +74,7 @@
                             <div class="grid grid-cols-6 gap-6 mt-6">
                                 <div class="col-span-6 sm:col-span-3">
                                     <label for="business_status"
-                                        class="block text-sm font-medium leading-5 text-gray-700">Status
-                                        Perniagaan</label>
+                                        class="block text-sm font-medium leading-5 text-gray-700">Status Perniagaan <span class="text-red-700">*</span></label>
                                     <select id="business_status" name="business_status"
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                                         <option value="">Sila Pilih Status Perniagaan</option>
@@ -109,8 +108,7 @@
 
                                 <div class="col-span-6 sm:col-span-3">
                                     <fieldset>
-                                        <legend class="block text-sm font-medium leading-5 text-gray-700">Usahawan TEKUN
-                                        </legend>
+                                        <legend class="block text-sm font-medium leading-5 text-gray-700">Usahawan TEKUN  <span class="text-red-700">*</span></legend>
                                         {{-- <p class="text-sm leading-5 text-gray-500">These are delivered via SMS to your mobile phone.</p> --}}
                                         <div class="mt-4">
                                             <div class="flex items-center">
@@ -154,8 +152,7 @@
 
                             <div class="grid grid-cols-6 gap-6 mt-6">
                                 <div class="col-span-6 sm:col-span-3">
-                                    <label for="bank1" class="block text-sm font-medium leading-5 text-gray-700">Nama
-                                        Bank</label>
+                                    <label for="bank1" class="block text-sm font-medium leading-5 text-gray-700">Nama Bank <span class="text-red-700">*</span></label>
                                     <select id="bank1" name="bank1"
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                                         <option value="">Sila Pilih Nama Bank</option>
@@ -181,48 +178,16 @@
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
-                                    <label for="bank1_acct" class="block text-sm font-medium leading-5 text-gray-700">No
-                                        Akaun Bank</label>
+                                    <label for="bank1_acct" class="block text-sm font-medium leading-5 text-gray-700">No Akaun Bank <span class="text-red-700">*</span></label>
                                     <input id="bank1_acct" name="bank1_acct"
                                         value="{{ isset(auth()->user()->peribadi->bank1_acct) ? auth()->user()->peribadi->bank1_acct : old('bank1_acct') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                                         @error('bank1_acct')
-                                                    <p class="text-red-500 text-xs italic mt-4">
-                                                        {{ $message }}
-                                                    </p>
-                                                @enderror
-
+                                            <p class="text-red-500 text-xs italic mt-4">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
                                 </div>
-
-                                {{-- <div class="col-span-6 sm:col-span-3">
-                                    <label for="bank2" class="block text-sm font-medium leading-5 text-gray-700">Nama
-                                        Bank 2</label>
-                                    <select id="bank2" name="bank2"
-                                        class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
-                                        @foreach($bank as $banks2)
-                                            <option value="{{ $banks2->id }}" 
-                                                @if(isset(auth()->user()->peribadi->bank2))
-                                                    @if(auth()->user()->peribadi->bank2 == $banks2->id) 
-                                                        selected 
-                                                    @endif @else
-                                                @endif
-                                            >{{ $banks2->nama_bank }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-
-                                <div class="col-span-6 sm:col-span-3">
-                                    <label for="bank2_acct" class="block text-sm font-medium leading-5 text-gray-700">No
-                                        Akaun Bank 2</label>
-                                    <input id="bank2_acct" name="bank2_acct"
-                                        value="{{ isset(auth()->user()->peribadi->bank2_acct) ? auth()->user()->peribadi->bank2_acct : old('bank2_acct') }}"
-                                        class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-                                        @error('bank2_acct')
-                                                    <p class="text-red-500 text-xs italic mt-4">
-                                                        {{ $message }}
-                                                    </p>
-                                                @enderror
-                                </div> --}}
                             </div>
                         </div>
                     </div>
@@ -250,9 +215,7 @@
                     <div class="shadow overflow-hidden sm:rounded-md">
                         <div class="px-4 py-5 bg-white sm:p-6">
                             <div class="mt-1">
-                                <label for="profile_pic" class="block text-sm leading-5 font-medium text-gray-700">
-                                    Gambar
-                                </label>
+                                <label for="profile_pic" class="block text-sm leading-5 font-medium text-gray-700">Gambar <span class="text-red-700">*</span></label>
 
                                 @if(isset(auth()->user()->peribadi->gambar))
                                 <div class="mt-2 px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md"
@@ -397,8 +360,7 @@
 
                             <div class="grid grid-cols-6 gap-6 mt-6">
                                 <div class="col-span-6 sm:col-span-6">
-                                    <label for="name" class="block text-sm font-medium leading-5 text-gray-700">Nama
-                                        Pemohon</label>
+                                    <label for="name" class="block text-sm font-medium leading-5 text-gray-700">Nama Pemohon <span class="text-red-700">*</span></label>
                                     <input id="name" name="name" value="{{ strtoupper(auth()->user()->name) }}" readonly
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                                         @error('name')
@@ -409,8 +371,7 @@
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
-                                    <label for="ic_no" class="block text-sm font-medium leading-5 text-gray-700">No. KP
-                                        (Baru)</label>
+                                    <label for="ic_no" class="block text-sm font-medium leading-5 text-gray-700">No. KP (Baru) <span class="text-red-700">*</span></label>
                                     <input id="ic_no" name="ic_no" value="{{ auth()->user()->ic_no }}" readonly
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                                         @error('ic_no')
@@ -436,8 +397,7 @@
                             <div class="grid grid-cols-6 gap-6 mt-6">
                                 <div class="col-span-6 sm:col-span-3">
                                     <fieldset>
-                                        <legend class="block text-sm font-medium leading-5 text-gray-700">Jantina
-                                        </legend>
+                                        <legend class="block text-sm font-medium leading-5 text-gray-700">Jantina <span class="text-red-700">*</span></legend>
                                         {{-- <p class="text-sm leading-5 text-gray-500">These are delivered via SMS to your mobile phone.</p> --}}
                                         <div class="mt-3">
                                             <div class="flex items-center">
@@ -473,7 +433,7 @@
 
                                 <div class="col-span-6 sm:col-span-3">
                                     <label for="religion"
-                                        class="block text-sm font-medium leading-5 text-gray-700">Agama</label>
+                                        class="block text-sm font-medium leading-5 text-gray-700">Agama <span class="text-red-700">*</span></label>
                                     <select id="religion" name="religion"
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                                         <option value="">Sila Pilih Agama</option>
@@ -508,17 +468,17 @@
                                             @endif>Lain-lain</option>
                                     </select>
                                     @error('religion')
-                                                    <p class="text-red-500 text-xs italic mt-4">
-                                                        {{ $message }}
-                                                    </p>
-                                                @enderror
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
                                 </div>
                             </div>
 
                             <div class="grid grid-cols-6 gap-6 mt-6">
                                 <div class="col-span-6 sm:col-span-2">
                                     <label for="birthdate"
-                                        class="block text-sm font-medium leading-5 text-gray-700">Tarikh Lahir</label>
+                                        class="block text-sm font-medium leading-5 text-gray-700">Tarikh Lahir <span class="text-red-700">*</span></label>
                                     <input id="birthdate" name="birthdate" value="" readonly class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                                     @error('birthdate')
                                         <p class="text-red-500 text-xs italic mt-4">
@@ -529,7 +489,7 @@
 
                                 <div class="col-span-6 sm:col-span-2">
                                     <label for="race"
-                                        class="block text-sm font-medium leading-5 text-gray-700">Bangsa/Kaum</label>
+                                        class="block text-sm font-medium leading-5 text-gray-700">Bangsa/Kaum <span class="text-red-700">*</span></label>
                                     <select id="race" name="race"
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                                         <option value="">Sila Pilih Bangsa/Kaum</option>
@@ -573,15 +533,15 @@
                                             @endif>Siam</option>
                                     </select>
                                     @error('race')
-                                                    <p class="text-red-500 text-xs italic mt-4">
-                                                        {{ $message }}
-                                                    </p>
-                                                @enderror
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-2">
                                     <label for="age"
-                                        class="block text-sm font-medium leading-5 text-gray-700">Umur</label>
+                                        class="block text-sm font-medium leading-5 text-gray-700">Umur <span class="text-red-700">*</span></label>
                                     <input id="age" name="age" readonly
                                         value="{{ isset(auth()->user()->peribadi->age) ? auth()->user()->peribadi->age : old('age') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
@@ -593,8 +553,7 @@
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-2">
-                                    <label for="marital" class="block text-sm font-medium leading-5 text-gray-700">Taraf
-                                        Perkahwinan</label>
+                                    <label for="marital" class="block text-sm font-medium leading-5 text-gray-700">Taraf Perkahwinan <span class="text-red-700">*</span></label>
                                     <select id="marital" name="marital"
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                                         <option value="">Sila Pilih Taraf Perkahwinan</option>
@@ -630,30 +589,29 @@
                                         </option>
                                     </select>
                                     @error('marital')
-                                                    <p class="text-red-500 text-xs italic mt-4">
-                                                        {{ $message }}
-                                                    </p>
-                                                @enderror
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-2">
                                     <label for="dependent"
-                                        class="block text-sm font-medium leading-5 text-gray-700">Bilangan
-                                        Tanggungan</label>
+                                        class="block text-sm font-medium leading-5 text-gray-700">Bilangan Tanggungan <span class="text-red-700">*</span></label>
                                     <input id="dependent" name="dependent" type="number" min="0"
                                         value="{{ isset(auth()->user()->peribadi->dependent) ? auth()->user()->peribadi->dependent : old('dependent') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                                         @error('dependent')
-                                                    <p class="text-red-500 text-xs italic mt-4">
-                                                        {{ $message }}
-                                                    </p>
-                                                @enderror
+                                            <p class="text-red-500 text-xs italic mt-4">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-2">
                                     <fieldset>
-                                        <legend class="block text-sm font-medium leading-5 text-gray-700">Orang Kelainan
-                                            Upaya</legend>
+                                        <legend class="block text-sm font-medium leading-5 text-gray-700">Orang Kelainan Upaya <span class="text-red-700">*</span></legend>
+                                        {{-- <p class="text-sm leading-5 text-gray-500">These are delivered via SMS to your mobile phone.</p> --}}
                                         <div class="mt-3">
                                             <div class="flex items-center">
                                                 <input id="oku_yes" name="oku" value="Ya" type="radio"
@@ -684,39 +642,39 @@
                                                 </label>
                                             </div>
                                             @error('oku')
-                                                    <p class="text-red-500 text-xs italic mt-4">
-                                                        {{ $message }}
-                                                    </p>
-                                                @enderror
+                                                <p class="text-red-500 text-xs italic mt-4">
+                                                    {{ $message }}
+                                                </p>
+                                            @enderror
                                         </div>
                                     </fieldset>
                                 </div>
 
                                 <div class="col-span-6">
                                     <label for="address1"
-                                        class="block text-sm font-medium leading-5 text-gray-700">Alamat Kediaman</label>
+                                        class="block text-sm font-medium leading-5 text-gray-700">Alamat Kediaman <span class="text-red-700">*</span></label>
                                     <input id="address1" name="address1"
                                         value="{{ isset(auth()->user()->peribadi->address1) ? auth()->user()->peribadi->address1 : old('address1') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                                         @error('address1')
-                                                    <p class="text-red-500 text-xs italic mt-4">
-                                                        {{ $message }}
-                                                    </p>
-                                                @enderror
+                                            <p class="text-red-500 text-xs italic mt-4">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
 
                                     <input id="address2" name="address2"
                                         value="{{ isset(auth()->user()->peribadi->address2) ? auth()->user()->peribadi->address2 : old('address2') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                                         @error('address2')
-                                                    <p class="text-red-500 text-xs italic mt-4">
-                                                        {{ $message }}
-                                                    </p>
-                                                @enderror
+                                            <p class="text-red-500 text-xs italic mt-4">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3 lg:col-span-2">
                                     <label for="postcode"
-                                        class="block text-sm font-medium leading-5 text-gray-700">Poskod</label>
+                                        class="block text-sm font-medium leading-5 text-gray-700">Poskod <span class="text-red-700">*</span></label>
                                     <input id="postcode" name="postcode" minlength="5" maxlength="5"
                                         value="{{ isset(auth()->user()->peribadi->postcode) ? auth()->user()->peribadi->postcode : old('postcode') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
@@ -729,7 +687,7 @@
 
                                 <div class="col-span-6 sm:col-span-6 lg:col-span-2">
                                     <label for="city"
-                                        class="block text-sm font-medium leading-5 text-gray-700">Bandar</label>
+                                        class="block text-sm font-medium leading-5 text-gray-700">Bandar <span class="text-red-700">*</span></label>
                                     <input id="city" name="city"
                                         value="{{ isset(auth()->user()->peribadi->city) ? auth()->user()->peribadi->city : old('city') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
@@ -742,7 +700,7 @@
 
                                 <div class="col-span-6 sm:col-span-3 lg:col-span-2">
                                     <label for="state"
-                                        class="block text-sm font-medium leading-5 text-gray-700">Negeri</label>
+                                        class="block text-sm font-medium leading-5 text-gray-700">Negeri <span class="text-red-700">*</span></label>
                                     <select id="state" name="state"
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                                         <option value="">Sila Pilih</option>
@@ -761,38 +719,34 @@
                                         @endforeach
                                     </select>
                                     @error('state')
-                                                    <p class="text-red-500 text-xs italic mt-4">
-                                                        {{ $message }}
-                                                    </p>
-                                                @enderror
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
-                                    <label for="phone_home" class="block text-sm font-medium leading-5 text-gray-700">No
-                                        Telefon
-                                        (Rumah)</label>
+                                    <label for="phone_home" class="block text-sm font-medium leading-5 text-gray-700">No Telefon (Rumah)</label>
                                     <input id="phone_home" name="phone_home"
                                         value="{{ isset(auth()->user()->peribadi->phone_home) ? auth()->user()->peribadi->phone_home : old('phone_home') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                                         @error('phone_home')
-                                                    <p class="text-red-500 text-xs italic mt-4">
-                                                        {{ $message }}
-                                                    </p>
-                                                @enderror
+                                            <p class="text-red-500 text-xs italic mt-4">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
-                                    <label for="phone_hp" class="block text-sm font-medium leading-5 text-gray-700">No
-                                        Telefon
-                                        (HP) - cth (0123456789)</label>
+                                    <label for="phone_hp" class="block text-sm font-medium leading-5 text-gray-700">No Telefon (HP) - cth (0123456789) <span class="text-red-700">*</span></label>
                                     <input id="phone_hp" name="phone_hp" 
                                         value="{{ isset(auth()->user()->peribadi->phone_hp) ? auth()->user()->peribadi->phone_hp : old('phone_hp') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                                         @error('phone_hp')
-                                                    <p class="text-red-500 text-xs italic mt-4">
-                                                        {{ $message }}
-                                                    </p>
-                                                @enderror
+                                            <p class="text-red-500 text-xs italic mt-4">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
@@ -878,14 +832,14 @@
                             <div class="grid grid-cols-6 gap-6 mt-6">
                                 <div class="col-span-6 sm:col-span-2">
                                     <label for="email"
-                                        class="block text-sm font-medium leading-5 text-gray-700">Emel</label>
+                                        class="block text-sm font-medium leading-5 text-gray-700">Emel <span class="text-red-700">*</span></label>
                                     <input id="email" name="email" value="{{ auth()->user()->email }}" readonly
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                                         @error('email')
-                                                    <p class="text-red-500 text-xs italic mt-4">
-                                                        {{ $message }}
-                                                    </p>
-                                                @enderror
+                                            <p class="text-red-500 text-xs italic mt-4">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-2">
@@ -895,10 +849,10 @@
                                         value="{{ isset(auth()->user()->peribadi->facebook) ? auth()->user()->peribadi->facebook : old('facebook') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                                         @error('facebook')
-                                                    <p class="text-red-500 text-xs italic mt-4">
-                                                        {{ $message }}
-                                                    </p>
-                                                @enderror
+                                            <p class="text-red-500 text-xs italic mt-4">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-2">
@@ -908,51 +862,43 @@
                                         value="{{ isset(auth()->user()->peribadi->instagram) ? auth()->user()->peribadi->instagram : old('instagram') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                                         @error('instagram')
-                                                    <p class="text-red-500 text-xs italic mt-4">
-                                                        {{ $message }}
-                                                    </p>
-                                                @enderror
+                                            <p class="text-red-500 text-xs italic mt-4">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-2">
                                     <label for="profession"
-                                        class="block text-sm font-medium leading-5 text-gray-700">Perkerjaan
-                                        Sekarang</label>
+                                        class="block text-sm font-medium leading-5 text-gray-700">Perkerjaan Sekarang <span class="text-red-700">*</span></label>
                                     <input id="profession" name="profession"
                                         value="{{ isset(auth()->user()->peribadi->profession) ? auth()->user()->peribadi->profession : old('profession') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                                         @error('profession')
-                                                    <p class="text-red-500 text-xs italic mt-4">
-                                                        {{ $message }}
-                                                    </p>
-                                                @enderror
+                                            <p class="text-red-500 text-xs italic mt-4">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-2">
-                                    <fieldset>
-                                        <legend class="block text-sm font-medium leading-5 text-gray-700">Pendapatan
-                                            Bulanan
-                                        </legend>
-                                        {{-- <p class="text-sm leading-5 text-gray-500">These are delivered via SMS to your mobile phone.</p> --}}
-
-                                        <div class="flex items-center">
-                                            <label for="income"
-                                                class="block text-sm font-medium leading-5 text-gray-700">RM</label>
-                                            <label for="income" class="ml-3">
-                                                <span class="block text-sm leading-5 font-medium text-gray-700"><input
-                                                        id="income" name="income" min="0"
-                                                        value="{{ isset(auth()->user()->peribadi->income) ? auth()->user()->peribadi->income : old('income') }}"
-                                                        type="number" step="0.01"
-                                                        class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-                                                        @error('income')
-                                                    <p class="text-red-500 text-xs italic mt-4">
-                                                        {{ $message }}
-                                                    </p>
-                                                @enderror
-                                                    </span>
-                                            </label>
+                                    <label for="income" class="block text-sm font-medium leading-5 text-gray-700">Pendapatan Bulanan <span class="text-red-700">*</span></label>
+                                    <div class="mt-1 relative rounded-md shadow-sm">
+                                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                            <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                                RM
+                                            </span>
                                         </div>
-                                    </fieldset>
+                                        <input id="income" name="income"  min="0"
+                                            value="{{ isset(auth()->user()->peribadi->income) ? auth()->user()->peribadi->income : old('income') }}"
+                                            type="number" step="0.01"
+                                            class="mt-1 form-input block w-full pl-16 sm:pl-14 py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                            @error('income')
+                                                <p class="text-red-500 text-xs italic mt-4">
+                                                    {{ $message }}
+                                                </p>
+                                            @enderror
+                                    </div>
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-2">
@@ -1068,8 +1014,7 @@
 
                                 <div class="col-span-6 sm:col-span-6">
                                     <fieldset>
-                                        <legend class="block text-sm font-medium leading-5 text-gray-700">Jenis
-                                        </legend>
+                                        <legend class="block text-sm font-medium leading-5 text-gray-700">Jenis <span class="text-red-700">*</span></legend>
                                         {{-- <p class="text-sm leading-5 text-gray-500">These are delivered via SMS to your mobile phone.</p> --}}
                                         <div class="mt-4">
                                             <div class="flex items-center">
@@ -1126,22 +1071,20 @@
 
                                 <div class="col-span-6 sm:col-span-6">
                                     <label for="spouse_name"
-                                        class="block text-sm font-medium leading-5 text-gray-700">Nama
-                                        Suami/Isteri/Waris</label>
+                                        class="block text-sm font-medium leading-5 text-gray-700">Nama Suami/Isteri/Waris <span class="text-red-700">*</span></label>
                                     <input id="spouse_name" name="spouse_name"
                                         value="{{ isset(auth()->user()->peribadi->spouse_name) ? auth()->user()->peribadi->spouse_name : old('spouse_name') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                                         @error('spouse_name')
-                                                    <p class="text-red-500 text-xs italic mt-4">
-                                                        {{ $message }}
-                                                    </p>
-                                                @enderror
+                                            <p class="text-red-500 text-xs italic mt-4">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-6">
                                     <label for="spouse_ic_no"
-                                        class="block text-sm font-medium leading-5 text-gray-700">No.
-                                        KP (Baru) - cth (900000010000)</label>
+                                        class="block text-sm font-medium leading-5 text-gray-700">No. KP (Baru) - cth (900000010000) <span class="text-red-700">*</span></label>
                                     <input id="spouse_ic_no" name="spouse_ic_no"
                                         value="{{ isset(auth()->user()->peribadi->spouse_ic_no) ? auth()->user()->peribadi->spouse_ic_no : old('spouse_ic_no') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
@@ -1154,8 +1097,7 @@
 
                                 <div class="col-span-6 sm:col-span-6">
                                     <label for="spouse_profession"
-                                        class="block text-sm font-medium leading-5 text-gray-700">Perkerjaan
-                                        Sekarang</label>
+                                        class="block text-sm font-medium leading-5 text-gray-700">Perkerjaan Sekarang <span class="text-red-700">*</span></label>
                                     <input id="spouse_profession" name="spouse_profession"
                                         value="{{ isset(auth()->user()->peribadi->spouse_profession) ? auth()->user()->peribadi->spouse_profession : old('spouse_profession') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
