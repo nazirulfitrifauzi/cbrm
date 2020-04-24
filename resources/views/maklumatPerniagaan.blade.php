@@ -1,13 +1,13 @@
 <div id="tab2" x-show="tab === 'tab2'">
     <form method="post" action="{{ route('home.storePerniagaan') }}" 
-        @if (Session::has('ownership'))
-            @if (Session::get("ownership") === 'Sendirian Berhad' )
+        @if(is_null(auth()->Perniagaan->business_ownership))
+            x-data="{ tabs: '' }"
+        @else
+            @if(auth()->Perniagaan->business_ownership === 'Sendirian Berhad')
                 x-data="{ tabs: 'Sendirian Berhad' }"
-            @elseif(Session::get("Tab") === 'Perkongsian')
+            @elseif(auth()->Perniagaan->business_ownership === 'Perkongsian')
                 x-data="{ tabs: 'Perkongsian' }"
             @endif
-        @else
-            x-data="{ tabs: '' }"
         @endif
     >
         @csrf
