@@ -447,6 +447,29 @@ class HomeController extends Controller
             ]);
         } elseif (auth()->user()->perniagaan->business_ownership === 'Sendirian Berhad') {
             Perniagaan::where('user_id', auth()->user()->id)->update([
+                'partner_name'      => NULL,
+                'partner_ic'        => NULL,
+                'partner_address1'  => NULL,
+                'partner_address2'  => NULL,
+                'partner_city'      => NULL,
+                'partner_postcode'  => NULL,
+                'partner_state'     => NULL,
+                'partner_phone'     => NULL
+            ]);
+        } elseif (auth()->user()->perniagaan->business_ownership === 'Individu') {
+            Perniagaan::where('user_id', auth()->user()->id)->update([
+                'business_modal'    => NULL,
+                'partner_name'      => NULL,
+                'partner_ic'        => NULL,
+                'partner_address1'  => NULL,
+                'partner_address2'  => NULL,
+                'partner_city'      => NULL,
+                'partner_postcode'  => NULL,
+                'partner_state'     => NULL,
+                'partner_phone'     => NULL
+            ]);
+        } elseif (auth()->user()->perniagaan->business_ownership === 'Pemilikan Tunggal') {
+            Perniagaan::where('user_id', auth()->user()->id)->update([
                 'business_modal'    => NULL,
                 'partner_name'      => NULL,
                 'partner_ic'        => NULL,
