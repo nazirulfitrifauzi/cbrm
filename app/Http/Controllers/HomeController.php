@@ -393,7 +393,8 @@ class HomeController extends Controller
     {
         $this->validate($request, [
             'business_name'       => ['required', 'string'],
-            'business_sector'   => ['required'],
+            'business_no'         => ['required'],
+            'business_sector'     => ['required'],
             'business_activity'   => ['required'],
             'business_address1'   => ['required', 'string'],
             'business_postcode'   => ['required', 'numeric', 'min:5'],
@@ -404,14 +405,16 @@ class HomeController extends Controller
             'business_ownership'  => ['required'],
             // 'business_modal'      => ['required'], required if business_ownership = 'Sendirian Berhad'
             'business_open'       => ['required'],
-            'business_closed'     => ['required']
+            'business_closed'     => ['required'],
+            'business_income'     => ['required']
         ]);
 
         $perniagaan = Perniagaan::updateOrCreate([
             'user_id'               => auth()->user()->id
         ], [
             'business_name'         => $request->get('business_name'),
-            'business_sector'     => $request->get('business_sector'),
+            'business_no'           => $request->get('business_no'),
+            'business_sector'       => $request->get('business_sector'),
             'business_activity'     => $request->get('business_activity'),
             'business_address1'     => $request->get('business_address1'),
             'business_address2'     => $request->get('business_address2'),
@@ -424,7 +427,8 @@ class HomeController extends Controller
             'business_ownership'    => $request->get('business_ownership'),
             'business_modal'        => $request->get('business_modal'),
             'business_open'         => $request->get('business_open'),
-            'business_closed'       => $request->get('business_closed')
+            'business_closed'       => $request->get('business_closed'),
+            'business_income'         => $request->get('business_income')
         ]);
 
         $perniagaan->save();
@@ -442,6 +446,7 @@ class HomeController extends Controller
         $id = auth()->user()->id;
         $perniagaanArr = Perniagaan::select([
             'business_name',
+            'business_no',
             'business_sector',
             'business_activity',
             'business_address1',
@@ -453,7 +458,8 @@ class HomeController extends Controller
             'business_ownership',
             'business_modal',
             'business_open',
-            'business_closed'
+            'business_closed',
+            'business_income'
         ])->where('user_id', $id)->get()->toArray();
 
         $commaList = implode(', ', $perniagaanArr[0]);
