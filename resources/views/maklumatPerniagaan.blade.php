@@ -1,11 +1,11 @@
 <div id="tab2" x-show="tab === 'tab2'">
     <form method="post" action="{{ route('home.storePerniagaan') }}" 
-        @if(is_null(auth()->Perniagaan->business_ownership))
+        @if(is_null(auth()->user()->perniagaan->business_ownership))
             x-data="{ tabs: '' }"
         @else
-            @if(auth()->Perniagaan->business_ownership === 'Sendirian Berhad')
+            @if(auth()->user()->perniagaan->business_ownership === 'Sendirian Berhad')
                 x-data="{ tabs: 'Sendirian Berhad' }"
-            @elseif(auth()->Perniagaan->business_ownership === 'Perkongsian')
+            @elseif(auth()->user()->perniagaan->business_ownership === 'Perkongsian')
                 x-data="{ tabs: 'Perkongsian' }"
             @endif
         @endif
