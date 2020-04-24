@@ -428,7 +428,15 @@ class HomeController extends Controller
             'business_modal'        => $request->get('business_modal'),
             'business_open'         => $request->get('business_open'),
             'business_closed'       => $request->get('business_closed'),
-            'business_income'         => $request->get('business_income')
+            'business_income'       => $request->get('business_income'),
+            'partner_name'          => $request->get('partner_name'),
+            'partner_ic'            => $request->get('partner_ic'),
+            'partner_addres1'       => $request->get('partner_addres1'),
+            'partner_address2'      => $request->get('partner_address2'),
+            'partner_postcode'      => $request->get('partner_postcode'),
+            'partner_city'          => $request->get('partner_city'),
+            'partner_state'         => $request->get('partner_state'),
+            'partner_phone'         => $request->get('partner_phone'),
         ]);
 
         $perniagaan->save();
