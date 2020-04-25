@@ -12,6 +12,8 @@
                 x-data="{ tabs: 'Perkongsian' }"
             @elseif($errors->has('business_modal'))
                 x-data="{ tabs: 'Sendirian Berhad' }"
+            @else
+                x-data="{ tabs: ''}"
             @endif
         @else
             @if(is_null(auth()->user()->perniagaan))

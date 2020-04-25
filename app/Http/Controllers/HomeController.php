@@ -412,7 +412,7 @@ class HomeController extends Controller
             'partner_address1'      => ['required_if:business_ownership,==,Perkongsian'],
             'partner_postcode'      => ['required_if:business_ownership,==,Perkongsian'],
             'partner_city'          => ['required_if:business_ownership,==,Perkongsian'],
-            'partner_state'         => ['required_if:business_ownership,==,Perkongsian', 'alpha'],
+            'partner_state'         => ['required_if:business_ownership,==,Perkongsian'],
         ]);
 
         $perniagaan = Perniagaan::updateOrCreate([
