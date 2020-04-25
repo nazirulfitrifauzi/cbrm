@@ -493,10 +493,10 @@
                                         value="{{ isset(auth()->user()->perniagaan->partner_city) ? auth()->user()->perniagaan->partner_city : old('partner_city') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                                         @error('partner_city')
-                                                    <p class="text-red-500 text-xs italic mt-4">
-                                                        {{ $message }}
-                                                    </p>
-                                                @enderror
+                                            <p class="text-red-500 text-xs italic mt-4">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3 lg:col-span-2">
@@ -519,6 +519,11 @@
                                             >{{ $negerix3->namanegeri }}</option>
                                         @endforeach
                                     </select>
+                                    @error('partner_state')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
@@ -616,8 +621,8 @@
         $("#business_phone_hp").addClass("border-red-500");
         @enderror
 
-        @error('business_premis')
-        $("#business_premis").addClass("border-red-500");
+        @error('business_premise')
+        $("#business_premise").addClass("border-red-500");
         @enderror
 
         @error('business_ownership')
@@ -638,6 +643,30 @@
 
         @error('business_income')
         $("#business_income").addClass("border-red-500");
+        @enderror
+
+        @error('partner_name')
+        $("#partner_name").addClass("border-red-500");
+        @enderror
+
+        @error('partner_ic')
+        $("#partner_ic").addClass("border-red-500");
+        @enderror
+
+        @error('partner_address1')
+        $("#partner_address1").addClass("border-red-500");
+        @enderror
+
+        @error('partner_postcode')
+        $("#partner_postcode").addClass("border-red-500");
+        @enderror
+
+        @error('partner_city')
+        $("#partner_city").addClass("border-red-500");
+        @enderror
+
+        @error('partner_state')
+        $("#partner_state").addClass("border-red-500");
         @enderror
     });
 

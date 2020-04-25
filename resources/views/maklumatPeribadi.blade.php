@@ -653,12 +653,12 @@
                                                         class="block text-sm leading-5 font-medium text-gray-700">Tidak</span>
                                                 </label>
                                             </div>
-                                            @error('oku')
-                                                <p class="text-red-500 text-xs italic mt-4">
-                                                    {{ $message }}
-                                                </p>
-                                            @enderror
                                         </div>
+                                        @error('oku')
+                                            <p class="text-red-500 text-xs italic mt-4">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
                                     </fieldset>
                                 </div>
 
