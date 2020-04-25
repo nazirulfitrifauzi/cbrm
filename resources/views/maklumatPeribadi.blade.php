@@ -116,8 +116,11 @@
                                                     @if(isset(auth()->user()->peribadi->business_type))
                                                         @if(auth()->user()->peribadi->business_type == '1') 
                                                             checked 
-                                                        @endif 
+                                                        @else
+                                                            {{ old('business_type') == '1' ? 'checked':'' }}
+                                                        @endif
                                                     @else
+                                                        {{ old('business_type') == '1' ? 'checked':'' }}
                                                     @endif
                                                 class="form-radio h-4 w-4 text-indigo-600 transition duration-150
                                                 ease-in-out" />
@@ -130,8 +133,11 @@
                                                     @if(isset(auth()->user()->peribadi->business_type))
                                                         @if(auth()->user()->peribadi->business_type == '0') 
                                                             checked 
-                                                        @endif 
+                                                        @else
+                                                            {{ old('business_type') == '0' ? 'checked':'' }}
+                                                        @endif
                                                     @else
+                                                        {{ old('business_type') == '0' ? 'checked':'' }}
                                                     @endif
                                                 class="ml-8 form-radio h-4 w-4 text-indigo-600 transition duration-150
                                                 ease-in-out" />
@@ -618,8 +624,11 @@
                                                     @if(isset(auth()->user()->peribadi->oku))
                                                         @if(auth()->user()->peribadi->oku == 'Ya') 
                                                             checked 
-                                                        @endif 
+                                                        @else
+                                                            {{ old('oku') == 'Ya' ? 'checked':'' }}
+                                                        @endif
                                                     @else
+                                                        {{ old('oku') == 'Ya' ? 'checked':'' }}
                                                     @endif
                                                 class="form-radio h-4 w-4 text-indigo-600 transition duration-150
                                                 ease-in-out" />
@@ -631,8 +640,11 @@
                                                     @if(isset(auth()->user()->peribadi->oku))
                                                         @if(auth()->user()->peribadi->oku == 'Tidak') 
                                                             checked 
-                                                        @endif 
+                                                        @else
+                                                            {{ old('oku') == 'Tidak' ? 'checked':'' }}
+                                                        @endif
                                                     @else
+                                                        {{ old('oku') == 'Tidak' ? 'checked':'' }}
                                                     @endif
                                                 class="ml-8 form-radio h-4 w-4 text-indigo-600 transition duration-150
                                                 ease-in-out" />
@@ -1014,7 +1026,7 @@
 
                                 <div class="col-span-6 sm:col-span-6">
                                     <fieldset>
-                                        <legend class="block text-sm font-medium leading-5 text-gray-700">Jenis <span class="text-red-700">*</span></legend>
+                                        <legend class="block text-sm font-medium leading-5 text-gray-700">Hubungan <span class="text-red-700">*</span></legend>
                                         {{-- <p class="text-sm leading-5 text-gray-500">These are delivered via SMS to your mobile phone.</p> --}}
                                         <div class="mt-4">
                                             <div class="flex items-center">
@@ -1022,9 +1034,12 @@
                                                     @if(isset(auth()->user()->peribadi->spouse_type))
                                                         @if(auth()->user()->peribadi->spouse_type == 'H') 
                                                             checked 
-                                                        @endif 
+                                                        @else
+                                                            {{ old('spouse_type') == 'H' ? 'checked':'' }}
+                                                        @endif
                                                     @else
-                                                @endif
+                                                        {{ old('spouse_type') == 'H' ? 'checked':'' }}
+                                                    @endif
                                                 class="form-radio h-4 w-4 text-indigo-600 transition duration-150
                                                 ease-in-out" />
                                                 <label for="spouse_type_husband" class="ml-3">
@@ -1036,8 +1051,11 @@
                                                     @if(isset(auth()->user()->peribadi->spouse_type))
                                                         @if(auth()->user()->peribadi->spouse_type == 'W') 
                                                             checked 
-                                                        @endif 
+                                                        @else
+                                                            {{ old('spouse_type') == 'W' ? 'checked':'' }}
+                                                        @endif
                                                     @else
+                                                        {{ old('spouse_type') == 'W' ? 'checked':'' }}
                                                     @endif
                                                 class="ml-8 form-radio h-4 w-4 text-indigo-600 transition duration-150
                                                 ease-in-out" />
@@ -1050,8 +1068,11 @@
                                                     @if(isset(auth()->user()->peribadi->spouse_type))
                                                         @if(auth()->user()->peribadi->spouse_type == 'B') 
                                                             checked 
-                                                        @endif 
+                                                        @else
+                                                            {{ old('spouse_type') == 'B' ? 'checked':'' }}
+                                                        @endif
                                                     @else
+                                                        {{ old('spouse_type') == 'B' ? 'checked':'' }}
                                                     @endif
                                                 class="ml-8 form-radio h-4 w-4 text-indigo-600 transition duration-150
                                                 ease-in-out" />
