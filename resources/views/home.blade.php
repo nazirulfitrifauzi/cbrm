@@ -131,6 +131,7 @@
                             $errors->has('business_type') ||
                             $errors->has('bank1') ||
                             $errors->has('bank1_acct') ||
+                            $errors->has('gambar') ||
                             $errors->has('name') ||
                             $errors->has('ic_no') ||
                             $errors->has('gender') ||

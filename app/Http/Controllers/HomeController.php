@@ -112,7 +112,6 @@ class HomeController extends Controller
 
     public function status()
     {
-        // dd(auth()->user()->completed);
         if (auth()->user()->completed == "0") {
             return redirect('home');
         } else {
