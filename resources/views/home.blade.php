@@ -171,7 +171,13 @@
                             $errors->has('business_open') ||
                             $errors->has('business_closed') ||
                             $errors->has('business_no') ||
-                            $errors->has('business_income')
+                            $errors->has('business_income') ||
+                            $errors->has('partner_name') ||
+                            $errors->has('partner_ic') ||
+                            $errors->has('partner_address1') ||
+                            $errors->has('partner_postcode') ||
+                            $errors->has('partner_city') ||
+                            $errors->has('partner_state') 
                         ) 
                             x-data="{ tab: 'tab2' }"
                         @elseif(
