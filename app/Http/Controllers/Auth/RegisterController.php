@@ -53,6 +53,14 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'ic_no' => ['required', 'numeric'],
+            'age' => [
+                'numeric',
+                function ($attribute, $value, $fail) {
+                    if ($value < 18 || $value > 60) {
+                        $fail('Anda tidak layak memohon kerana syarat umur mesti berumur 18 tahun dan keatas dan tidak melebihi 60 tahun.');
+                    }
+                },
+            ],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -65,11 +73,17 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        // $age = $data['age'];
+        // if ($age < 18 || $age > 60) {
+        //     $msg = 'Anda tidak layak memohon kerana syarat umur mesti berumur 18 tahun dan keatas dan tidak melebihi 60 tahun.';
+        //     return back()->with(compact('error', 'msg'));
+        // } else {
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'ic_no' => $data['ic_no'],
             'password' => Hash::make($data['password']),
         ]);
+        // }
     }
 }

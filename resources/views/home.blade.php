@@ -523,12 +523,6 @@
             });
         }, 500);
 
-        // setTimeout(function () {
-        //     $(".notification").animate({
-        //         opacity: "0"
-        //     });
-        // }, 10000);
-
         setTimeout(function () {
             $('.notification').fadeOut('fast');
         }, 3000);
