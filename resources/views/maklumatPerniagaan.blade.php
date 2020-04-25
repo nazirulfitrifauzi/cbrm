@@ -219,19 +219,26 @@
                                         <option value="">Sila Pilih Status Premis</option>
                                         <option value="Sendiri" @if(isset(auth()->user()->perniagaan->business_premise))
                                             @if(auth()->user()->perniagaan->business_premise == 'Sendiri') selected
-                                            @endif @else @endif>Sendiri</option>
+                                            @else {{ old('business_premise') == 'Sendiri' ? 'selected':'' }} @endif
+                                            @else{{ old('business_premise') == 'Sendiri' ? 'selected':'' }}
+                                            @endif>Sendiri</option>
                                         <option value="Sewa" @if(isset(auth()->user()->perniagaan->business_premise))
-                                            @if(auth()->user()->perniagaan->business_premise == 'Sewa') selected @endif
-                                            @else @endif>Sewa</option>
+                                            @if(auth()->user()->perniagaan->business_premise == 'Sewa') selected
+                                            @else {{ old('business_premise') == 'Sewa' ? 'selected':'' }} @endif
+                                            @else{{ old('business_premise') == 'Sewa' ? 'selected':'' }}
+                                            @endif>Sewa</option>
                                         <option value="Keluarga" @if(isset(auth()->
                                             user()->perniagaan->business_premise))
                                             @if(auth()->user()->perniagaan->business_premise == 'Keluarga') selected
-                                            @endif @else @endif>Keluarga</option>
+                                            @else {{ old('business_premise') == 'Keluarga' ? 'selected':'' }} @endif
+                                            @else{{ old('business_premise') == 'Keluarga' ? 'selected':'' }}
+                                            @endif>Keluarga</option>
                                         <option value="Persatuan" @if(isset(auth()->
                                             user()->perniagaan->business_premise))
                                             @if(auth()->user()->perniagaan->business_premise == 'Persatuan') selected
-                                            @endif @else @endif>Persatuan
-                                        </option>
+                                            @else {{ old('business_premise') == 'Persatuan' ? 'selected':'' }} @endif
+                                            @else{{ old('business_premise') == 'Persatuan' ? 'selected':'' }}
+                                            @endif>Persatuan</option>
                                     </select>
                                     @error('business_premise')
                                     <p class="text-red-500 text-xs italic mt-4">
@@ -250,23 +257,27 @@
                                         <option value="Individu" @if(isset(auth()->
                                             user()->perniagaan->business_ownership))
                                             @if(auth()->user()->perniagaan->business_ownership == 'Individu') selected
-                                            @endif @else @endif
+                                            @else {{ old('business_ownership') == 'Individu' ? 'selected':'' }} @endif
+                                            @else{{ old('business_ownership') == 'Individu' ? 'selected':'' }} @endif
                                             x-bind:value="'Individu'">Individu</option>
                                         <option value="Pemilikan Tunggal" @if(isset(auth()->
                                             user()->perniagaan->business_ownership))
                                             @if(auth()->user()->perniagaan->business_ownership == 'Pemilikan Tunggal')
-                                            selected @endif @else @endif
+                                            selected @else {{ old('business_ownership') == 'Pemilikan Tunggal' ? 'selected':'' }} @endif
+                                            @else{{ old('business_ownership') == 'Pemilikan Tunggal' ? 'selected':'' }} @endif
                                             x-bind:value="'Pemilikan Tunggal'"> Pemilikan Tunggal </option>
                                         <option value="Perkongsian" @if(isset(auth()->
                                             user()->perniagaan->business_ownership))
                                             @if(auth()->user()->perniagaan->business_ownership == 'Perkongsian')
-                                            selected @endif @else @endif
+                                            selected @else {{ old('business_ownership') == 'Perkongsian' ? 'selected':'' }} @endif
+                                            @else{{ old('business_ownership') == 'Perkongsian' ? 'selected':'' }} @endif
                                             x-bind:value="'Perkongsian'"
                                             >Perkongsian </option>
                                         <option value="Sendirian Berhad" @if(isset(auth()->
                                             user()->perniagaan->business_ownership))
                                             @if(auth()->user()->perniagaan->business_ownership == 'Sendirian Berhad')
-                                            selected @endif @else @endif
+                                            selected @else {{ old('business_ownership') == 'Sendirian Berhad' ? 'selected':'' }} @endif
+                                            @else{{ old('business_ownership') == 'Sendirian Berhad' ? 'selected':'' }} @endif
                                             x-bind:value="'Sendirian Berhad'"
                                         > Sendirian Berhad </option>
                                     </select>
