@@ -25,81 +25,71 @@
                                                     @if(isset(auth()->user()->pinjaman->purchase_price))
                                                         @if(auth()->user()->pinjaman->purchase_price == '1') 
                                                             selected 
-                                                        @endif
-                                                    @else 
-                                                    @endif
+                                                        @else {{ old('purchase_price') == '1' ? 'selected':'' }} @endif
+                                                        @else{{ old('purchase_price') == '1' ? 'selected':'' }}@endif
                                                 >RM 1,000.00</option>
                                                 <option value="2" 
                                                     @if(isset(auth()->user()->pinjaman->purchase_price))
                                                         @if(auth()->user()->pinjaman->purchase_price == '2') 
                                                             selected 
-                                                        @endif
-                                                    @else 
-                                                    @endif
+                                                            @else {{ old('purchase_price') == '2' ? 'selected':'' }} @endif
+                                                            @else{{ old('purchase_price') == '2' ? 'selected':'' }}@endif
                                                 >RM 2,000.00</option>
                                                 <option value="3" 
                                                     @if(isset(auth()->user()->pinjaman->purchase_price))
                                                         @if(auth()->user()->pinjaman->purchase_price == '3') 
                                                             selected 
-                                                        @endif
-                                                    @else 
-                                                    @endif
+                                                            @else {{ old('purchase_price') == '3' ? 'selected':'' }} @endif
+                                                            @else{{ old('purchase_price') == '3' ? 'selected':'' }}@endif
                                                 >RM 3,000.00</option>
                                                 <option value="4" 
                                                     @if(isset(auth()->user()->pinjaman->purchase_price))
                                                         @if(auth()->user()->pinjaman->purchase_price == '4') 
                                                             selected 
-                                                        @endif
-                                                    @else 
-                                                    @endif
+                                                            @else {{ old('purchase_price') == '4' ? 'selected':'' }} @endif
+                                                            @else{{ old('purchase_price') == '4' ? 'selected':'' }}@endif
                                                 >RM 4,000.00</option>
                                                 <option value="5" 
                                                     @if(isset(auth()->user()->pinjaman->purchase_price))
                                                         @if(auth()->user()->pinjaman->purchase_price == '5') 
                                                             selected 
-                                                        @endif
-                                                    @else 
-                                                    @endif
+                                                            @else {{ old('purchase_price') == '5' ? 'selected':'' }} @endif
+                                                            @else{{ old('purchase_price') == '5' ? 'selected':'' }}@endif
                                                 >RM 5,000.00</option>
                                                 <option value="6" 
                                                     @if(isset(auth()->user()->pinjaman->purchase_price))
                                                         @if(auth()->user()->pinjaman->purchase_price == '6') 
                                                             selected 
-                                                        @endif
-                                                    @else 
-                                                    @endif
+                                                            @else {{ old('purchase_price') == '6' ? 'selected':'' }} @endif
+                                                            @else{{ old('purchase_price') == '6' ? 'selected':'' }}@endif
                                                 >RM 6,000.00</option>
                                                 <option value="7" 
                                                     @if(isset(auth()->user()->pinjaman->purchase_price))
                                                         @if(auth()->user()->pinjaman->purchase_price == '7') 
                                                             selected 
-                                                        @endif
-                                                    @else 
-                                                    @endif
+                                                            @else {{ old('purchase_price') == '7' ? 'selected':'' }} @endif
+                                                            @else{{ old('purchase_price') == '7' ? 'selected':'' }}@endif
                                                 >RM 7,000.00</option>
                                                 <option value="8" 
                                                     @if(isset(auth()->user()->pinjaman->purchase_price))
                                                         @if(auth()->user()->pinjaman->purchase_price == '8') 
                                                             selected 
-                                                        @endif
-                                                    @else 
-                                                    @endif
+                                                            @else {{ old('purchase_price') == '8' ? 'selected':'' }} @endif
+                                                            @else{{ old('purchase_price') == '8' ? 'selected':'' }}@endif
                                                 >RM 8,000.00</option>
                                                 <option value="9" 
                                                     @if(isset(auth()->user()->pinjaman->purchase_price))
                                                         @if(auth()->user()->pinjaman->purchase_price == '9') 
                                                             selected 
-                                                        @endif
-                                                    @else 
-                                                    @endif
+                                                            @else {{ old('purchase_price') == '9' ? 'selected':'' }} @endif
+                                                            @else{{ old('purchase_price') == '9' ? 'selected':'' }}@endif
                                                 >RM 9,000.00</option>
                                                 <option value="10" 
                                                     @if(isset(auth()->user()->pinjaman->purchase_price))
                                                         @if(auth()->user()->pinjaman->purchase_price == '10') 
                                                             selected 
-                                                        @endif
-                                                    @else 
-                                                    @endif
+                                                            @else {{ old('purchase_price') == '10' ? 'selected':'' }} @endif
+                                                            @else{{ old('purchase_price') == '10' ? 'selected':'' }}@endif
                                                 >RM 10,000.00</option>
                                         </select>
                                         @error('purchase_price')
@@ -118,25 +108,22 @@
                                                     @if(isset(auth()->user()->pinjaman->duration))
                                                         @if(auth()->user()->pinjaman->duration == '12') 
                                                             selected 
-                                                        @endif
-                                                    @else 
-                                                    @endif
+                                                            @else {{ old('duration') == '12' ? 'selected':'' }} @endif
+                                                            @else{{ old('duration') == '12' ? 'selected':'' }}@endif
                                                 >12 Bulan</option>
                                                 <option value="24" 
                                                     @if(isset(auth()->user()->pinjaman->duration))
                                                         @if(auth()->user()->pinjaman->duration == '24') 
                                                             selected 
-                                                        @endif
-                                                    @else 
-                                                    @endif
+                                                            @else {{ old('duration') == '24' ? 'selected':'' }} @endif
+                                                            @else{{ old('duration') == '24' ? 'selected':'' }}@endif
                                                 >24 Bulan</option>
                                                 <option value="36" 
                                                     @if(isset(auth()->user()->pinjaman->duration))
                                                         @if(auth()->user()->pinjaman->duration == '36') 
                                                             selected 
-                                                        @endif
-                                                    @else 
-                                                    @endif
+                                                            @else {{ old('duration') == '36' ? 'selected':'' }} @endif
+                                                            @else{{ old('duration') == '36' ? 'selected':'' }}@endif
                                                 >36 Bulan</option>
                                         </select>
                                         @error('duration')
@@ -320,7 +307,7 @@
                                     Kad Pengenalan <span class="text-red-700">*</span>
                                 </label>
                                 <div id="ic-div"
-                                    class="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 @error('doc_ic_no') border-red-500 @enderror border-dashed rounded-md cursor-pointer"
+                                    class="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 @if($errors->any()) border-red-500 @endif border-dashed rounded-md cursor-pointer"
                                     style="display: block;">
 
                                     @if(isset(auth()->user()->pinjaman->document_ic_no))
@@ -437,11 +424,11 @@
                                         <p class="mt-1 text-xs text-gray-500">
                                             PDF sahaja
                                         </p>
-                                        @error('doc_ic_no')
+                                        @if($errors->any())
                                             <p class="text-red-500 text-xs italic mt-4">
-                                                {{ $message }}
+                                                Ruangan Dokument Sokongan - Kad Pengenalan diperlukan
                                             </p>
-                                        @enderror
+                                        @endif
                                     </div>
                                     @endif
                                 </div>
@@ -471,7 +458,7 @@
                                     SSM <span class="text-red-700">*</span>
                                 </label>
                                 <div id="ssm-div"
-                                    class="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 @error('doc_ssm') border-red-500 @enderror border-dashed rounded-md cursor-pointer"
+                                    class="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 @if($errors->any()) border-red-500 @endif border-dashed rounded-md cursor-pointer"
                                     style="display: block;">
                                     @if(isset(auth()->user()->pinjaman->document_ssm))
                                     <div class="flex" x-data="{ open: false }">
@@ -593,11 +580,11 @@
                                         <p class="mt-1 text-xs text-gray-500">
                                             PDF sahaja
                                         </p>
-                                        @error('doc_ssm')
+                                        @if($errors->any())
                                             <p class="text-red-500 text-xs italic mt-4">
-                                                {{ $message }}
+                                                Ruangan Dokument Sokongan - SSM diperlukan
                                             </p>
-                                        @enderror
+                                        @endif
                                     </div>
                                     @endif
                                 </div>
@@ -627,7 +614,7 @@
                                     Penyata Bank <span class="text-red-700">*</span>
                                 </label>
                                 <div id="bank-div"
-                                    class="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 @error('doc_bank') border-red-500 @enderror border-dashed rounded-md cursor-pointer"
+                                    class="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 @if($errors->any()) border-red-500 @endif border-dashed rounded-md cursor-pointer"
                                     style="display: block;">
                                     @if(isset(auth()->user()->pinjaman->document_bank_statements))
                                     <div class="flex" x-data="{ open: false }">
@@ -742,11 +729,11 @@
                                         <p class="mt-1 text-xs text-gray-500">
                                             PDF sahaja
                                         </p>
-                                        @error('doc_bank')
+                                        @if($errors->any())
                                             <p class="text-red-500 text-xs italic mt-4">
-                                                {{ $message }}
+                                                Ruangan Dokumen Sokongan - Penyata Bank diperlukan
                                             </p>
-                                        @enderror
+                                        @endif
                                     </div>
                                     @endif
                                 </div>
@@ -776,7 +763,7 @@
                                     Bil Utiliti <span class="text-red-700">*</span>
                                 </label>
                                 <div id="bil-div"
-                                    class="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 @error('doc_bil') border-red-500 @enderror border-dashed rounded-md cursor-pointer"
+                                    class="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 @if($errors->any()) border-red-500 @endif border-dashed rounded-md cursor-pointer"
                                     style="display: block;">
                                     @if(isset(auth()->user()->pinjaman->document_utility))
                                     <div class="flex" x-data="{ open: false }">
@@ -890,11 +877,11 @@
                                         <p class="mt-1 text-xs text-gray-500">
                                             PDF sahaja
                                         </p>
-                                        @error('doc_bil')
+                                        @if($errors->any())
                                             <p class="text-red-500 text-xs italic mt-4">
-                                                {{ $message }}
+                                                Ruangan Dokumen Sokongan - Bil Utiliti diperlukan
                                             </p>
-                                        @enderror
+                                        @endif
                                     </div>
                                     @endif
                                 </div>
