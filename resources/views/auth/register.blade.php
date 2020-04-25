@@ -15,6 +15,9 @@
             </p>
         </div>
 
+        @if($errors->has('ic_no'))
+        @else
+
         @error('age')
             <div class="fixed inset-0 flex items-end justify-center px-4 py-6 pointer-events-none sm:p-20 sm:items-start sm:justify-end opacity-0 notification">
                 <div class="max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto">
@@ -43,6 +46,7 @@
                 </div>
             </div>
         @enderror
+        @endif
 
         <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
             <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
