@@ -297,6 +297,32 @@
                 <div class="md:col-span-1">
                     <div class="px-4 sm:px-0">
                         <h3 class="text-lg font-medium leading-6 text-gray-900">Dokumen Sokongan</h3>
+                        <p class="mt-1 text-sm leading-5 text-gray-500">
+                            Panduan menukar gambar jenis "JPG" kepada PDF
+                        </p>
+                        <span class="inline-flex rounded-md shadow-sm">
+                            <a href="{{ asset('img') }}/cbrm/pdf_convert.pdf" target="_blank" type="button"
+                                class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150">
+                                <svg class="-ml-0.5 mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                                Klik sini
+                            </a>
+                        </span>
+                        <p class="mt-3 text-sm leading-5 text-gray-500">
+                            Link Website
+                        </p>
+                        <span class="inline-flex rounded-md shadow-sm">
+                            <a href="https://jpg2pdf.com/" target="_blank" type="button"
+                                class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150">
+                                <svg class="-ml-0.5 mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M6.672 1.911a1 1 0 10-1.932.518l.259.966a1 1 0 001.932-.518l-.26-.966zM2.429 4.74a1 1 0 10-.517 1.932l.966.259a1 1 0 00.517-1.932l-.966-.26zm8.814-.569a1 1 0 00-1.415-1.414l-.707.707a1 1 0 101.415 1.415l.707-.708zm-7.071 7.072l.707-.707A1 1 0 003.465 9.12l-.708.707a1 1 0 001.415 1.415zm3.2-5.171a1 1 0 00-1.3 1.3l4 10a1 1 0 001.823.075l1.38-2.759 3.018 3.02a1 1 0 001.414-1.415l-3.019-3.02 2.76-1.379a1 1 0 00-.076-1.822l-10-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                Klik sini
+                            </a>
+                        </span>
                     </div>
                 </div>
                 <div class="mt-5 md:mt-0 md:col-span-2">
