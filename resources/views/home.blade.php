@@ -350,7 +350,6 @@
                                     disabled
                                 @else
                                     x-bind:value="'tab2'"
-                                    selected
                                 @endif
                             >
                                 Maklumat Perniagaan
@@ -360,7 +359,6 @@
                                     disabled
                                 @else
                                     x-bind:value="'tab3'"
-                                    selected
                                 @endif
                             >
                                 Maklumat Pinjaman
