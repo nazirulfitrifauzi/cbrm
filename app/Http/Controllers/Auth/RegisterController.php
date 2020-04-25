@@ -52,14 +52,23 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'ic_no' => ['required', 'numeric', 'digits:12'],
+            'ic_no' => [
+                'required', 'numeric', 'digits:12',
+                function ($attribute, $value, $fail) {
+                    if (substr($value, 2, 2) > 12) {
+                        $fail('Sila semak bulan kelahiran di dalam no kad pengenalan anda.');
+                    } elseif (substr($value, 4, 2) > 31) {
+                        $fail('Sila semak hari kelahiran di dalam no kad pengenalan anda.');
+                    }
+                }
+            ],
             'age' => [
                 'numeric',
                 function ($attribute, $value, $fail) {
                     if ($value < 18 || $value > 60) {
                         $fail('Anda tidak layak memohon kerana syarat umur mesti berumur 18 tahun dan keatas dan tidak melebihi 60 tahun.');
                     }
-                },
+                }
             ],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
