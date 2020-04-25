@@ -289,27 +289,25 @@
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-2" x-show="tabs === 'Sendirian Berhad'">
-                                    <fieldset>
-                                        <legend class="block text-sm font-medium leading-5 text-gray-700">Modal Berbayar <span class="text-red-700">*</span></legend>
-
-                                        <div class="flex items-center">
-                                            <label for="business_modal"
-                                                class="block text-sm font-medium leading-5 text-gray-700">RM</label>
-                                            <label for="business_modal" class="ml-3">
-                                                <span class="block text-sm leading-5 font-medium text-gray-700"><input
-                                                        id="business_modal" name="business_modal" type="number"
-                                                        step="0.01"
-                                                        value="{{ isset(auth()->user()->perniagaan->business_modal) ? auth()->user()->perniagaan->business_modal : old('business_modal') }}"
-                                                        class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-                                                    @error('business_modal')
-                                                    <p class="text-red-500 text-xs italic mt-4">
-                                                        {{ $message }}
-                                                    </p>
-                                                    @enderror
+                                    <div class="col-span-6 sm:col-span-2">
+                                        <label for="business_modal" class="block text-sm font-medium leading-5 text-gray-700">Modal Berbayar</label>
+                                        <div class="mt-1 relative rounded-md shadow-sm">
+                                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                                <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                                    RM
                                                 </span>
-                                            </label>
+                                            </div>
+                                            <input id="business_modal" name="business_modal"  min="0"
+                                                value="{{ isset(auth()->user()->perniagaan->business_modal) ? auth()->user()->perniagaan->business_modal : old('business_modal') }}"
+                                                type="number" step="0.01"
+                                                class="mt-1 form-input block w-full pl-16 sm:pl-14 py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                                         </div>
-                                    </fieldset>
+                                        @error('business_modal')
+                                            <p class="text-red-500 text-xs italic mt-4">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
+                                    </div>
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3 lg:col-span-6">
@@ -343,16 +341,23 @@
                                 </div>
                                 
 
-                                <div class="col-span-6 sm:col-span-3 lg:col-span-3">
-                                    <label for="business_income"
-                                        class="block text-sm font-medium leading-5 text-gray-700">Anggaran Pendapatan Kasar (Sebulan) <span class="text-red-700">*</span></label>
-                                    <input id="business_income" name="business_income" type="number" step="0.01" min="0"
-                                        value="{{ isset(auth()->user()->perniagaan->business_income) ? auth()->user()->perniagaan->business_income : old('business_income') }}"
-                                        class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label class="block text-sm font-medium leading-5 text-gray-700">Anggaran Pendapatan Kasar (Sebulan) <span class="text-red-700">*</span></label>
+                                    <div class="mt-1 relative rounded-md shadow-sm">
+                                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                            <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                                RM
+                                            </span>
+                                        </div>
+                                        <input id="business_income" name="business_income"  min="0"
+                                            value="{{ isset(auth()->user()->perniagaan->business_income) ? auth()->user()->perniagaan->business_income : old('business_income') }}"
+                                            type="number" step="0.01"
+                                            class="mt-1 form-input block w-full pl-16 sm:pl-14 py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                    </div>
                                     @error('business_income')
-                                    <p class="text-red-500 text-xs italic mt-4">
-                                        {{ $message }}
-                                    </p>
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
                                     @enderror
                                 </div>
                             </div>
