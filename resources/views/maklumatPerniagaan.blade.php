@@ -1,16 +1,31 @@
 <div x-show="tab === 'tab2'">
     <form method="post" action="{{ route('home.storePerniagaan') }}" 
-        @if(is_null(auth()->user()->perniagaan))
-            x-data="{ tabs: '' }"
-        @else
-            @if(auth()->user()->perniagaan->business_ownership === 'Sendirian Berhad')
-                x-data="{ tabs: 'Sendirian Berhad' }"
-            @elseif(auth()->user()->perniagaan->business_ownership === 'Perkongsian')
+        @if ($errors->any())
+            @if (
+                $errors->has('partner_name') ||
+                $errors->has('partner_ic') ||
+                $errors->has('partner_address1') ||
+                $errors->has('partner_postcode') ||
+                $errors->has('partner_city') ||
+                $errors->has('partner_state') 
+            )
                 x-data="{ tabs: 'Perkongsian' }"
-            @elseif(auth()->user()->perniagaan->business_ownership === 'Individu')
+            @elseif($errors->has('business_modal'))
+                x-data="{ tabs: 'Sendirian Berhad' }"
+            @endif
+        @else
+            @if(is_null(auth()->user()->perniagaan))
                 x-data="{ tabs: '' }"
-            @elseif(auth()->user()->perniagaan->business_ownership === 'Pemilikan Tunggal')
-                x-data="{ tabs: '' }"
+            @else
+                @if(auth()->user()->perniagaan->business_ownership === 'Sendirian Berhad')
+                    x-data="{ tabs: 'Sendirian Berhad' }"
+                @elseif(auth()->user()->perniagaan->business_ownership === 'Perkongsian')
+                    x-data="{ tabs: 'Perkongsian' }"
+                @elseif(auth()->user()->perniagaan->business_ownership === 'Individu')
+                    x-data="{ tabs: '' }"
+                @elseif(auth()->user()->perniagaan->business_ownership === 'Pemilikan Tunggal')
+                    x-data="{ tabs: '' }"
+                @endif
             @endif
         @endif
     >
@@ -254,30 +269,50 @@
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
                                         @change="tabs = $event.target.value">
                                         <option value="">Sila Pilih Permilikan Perniagaan</option>
-                                        <option value="Individu" @if(isset(auth()->
-                                            user()->perniagaan->business_ownership))
-                                            @if(auth()->user()->perniagaan->business_ownership == 'Individu') selected
-                                            @else {{ old('business_ownership') == 'Individu' ? 'selected':'' }} @endif
-                                            @else{{ old('business_ownership') == 'Individu' ? 'selected':'' }} @endif
+                                        <option value="Individu" 
+                                            @if(isset(auth()->user()->perniagaan->business_ownership))
+                                                @if(auth()->user()->perniagaan->business_ownership == 'Individu') 
+                                                    selected
+                                                @else 
+                                                    {{ old('business_ownership') == 'Individu' ? 'selected':'' }} 
+                                                @endif
+                                            @else
+                                                {{ old('business_ownership') == 'Individu' ? 'selected':'' }} 
+                                            @endif
                                             x-bind:value="'Individu'">Individu</option>
-                                        <option value="Pemilikan Tunggal" @if(isset(auth()->
-                                            user()->perniagaan->business_ownership))
-                                            @if(auth()->user()->perniagaan->business_ownership == 'Pemilikan Tunggal')
-                                            selected @else {{ old('business_ownership') == 'Pemilikan Tunggal' ? 'selected':'' }} @endif
-                                            @else{{ old('business_ownership') == 'Pemilikan Tunggal' ? 'selected':'' }} @endif
+                                        <option value="Pemilikan Tunggal" 
+                                            @if(isset(auth()->user()->perniagaan->business_ownership))
+                                                @if(auth()->user()->perniagaan->business_ownership == 'Pemilikan Tunggal')
+                                                    selected 
+                                                @else 
+                                                    {{ old('business_ownership') == 'Pemilikan Tunggal' ? 'selected':'' }} 
+                                                @endif
+                                            @else
+                                                {{ old('business_ownership') == 'Pemilikan Tunggal' ? 'selected':'' }} 
+                                            @endif
                                             x-bind:value="'Pemilikan Tunggal'"> Pemilikan Tunggal </option>
-                                        <option value="Perkongsian" @if(isset(auth()->
-                                            user()->perniagaan->business_ownership))
-                                            @if(auth()->user()->perniagaan->business_ownership == 'Perkongsian')
-                                            selected @else {{ old('business_ownership') == 'Perkongsian' ? 'selected':'' }} @endif
-                                            @else{{ old('business_ownership') == 'Perkongsian' ? 'selected':'' }} @endif
+                                        <option value="Perkongsian" 
+                                            @if(isset(auth()->user()->perniagaan->business_ownership))
+                                                @if(auth()->user()->perniagaan->business_ownership == 'Perkongsian')
+                                                    selected 
+                                                @else 
+                                                    {{ old('business_ownership') == 'Perkongsian x-data="{ tabs: "Perkongsian" }"' ? 'selected':'' }} 
+                                                @endif
+                                            @else
+                                                {{ old('business_ownership') == 'Perkongsian' ? 'selected':'' }} 
+                                            @endif
                                             x-bind:value="'Perkongsian'"
                                             >Perkongsian </option>
-                                        <option value="Sendirian Berhad" @if(isset(auth()->
-                                            user()->perniagaan->business_ownership))
-                                            @if(auth()->user()->perniagaan->business_ownership == 'Sendirian Berhad')
-                                            selected @else {{ old('business_ownership') == 'Sendirian Berhad' ? 'selected':'' }} @endif
-                                            @else{{ old('business_ownership') == 'Sendirian Berhad' ? 'selected':'' }} @endif
+                                        <option value="Sendirian Berhad" 
+                                            @if(isset(auth()->user()->perniagaan->business_ownership))
+                                                @if(auth()->user()->perniagaan->business_ownership == 'Sendirian Berhad')
+                                                    selected 
+                                                @else 
+                                                    {{ old('business_ownership') == 'Sendirian Berhad' ? 'selected':'' }} 
+                                                @endif
+                                            @else
+                                                {{ old('business_ownership') == 'Sendirian Berhad' ? 'selected':'' }} 
+                                            @endif
                                             x-bind:value="'Sendirian Berhad'"
                                         > Sendirian Berhad </option>
                                     </select>

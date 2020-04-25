@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Session;
 use Storage;
-
+use Symfony\Component\Console\Input\Input;
 
 class HomeController extends Controller
 {
@@ -392,21 +392,27 @@ class HomeController extends Controller
     public function storePerniagaan(Request $request)
     {
         $this->validate($request, [
-            'business_name'       => ['required', 'string'],
-            'business_no'         => ['required'],
-            'business_sector'     => ['required'],
-            'business_activity'   => ['required'],
-            'business_address1'   => ['required', 'string'],
-            'business_postcode'   => ['required', 'numeric', 'min:5'],
-            'business_city'       => ['required', 'string'],
-            'business_state'      => ['required', 'alpha'],
-            'business_phone_hp'   => ['required', 'numeric', 'min:10'],
-            'business_premise'    => ['required'],
-            'business_ownership'  => ['required'],
-            // 'business_modal'      => ['required'], required if business_ownership = 'Sendirian Berhad'
-            'business_open'       => ['required'],
-            'business_closed'     => ['required'],
-            'business_income'     => ['required']
+            'business_name'         => ['required', 'string'],
+            'business_no'           => ['required'],
+            'business_sector'       => ['required'],
+            'business_activity'     => ['required'],
+            'business_address1'     => ['required', 'string'],
+            'business_postcode'     => ['required', 'numeric', 'min:5'],
+            'business_city'         => ['required', 'string'],
+            'business_state'        => ['required', 'alpha'],
+            'business_phone_hp'     => ['required', 'numeric', 'min:10'],
+            'business_premise'      => ['required'],
+            'business_ownership'    => ['required'],
+            'business_modal'        => ['required_if:business_ownership,==,Sendirian Berhad'],
+            'business_open'         => ['required'],
+            'business_closed'       => ['required'],
+            'business_income'       => ['required'],
+            'partner_name'          => ['required_if:business_ownership,==,Perkongsian'],
+            'partner_ic'            => ['required_if:business_ownership,==,Perkongsian'],
+            'partner_address1'      => ['required_if:business_ownership,==,Perkongsian'],
+            'partner_postcode'      => ['required_if:business_ownership,==,Perkongsian'],
+            'partner_city'          => ['required_if:business_ownership,==,Perkongsian'],
+            'partner_state'         => ['required_if:business_ownership,==,Perkongsian', 'alpha'],
         ]);
 
         $perniagaan = Perniagaan::updateOrCreate([
