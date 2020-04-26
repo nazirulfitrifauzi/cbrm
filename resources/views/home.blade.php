@@ -319,7 +319,7 @@
                                                                 <td class="text-left px-2 py-1">Saya dengan ini membenarkan pihak TEKUN Nasional memproses data-data peribadi bagi tujuan permohonan pembiayaan.</td>
                                                             </tr>
                                                             <tr class="text-sm text-gray-600">
-                                                                <td class="align-top px-2 py-1">8.</td>
+                                                                <td class="align-top px-2 py-1">7.</td>
                                                                 <td class="text-left px-2 py-1"><strong>Saya mengakui tidak pernah melantik / menggunakan khidmat ejen ( orang tengah ) bagi memproses permohonan ini.Borang dan proses permohonan ini juga tidak dikenakan sebarang bayaran oleh mana-mana pihak.</strong></td>
                                                             </tr>
                                                             <tr class="text-sm text-gray-600">
@@ -515,7 +515,7 @@
                                                                 <td class="text-left px-2 py-1">Saya dengan ini membenarkan pihak TEKUN Nasional memproses data-data peribadi bagi tujuan permohonan pembiayaan.</td>
                                                             </tr>
                                                             <tr class="text-sm text-gray-600">
-                                                                <td class="align-top px-2 py-1">8.</td>
+                                                                <td class="align-top px-2 py-1">7.</td>
                                                                 <td class="text-left px-2 py-1"><strong>Saya mengakui tidak pernah melantik / menggunakan khidmat ejen ( orang tengah ) bagi memproses permohonan ini.Borang dan proses permohonan ini juga tidak dikenakan sebarang bayaran oleh mana-mana pihak.</strong></td>
                                                             </tr>
                                                             <tr class="text-sm text-gray-600">
