@@ -145,6 +145,9 @@ return [
      */
 
     'attributes' => [
+        'ic_no' => 'No Kad Pengenalan',
+        'email' => 'Alamat Emel',
+
         'tekun_state' => 'Negeri',
         'tekun_branch' => 'Cawangan',
         'business_status' => 'Status Perniagaan',
