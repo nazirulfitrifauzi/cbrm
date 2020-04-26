@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('FILESYSTEM_DRIVER', 'local'),
+    'default' => env('FILESYSTEM_DRIVER', 'custom'),
 
     /*
     |--------------------------------------------------------------------------
@@ -50,7 +50,7 @@ return [
 
         'custom' => [
             'driver' => 'local',
-            'root'   => 'E:\cbrm\storage',
+            'root'   => 'E:\apps\storage',
         ],
 
         'public' => [
@@ -82,11 +82,12 @@ return [
     |
     */
 
+    //'links' => [
+    //   public_path('storage') => storage_path('app/public'),
+    //],
+
     'links' => [
-        public_path('storage') => storage_path('app/public'),
+        public_path('storage') => 'E:\apps\storage',
     ],
-    // 'links' => [
-    //     public_path('storage') => 'E:\cbrm\storage',
-    // ],
 
 ];

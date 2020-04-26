@@ -162,7 +162,13 @@
                                     {{ strtoupper(auth()->user()->name) }} ( {{ substr(auth()->user()->ic_no,0,6) }}-{{ substr(auth()->user()->ic_no,6,2) }}-{{ substr(auth()->user()->ic_no,8,4) }} )
                                 </h4>
                                 <h2 class="mt-4 flex justify-center text-3xl leading-8 font-medium text-gray-900">
-                                    Berjaya dihantar & sedang diproses.
+                                    @if (auth()->user()->status == 1 || auth()->user()->status == 2 || auth()->user()->status == 3 || auth()->user()->status == 4 || auth()->user()->status == 5 || auth()->user()->status == 6)
+                                        Berjaya dihantar & sedang diproses.
+                                    @elseif(auth()->user()->status == 10 )
+                                        Lulus
+                                    @elseif(auth()->user()->status == 20)
+                                        Gagal
+                                    @endif
                                 </h2>
                             </div>
                         </div>
