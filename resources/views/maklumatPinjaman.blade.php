@@ -601,9 +601,6 @@
                                             Bagi SSM : Sila Kemukakan Borang E, Maklumat Pemilikan & Maklumat Perniagaan
                                         </p>
                                         <p class="mt-1 text-xs text-gray-500">
-                                            Bagi Syarikat Perkongsian : Surat kebenaran rakan kongsi
-                                        </p>
-                                        <p class="mt-1 text-xs text-gray-500">
                                             PDF sahaja
                                         </p>
                                         @if($errors->any())
