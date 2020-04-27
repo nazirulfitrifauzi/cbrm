@@ -100,7 +100,7 @@ class HomeController extends Controller
 
         $html = '<option value="">Sila Pilih Aktiviti</option>';
         foreach ($aktiviti as $aktivitix) {
-            $html .= '<option value="' . $aktivitix->kodAktiviti . '">' . $aktivitix->Aktiviti . '</option>';
+            $html .= '<option value="' . $aktivitix->idAktiviti . '">' . $aktivitix->Aktiviti . '</option>';
         }
 
         return response()->json(['html' => $html]);
@@ -112,46 +112,42 @@ class HomeController extends Controller
 
     public function status()
     {
-        // dd(auth()->user()->completed);
-        if (auth()->user()->completed == "0") {
+        if (auth()->user()->completed == 0) {
             return redirect('home');
-        } else {
-            if (auth()->user()->submit == 0) {
-                $name = auth()->user()->name;
-                $email = auth()->user()->email;
-                Mail::to($email)->send(new successfulApplication($name));
+        }
 
-                $mob = auth()->user()->peribadi->phone_hp;
+        if (auth()->user()->completed == 1 && auth()->user()->submit == 0) {
+            $clientIP = request()->ip();
+            //dd($clientIP);
+            $name = auth()->user()->name;
+            $email = auth()->user()->email;
+            Mail::to($email)->send(new successfulApplication($name));
 
-                //to remove - from phone number
-                $valid_hp = str_replace('-', '', $mob);
-                $valid_hp = '6' . $mob;
+            $mob = auth()->user()->peribadi->phone_hp;
+            $valid_hp = str_replace('-', '', $mob);
+            $valid_hp = '6' . $mob;
+            $destination = urlencode($valid_hp);
+            $message = 'TEKUN NASIONAL CBRM - Permohonan CBRM anda telah diterima dan sedang diproses.';
+            $message = html_entity_decode($message, ENT_QUOTES, 'utf-8');
+            $message = urlencode($message);
+            $username = urlencode("JPDKTN2018");
+            $password = urlencode("jpdkjpdk2018");
+            $fp = "https://www.isms.com.my/isms_send.php";
+            $fp .= "?un=$username&pwd=$password&dstno=$destination&msg=$message&type=1";
+            $http = curl_init($fp);
+            curl_setopt($http, CURLOPT_RETURNTRANSFER, TRUE);
+            curl_exec($http);
+            curl_getinfo($http, CURLINFO_HTTP_CODE);
+            curl_close($http);
 
-                $destination = urlencode($valid_hp);
-
-                $message = 'TEKUN NASIONAL CBRM - Permohonan CBRM anda telah diterima dan sedang diproses.';
-                $message = html_entity_decode($message, ENT_QUOTES, 'utf-8');
-                $message = urlencode($message);
-
-                $username = urlencode("JPDKTN2018");
-                $password = urlencode("jpdkjpdk2018");
-
-                $fp = "https://www.isms.com.my/isms_send.php";
-                $fp .= "?un=$username&pwd=$password&dstno=$destination&msg=$message&type=1";
-
-                $http = curl_init($fp);
-
-                curl_setopt($http, CURLOPT_RETURNTRANSFER, TRUE);
-                curl_exec($http);
-                curl_getinfo($http, CURLINFO_HTTP_CODE);
-                curl_close($http);
-
-                session()->flash('success');
-            }
-
+            session()->flash('success');
             $id = auth()->user()->id;
-            User::where('id', $id)->update(['submit' => 1, 'status' => 1, 'submit_at' => now()]);
+            User::where('id', $id)->update(['submit' => 1, 'status' => 1, 'client_ip' => $clientIP, 'submit_at' => now()]);
 
+            return redirect('status');
+        }
+
+        if (auth()->user()->submit == 1) {
             return view('status');
         }
     }

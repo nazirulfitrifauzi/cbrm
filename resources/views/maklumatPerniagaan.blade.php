@@ -107,15 +107,15 @@
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                                         <option value="">Sila Pilih Aktiviti Perniagaan</option>
                                         @foreach($aktiviti as $aktivitis)
-                                            <option value="{{ $aktivitis->kodAktiviti }}" 
+                                            <option value="{{ $aktivitis->idAktiviti }}" 
                                                 @if(isset(auth()->user()->perniagaan->business_activity))
-                                                    @if(auth()->user()->perniagaan->business_activity == $aktivitis->kodAktiviti) 
+                                                    @if(auth()->user()->perniagaan->business_activity == $aktivitis->idAktiviti) 
                                                         selected 
                                                     @else
-                                                        {{ old('business_activity') == ($aktivitis->kodAktiviti) ? 'selected':'' }} 
+                                                        {{ old('business_activity') == ($aktivitis->idAktiviti) ? 'selected':'' }} 
                                                     @endif
                                                 @else
-                                                    {{ old('business_activity') == ($aktivitis->kodAktiviti) ? 'selected':'' }}
+                                                    {{ old('business_activity') == ($aktivitis->idAktiviti) ? 'selected':'' }}
                                                 @endif
                                             >{{ $aktivitis->Aktiviti }}</option>
                                         @endforeach

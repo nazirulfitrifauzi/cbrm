@@ -227,8 +227,7 @@
                                 <div class="mt-2 px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md"
                                     x-data="{ open: false }">
                                     <div class="w-full">
-                                        <img src="{{ asset('storage/'. auth()->user()->ic_no .'/' . auth()->user()->peribadi->gambar) }}"
-                                            class="h-40">
+										<img src="storage\{{auth()->user()->ic_no}}\{{auth()->user()->peribadi->gambar}}" class="h-40">
                                     </div>
                                     <div class="w-full">
                                         <span class="mt-3 inline-flex rounded-md shadow-sm">
@@ -653,12 +652,12 @@
                                                         class="block text-sm leading-5 font-medium text-gray-700">Tidak</span>
                                                 </label>
                                             </div>
+                                            @error('oku')
+                                                <p class="text-red-500 text-xs italic mt-4">
+                                                    {{ $message }}
+                                                </p>
+                                            @enderror
                                         </div>
-                                        @error('oku')
-                                            <p class="text-red-500 text-xs italic mt-4">
-                                                {{ $message }}
-                                            </p>
-                                        @enderror
                                     </fieldset>
                                 </div>
 
