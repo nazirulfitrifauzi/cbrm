@@ -228,7 +228,6 @@
                         @endif
                     @endif
                 >
-                
                     <div class="sm:hidden mb-4 flex justify-between">
                         <span class="inline-flex rounded-md shadow-sm">
                             <a href="{{ asset('img') }}/cbrm/FAQ_cbrm.pdf" target="_blank" type="button"
@@ -565,6 +564,7 @@
                     @include('maklumatPerniagaan')
                     @include('maklumatPinjaman')
                     {{-- end content --}}
+                    
                 </div>
             </div>
             <!-- /End replace -->

@@ -32,10 +32,14 @@ class LoginController extends Controller
     protected function authenticated()
     {
         if (Auth::check()) {
-            if (auth()->user()->submit === '1') {
-                return redirect('status');
+            if (auth()->user()->ic_no == '000000000000') {
+                return redirect('admin');
             } else {
-                return redirect('home');
+                if (auth()->user()->submit === '1') {
+                    return redirect('status');
+                } else {
+                    return redirect('home');
+                }
             }
         }
     }
