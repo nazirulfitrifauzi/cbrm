@@ -165,11 +165,18 @@
                                     @if (auth()->user()->status == 1 || auth()->user()->status == 2 || auth()->user()->status == 3 || auth()->user()->status == 4 || auth()->user()->status == 5 || auth()->user()->status == 6)
                                         Berjaya dihantar & sedang diproses.
                                     @elseif(auth()->user()->status == 10 )
-                                        Lulus
+                                        Permohonan Lulus
                                     @elseif(auth()->user()->status == 20)
-                                        Gagal
+                                        Permohonan Gagal
+                                     @elseif(auth()->user()->status == 7)
+                                        Permohonan KIV
                                     @endif
                                 </h2>
+                                @if(auth()->user()->status == 7)
+                                    <h4 class="mt-4 flex justify-center text-lg leading-6 font-medium text-gray-900">
+                                        Permohonan anda tidak lengkap. Sila hubungi 03-9059 8888 untuk maklumat lanjut.
+                                    </h4>
+                                @endif
                             </div>
                         </div>
                     </div>

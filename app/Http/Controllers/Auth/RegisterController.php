@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Daftar;
 use App\Providers\RouteServiceProvider;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -53,7 +54,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'ic_no' => [
-                'required', 'numeric', 'unique:users', 'digits:12',
+                'required', 'unique:users', 'numeric', 'digits:12',
                 function ($attribute, $value, $fail) {
                     if (substr($value, 2, 2) > 12) {
                         $fail('Sila semak bulan kelahiran di dalam no kad pengenalan anda.');
@@ -63,7 +64,6 @@ class RegisterController extends Controller
                 }
             ],
             'age' => [
-                'numeric',
                 function ($attribute, $value, $fail) {
                     if ($value < 18 || $value > 60) {
                         $fail('Anda tidak layak memohon kerana syarat umur mesti berumur 18 tahun dan keatas dan tidak melebihi 60 tahun.');
@@ -82,11 +82,29 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'ic_no' => $data['ic_no'],
-            'password' => Hash::make($data['password']),
-        ]);
+        if (Daftar::where('no_kp', $data['ic_no'])->exists()) {
+            $status = Daftar::where('no_kp', $data['ic_no'])->value('status');
+            $submit_at = Daftar::where('no_kp', $data['ic_no'])->value('tarikh_submit');
+            $default = 1;
+
+            return User::create([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'ic_no' => $data['ic_no'],
+                'password' => Hash::make($data['password']),
+                'completed' => $default,
+                'submit' => $default,
+                'status' => $status,
+                'submit_at' => $submit_at,
+                'flag' => $default
+            ]);
+        } else {
+            return User::create([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'ic_no' => $data['ic_no'],
+                'password' => Hash::make($data['password']),
+            ]);
+        }
     }
 }

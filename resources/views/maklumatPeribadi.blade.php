@@ -484,7 +484,7 @@
                                 <div class="col-span-6 sm:col-span-2">
                                     <label for="birthdate"
                                         class="block text-sm font-medium leading-5 text-gray-700">Tarikh Lahir <span class="text-red-700">*</span></label>
-                                    <input id="birthdate" name="birthdate" value="" readonly class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                    <input id="birthdate" name="birthdate" value="" class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                                     @error('birthdate')
                                         <p class="text-red-500 text-xs italic mt-4">
                                             {{ $message }}
@@ -1288,14 +1288,20 @@
 </script>
 <script>
     function findBirthday() {
-        var ic = String({{ auth()->user()->ic_no }});
+        var ic = String($('#ic_no').val());
         
         if(ic.match(/^(\d{2})(\d{2})(\d{2})-?\d{2}-?\d{4}$/)) {
             var year = RegExp.$1;
             var month = RegExp.$2;
             var day = RegExp.$3;
 
-            var date = new Date(year,month,day);
+            if(year.substring(0,1) == '0') {
+                var oyear = '20'+year;
+            } else {
+                var oyear = year;
+            }
+
+            var date = new Date(oyear,month,day);
             var dd = date.getDate();
             var mm = date.getMonth(); 
             var yyyy = date.getFullYear();
