@@ -484,7 +484,9 @@
                                 <div class="col-span-6 sm:col-span-2">
                                     <label for="birthdate"
                                         class="block text-sm font-medium leading-5 text-gray-700">Tarikh Lahir <span class="text-red-700">*</span></label>
-                                    <input id="birthdate" name="birthdate" value="" class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                    <input id="birthdate" name="birthdate" value=""
+                                    {{-- value="{{ isset(auth()->user()->peribadi->birthdate) ? auth()->user()->peribadi->birthdate : '' }}"  --}}
+                                    class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                                     @error('birthdate')
                                         <p class="text-red-500 text-xs italic mt-4">
                                             {{ $message }}
@@ -1298,12 +1300,13 @@
             if(year.substring(0,1) == '0') {
                 var oyear = '20'+year;
             } else {
-                var oyear = year;
+                var oyear = '19'+year;
             }
 
-            var date = new Date(oyear,month,day);
+            fDate = '' + oyear + '-' + month + '-' + day + ' 00:00:00';
+            var date = new Date(fDate);
             var dd = date.getDate();
-            var mm = date.getMonth(); 
+            var mm = date.getMonth()+1; 
             var yyyy = date.getFullYear();
             
             if(dd<10) 
@@ -1318,7 +1321,9 @@
 
             var age = {{ now()->year }} - yyyy;
 
-            $('#birthdate').val(dd+'/'+mm+'/'+yyyy); // get birth date
+            if(!$('#birthdate').val()) {
+				$('#birthdate').val(dd+'/'+mm+'/'+yyyy); // get birth date
+			}
             $('#age').val(age); // get age
         }
     }
