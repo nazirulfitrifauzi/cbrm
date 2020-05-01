@@ -492,21 +492,39 @@ class HomeController extends Controller
 
     public function storePinjaman(Request $request)
     {
-        $this->validate($request, [
-            'purchase_price'        => ['required', 'numeric'],
-            'duration'              => ['required', 'numeric'],
-            'reference_name'        => ['required', 'string'],
-            'reference_address1'    => ['required', 'string'],
-            'reference_postcode'    => ['required', 'numeric', 'min:5'],
-            'reference_city'        => ['required', 'string'],
-            'reference_state'       => ['required', 'alpha'],
-            'reference_relation'    => ['required', 'string'],
-            'reference_phone'       => ['required', 'numeric', 'min:10'],
-            "doc_ic_no"             => ['mimes:pdf', Rule::requiredIf($request->user()->pinjaman->document_ic_no == NULL)],
-            "doc_ssm"               => ['mimes:pdf', Rule::requiredIf($request->user()->pinjaman->document_ssm == NULL)],
-            "doc_bank"              => ['mimes:pdf', Rule::requiredIf($request->user()->pinjaman->document_bank_statements == NULL)],
-            "doc_bil"               => ['mimes:pdf', Rule::requiredIf($request->user()->pinjaman->document_utility == NULL)],
-        ]);
+        if (is_null(auth()->user()->peribadi)) {
+            $this->validate($request, [
+                'purchase_price'        => ['required', 'numeric'],
+                'duration'              => ['required', 'numeric'],
+                'reference_name'        => ['required', 'string'],
+                'reference_address1'    => ['required', 'string'],
+                'reference_postcode'    => ['required', 'numeric', 'min:5'],
+                'reference_city'        => ['required', 'string'],
+                'reference_state'       => ['required', 'alpha'],
+                'reference_relation'    => ['required', 'string'],
+                'reference_phone'       => ['required', 'numeric', 'min:10'],
+                "doc_ic_no"             => ['required', 'mimes:pdf'],
+                "doc_ssm"               => ['required', 'mimes:pdf'],
+                "doc_bank"              => ['required', 'mimes:pdf'],
+                "doc_bil"               => ['required', 'mimes:pdf'],
+            ]);
+        } else {
+            $this->validate($request, [
+                'purchase_price'        => ['required', 'numeric'],
+                'duration'              => ['required', 'numeric'],
+                'reference_name'        => ['required', 'string'],
+                'reference_address1'    => ['required', 'string'],
+                'reference_postcode'    => ['required', 'numeric', 'min:5'],
+                'reference_city'        => ['required', 'string'],
+                'reference_state'       => ['required', 'alpha'],
+                'reference_relation'    => ['required', 'string'],
+                'reference_phone'       => ['required', 'numeric', 'min:10'],
+                "doc_ic_no"             => ['mimes:pdf', Rule::requiredIf($request->user()->pinjaman->document_ic_no == NULL)],
+                "doc_ssm"               => ['mimes:pdf', Rule::requiredIf($request->user()->pinjaman->document_ssm == NULL)],
+                "doc_bank"              => ['mimes:pdf', Rule::requiredIf($request->user()->pinjaman->document_bank_statements == NULL)],
+                "doc_bil"               => ['mimes:pdf', Rule::requiredIf($request->user()->pinjaman->document_utility == NULL)],
+            ]);
+        }
 
         $ic_no = auth()->user()->ic_no;
 
