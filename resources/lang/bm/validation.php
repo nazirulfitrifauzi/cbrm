@@ -202,6 +202,10 @@ return [
         'reference_city' => 'Bandar',
         'reference_state' => 'Negeri',
         'reference_relation' => 'Hubungan dengan pemohon',
-        'reference_phone' => 'No Telefon'
+        'reference_phone' => 'No Telefon',
+        'doc_ic_no' => 'Dokumen Kad Pengenalan',
+        'doc_ssm' => 'Dokumen SSM',
+        'doc_bank' => 'Dokumen Penyata Bank',
+        'doc_bil' => 'Dokumen Bil Utiliti'
     ],
 ];

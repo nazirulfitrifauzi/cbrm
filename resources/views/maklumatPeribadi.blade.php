@@ -315,7 +315,7 @@
                                 @else
 
                                 <div id="gambar-div"
-                                    class="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 @if($errors->any()) border-red-500 @endif border-dashed rounded-md cursor-pointer"
+                                    class="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 @error('gambar') border-red-500 @enderror border-dashed rounded-md cursor-pointer"
                                     style="display: block;">
                                     <div class="text-center">
                                         <input type="file" name="gambar" id="gambar" class="hidden" />
@@ -334,11 +334,11 @@
                                         <p class="mt-1 text-xs text-gray-500">
                                             PNG & JPG sahaja.
                                         </p>
-										@if($errors->any())
-                                            <p class="text-red-500 text-xs italic mt-4">
-                                                Ruangan Gambar diperlukan
-                                            </p>
-                                        @endif
+                                        @error('gambar')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            Ruangan Gambar diperlukan
+                                        </p>
+                                        @enderror
                                     </div>
                                 </div>
 

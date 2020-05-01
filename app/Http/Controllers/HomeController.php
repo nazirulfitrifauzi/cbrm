@@ -14,6 +14,7 @@ use App\Models\Sektor;
 use App\User;
 use Carbon\Carbon;
 use DB;
+use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -162,7 +163,7 @@ class HomeController extends Controller
                 "business_type"             => ['required'],
                 "bank1"                     => ['required'],
                 "bank1_acct"                => ['required', 'numeric'],
-                "gambar"                    => ['required', 'mimes:jpeg,jpg,png'],
+                "gambar"                    => ['mimes:jpeg,jpg,png', Rule::requiredIf($request->user()->peribadi->gambar == NULL)],
                 "name"                      => ['required', 'string'],
                 "ic_no"                     => ['required', 'numeric', 'min:12'],
                 "gender"                    => ['required'],
@@ -536,10 +537,10 @@ class HomeController extends Controller
             'reference_state'       => ['required', 'alpha'],
             'reference_relation'    => ['required', 'string'],
             'reference_phone'       => ['required', 'numeric', 'min:10'],
-            "doc_ic_no"             => ['required', 'mimes:pdf'],
-            "doc_ssm"               => ['required', 'mimes:pdf'],
-            "doc_bank"              => ['required', 'mimes:pdf'],
-            "doc_bil"               => ['required', 'mimes:pdf']
+            "doc_ic_no"             => ['mimes:pdf', Rule::requiredIf($request->user()->pinjaman->document_ic_no == NULL)],
+            "doc_ssm"               => ['mimes:pdf', Rule::requiredIf($request->user()->pinjaman->document_ssm == NULL)],
+            "doc_bank"              => ['mimes:pdf', Rule::requiredIf($request->user()->pinjaman->document_bank_statements == NULL)],
+            "doc_bil"               => ['mimes:pdf', Rule::requiredIf($request->user()->pinjaman->document_utility == NULL)],
         ]);
 
         $ic_no = auth()->user()->ic_no;

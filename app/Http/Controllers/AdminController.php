@@ -21,9 +21,13 @@ class AdminController extends Controller
             ->orWhere('email', $input)
             ->first();
 
-        $data2 = Peribadi::where('user_id', $data->id)->first();
-
-        return view('admin', compact('data', 'data2', 'input'));
+        if ($data == null) {
+            Session::flash('error', 'No Kad Pengenalan @ emel yang dicari tidak wujud di dalam sistem');
+            return view('admin', compact('data', 'input'));
+        } else {
+            $data2 = Peribadi::where('user_id', $data->id)->first();
+            return view('admin', compact('data', 'data2', 'input'));
+        }
     }
 
     public function update(Request $request)
@@ -39,7 +43,12 @@ class AdminController extends Controller
         Peribadi::where('user_id', $id)->update(['birthdate' => $birthdate, 'age' => $age]);
 
         Session::flash('success');
-
         return redirect('admin');
+    }
+
+    public function deleteAcc($id)
+    {
+        User::where('id', $id)->delete();
+        Session::flash('success', 'Akaun telah dipadam');
     }
 }

@@ -106,9 +106,11 @@
                                     <p class="text-sm leading-5 font-medium text-gray-900">
                                         Ralat!
                                     </p>
-                                    <p class="mt-1 text-sm leading-5 text-gray-500">
-                                        Sila semak semula maklumat yang anda isi.
-                                    </p>
+                                    @foreach ($errors->all() as $error)
+                                        <p class="mt-1 text-sm leading-5 text-gray-500">
+                                            {{ $error }}
+                                        </p>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
@@ -586,7 +588,7 @@
 
         setTimeout(function () {
             $('.notification').fadeOut('fast');
-        }, 3000);
+        }, 7000);
         
     });
 </script>

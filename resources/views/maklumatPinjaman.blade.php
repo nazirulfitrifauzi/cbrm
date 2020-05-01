@@ -333,7 +333,7 @@
                                     Kad Pengenalan <span class="text-red-700">*</span>
                                 </label>
                                 <div id="ic-div"
-                                    class="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 @if($errors->any()) border-red-500 @endif border-dashed rounded-md cursor-pointer"
+                                    class="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 @error('doc_ic_no') border-red-500 @enderror border-dashed rounded-md cursor-pointer"
                                     style="display: block;">
 
                                     @if(isset(auth()->user()->pinjaman->document_ic_no))
@@ -450,11 +450,11 @@
                                         <p class="mt-1 text-xs text-gray-500">
                                             PDF sahaja
                                         </p>
-                                        @if($errors->any())
-                                            <p class="text-red-500 text-xs italic mt-4">
-                                                Ruangan Dokument Sokongan - Kad Pengenalan diperlukan
-                                            </p>
-                                        @endif
+                                        @error('doc_ic_no')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            Ruangan Dokument Sokongan - Kad Pengenalan diperlukan
+                                        </p>
+                                        @enderror
                                     </div>
                                     @endif
                                 </div>
@@ -484,7 +484,7 @@
                                     SSM <span class="text-red-700">*</span>
                                 </label>
                                 <div id="ssm-div"
-                                    class="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 @if($errors->any()) border-red-500 @endif border-dashed rounded-md cursor-pointer"
+                                    class="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 @error('doc_ssm') border-red-500 @enderror border-dashed rounded-md cursor-pointer"
                                     style="display: block;">
                                     @if(isset(auth()->user()->pinjaman->document_ssm))
                                     <div class="flex" x-data="{ open: false }">
@@ -603,11 +603,11 @@
                                         <p class="mt-1 text-xs text-gray-500">
                                             PDF sahaja
                                         </p>
-                                        @if($errors->any())
-                                            <p class="text-red-500 text-xs italic mt-4">
-                                                Ruangan Dokument Sokongan - SSM diperlukan
-                                            </p>
-                                        @endif
+                                        @error('doc_ssm')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            Ruangan Dokument Sokongan - SSM diperlukan
+                                        </p>
+                                        @enderror
                                     </div>
                                     @endif
                                 </div>
@@ -637,7 +637,7 @@
                                     Penyata Bank <span class="text-red-700">*</span>
                                 </label>
                                 <div id="bank-div"
-                                    class="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 @if($errors->any()) border-red-500 @endif border-dashed rounded-md cursor-pointer"
+                                    class="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 @error('doc_bank') border-red-500 @enderror border-dashed rounded-md cursor-pointer"
                                     style="display: block;">
                                     @if(isset(auth()->user()->pinjaman->document_bank_statements))
                                     <div class="flex" x-data="{ open: false }">
@@ -752,11 +752,11 @@
                                         <p class="mt-1 text-xs text-gray-500">
                                             PDF sahaja
                                         </p>
-                                        @if($errors->any())
-                                            <p class="text-red-500 text-xs italic mt-4">
-                                                Ruangan Dokumen Sokongan - Penyata Bank diperlukan
-                                            </p>
-                                        @endif
+                                        @error('doc_bank')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            Ruangan Dokumen Sokongan - Penyata Bank diperlukan
+                                        </p>
+                                        @enderror
                                     </div>
                                     @endif
                                 </div>
@@ -786,7 +786,7 @@
                                     Bil Utiliti <span class="text-red-700">*</span>
                                 </label>
                                 <div id="bil-div"
-                                    class="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 @if($errors->any()) border-red-500 @endif border-dashed rounded-md cursor-pointer"
+                                    class="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 @error('doc_bil') border-red-500 @enderror border-dashed rounded-md cursor-pointer"
                                     style="display: block;">
                                     @if(isset(auth()->user()->pinjaman->document_utility))
                                     <div class="flex" x-data="{ open: false }">
@@ -900,11 +900,11 @@
                                         <p class="mt-1 text-xs text-gray-500">
                                             PDF sahaja
                                         </p>
-                                        @if($errors->any())
-                                            <p class="text-red-500 text-xs italic mt-4">
-                                                Ruangan Dokumen Sokongan - Bil Utiliti diperlukan
-                                            </p>
-                                        @endif
+                                        @error('doc_bil')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            Ruangan Dokumen Sokongan - Bil Utiliti diperlukan
+                                        </p>
+                                        @enderror
                                     </div>
                                     @endif
                                 </div>

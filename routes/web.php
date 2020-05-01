@@ -21,6 +21,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/admin', 'AdminController@index')->name('admin');
     Route::post('/semak', 'AdminController@semak')->name('admin.semak');
     Route::post('/update', 'AdminController@update')->name('admin.update');
+    Route::delete('/deleteAcc/{id}', 'AdminController@deleteAcc')->name('home.deleteAcc');
 
     Route::get('/home', 'HomeController@index')->name('home'); //->middleware('submit');
     Route::post('/status', 'HomeController@store')->name('home.store');
