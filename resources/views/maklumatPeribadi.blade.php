@@ -929,6 +929,19 @@
                                 </div>
 
                                 <div class="col-span-6">
+                                    <label for="employer_name"
+                                        class="block text-sm font-medium leading-5 text-gray-700">Nama Majikan <span class="text-red-700">*</span></label>
+                                    <input id="employer_name" name="employer_name"
+                                        value="{{ isset(auth()->user()->peribadi->employer_name) ? auth()->user()->peribadi->employer_name : old('employer_name') }}"
+                                        class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                        @error('employer_name')
+                                                    <p class="text-red-500 text-xs italic mt-4">
+                                                        {{ $message }}
+                                                    </p>
+                                                @enderror
+                                </div>
+
+                                <div class="col-span-6">
                                     <label for="employer_address1"
                                         class="block text-sm font-medium leading-5 text-gray-700">Alamat Majikan</label>
                                     <input id="employer_address1" name="employer_address1"
@@ -1104,13 +1117,26 @@
                                         @enderror
                                 </div>
 
-                                <div class="col-span-6 sm:col-span-6">
+                                <div class="col-span-6 sm:col-span-3">
                                     <label for="spouse_ic_no"
                                         class="block text-sm font-medium leading-5 text-gray-700">No. KP (Baru) - cth (900000010000) <span class="text-red-700">*</span></label>
                                     <input id="spouse_ic_no" name="spouse_ic_no"
                                         value="{{ isset(auth()->user()->peribadi->spouse_ic_no) ? auth()->user()->peribadi->spouse_ic_no : old('spouse_ic_no') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                                         @error('spouse_ic_no')
+                                                    <p class="text-red-500 text-xs italic mt-4">
+                                                        {{ $message }}
+                                                    </p>
+                                                @enderror
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label for="spouse_phone"
+                                        class="block text-sm font-medium leading-5 text-gray-700">No Telefon (HP) - cth (0123456789)</label>
+                                    <input id="spouse_phone" name="spouse_phone"
+                                        value="{{ isset(auth()->user()->peribadi->spouse_phone) ? auth()->user()->peribadi->spouse_phone : old('spouse_phone') }}"
+                                        class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                        @error('spouse_phone')
                                                     <p class="text-red-500 text-xs italic mt-4">
                                                         {{ $message }}
                                                     </p>
@@ -1444,6 +1470,10 @@
         $("#employer_phone").addClass("border-red-500");
         @enderror
 
+        @error('employer_name')
+        $("#employer_name").addClass("border-red-500");
+        @enderror
+
         @error('employer_address1')
         $("#employer_address1").addClass("border-red-500");
         @enderror
@@ -1469,6 +1499,10 @@
         @enderror
 
         @error('spouse_ic_no')
+        $("#spouse_ic_no").addClass("border-red-500");
+        @enderror
+
+        @error('spouse_phone')
         $("#spouse_ic_no").addClass("border-red-500");
         @enderror
 

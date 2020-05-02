@@ -152,6 +152,7 @@
                             $errors->has('email') ||
                             $errors->has('profession') ||
                             $errors->has('income') ||
+                            $errors->has('employer_name') ||
                             $errors->has('spouse_type') ||
                             $errors->has('spouse_name') ||
                             $errors->has('spouse_ic_no') ||

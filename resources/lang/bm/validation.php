@@ -147,6 +147,7 @@ return [
     'attributes' => [
         'ic_no' => 'No Kad Pengenalan',
         'email' => 'Alamat Emel',
+        'age' => 'Umur',
 
         'tekun_state' => 'Negeri',
         'tekun_branch' => 'Cawangan',
@@ -167,6 +168,7 @@ return [
         'education' => 'Taraf Pendidikan',
         'profession' => 'Pekerjaan Sekarang',
         'income' => 'Pendapatan Bulanan',
+        'employer_name' => 'Nama Majikan',
         'spouse_type' => 'Hubungan',
         'spouse_name' => 'Nama Suami/Ister/Waris',
         'spouse_ic_no' => 'No KP Suami/Isteri/Waris',
