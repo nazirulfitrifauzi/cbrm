@@ -549,7 +549,7 @@
                                 <div class="col-span-6 sm:col-span-2">
                                     <label for="age"
                                         class="block text-sm font-medium leading-5 text-gray-700">Umur <span class="text-red-700">*</span></label>
-                                    <input id="age" name="age" readonly
+                                    <input id="age" name="age"
                                         value="{{ isset(auth()->user()->peribadi->age) ? auth()->user()->peribadi->age : old('age') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                                         @error('age')

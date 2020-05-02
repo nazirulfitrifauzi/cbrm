@@ -168,14 +168,22 @@
                                         Permohonan Lulus
                                     @elseif(auth()->user()->status == 20)
                                         Permohonan Gagal
-                                     @elseif(auth()->user()->status == 7)
+                                    @elseif(auth()->user()->status == 7)
                                         Permohonan KIV
                                     @endif
                                 </h2>
                                 @if(auth()->user()->status == 7)
                                     <h4 class="mt-4 flex justify-center text-lg leading-6 font-medium text-gray-900">
-                                        Permohonan anda tidak lengkap. Sila hubungi 03-9059 8888 untuk maklumat lanjut.
+                                        {{ strtoupper($catatan->catatan) }}. <br>Sila muat naik dokumen yang tidak lengkap disini:
                                     </h4>
+                                    <div class="flex justify-center mt-4">
+                                        <a href="http://tiny.cc/CBRM2UPDATE" target="_blank" type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700 transition ease-in-out duration-150"">
+                                            <svg class="-ml-0.5 mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+                                                <path d="M2 10a4 4 0 004 4h3v3a1 1 0 102 0v-3h3a4 4 0 000-8 4 4 0 00-8 0 4 4 0 00-4 4zm9 4H9V9.414l-1.293 1.293a1 1 0 01-1.414-1.414l3-3a1 1 0 011.414 0l3 3a1 1 0 01-1.414 1.414L11 9.414V14z" clip-rule="evenodd" fill-rule="evenodd"></path>
+                                            </svg>
+                                            Muat Naik Dokumen
+                                        </a>
+                                    </div>
                                 @endif
                             </div>
                         </div>

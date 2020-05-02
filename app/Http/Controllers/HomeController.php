@@ -6,6 +6,7 @@ use App\Mail\successfulApplication;
 use App\Models\Aktiviti;
 use App\Models\Bank;
 use App\Models\Cawangan;
+use App\Models\Daftar;
 use App\Models\Negeri;
 use App\Models\Peribadi;
 use App\Models\Perniagaan;
@@ -13,14 +14,11 @@ use App\Models\Pinjaman;
 use App\Models\Sektor;
 use App\User;
 use Carbon\Carbon;
-use DB;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Session;
 use Storage;
-use Symfony\Component\Console\Input\Input;
 
 class HomeController extends Controller
 {
@@ -119,7 +117,6 @@ class HomeController extends Controller
 
         if (auth()->user()->completed == 1 && auth()->user()->submit == 0) {
             $clientIP = request()->ip();
-            //dd($clientIP);
             $name = auth()->user()->name;
             $email = auth()->user()->email;
             Mail::to($email)->send(new successfulApplication($name));
@@ -149,7 +146,16 @@ class HomeController extends Controller
         }
 
         if (auth()->user()->submit == 1) {
-            return view('status');
+            if (auth()->user()->status == 7) {
+                $catatan = User::select('users.*', 'tbl_daftar.catatan')
+                    ->whereId(auth()->user()->id)
+                    ->join('tbl_daftar', 'tbl_daftar.no_kp', '=', 'users.ic_no')
+                    ->first();
+
+                return view('status', compact('catatan'));
+            } else {
+                return view('status');
+            }
         }
     }
 
@@ -492,7 +498,7 @@ class HomeController extends Controller
 
     public function storePinjaman(Request $request)
     {
-        if (is_null(auth()->user()->peribadi)) {
+        if (is_null(auth()->user()->pinjaman)) {
             $this->validate($request, [
                 'purchase_price'        => ['required', 'numeric'],
                 'duration'              => ['required', 'numeric'],
