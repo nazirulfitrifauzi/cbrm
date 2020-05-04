@@ -615,7 +615,7 @@ class HomeController extends Controller
 
         $pinjaman->save();
 
-        //$this->checkPinjaman();
+        $this->checkCompleted();
 
         return redirect('home')->with('success', 'Data telah disimpan.');
     }
