@@ -297,11 +297,12 @@ class HomeController extends Controller
             "spouse_employer_postcode"  => $request->get('spouse_employer_postcode'),
             "spouse_employer_city"      => $request->get('spouse_employer_city'),
             "spouse_employer_state"     => $request->get('spouse_employer_state'),
+            "completed"                 => 1,
         ]);
 
         $peribadi->save();
 
-        $this->checkPeribadi();
+        //$this->checkPeribadi();
 
         Session::flash('success', 'Data telah disimpan.');
         Session::flash('nextTab', 'tab2');
@@ -411,6 +412,7 @@ class HomeController extends Controller
             'partner_city'          => $request->get('partner_city'),
             'partner_state'         => $request->get('partner_state'),
             'partner_phone'         => $request->get('partner_phone'),
+            'completed'             => 1,
         ]);
 
         $perniagaan->save();
@@ -456,7 +458,7 @@ class HomeController extends Controller
             ]);
         }
 
-        $this->checkPerniagaan();
+        //$this->checkPerniagaan();
 
         Session::flash('success', 'Data telah disimpan.');
         Session::flash('nextTab', 'tab3');
@@ -601,12 +603,13 @@ class HomeController extends Controller
             'document_ic_no'                => $ic_name,
             'document_ssm'                  => $ssm_name,
             'document_bank_statements'      => $bank_name,
-            'document_utility'              => $bil_name
+            'document_utility'              => $bil_name,
+            'completed'                     => 1,
         ]);
 
         $pinjaman->save();
 
-        $this->checkPinjaman();
+        //$this->checkPinjaman();
 
         return redirect('home')->with('success', 'Data telah disimpan.');
     }
