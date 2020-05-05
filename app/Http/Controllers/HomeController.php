@@ -105,10 +105,6 @@ class HomeController extends Controller
         return response()->json(['html' => $html]);
     }
 
-    public function store(Request $request)
-    {
-    }
-
     public function status()
     {
         if (auth()->user()->completed == 0) {
@@ -189,7 +185,6 @@ class HomeController extends Controller
                 "email"                     => ['required'],
                 "profession"                => ['required', 'string'],
                 "income"                    => ['required', 'numeric'],
-                "employer_name"             => ['required', 'string'],
                 "spouse_type"               => ['required'],
                 "spouse_name"               => ['required', 'string'],
                 "spouse_ic_no"              => ['required', 'numeric', 'min:12'],
@@ -223,7 +218,6 @@ class HomeController extends Controller
                 "email"                     => ['required'],
                 "profession"                => ['required', 'string'],
                 "income"                    => ['required', 'numeric'],
-                "employer_name"             => ['required', 'string'],
                 "profession"                => ['required', 'string'],
                 "spouse_type"               => ['required'],
                 "spouse_name"               => ['required', 'string'],
@@ -307,61 +301,10 @@ class HomeController extends Controller
 
         $peribadi->save();
 
-        //$this->checkPeribadi();
-
         Session::flash('success', 'Data telah disimpan.');
         Session::flash('nextTab', 'tab2');
 
         return redirect('home'); //->with('success', 'Data telah disimpan.');
-    }
-
-    public function checkPeribadi()
-    {
-        $id = auth()->user()->id;
-        $peribadiArr = Peribadi::select([
-            "tekun_state",
-            "tekun_branch",
-            "business_status",
-            "business_type",
-            "bank1",
-            "bank1_acct",
-            "gambar",
-            "name",
-            "ic_no",
-            "gender",
-            "religion",
-            "birthdate",
-            "race",
-            "age",
-            "marital",
-            "dependent",
-            "oku",
-            "address1",
-            "postcode",
-            "city",
-            "state",
-            "phone_hp",
-            "education",
-            "email",
-            "profession",
-            "income",
-            "employer_name",
-            "spouse_type",
-            "spouse_name",
-            "spouse_ic_no",
-            "spouse_profession",
-        ])->where('user_id', $id)->get()->toArray();
-
-        $commaList = implode(', ', $peribadiArr[0]);
-        $array = explode(' ', $commaList);
-
-        if (in_array(',', $array)) {
-            Peribadi::where('user_id', $id)->update(['completed' => 0]);
-        } else {
-            Peribadi::where('user_id', $id)->update(['completed' => 1]);
-        }
-
-        $this->checkCompleted();
     }
 
     public function storePerniagaan(Request $request)
@@ -464,44 +407,10 @@ class HomeController extends Controller
             ]);
         }
 
-        //$this->checkPerniagaan();
-
         Session::flash('success', 'Data telah disimpan.');
         Session::flash('nextTab', 'tab3');
 
         return redirect('home');
-    }
-
-    public function checkPerniagaan()
-    {
-        $id = auth()->user()->id;
-        $perniagaanArr = Perniagaan::select([
-            'business_name',
-            'business_no',
-            'business_sector',
-            'business_activity',
-            'business_address1',
-            'business_postcode',
-            'business_city',
-            'business_state',
-            'business_phone_hp',
-            'business_premise',
-            'business_ownership',
-            'business_open',
-            'business_closed',
-            'business_income'
-        ])->where('user_id', $id)->get()->toArray();
-
-        $commaList = implode(', ', $perniagaanArr[0]);
-        $array = explode(' ', $commaList);
-
-        if (in_array(',', $array)) {
-            Perniagaan::where('user_id', $id)->update(['completed' => 0]);
-        } else {
-            Perniagaan::where('user_id', $id)->update(['completed' => 1]);
-        }
-
-        $this->checkCompleted();
     }
 
     public function storePinjaman(Request $request)
@@ -618,37 +527,6 @@ class HomeController extends Controller
         $this->checkCompleted();
 
         return redirect('home')->with('success', 'Data telah disimpan.');
-    }
-
-    public function checkPinjaman()
-    {
-        $id = auth()->user()->id;
-        $pinjamanArr = Pinjaman::select([
-            'purchase_price',
-            'duration',
-            'reference_name',
-            'reference_address1',
-            'reference_postcode',
-            'reference_city',
-            'reference_state',
-            'reference_relation',
-            'reference_phone',
-            'document_ic_no',
-            'document_ssm',
-            'document_bank_statements',
-            'document_utility'
-        ])->where('user_id', $id)->get()->toArray();
-
-        $commaList = implode(', ', $pinjamanArr[0]);
-        $array = explode(' ', $commaList);
-
-        if (in_array(',', $array)) {
-            Pinjaman::where('user_id', $id)->update(['completed' => 0]);
-        } else {
-            Pinjaman::where('user_id', $id)->update(['completed' => 1]);
-        }
-
-        $this->checkCompleted();
     }
 
     public function checkCompleted()
