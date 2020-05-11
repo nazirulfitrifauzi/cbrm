@@ -1,5 +1,5 @@
 <div x-show="tab === 'tab1'">
-    <form method="post" action="{{ route('home.storePeribadi') }}" enctype="multipart/form-data">
+    <form method="post" action="{{ route('mobile.storePeribadi') }}" enctype="multipart/form-data">
         @csrf
 
         <div class="my-8 px-4">
@@ -930,7 +930,7 @@
 
                                 <div class="col-span-6">
                                     <label for="employer_name"
-                                        class="block text-sm font-medium leading-5 text-gray-700">Nama Majikan <span class="text-red-700">*</span></label>
+                                        class="block text-sm font-medium leading-5 text-gray-700">Nama Majikan</label>
                                     <input id="employer_name" name="employer_name"
                                         value="{{ isset(auth()->user()->peribadi->employer_name) ? auth()->user()->peribadi->employer_name : old('employer_name') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
@@ -1255,7 +1255,7 @@
         $('select[name=tekun_state]').on('change', function () {
             var selected = $(this).find(":selected").attr('value');
             $.ajax({
-                url: "{{ route('home.getCawangan') }}?negeri=" + selected,
+                url: "{{ route('mobile.getCawangan') }}?negeri=" + selected,
                 method: 'GET',
                 success: function(data) {
                     $('#tekun_branch').html(data.html);
@@ -1306,10 +1306,10 @@
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         $.ajax({
             type: 'POST',
-            url: "{{ url('deleteGambar')}}" + '/' + id,
+            url: "{{ url('mobile-deleteGambar')}}" + '/' + id,
             data: {'_token' : CSRF_TOKEN, '_method' : 'DELETE'},
             success: function () {
-                window.location = "{{ url('home')}}";
+                window.location = "{{ url('mobile')}}";
             }
         });
     }

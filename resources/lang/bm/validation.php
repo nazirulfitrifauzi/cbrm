@@ -208,6 +208,11 @@ return [
         'doc_ic_no' => 'Dokumen Kad Pengenalan',
         'doc_ssm' => 'Dokumen SSM',
         'doc_bank' => 'Dokumen Penyata Bank',
-        'doc_bil' => 'Dokumen Bil Utiliti'
+        'doc_bil' => 'Dokumen Bil Utiliti',
+        'doc_support_letter' => 'Dokumen Surat Sokongan Syarikat',
+        'doc_motor_pic' => 'Dokumen Gambar pemohon bersama motosikal',
+        'doc_license' => 'Dokumen Lesen Memandu',
+        'doc_grant' => 'Dokumen Geran Motosikal',
+        'doc_roadtax' => 'Dokumen Cukai Jalan',
     ],
 ];

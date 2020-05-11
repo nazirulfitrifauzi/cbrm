@@ -2,6 +2,8 @@
 
 @push('js_head')
 <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.0.1/dist/alpine.js" defer></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
+<script nomodule src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine-ie11.min.js" defer></script>
 @endpush
 
 @section('content')
@@ -54,9 +56,35 @@
         </nav>
         <header class="py-10">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-20">
-                <h1 class="text-3xl leading-9 font-bold text-white">
-                    Skim Pembiayaan Pemulihan Perniagaan Sektor Mikro (CBRM)
-                </h1>
+                <div class="flex">
+                    <h1 class="text-3xl leading-9 font-bold text-white">
+                        Skim Pembiayaan Tekun Mobilepreneur (Mobilepreneur)
+                    </h1>
+
+                    @if(is_null(auth()->user()->scheme_code))
+                        <div class="hidden sm:block ml-auto">
+                            <a href="{{ route('home') }}" type="button"
+                                class="inline-flex items-center px-2 py-2 border border-transparent text-xs leading-4 font-medium rounded-md text-white bg-yellow-600 hover:bg-yellow-500 focus:outline-none focus:border-yellow-700 focus:shadow-outline-yellow active:bg-yellow-700 transition ease-in-out duration-150 sm:text-base">
+                                <svg class="-ml-0.5 mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M7.707 3.293a1 1 0 010 1.414L5.414 7H11a7 7 0 017 7v2a1 1 0 11-2 0v-2a5 5 0 00-5-5H5.414l2.293 2.293a1 1 0 11-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" fill-rule="evenodd"></path>
+                                </svg>
+                                Kembali
+                            </a>
+                        </div>
+                    @endif
+                </div>
+
+                @if(is_null(auth()->user()->scheme_code))
+                    <div class="block sm:hidden flex justify-center">
+                        <a href="{{ route('home') }}" type="button"
+                            class="mt-4 inline-flex items-center px-2 py-2 border border-transparent text-xs leading-6 font-medium rounded-md text-white bg-yellow-600 hover:bg-yellow-500 focus:outline-none focus:border-yellow-700 focus:shadow-outline-yellow active:bg-yellow-700 transition ease-in-out duration-150 sm:text-base">
+                            <svg class="-ml-0.5 mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M7.707 3.293a1 1 0 010 1.414L5.414 7H11a7 7 0 017 7v2a1 1 0 11-2 0v-2a5 5 0 00-5-5H5.414l2.293 2.293a1 1 0 11-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" fill-rule="evenodd"></path>
+                            </svg>
+                            Kembali
+                        </a>
+                    </div>
+                @endif
             </div>
 
             @if (Session::has('success'))
@@ -89,7 +117,8 @@
             @endif
 
             @if (count($errors) > 0 )
-            <div class="fixed inset-0 flex items-end justify-center px-4 py-6 pointer-events-none sm:p-20 sm:items-start sm:justify-end opacity-0 notification">
+            <div
+                class="fixed inset-0 flex items-end justify-center px-4 py-6 pointer-events-none sm:p-20 sm:items-start sm:justify-end opacity-0 notification">
                 <div class="max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto">
                     <div class="rounded-lg shadow-xs overflow-hidden">
                         <div class="p-4">
@@ -107,9 +136,9 @@
                                         Ralat!
                                     </p>
                                     @foreach ($errors->all() as $error)
-                                        <p class="mt-1 text-sm leading-5 text-gray-500">
-                                            {{ $error }}
-                                        </p>
+                                    <p class="mt-1 text-sm leading-5 text-gray-500">
+                                        {{ $error }}
+                                    </p>
                                     @endforeach
                                 </div>
                             </div>
@@ -128,7 +157,7 @@
                 <div 
                     @if ($errors->any())
                         @if (
-                            $errors->has('tekun_state') || 
+                            $errors->has('tekun_state') ||
                             $errors->has('business_status') ||
                             $errors->has('business_type') ||
                             $errors->has('bank1') ||
@@ -158,11 +187,11 @@
                             $errors->has('spouse_ic_no') ||
                             $errors->has('spouse_profession') ||
                             $errors->has('education')
-                        )
+                            )
                             x-data="{ tab: 'tab1' }"
                         @elseif(
-                            $errors->has('business_name') || 
-                            $errors->has('business_sector') || 
+                            $errors->has('business_name') ||
+                            $errors->has('business_sector') ||
                             $errors->has('business_activity') ||
                             $errors->has('business_address1') ||
                             $errors->has('business_postcode') ||
@@ -181,12 +210,12 @@
                             $errors->has('partner_address1') ||
                             $errors->has('partner_postcode') ||
                             $errors->has('partner_city') ||
-                            $errors->has('partner_state') 
-                        ) 
+                            $errors->has('partner_state')
+                            )
                             x-data="{ tab: 'tab2' }"
                         @elseif(
-                            $errors->has('purchase_price') || 
-                            $errors->has('duration') || 
+                            $errors->has('purchase_price') ||
+                            $errors->has('duration') ||
                             $errors->has('reference_name') ||
                             $errors->has('reference_address1') ||
                             $errors->has('reference_postcode') ||
@@ -198,7 +227,7 @@
                             $errors->has('doc_ssm') ||
                             $errors->has('doc_bank') ||
                             $errors->has('doc_bil')
-                        )
+                            )
                             x-data="{ tab: 'tab3' }"
                         @endif
                     @else
@@ -216,21 +245,22 @@
                                     x-data="{ tab: 'tab3' }"
                                 @endif
                             @else
-                                x-data="{ tab: 'tab1' }"
+                            x-data="{ tab: 'tab1' }"
                             @endif
                         @endif
                     @endif
-                    
+
 
                     @if ($errors->any())
                         @if (
                             $errors->has('tekun_state') || $errors->has('tekun_branch'))
                             tab1
-                        @elseif($errors->has('business_ownership') || $errors->has('business_open') || $errors->has('business_closed')) 
+                        @elseif($errors->has('business_ownership') || $errors->has('business_open') ||
+                            $errors->has('business_closed'))
                             tab2
                         @endif
                     @endif
-                >
+                    >
                     <div class="sm:hidden mb-4 flex justify-between">
                         <span class="inline-flex rounded-md shadow-sm">
                             <a href="{{ asset('img') }}/cbrm/FAQ_cbrm.pdf" target="_blank" type="button"
@@ -249,8 +279,7 @@
                                     @else
                                         hidden
                                     @endif
-                                    "
-                                    @click.prevent="open = true">
+                                    " @click.prevent="open = true">
                                 <svg class="-ml-0.5 mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd"
                                         d="M2 10a4 4 0 004 4h3v3a1 1 0 102 0v-3h3a4 4 0 000-8 4 4 0 00-8 0 4 4 0 00-4 4zm9 4H9V9.414l-1.293 1.293a1 1 0 01-1.414-1.414l3-3a1 1 0 011.414 0l3 3a1 1 0 01-1.414 1.414L11 9.414V14z"
@@ -260,100 +289,92 @@
                             </button>
 
                             {{-- modal penzahiran mobile--}}
-                            <div
-                                class="fixed bottom-0 inset-x-0 px-4 pb-6 sm:inset-0 sm:p-0 sm:flex sm:items-center sm:justify-center" 
-                                x-show="open"
-                            >
-                                <div class="fixed inset-0 transition-opacity"
+                            <div class="fixed bottom-0 inset-x-0 px-4 pb-6 sm:inset-0 sm:p-0 sm:flex sm:items-center sm:justify-center"
+                                x-show="open">
+                                <div class="fixed inset-0 transition-opacity" 
                                     x-show="open"
-                                    x-transition:enter="ease-out duration-300"
+                                    x-transition:enter="ease-out duration-300" 
                                     x-transition:enter-start=" opacity-0"
-                                    x-transition:enter-end="opacity-100"
+                                    x-transition:enter-end="opacity-100" 
                                     x-transition:leave="ease-in duration-200"
-                                    x-transition:leave-start="opacity-100"
-                                    x-transition:leave-end="opacity-0"
-                                >
+                                    x-transition:leave-start="opacity-100" 
+                                    x-transition:leave-end="opacity-0">
                                     <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
                                 </div>
 
-                                <div
-                                    class="bg-white rounded-lg px-4 pt-5 pb-4 overflow-hidden shadow-xl transform transition-all sm:max-w-xl sm:w-full sm:p-6"
+                                <div class="bg-white rounded-lg px-4 pt-5 pb-4 overflow-hidden shadow-xl transform transition-all sm:max-w-xl sm:w-full sm:p-6"
                                     x-show="open" 
                                     x-transition:enter="ease-out duration-300""
                                     x-transition:enter-start=" opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                                     x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
                                     x-transition:leave="ease-in duration-200"
                                     x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
-                                    x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                                >
+                                    x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
                                     <div>
                                         <div class="text-center">
                                             <h3 class="text-xl leading-6 font-medium text-gray-900">
-                                                Penzahiran
+                                                Akuan Pemohon
                                             </h3>
                                             <div class="mt-2 overflow-auto h-64">
                                                 <p class="text-base leading-5 text-gray-700 mb-2">
                                                     Adalah dengan ini saya mengaku bahawa:
                                                 </p>
                                                 <table width="100%" class="table-auto">
-                                                            <tr class="text-sm text-gray-600">
-                                                                <td class="align-top px-2 py-1">1.</td>
-                                                                <td class="text-left px-2 py-1">Segala maklumat dan keterangan yang diberikan adalah benar.</td>
-                                                            </tr>
-                                                            <tr class="text-sm text-gray-600">
-                                                                <td class="align-top px-2 py-1">2.</td>
-                                                                <td class="text-left px-2 py-1">Pihak TEKUN berhak menolak permohonan ini jika didapati butir yang diberikan tidak benar.</td>
-                                                            </tr>
-                                                            <tr class="text-sm text-gray-600">
-                                                                <td class="align-top px-2 py-1">3.</td>
-                                                                <td class="text-left px-2 py-1">Saya berikrar untuk membayar jumlah terhutang sepertimana yang dijanjikan.</td>
-                                                            </tr>
-                                                            <tr class="text-sm text-gray-600">
-                                                                <td class="align-top px-2 py-1">4.</td>
-                                                                <td class="text-left px-2 py-1">Saya memperakukan bahawa kemudahan pembiayaan ini tidak akan disalahgunakan.</td>
-                                                            </tr>
-                                                            <tr class="text-sm text-gray-600">
-                                                                <td class="align-top px-2 py-1">5.</td>
-                                                                <td class="text-left px-2 py-1">Saya bukan seorang yang bankrap.</td>
-                                                            </tr>
-                                                            <tr class="text-sm text-gray-600">
-                                                                <td class="align-top px-2 py-1">6.</td>
-                                                                <td class="text-left px-2 py-1">Saya dengan ini membenarkan pihak TEKUN Nasional memproses data-data peribadi bagi tujuan permohonan pembiayaan.</td>
-                                                            </tr>
-                                                            <tr class="text-sm text-gray-600">
-                                                                <td class="align-top px-2 py-1">7.</td>
-                                                                <td class="text-left px-2 py-1"><strong>Saya mengakui tidak pernah melantik / menggunakan khidmat ejen ( orang tengah ) bagi memproses permohonan ini.Borang dan proses permohonan ini juga tidak dikenakan sebarang bayaran oleh mana-mana pihak.</strong></td>
-                                                            </tr>
-                                                            <tr class="text-sm text-gray-600">
-                                                                <td class="align-top px-2 py-1">8.</td>
-                                                                <td class="text-left px-2 py-1">Pemohon dengan ini membenarkan <b>TEKUN Nasional</b> / atau pegawainya untuk menggunakan, mendedahkan, memberitahu apa-apa maklumat berhubung dengan akaun pembiayaan TEKUN / untuk tujuan atau berhubung dengan apa-apa tindakan atau prosiding diambil bagi tujuan penilaian kredit atau bayaran balik di bawah Terma dan Syarat ini</td>
-                                                            </tr>
-                                                            <tr class="text-sm text-gray-600">
-                                                                <td class="align-top px-2 py-1">9.</td>
-                                                                <td class="text-left px-2 py-1">Pemohon dengan ini membenarkan <b>TEKUN Nasional</b> / atau pegawainya untuk penzahiran apa-apa maklumat kredit individu yang berkaitan dengan kedudukan kredit, kemudahan atau butiran akaun pemohon kepada Experian Information Services (Malaysia) Sdn Bhd (dahulu dikenali sebagai RAMCI) ("Experian") dan / atau Credit Tip Off Service Sdn Bhd ("CTOS") serta pelanggan Experian / CTOS termasuk Bank, Institusi kewangan atau mana-mana agensi pelaporan kredit yang berkuat kuasa di Malaysia.</td>
-                                                            </tr>
-                                                            <tr class="text-sm text-gray-600">
-                                                                <td class="align-top px-2 py-1">10.</td>
-                                                                <td class="text-left px-2 py-1">Pemohon dengan ini memberi kebenaran kepada Experian dan / atau CTOS bagi pendedahan maklumat kredit, termasuk maklumat kredit perbankan kepada <b>TEKUN Nasional</b> / atau pegawainya bagi maksud yang berikut seperti yang dinyatakan di bawah seksyen 24, menurut Akta Pelaporan Kredit 2010. Persetujuan hendaklah kekal terpakai selagi pemohon mengekalkan akaun / pembiayaan / kredit / apa-apa transaksi dengan organisasi. </td>
-                                                            </tr>
-                                                        </table>
+                                                    <tr class="text-sm text-gray-600">
+                                                        <td class="align-top px-2 py-1">1.</td>
+                                                        <td class="text-left px-2 py-1">Segala maklumat dan keterangan
+                                                            yang diberikan adalah benar.</td>
+                                                    </tr>
+                                                    <tr class="text-sm text-gray-600">
+                                                        <td class="align-top px-2 py-1">2.</td>
+                                                        <td class="text-left px-2 py-1">Pihak TEKUN berhak menolak
+                                                            permohonan ini jika didapati butir yang diberikan tidak
+                                                            benar.</td>
+                                                    </tr>
+                                                    <tr class="text-sm text-gray-600">
+                                                        <td class="align-top px-2 py-1">3.</td>
+                                                        <td class="text-left px-2 py-1">Saya berikrar untuk membayar
+                                                            jumlah terhutang sepertimana yang dijanjikan.</td>
+                                                    </tr>
+                                                    <tr class="text-sm text-gray-600">
+                                                        <td class="align-top px-2 py-1">4.</td>
+                                                        <td class="text-left px-2 py-1">Saya memperakukan bahawa
+                                                            kemudahan pembiayaan ini tidak akan disalahgunakan.</td>
+                                                    </tr>
+                                                    <tr class="text-sm text-gray-600">
+                                                        <td class="align-top px-2 py-1">5.</td>
+                                                        <td class="text-left px-2 py-1">Saya bukan seorang yang bankrap.
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="text-sm text-gray-600">
+                                                        <td class="align-top px-2 py-1">6.</td>
+                                                        <td class="text-left px-2 py-1">Saya dengan ini membenarkan
+                                                            pihak TEKUN Nasional memproses data-data peribadi bagi
+                                                            tujuan permohonan pembiayaan.</td>
+                                                    </tr>
+                                                    <tr class="text-sm text-gray-600">
+                                                        <td class="align-top px-2 py-1">7.</td>
+                                                        <td class="text-left px-2 py-1"><strong>Saya mengakui tidak
+                                                                pernah melantik / menggunakan khidmat ejen ( orang
+                                                                tengah ) bagi memproses permohonan ini.Borang dan proses
+                                                                permohonan ini juga tidak dikenakan sebarang bayaran
+                                                                oleh mana-mana pihak.</strong></td>
+                                                    </tr>
+                                                </table>
                                             </div>
                                         </div>
                                     </div>
-                                    <div
-                                        class="mt-5 sm:mt-6 sm:grid sm:grid-cols-2 sm:gap-3 sm:grid-flow-row-dense">
+                                    <div class="mt-5 sm:mt-6 sm:grid sm:grid-cols-2 sm:gap-3 sm:grid-flow-row-dense">
                                         <span class="flex w-full rounded-md shadow-sm sm:col-start-2">
-                                            <a href="{{ route('home.status') }}" type="button"
+                                            <a href="{{ route('mobile.status') }}" type="button"
                                                 class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-indigo-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo transition ease-in-out duration-150 sm:text-sm sm:leading-5">
                                                 Setuju & Hantar
                                             </a>
                                         </span>
-                                        <span
-                                            class="mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:col-start-1">
+                                        <span class="mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:col-start-1">
                                             <button type="button"
                                                 class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline transition ease-in-out duration-150 sm:text-sm sm:leading-5"
-                                                @click.prevent="open = false"
-                                            >
+                                                @click.prevent="open = false">
                                                 Tidak setuju
                                             </button>
                                         </span>
@@ -366,32 +387,30 @@
 
                     <div class="sm:hidden">
                         <select class="form-select block w-full" @change="tab = $event.target.value">
-                            <option value="opt_maklumatPeribadi" 
-                                x-bind:value="'tab1'" 
-                                @if(is_null(auth()->user()->peribadi))
-                                    selected
+                            <option value="opt_maklumatPeribadi" x-bind:value="'tab1'" @if(is_null(auth()->
+                                user()->peribadi))
+                                selected
                                 @else
-                                    
+
                                 @endif
-                            >
+                                >
                                 Maklumat Peribadi
                             </option>
-                            <option value="opt_maklumatPerniagaan" 
-                                @if(is_null(auth()->user()->peribadi))
-                                    disabled
+                            <option value="opt_maklumatPerniagaan" @if(is_null(auth()->user()->peribadi))
+                                disabled
                                 @else
-                                    x-bind:value="'tab2'"
+                                x-bind:value="'tab2'"
                                 @endif
-                            >
+                                >
                                 Maklumat Perniagaan
                             </option>
-                            <option value="opt_maklumatPinjaman"
-                                @if(is_null(auth()->user()->peribadi) || is_null(auth()->user()->perniagaan))
-                                    disabled
+                            <option value="opt_maklumatPinjaman" @if(is_null(auth()->user()->peribadi) ||
+                                is_null(auth()->user()->perniagaan))
+                                disabled
                                 @else
-                                    x-bind:value="'tab3'"
+                                x-bind:value="'tab3'"
                                 @endif
-                            >
+                                >
                                 Maklumat Pinjaman
                             </option>
                         </select>
@@ -410,7 +429,7 @@
                                 :class="{ 'text-indigo-700 bg-indigo-100 focus:outline-none focus:text-indigo-800 focus:bg-indigo-200' : tab === 'tab2' }"
                                 @if(is_null(auth()->user()->peribadi))
                                 @else
-                                    @click="tab='tab2'"
+                                @click="tab='tab2'"
                                 @endif
                                 >
                                 Maklumat Perniagaan
@@ -418,10 +437,9 @@
                             <button
                                 class="ml-4 px-3 py-2 font-medium text-sm leading-5 rounded-md text-gray-500 hover:text-gray-700 focus:outline-none focus:text-indigo-600 focus:bg-indigo-50"
                                 :class="{ 'text-indigo-700 bg-indigo-100 focus:outline-none focus:text-indigo-800 focus:bg-indigo-200' : tab === 'tab3' }"
-                                
                                 @if(is_null(auth()->user()->perniagaan))
                                 @else
-                                    @click="tab='tab3'"
+                                @click="tab='tab3'"
                                 @endif
                                 >
                                 Maklumat Pinjaman
@@ -445,8 +463,7 @@
                                             @else
                                                 hidden
                                             @endif
-                                            "
-                                            @click.prevent="open = true">
+                                            " @click.prevent="open = true">
                                         <svg class="-ml-0.5 mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
                                             <path fill-rule="evenodd"
                                                 d="M2 10a4 4 0 004 4h3v3a1 1 0 102 0v-3h3a4 4 0 000-8 4 4 0 00-8 0 4 4 0 00-4 4zm9 4H9V9.414l-1.293 1.293a1 1 0 01-1.414-1.414l3-3a1 1 0 011.414 0l3 3a1 1 0 01-1.414 1.414L11 9.414V14z"
@@ -456,81 +473,79 @@
                                     </button>
 
                                     {{-- modal penzahiran desktop--}}
-                                    <div
-                                        class="fixed bottom-0 inset-x-0 px-4 pb-6 sm:inset-0 sm:p-0 sm:flex sm:items-center sm:justify-center" 
-                                        x-show="open"
-                                    >
-                                        <div class="fixed inset-0 transition-opacity"
+                                    <div class="fixed bottom-0 inset-x-0 px-4 pb-6 sm:inset-0 sm:p-0 sm:flex sm:items-center sm:justify-center"
+                                        x-show="open">
+                                        <div class="fixed inset-0 transition-opacity" 
                                             x-show="open"
                                             x-transition:enter="ease-out duration-300"
-                                            x-transition:enter-start=" opacity-0"
+                                            x-transition:enter-start=" opacity-0" 
                                             x-transition:enter-end="opacity-100"
                                             x-transition:leave="ease-in duration-200"
-                                            x-transition:leave-start="opacity-100"
-                                            x-transition:leave-end="opacity-0"
-                                        >
+                                            x-transition:leave-start="opacity-100" 
+                                            x-transition:leave-end="opacity-0">
                                             <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
                                         </div>
 
-                                        <div
-                                            class="bg-white rounded-lg px-4 pt-5 pb-4 overflow-hidden shadow-xl transform transition-all sm:max-w-xl sm:w-full sm:p-6"
+                                        <div class="bg-white rounded-lg px-4 pt-5 pb-4 overflow-hidden shadow-xl transform transition-all sm:max-w-xl sm:w-full sm:p-6"
                                             x-show="open" 
                                             x-transition:enter="ease-out duration-300""
-                                            x-transition:enter-start=" opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                            x-transition:enter-start=" opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" 
                                             x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
                                             x-transition:leave="ease-in duration-200"
                                             x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
-                                            x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                                        >
+                                            x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
                                             <div>
                                                 <div class="text-center">
                                                     <h3 class="text-xl leading-6 font-medium text-gray-900">
-                                                        Penzahiran
+                                                        Akuan Pemohon
                                                     </h3>
-                                                    <div class="mt-2">
+                                                    <div class="mt-2 overflow-auto h-64">
                                                         <p class="text-base leading-5 text-gray-700 mb-2">
                                                             Adalah dengan ini saya mengaku bahawa:
                                                         </p>
                                                         <table width="100%" class="table-auto">
                                                             <tr class="text-sm text-gray-600">
                                                                 <td class="align-top px-2 py-1">1.</td>
-                                                                <td class="text-left px-2 py-1">Segala maklumat dan keterangan yang diberikan adalah benar.</td>
+                                                                <td class="text-left px-2 py-1">Segala maklumat dan
+                                                                    keterangan yang diberikan adalah benar.</td>
                                                             </tr>
                                                             <tr class="text-sm text-gray-600">
                                                                 <td class="align-top px-2 py-1">2.</td>
-                                                                <td class="text-left px-2 py-1">Pihak TEKUN berhak menolak permohonan ini jika didapati butir yang diberikan tidak benar.</td>
+                                                                <td class="text-left px-2 py-1">Pihak TEKUN berhak
+                                                                    menolak permohonan ini jika didapati butir yang
+                                                                    diberikan tidak benar.</td>
                                                             </tr>
                                                             <tr class="text-sm text-gray-600">
                                                                 <td class="align-top px-2 py-1">3.</td>
-                                                                <td class="text-left px-2 py-1">Saya berikrar untuk membayar jumlah terhutang sepertimana yang dijanjikan.</td>
+                                                                <td class="text-left px-2 py-1">Saya berikrar untuk
+                                                                    membayar jumlah terhutang sepertimana yang
+                                                                    dijanjikan.</td>
                                                             </tr>
                                                             <tr class="text-sm text-gray-600">
                                                                 <td class="align-top px-2 py-1">4.</td>
-                                                                <td class="text-left px-2 py-1">Saya memperakukan bahawa kemudahan pembiayaan ini tidak akan disalahgunakan.</td>
+                                                                <td class="text-left px-2 py-1">Saya memperakukan bahawa
+                                                                    kemudahan pembiayaan ini tidak akan disalahgunakan.
+                                                                </td>
                                                             </tr>
                                                             <tr class="text-sm text-gray-600">
                                                                 <td class="align-top px-2 py-1">5.</td>
-                                                                <td class="text-left px-2 py-1">Saya bukan seorang yang bankrap.</td>
+                                                                <td class="text-left px-2 py-1">Saya bukan seorang yang
+                                                                    bankrap.</td>
                                                             </tr>
                                                             <tr class="text-sm text-gray-600">
                                                                 <td class="align-top px-2 py-1">6.</td>
-                                                                <td class="text-left px-2 py-1">Saya dengan ini membenarkan pihak TEKUN Nasional memproses data-data peribadi bagi tujuan permohonan pembiayaan.</td>
+                                                                <td class="text-left px-2 py-1">Saya dengan ini
+                                                                    membenarkan pihak TEKUN Nasional memproses data-data
+                                                                    peribadi bagi tujuan permohonan pembiayaan.</td>
                                                             </tr>
                                                             <tr class="text-sm text-gray-600">
                                                                 <td class="align-top px-2 py-1">7.</td>
-                                                                <td class="text-left px-2 py-1"><strong>Saya mengakui tidak pernah melantik / menggunakan khidmat ejen ( orang tengah ) bagi memproses permohonan ini.Borang dan proses permohonan ini juga tidak dikenakan sebarang bayaran oleh mana-mana pihak.</strong></td>
-                                                            </tr>
-                                                            <tr class="text-sm text-gray-600">
-                                                                <td class="align-top px-2 py-1">8.</td>
-                                                                <td class="text-left px-2 py-1">Pemohon dengan ini membenarkan <b>TEKUN Nasional</b> / atau pegawainya untuk menggunakan, mendedahkan, memberitahu apa-apa maklumat berhubung dengan akaun pembiayaan TEKUN / untuk tujuan atau berhubung dengan apa-apa tindakan atau prosiding diambil bagi tujuan penilaian kredit atau bayaran balik di bawah Terma dan Syarat ini</td>
-                                                            </tr>
-                                                            <tr class="text-sm text-gray-600">
-                                                                <td class="align-top px-2 py-1">9.</td>
-                                                                <td class="text-left px-2 py-1">Pemohon dengan ini membenarkan <b>TEKUN Nasional</b> / atau pegawainya untuk penzahiran apa-apa maklumat kredit individu yang berkaitan dengan kedudukan kredit, kemudahan atau butiran akaun pemohon kepada Experian Information Services (Malaysia) Sdn Bhd (dahulu dikenali sebagai RAMCI) ("Experian") dan / atau Credit Tip Off Service Sdn Bhd ("CTOS") serta pelanggan Experian / CTOS termasuk Bank, Institusi kewangan atau mana-mana agensi pelaporan kredit yang berkuat kuasa di Malaysia.</td>
-                                                            </tr>
-                                                            <tr class="text-sm text-gray-600">
-                                                                <td class="align-top px-2 py-1">10.</td>
-                                                                <td class="text-left px-2 py-1">Pemohon dengan ini memberi kebenaran kepada Experian dan / atau CTOS bagi pendedahan maklumat kredit, termasuk maklumat kredit perbankan kepada <b>TEKUN Nasional</b> / atau pegawainya bagi maksud yang berikut seperti yang dinyatakan di bawah seksyen 24, menurut Akta Pelaporan Kredit 2010. Persetujuan hendaklah kekal terpakai selagi pemohon mengekalkan akaun / pembiayaan / kredit / apa-apa transaksi dengan organisasi. </td>
+                                                                <td class="text-left px-2 py-1"><strong>Saya mengakui
+                                                                        tidak pernah melantik / menggunakan khidmat ejen
+                                                                        ( orang tengah ) bagi memproses permohonan
+                                                                        ini.Borang dan proses permohonan ini juga tidak
+                                                                        dikenakan sebarang bayaran oleh mana-mana
+                                                                        pihak.</strong></td>
                                                             </tr>
                                                         </table>
                                                     </div>
@@ -539,7 +554,7 @@
                                             <div
                                                 class="mt-5 sm:mt-6 sm:grid sm:grid-cols-2 sm:gap-3 sm:grid-flow-row-dense">
                                                 <span class="flex w-full rounded-md shadow-sm sm:col-start-2">
-                                                    <a href="{{ route('home.status') }}" type="button"
+                                                    <a href="{{ route('mobile.status') }}" type="button"
                                                         class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-indigo-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo transition ease-in-out duration-150 sm:text-sm sm:leading-5">
                                                         Setuju & Hantar
                                                     </a>
@@ -548,8 +563,7 @@
                                                     class="mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:col-start-1">
                                                     <button type="button"
                                                         class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline transition ease-in-out duration-150 sm:text-sm sm:leading-5"
-                                                        @click.prevent="open = false"
-                                                    >
+                                                        @click.prevent="open = false">
                                                         Tidak setuju
                                                     </button>
                                                 </span>
@@ -563,11 +577,11 @@
                     </div>
 
                     {{-- card content --}}
-                    @include('maklumatPeribadi')
-                    @include('maklumatPerniagaan')
-                    @include('maklumatPinjaman')
+                    @include('mobile_maklumatPeribadi')
+                    @include('mobile_maklumatPerniagaan')
+                    @include('mobile_maklumatPinjaman')
                     {{-- end content --}}
-                    
+
                 </div>
             </div>
             <!-- /End replace -->
@@ -590,8 +604,9 @@
         setTimeout(function () {
             $('.notification').fadeOut('fast');
         }, 7000);
-        
+
     });
+
 </script>
 @endif
 @endpush

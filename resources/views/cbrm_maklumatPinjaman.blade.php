@@ -1,5 +1,5 @@
 <div x-show="tab === 'tab3'">
-    <form method="post" action="{{ route('home.storePinjaman') }}" enctype="multipart/form-data">
+    <form method="post" action="{{ route('cbrm.storePinjaman') }}" enctype="multipart/form-data">
         @csrf
 
         <div class="my-8 px-4">
@@ -996,13 +996,13 @@
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         $.ajax({
             type: 'POST',
-            url: "{{ url('deleteKP')}}" + '/' + id,
+            url: "{{ url('cbrm-deleteKP')}}" + '/' + id,
             data: {
                 '_token': CSRF_TOKEN,
                 '_method': 'DELETE'
             },
             success: function () {
-                window.location = "{{ url('home')}}";
+                window.location = "{{ url('cbrm')}}";
             }
         });
     }
@@ -1052,13 +1052,13 @@
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         $.ajax({
             type: 'POST',
-            url: "{{ url('deleteSSM')}}" + '/' + id,
+            url: "{{ url('cbrm-deleteSSM')}}" + '/' + id,
             data: {
                 '_token': CSRF_TOKEN,
                 '_method': 'DELETE'
             },
             success: function () {
-                window.location = "{{ url('home')}}";
+                window.location = "{{ url('cbrm')}}";
             }
         });
     }
@@ -1108,13 +1108,13 @@
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         $.ajax({
             type: 'POST',
-            url: "{{ url('deleteBank')}}" + '/' + id,
+            url: "{{ url('cbrm-deleteBank')}}" + '/' + id,
             data: {
                 '_token': CSRF_TOKEN,
                 '_method': 'DELETE'
             },
             success: function () {
-                window.location = "{{ url('home')}}";
+                window.location = "{{ url('cbrm')}}";
             }
         });
     }
@@ -1164,13 +1164,13 @@
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         $.ajax({
             type: 'POST',
-            url: "{{ url('deleteBil')}}" + '/' + id,
+            url: "{{ url('cbrm-deleteBil')}}" + '/' + id,
             data: {
                 '_token': CSRF_TOKEN,
                 '_method': 'DELETE'
             },
             success: function () {
-                window.location = "{{ url('home')}}";
+                window.location = "{{ url('cbrm')}}";
             }
         });
     }
@@ -1220,13 +1220,13 @@
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         $.ajax({
             type: 'POST',
-            url: "{{ url('deleteBorang')}}" + '/' + id,
+            url: "{{ url('cbrm-deleteBorang')}}" + '/' + id,
             data: {
                 '_token': CSRF_TOKEN,
                 '_method': 'DELETE'
             },
             success: function () {
-                window.location = "{{ url('home')}}";
+                window.location = "{{ url('cbrm')}}";
             }
         });
     }

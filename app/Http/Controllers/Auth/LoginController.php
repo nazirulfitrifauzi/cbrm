@@ -35,10 +35,18 @@ class LoginController extends Controller
             if (auth()->user()->ic_no == '000000000000') {
                 return redirect('admin');
             } else {
-                if (auth()->user()->submit === '1') {
-                    return redirect('status');
+                if (auth()->user()->submit === '1' && auth()->user()->scheme_code == '1130') {
+                    return redirect('cbrm-status');
+                } elseif (auth()->user()->submit === '1' && auth()->user()->scheme_code == '1131') {
+                    return redirect('mobile-status');
                 } else {
-                    return redirect('home');
+                    if (is_null(auth()->user()->scheme_code)) {
+                        return redirect('home');
+                    } elseif (auth()->user()->scheme_code == '1130') {
+                        return redirect('cbrm');
+                    } elseif (auth()->user()->scheme_code == '1131') {
+                        return redirect('mobile');
+                    }
                 }
             }
         }

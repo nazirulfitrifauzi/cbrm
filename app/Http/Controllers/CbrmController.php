@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Mail;
 use Session;
 use Storage;
 
-class HomeController extends Controller
+class CbrmController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -40,10 +40,10 @@ class HomeController extends Controller
     public function index()
     {
 
-        if (auth()->user()->submit == "1") {
-            return redirect('status');
+        if (auth()->user()->submit == "1" && auth()->user()->scheme_code == '1130') {
+            return view('cbrm_status');
         } else {
-            return view('home', [
+            return view('cbrm', [
                 'negeri' => Negeri::select(['kodnegeri', 'namanegeri'])
                     ->where('kod', '!=', '1')
                     ->orderby('namanegeri', 'ASC')
@@ -107,11 +107,11 @@ class HomeController extends Controller
 
     public function status()
     {
-        if (auth()->user()->completed == 0) {
-            return redirect('home');
+        if (auth()->user()->completed == 0 && auth()->user()->scheme_code == '1130') {
+            return redirect('cbrm');
         }
 
-        if (auth()->user()->completed == 1 && auth()->user()->submit == 0) {
+        if (auth()->user()->completed == 1 && auth()->user()->submit == 0 && auth()->user()->scheme_code == '1130') {
             $clientIP = request()->ip();
             $name = auth()->user()->name;
             $email = auth()->user()->email;
@@ -138,19 +138,19 @@ class HomeController extends Controller
             $id = auth()->user()->id;
             User::where('id', $id)->update(['submit' => 1, 'status' => 1, 'client_ip' => $clientIP, 'submit_at' => now()]);
 
-            return redirect('status');
+            return redirect('cbrm_status');
         }
 
-        if (auth()->user()->submit == 1) {
+        if (auth()->user()->submit == 1 && auth()->user()->scheme_code == '1130') {
             if (auth()->user()->status == 7) {
                 $catatan = User::select('users.*', 'tbl_daftar.catatan')
-                    ->whereId(auth()->user()->id)
+                    ->where('users.id', auth()->user()->id)
                     ->join('tbl_daftar', 'tbl_daftar.no_kp', '=', 'users.ic_no')
                     ->first();
 
-                return view('status', compact('catatan'));
+                return view('cbrm_status', compact('catatan'));
             } else {
-                return view('status');
+                return view('cbrm_status');
             }
         }
     }
@@ -165,7 +165,7 @@ class HomeController extends Controller
                 "business_type"             => ['required'],
                 "bank1"                     => ['required'],
                 "bank1_acct"                => ['required', 'numeric'],
-                "gambar"                    => ['required', 'mimes:jpeg,jpg,png'],
+                "gambar"                    => ['required', 'file', 'mimes:jpeg,jpg,png', 'max:3000'],
                 "name"                      => ['required', 'string'],
                 "ic_no"                     => ['required', 'numeric', 'min:12'],
                 "gender"                    => ['required'],
@@ -198,7 +198,7 @@ class HomeController extends Controller
                 "business_type"             => ['required'],
                 "bank1"                     => ['required'],
                 "bank1_acct"                => ['required', 'numeric'],
-                "gambar"                    => ['mimes:jpeg,jpg,png', Rule::requiredIf($request->user()->peribadi->gambar == NULL)],
+                "gambar"                    => ['file', 'mimes:jpeg,jpg,png', 'max:3000', Rule::requiredIf($request->user()->peribadi->gambar == NULL)],
                 "name"                      => ['required', 'string'],
                 "ic_no"                     => ['required', 'numeric', 'min:12'],
                 "gender"                    => ['required'],
@@ -301,10 +301,12 @@ class HomeController extends Controller
 
         $peribadi->save();
 
+        User::where('id', auth()->user()->id)->update(['scheme_code' => '1130']);
+
         Session::flash('success', 'Data telah disimpan.');
         Session::flash('nextTab', 'tab2');
 
-        return redirect('home'); //->with('success', 'Data telah disimpan.');
+        return redirect('cbrm');
     }
 
     public function storePerniagaan(Request $request)
@@ -410,7 +412,7 @@ class HomeController extends Controller
         Session::flash('success', 'Data telah disimpan.');
         Session::flash('nextTab', 'tab3');
 
-        return redirect('home');
+        return redirect('cbrm');
     }
 
     public function storePinjaman(Request $request)
@@ -426,10 +428,10 @@ class HomeController extends Controller
                 'reference_state'       => ['required', 'alpha'],
                 'reference_relation'    => ['required', 'string'],
                 'reference_phone'       => ['required', 'numeric', 'min:10'],
-                "doc_ic_no"             => ['required', 'mimes:pdf'],
-                "doc_ssm"               => ['required', 'mimes:pdf'],
-                "doc_bank"              => ['required', 'mimes:pdf'],
-                "doc_bil"               => ['required', 'mimes:pdf'],
+                "doc_ic_no"             => ['required', 'file', 'mimes:pdf', 'max:3000'],
+                "doc_ssm"               => ['required', 'file', 'mimes:pdf', 'max:3000'],
+                "doc_bank"              => ['required', 'file', 'mimes:pdf', 'max:3000'],
+                "doc_bil"               => ['required', 'file', 'mimes:pdf', 'max:3000'],
             ]);
         } else {
             $this->validate($request, [
@@ -442,10 +444,10 @@ class HomeController extends Controller
                 'reference_state'       => ['required', 'alpha'],
                 'reference_relation'    => ['required', 'string'],
                 'reference_phone'       => ['required', 'numeric', 'min:10'],
-                "doc_ic_no"             => ['mimes:pdf', Rule::requiredIf($request->user()->pinjaman->document_ic_no == NULL)],
-                "doc_ssm"               => ['mimes:pdf', Rule::requiredIf($request->user()->pinjaman->document_ssm == NULL)],
-                "doc_bank"              => ['mimes:pdf', Rule::requiredIf($request->user()->pinjaman->document_bank_statements == NULL)],
-                "doc_bil"               => ['mimes:pdf', Rule::requiredIf($request->user()->pinjaman->document_utility == NULL)],
+                "doc_ic_no"             => ['file', 'mimes:pdf', 'max:3000', Rule::requiredIf($request->user()->pinjaman->document_ic_no == NULL)],
+                "doc_ssm"               => ['file', 'mimes:pdf', 'max:3000', Rule::requiredIf($request->user()->pinjaman->document_ssm == NULL)],
+                "doc_bank"              => ['file', 'mimes:pdf', 'max:3000', Rule::requiredIf($request->user()->pinjaman->document_bank_statements == NULL)],
+                "doc_bil"               => ['file', 'mimes:pdf', 'max:3000', Rule::requiredIf($request->user()->pinjaman->document_utility == NULL)],
             ]);
         }
 
@@ -526,7 +528,7 @@ class HomeController extends Controller
 
         $this->checkCompleted();
 
-        return redirect('home')->with('success', 'Data telah disimpan.');
+        return redirect('cbrm')->with('success', 'Data telah disimpan.');
     }
 
     public function checkCompleted()
@@ -551,7 +553,8 @@ class HomeController extends Controller
         Peribadi::where('user_id', $id)->update(['gambar' => NULL]);
         unlink(public_path('storage/' . auth()->user()->ic_no . '/' . $file));
 
-        $this->checkPeribadi();
+        User::where('id', $id)->update(['completed' => 0]);
+        Peribadi::where('user_id', $id)->update(['completed' => 0]);
 
         Session::flash('success', 'Gambar telah dipadam');
         Session::flash('Tab', 'tab1');
@@ -565,7 +568,8 @@ class HomeController extends Controller
         Pinjaman::where('user_id', $id)->update(['document_ic_no' => NULL]);
         unlink(public_path('storage/' . auth()->user()->ic_no . '/' . $file));
 
-        $this->checkPinjaman();
+        User::where('id', $id)->update(['completed' => 0]);
+        Pinjaman::where('user_id', $id)->update(['completed' => 0]);
 
         Session::flash('success', 'Fail Kad Pengenalan telah dipadam');
         Session::flash('Tab', 'tab3');
@@ -579,7 +583,8 @@ class HomeController extends Controller
         Pinjaman::where('user_id', $id)->update(['document_ssm' => NULL]);
         unlink(public_path('storage/' . auth()->user()->ic_no . '/' . $file));
 
-        $this->checkPinjaman();
+        User::where('id', $id)->update(['completed' => 0]);
+        Pinjaman::where('user_id', $id)->update(['completed' => 0]);
 
         Session::flash('success', 'Fail SSM telah dipadam');
         Session::flash('Tab', 'tab3');
@@ -593,7 +598,8 @@ class HomeController extends Controller
         Pinjaman::where('user_id', $id)->update(['document_bank_statements' => NULL]);
         unlink(public_path('storage/' . auth()->user()->ic_no . '/' . $file));
 
-        $this->checkPinjaman();
+        User::where('id', $id)->update(['completed' => 0]);
+        Pinjaman::where('user_id', $id)->update(['completed' => 0]);
 
         Session::flash('success', 'Fail Penyata Bank telah dipadam');
         Session::flash('Tab', 'tab3');
@@ -604,10 +610,11 @@ class HomeController extends Controller
         $id = auth()->user()->id;
         $file = Pinjaman::where('user_id', $id)->value('document_utility');
 
+        User::where('id', $id)->update(['completed' => 0]);
+        Pinjaman::where('user_id', $id)->update(['completed' => 0]);
+
         Pinjaman::where('user_id', $id)->update(['document_utility' => NULL]);
         unlink(public_path('storage/' . auth()->user()->ic_no . '/' . $file));
-
-        $this->checkPinjaman();
 
         Session::flash('success', 'Fail Bil Utiliti telah dipadam');
         Session::flash('Tab', 'tab3');
