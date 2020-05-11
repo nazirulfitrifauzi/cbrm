@@ -1168,7 +1168,7 @@
                                     @if(is_null(auth()->user()->peribadi)) 
                                         opacity-0
                                     @else
-                                        @if(auth()->user()->nationality == 'Ya')
+                                        @if(auth()->user()->peribadi->nationality == 'Ya')
                                             opacity-0
                                         @else
                                             opacity-100
@@ -1191,7 +1191,7 @@
                                     @if(is_null(auth()->user()->peribadi)) 
                                         hidden
                                     @else
-                                        @if(auth()->user()->nationality == 'Ya')
+                                        @if(auth()->user()->peribadi->nationality == 'Ya')
                                             block
                                         @else
                                             hidden
