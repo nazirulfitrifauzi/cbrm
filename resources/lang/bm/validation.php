@@ -171,6 +171,8 @@ return [
         'employer_name' => 'Nama Majikan',
         'spouse_type' => 'Hubungan',
         'spouse_name' => 'Nama Suami/Ister/Waris',
+        "nationality" => 'Warganegara Malaysia',
+        "passport_no" => 'No. Passport',
         'spouse_ic_no' => 'No KP Suami/Isteri/Waris',
         'spouse_profession' => 'Pekerjaan Suami/Isteri/Waris',
 

@@ -187,6 +187,8 @@ class CbrmController extends Controller
                 "income"                    => ['required', 'numeric'],
                 "spouse_type"               => ['required'],
                 "spouse_name"               => ['required', 'string'],
+                "nationality"               => ['required'],
+                "passport_no"               => ['required_if:nationality,==,Tidak'],
                 "spouse_ic_no"              => ['required', 'numeric', 'min:12'],
                 "spouse_profession"         => ['required', 'string']
             ]);
@@ -221,6 +223,8 @@ class CbrmController extends Controller
                 "profession"                => ['required', 'string'],
                 "spouse_type"               => ['required'],
                 "spouse_name"               => ['required', 'string'],
+                "nationality"               => ['required'],
+                "passport_no"               => ['required_if:nationality,==,Tidak'],
                 "spouse_ic_no"              => ['required', 'numeric', 'min:12'],
                 "spouse_profession"         => ['required', 'string']
             ]);
