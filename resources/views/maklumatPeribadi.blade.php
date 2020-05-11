@@ -1118,6 +1118,66 @@
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
+                                    <fieldset>
+                                        <legend class="block text-sm font-medium leading-5 text-gray-700">Warganegara Malaysia  <span class="text-red-700">*</span></legend>
+                                        {{-- <p class="text-sm leading-5 text-gray-500">These are delivered via SMS to your mobile phone.</p> --}}
+                                        <div class="mt-4">
+                                            <div class="flex items-center">
+                                                <input id="nationality_yes" name="nationality" value="1" type="radio" 
+                                                    @if(isset(auth()->user()->peribadi->nationality))
+                                                        @if(auth()->user()->peribadi->nationality == '1') 
+                                                            checked 
+                                                        @else
+                                                            {{ old('nationality') == '1' ? 'checked':'' }}
+                                                        @endif
+                                                    @else
+                                                        {{ old('nationality') == '1' ? 'checked':'' }}
+                                                    @endif
+                                                class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out" />
+                                                <label for="nationality_yes" class="ml-3">
+                                                    <span
+                                                        class="block text-sm leading-5 font-medium text-gray-700">Ya</span>
+                                                </label>
+
+                                                <input id="nationality_no" name="nationality" value="0" type="radio"
+                                                    @if(isset(auth()->user()->peribadi->nationality))
+                                                        @if(auth()->user()->peribadi->nationality == '0') 
+                                                            checked 
+                                                        @else
+                                                            {{ old('nationality') == '0' ? 'checked':'' }}
+                                                        @endif
+                                                    @else
+                                                        {{ old('nationality') == '0' ? 'checked':'' }}
+                                                    @endif
+                                                class="ml-8 form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out" />
+                                                <label for="nationality_no" class="ml-3">
+                                                    <span
+                                                        class="block text-sm leading-5 font-medium text-gray-700">Tidak</span>
+                                                </label>
+                                            </div>
+                                            @error('nationality')
+                                                <p class="text-red-500 text-xs italic mt-4">
+                                                    {{ $message }}
+                                                </p>
+                                            @enderror
+                                        </div>
+                                    </fieldset>
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-3 opacity-0" id="passport_div">
+                                    <label for="passport_no"
+                                        class="block text-sm font-medium leading-5 text-gray-700">No. Passport  <span class="text-red-700">*</span></label>
+                                    <input id="passport_no" name="passport_no"
+                                        value="{{ isset(auth()->user()->peribadi->passport_no) ? auth()->user()->peribadi->passport_no : old('passport_no') }}"
+                                        class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                        @error('passport_no')
+                                            <p class="text-red-500 text-xs italic mt-4">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-3">
                                     <label for="spouse_ic_no"
                                         class="block text-sm font-medium leading-5 text-gray-700">No. KP (Baru) - cth (900000010000) <span class="text-red-700">*</span></label>
                                     <input id="spouse_ic_no" name="spouse_ic_no"
@@ -1261,6 +1321,19 @@
                     $('#tekun_branch').html(data.html);
                 }
             });
+        });
+
+        $("input[name$='nationality']").click(function() {
+            var value = $(this).val();
+            var element = document.getElementById("passport_div");
+
+            if(value == '0') {
+                element.classList.add('opacity-100');
+                element.classList.remove('opacity-0');
+            } else {
+                element.classList.add('opacity-0');
+                element.classList.remove('opacity-100');
+            }
         });
     });
 </script>
