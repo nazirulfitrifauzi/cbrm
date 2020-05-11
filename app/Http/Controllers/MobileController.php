@@ -163,7 +163,7 @@ class MobileController extends Controller
                 "spouse_name"               => ['required', 'string'],
                 "nationality"               => ['required'],
                 "passport_no"               => ['required_if:nationality,==,Tidak'],
-                "spouse_ic_no"              => ['required', 'numeric', 'min:12'],
+                "spouse_ic_no"              => ['required_if:nationality,==,Ya', 'numeric', 'min:12'],
                 "spouse_profession"         => ['required', 'string']
             ]);
         } else {
@@ -199,7 +199,7 @@ class MobileController extends Controller
                 "spouse_name"               => ['required', 'string'],
                 "nationality"               => ['required'],
                 "passport_no"               => ['required_if:nationality,==,Tidak'],
-                "spouse_ic_no"              => ['required', 'numeric', 'min:12'],
+                "spouse_ic_no"              => ['required_if:nationality,==,Ya', 'numeric', 'min:12'],
                 "spouse_profession"         => ['required', 'string']
             ]);
         }
@@ -266,6 +266,8 @@ class MobileController extends Controller
             "employer_state"            => $request->get('employer_state'),
             "spouse_type"               => $request->get('spouse_type'),
             "spouse_name"               => $request->get('spouse_name'),
+            "nationality"               => $request->get('nationality'),
+            "passport_no"               => $request->get('passport_no'),
             "spouse_ic_no"              => $request->get('spouse_ic_no'),
             "spouse_phone"              => $request->get('spouse_phone'),
             "spouse_profession"         => $request->get('spouse_profession'),

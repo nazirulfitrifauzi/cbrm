@@ -1177,7 +1177,7 @@
                                         @enderror
                                 </div>
 
-                                <div class="col-span-6 sm:col-span-3">
+                                <div class="col-span-6 sm:col-span-3 hidden" id="spuose_ic_div">
                                     <label for="spouse_ic_no"
                                         class="block text-sm font-medium leading-5 text-gray-700">No. KP (Baru) - cth (900000010000) <span class="text-red-700">*</span></label>
                                     <input id="spouse_ic_no" name="spouse_ic_no"
@@ -1325,14 +1325,21 @@
 
         $("input[name$='nationality']").click(function() {
             var value = $(this).val();
-            var element = document.getElementById("passport_div");
+            var passport = document.getElementById("passport_div");
+            var spouse_ic = document.getElementById("spuose_ic_div");
 
             if(value == 'Tidak') {
-                element.classList.add('opacity-100');
-                element.classList.remove('opacity-0');
+                passport.classList.add('opacity-100');
+                passport.classList.remove('opacity-0');
+
+                spouse_ic.classList.add('hidden');
+                spouse_ic.classList.remove('block');
             } else {
-                element.classList.add('opacity-0');
-                element.classList.remove('opacity-100');
+                passport.classList.add('opacity-0');
+                passport.classList.remove('opacity-100');
+
+                spouse_ic.classList.add('block');
+                spouse_ic.classList.remove('hidden');
             }
         });
     });
