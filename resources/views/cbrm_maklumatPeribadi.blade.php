@@ -1164,7 +1164,17 @@
                                     </fieldset>
                                 </div>
 
-                                <div class="col-span-6 sm:col-span-3 opacity-0" id="passport_div">
+                                <div class="col-span-6 sm:col-span-3 
+                                    @if(is_null(auth()->user()->peribadi)) 
+                                        opacity-0
+                                    @else
+                                        @if(auth()->user()->nationality == 'Ya')
+                                            opacity-0
+                                        @else
+                                            opacity-100
+                                        @endif
+                                    @endif" 
+                                id="passport_div">
                                     <label for="passport_no"
                                         class="block text-sm font-medium leading-5 text-gray-700">No. Passport  <span class="text-red-700">*</span></label>
                                     <input id="passport_no" name="passport_no"
@@ -1177,7 +1187,17 @@
                                         @enderror
                                 </div>
 
-                                <div class="col-span-6 sm:col-span-3 hidden" id="spuose_ic_div">
+                                <div class="col-span-6 sm:col-span-3
+                                    @if(is_null(auth()->user()->peribadi)) 
+                                        hidden
+                                    @else
+                                        @if(auth()->user()->nationality == 'Ya')
+                                            block
+                                        @else
+                                            hidden
+                                        @endif
+                                    @endif" 
+                                id="spuose_ic_div">
                                     <label for="spouse_ic_no"
                                         class="block text-sm font-medium leading-5 text-gray-700">No. KP (Baru) - cth (900000010000) <span class="text-red-700">*</span></label>
                                     <input id="spouse_ic_no" name="spouse_ic_no"
