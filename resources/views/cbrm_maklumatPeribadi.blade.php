@@ -1166,12 +1166,12 @@
 
                                 <div class="col-span-6 sm:col-span-3 
                                     @if(is_null(auth()->user()->peribadi)) 
-                                        opacity-0
+                                        hidden
                                     @else
                                         @if(auth()->user()->peribadi->nationality == 'Ya')
-                                            opacity-0
+                                            hidden
                                         @else
-                                            opacity-100
+                                            block
                                         @endif
                                     @endif" 
                                 id="passport_div">
@@ -1349,14 +1349,14 @@
             var spouse_ic = document.getElementById("spuose_ic_div");
 
             if(value == 'Tidak') {
-                passport.classList.add('opacity-100');
-                passport.classList.remove('opacity-0');
+                passport.classList.add('block');
+                passport.classList.remove('hidden');
 
                 spouse_ic.classList.add('hidden');
                 spouse_ic.classList.remove('block');
             } else {
-                passport.classList.add('opacity-0');
-                passport.classList.remove('opacity-100');
+                passport.classList.add('hidden');
+                passport.classList.remove('block');
 
                 spouse_ic.classList.add('block');
                 spouse_ic.classList.remove('hidden');
