@@ -1168,10 +1168,14 @@
                                     @if(is_null(auth()->user()->peribadi)) 
                                         hidden
                                     @else
-                                        @if(auth()->user()->peribadi->nationality == 'Ya')
+                                        @if(is_null(auth()->user()->peribadi->nationality))
                                             hidden
                                         @else
-                                            block
+                                            @if(auth()->user()->peribadi->nationality == 'Ya')
+                                                hidden
+                                            @else
+                                                block
+                                            @endif
                                         @endif
                                     @endif" 
                                 id="passport_div">
@@ -1191,10 +1195,14 @@
                                     @if(is_null(auth()->user()->peribadi)) 
                                         hidden
                                     @else
-                                        @if(auth()->user()->peribadi->nationality == 'Ya')
-                                            block
-                                        @else
+                                        @if(is_null(auth()->user()->spouse_ic_no))
                                             hidden
+                                        @else
+                                            @if(auth()->user()->peribadi->nationality == 'Ya')
+                                                block
+                                            @else
+                                                hidden
+                                            @endif
                                         @endif
                                     @endif" 
                                 id="spuose_ic_div">
