@@ -224,9 +224,13 @@
                             $errors->has('reference_relation') ||
                             $errors->has('reference_phone') ||
                             $errors->has('doc_ic_no') ||
-                            $errors->has('doc_ssm') ||
                             $errors->has('doc_bank') ||
-                            $errors->has('doc_bil')
+                            $errors->has('doc_bil') ||
+                            $errors->has('doc_support_letter') ||
+                            $errors->has('doc_motor_pic') ||
+                            $errors->has('doc_license') ||
+                            $errors->has('doc_grant') ||
+                            $errors->has('doc_roadtax')
                             )
                             x-data="{ tab: 'tab3' }"
                         @endif
