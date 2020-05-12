@@ -112,7 +112,7 @@ class MobileController extends Controller
             $id = auth()->user()->id;
             User::where('id', $id)->update(['submit' => 1, 'status' => 1, 'client_ip' => $clientIP, 'submit_at' => now()]);
 
-            return view('mobile_status');
+            return redirect()->route('mobile.status');
         }
 
         if (auth()->user()->submit == 1 && auth()->user()->scheme_code == '1131') {

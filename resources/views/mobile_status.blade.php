@@ -55,7 +55,7 @@
         <header class="py-10">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-20">
                 <h1 class="text-3xl leading-9 font-bold text-white">
-                    Skim Pembiayaan Pemulihan Perniagaan Sektor Mikro (CBRM)
+                    Skim Pembiayaan Tekun Mobilepreneur (Mobilepreneur)
                 </h1>
             </div>
 
