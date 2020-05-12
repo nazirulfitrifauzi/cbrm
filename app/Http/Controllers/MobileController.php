@@ -283,6 +283,12 @@ class MobileController extends Controller
 
         User::where('id', auth()->user()->id)->update(['scheme_code' => '1131']);
 
+        if ($request->get('nationality') == 'Ya') {
+            Peribadi::where('user_id', auth()->user()->id)->update(['passport_no' => null]);
+        } elseif ($request->get('nationality') == 'Tidak') {
+            Peribadi::where('user_id', auth()->user()->id)->update(['spouser_ic_no' => null]);
+        }
+
         Session::flash('success', 'Data telah disimpan.');
         Session::flash('nextTab', 'tab2');
 
