@@ -460,7 +460,7 @@
                 <div class="text-black text-5xl md:text-10xl font-black">Terima Kasih di atas sokongan anda</div>
                 <div class="w-16 h-1 bg-indigo-light my-3 md:my-6"></div>
                 <p class="text-grey-darker text-2xl md:text-3xl font-light mb-8 leading-normal">
-                    Sebarang pertanyaan mengenai skim ini boleh hubungi talian <span style="color: #63b3ed;">03-9059 8888</span> atau boleh kunjungi Pejabat TEKUN Cawangan yang berdekatan.
+                    Sebarang pertanyaan mengenai Skim CBRM ini boleh hubungi talian <span style="color: #63b3ed;">03-9059 8888</span> atau boleh kunjungi Pejabat TEKUN Cawangan yang berdekatan.
                 </p>
             </div>
         </div>

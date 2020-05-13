@@ -73,15 +73,15 @@
                             <div class="px-4 py-5 border-b border-gray-200 sm:px-6">
                                 <div class="flex">
                                     <h3 class="text-lg leading-6 font-medium text-gray-900">
-                                        CBRM
+                                        CBRM <span class="text-red-500 text-sm">( Permohonan telah ditutup )</span>
                                     </h3>
-                                    <a href="{{ route('cbrm') }}" type="button"
+                                    {{-- <a href="{{ route('cbrm') }}" type="button"
                                         class="ml-auto inline-flex items-center px-2 py-2 border border-transparent text-xs leading-4 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700 transition ease-in-out duration-150 sm:text-base">
                                         <svg class="-ml-0.5 mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
                                             <path d="M2.94 6.412A2 2 0 002 8.108V16a2 2 0 002 2h12a2 2 0 002-2V8.108a2 2 0 00-.94-1.696l-6-3.75a2 2 0 00-2.12 0l-6 3.75zm2.615 2.423a1 1 0 10-1.11 1.664l5 3.333a1 1 0 001.11 0l5-3.333a1 1 0 00-1.11-1.664L10 11.798 5.555 8.835z" clip-rule="evenodd" fill-rule="evenodd"></path>
                                         </svg>
                                         Mohon Sekarang
-                                    </a>
+                                    </a> --}}
                                 </div>
                                 <p class="mt-1 max-w-2xl text-sm leading-5 text-gray-500">
                                     Skim Covid Business Recovery - Mikro.
