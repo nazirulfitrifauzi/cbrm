@@ -39,50 +39,75 @@ class CbrmController extends Controller
      */
     public function index()
     {
+        $negeri = Negeri::select(['kodnegeri', 'namanegeri'])
+            ->where('kod', '!=', '1')
+            ->orderby('namanegeri', 'ASC')
+            ->get();
+
+        if (is_null(auth()->user()->peribadi)) {
+            $cawangan = Cawangan::where('kodcawangan', '!=', '0000')
+                ->where('batal', '!=', '1')
+                ->orderby('namacawangan', 'ASC')
+                ->get();
+        } else {
+            $cawangan = Cawangan::where('kodnegeri', auth()->user()->peribadi->tekun_state)
+                ->where('batal', '!=', '1')
+                ->where('kodcawangan', '!=', '1412')
+                ->orderBy('namacawangan', 'ASC')
+                ->get();
+        }
+
+        $sektor = Sektor::where(function ($q) {
+            $q->where('lain', '1')
+                ->orWhere('sektor', 'Peruncitan')
+                ->orWhere('sektor', 'Perkhidmatan')
+                ->orWhere('sektor', 'Pembuatan')
+                ->orWhere('sektor', 'Kontraktor Kecil')
+                ->orWhere('sektor', 'Tani');
+        })->get();
+
+        if (is_null(auth()->user()->perniagaan)) {
+            $aktiviti = Aktiviti::where('status', '1')
+                ->orderBy('aktiviti', 'ASC')
+                ->get();
+        } else {
+            $aktiviti = Aktiviti::where('idsektor', auth()->user()->perniagaan->business_sector)
+                ->where('status', '=', '1')
+                ->orderBy('Aktiviti', 'ASC')
+                ->get();
+        }
+
+        $negerix = Negeri::select(['kodnegeri', 'namanegeri'])
+            ->where('kod', '!=', '1')
+            ->orderby('namanegeri', 'ASC')
+            ->get();
+
+        $bank = Bank::where('res', '0')
+            ->orderby('flag', 'DESC')
+            ->get();
 
         if (auth()->user()->submit == "1" && auth()->user()->scheme_code == '1130') {
             return view('cbrm_status');
         } else {
-            return view('cbrm', [
-                'negeri' => Negeri::select(['kodnegeri', 'namanegeri'])
-                    ->where('kod', '!=', '1')
-                    ->orderby('namanegeri', 'ASC')
-                    ->get(),
-
-                'cawangan' => Cawangan::where('kodcawangan', '!=', '0000')
-                    ->where('batal', '!=', '1')
-                    ->orderby('namacawangan', 'ASC')
-                    ->get(),
-
-                'sektor' => Sektor::where(function ($q) {
-                    $q->where('lain', '1')
-                        ->orWhere('sektor', 'Peruncitan')
-                        ->orWhere('sektor', 'Perkhidmatan')
-                        ->orWhere('sektor', 'Pembuatan')
-                        ->orWhere('sektor', 'Kontraktor Kecil')
-                        ->orWhere('sektor', 'Tani');
-                })->get(),
-
-                'aktiviti' => Aktiviti::where('status', '1')
-                    ->orderBy('aktiviti', 'ASC')
-                    ->get(),
-
-                'negerix' => Negeri::select(['kodnegeri', 'namanegeri'])
-                    ->where('kod', '!=', '1')
-                    ->orderby('namanegeri', 'ASC')
-                    ->get(),
-
-                'bank' => Bank::where('res', '0')
-                    ->orderby('flag', 'DESC')
-                    ->get(),
-            ]);
+            return view('cbrm', compact(
+                'negeri',
+                'cawangan',
+                'sektor',
+                'aktiviti',
+                'negerix',
+                'bank'
+            ));
         }
     }
 
     public function getCawangan(Request $request)
     {
         $html = '';
-        $cawangan = Cawangan::where('kodnegeri', $request->negeri)->where('batal', '!=', '1')->where('kodcawangan', '!=', '1412')->orderBy('namacawangan', 'ASC')->get();
+        $cawangan = Cawangan::where('kodnegeri', $request->negeri)
+            ->where('batal', '!=', '1')
+            ->where('kodcawangan', '!=', '1412')
+            ->orderBy('namacawangan', 'ASC')
+            ->get();
 
         $html = '<option value="">Sila Pilih Cawangan</option>';
         foreach ($cawangan as $cawanganx) {
@@ -190,6 +215,7 @@ class CbrmController extends Controller
                 "nationality"               => ['required'],
                 "passport_no"               => ['required_if:nationality,==,Tidak'],
                 "spouse_ic_no"              => ['required_if:nationality,==,Ya', 'numeric', 'min:12'],
+                "spouse_phone"              => ['required'],
                 "spouse_profession"         => ['required', 'string']
             ]);
         } else {
@@ -225,7 +251,8 @@ class CbrmController extends Controller
                 "spouse_name"               => ['required', 'string'],
                 "nationality"               => ['required'],
                 "passport_no"               => ['required_if:nationality,==,Tidak'],
-                "spouse_ic_no"              => ['required_if:nationality,==,Ya', 'numeric', 'min:12'],
+                "spouse_ic_no"              => ['required_if:nationality,==,Ya'],
+                "spouse_phone"              => ['required'],
                 "spouse_profession"         => ['required', 'string']
             ]);
         }
@@ -312,7 +339,7 @@ class CbrmController extends Controller
         if ($request->get('nationality') == 'Ya') {
             Peribadi::where('user_id', auth()->user()->id)->update(['passport_no' => null]);
         } elseif ($request->get('nationality') == 'Tidak') {
-            Peribadi::where('user_id', auth()->user()->id)->update(['spouser_ic_no' => null]);
+            Peribadi::where('user_id', auth()->user()->id)->update(['spouse_ic_no' => null]);
         }
 
         Session::flash('success', 'Data telah disimpan.');

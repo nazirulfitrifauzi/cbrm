@@ -174,6 +174,7 @@ return [
         "nationality" => 'Warganegara Malaysia',
         "passport_no" => 'No. Passport',
         'spouse_ic_no' => 'No KP Suami/Isteri/Waris',
+        'spouse_phone' => 'No Telefon Suami/Isteri/Waris',
         'spouse_profession' => 'Pekerjaan Suami/Isteri/Waris',
 
         'business_name' => 'Nama Perniagaan/Syarikat',

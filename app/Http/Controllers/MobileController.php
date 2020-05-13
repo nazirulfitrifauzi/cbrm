@@ -40,29 +40,42 @@ class MobileController extends Controller
     public function index()
     {
 
+        $negeri = Negeri::select(['kodnegeri', 'namanegeri'])
+            ->where('kod', '!=', '1')
+            ->orderby('namanegeri', 'ASC')
+            ->get();
+
+        if (is_null(auth()->user()->peribadi)) {
+            $cawangan = Cawangan::where('kodcawangan', '!=', '0000')
+                ->where('batal', '!=', '1')
+                ->orderby('namacawangan', 'ASC')
+                ->get();
+        } else {
+            $cawangan = Cawangan::where('kodnegeri', auth()->user()->peribadi->tekun_state)
+                ->where('batal', '!=', '1')
+                ->where('kodcawangan', '!=', '1412')
+                ->orderBy('namacawangan', 'ASC')
+                ->get();
+        }
+
+        $negerix = Negeri::select(['kodnegeri', 'namanegeri'])
+            ->where('kod', '!=', '1')
+            ->orderby('namanegeri', 'ASC')
+            ->get();
+
+        $bank = Bank::where('res', '0')
+            ->orderby('flag', 'DESC')
+            ->get();
+
         if (auth()->user()->submit == "1" && auth()->user()->scheme_code == '1131') {
             return view('mobile_status');
         } else {
-            return view('mobile', [
-                'negeri' => Negeri::select(['kodnegeri', 'namanegeri'])
-                    ->where('kod', '!=', '1')
-                    ->orderby('namanegeri', 'ASC')
-                    ->get(),
-
-                'cawangan' => Cawangan::where('kodcawangan', '!=', '0000')
-                    ->where('batal', '!=', '1')
-                    ->orderby('namacawangan', 'ASC')
-                    ->get(),
-
-                'negerix' => Negeri::select(['kodnegeri', 'namanegeri'])
-                    ->where('kod', '!=', '1')
-                    ->orderby('namanegeri', 'ASC')
-                    ->get(),
-
-                'bank' => Bank::where('res', '0')
-                    ->orderby('flag', 'DESC')
-                    ->get(),
-            ]);
+            return view('mobile', compact(
+                'negeri',
+                'cawangan',
+                'negerix',
+                'bank'
+            ));
         }
     }
 
@@ -163,7 +176,8 @@ class MobileController extends Controller
                 "spouse_name"               => ['required', 'string'],
                 "nationality"               => ['required'],
                 "passport_no"               => ['required_if:nationality,==,Tidak'],
-                "spouse_ic_no"              => ['required_if:nationality,==,Ya', 'numeric', 'min:12'],
+                "spouse_ic_no"              => ['required_if:nationality,==,Ya'],
+                "spouse_phone"              => ['required'],
                 "spouse_profession"         => ['required', 'string']
             ]);
         } else {
@@ -199,7 +213,8 @@ class MobileController extends Controller
                 "spouse_name"               => ['required', 'string'],
                 "nationality"               => ['required'],
                 "passport_no"               => ['required_if:nationality,==,Tidak'],
-                "spouse_ic_no"              => ['required_if:nationality,==,Ya', 'numeric', 'min:12'],
+                "spouse_ic_no"              => ['required_if:nationality,==,Ya'],
+                "spouse_phone"              => ['required'],
                 "spouse_profession"         => ['required', 'string']
             ]);
         }
@@ -286,7 +301,7 @@ class MobileController extends Controller
         if ($request->get('nationality') == 'Ya') {
             Peribadi::where('user_id', auth()->user()->id)->update(['passport_no' => null]);
         } elseif ($request->get('nationality') == 'Tidak') {
-            Peribadi::where('user_id', auth()->user()->id)->update(['spouser_ic_no' => null]);
+            Peribadi::where('user_id', auth()->user()->id)->update(['spouse_ic_no' => null]);
         }
 
         Session::flash('success', 'Data telah disimpan.');

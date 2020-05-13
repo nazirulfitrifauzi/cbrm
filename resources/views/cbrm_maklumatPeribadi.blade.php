@@ -1166,18 +1166,14 @@
 
                                 <div class="col-span-6 sm:col-span-3 
                                     @if(is_null(auth()->user()->peribadi)) 
-                                        hidden
-                                    @else
-                                        @if(is_null(auth()->user()->peribadi->nationality))
-                                            hidden
-                                        @else
-                                            @if(auth()->user()->peribadi->nationality == 'Ya')
-                                                hidden
-                                            @else
-                                                block
-                                            @endif
-                                        @endif
-                                    @endif" 
+                                        hidden 
+                                    @else 
+                                        @if(auth()->user()->peribadi->nationality == 'Ya') 
+                                            hidden 
+                                        @else 
+                                            block 
+                                        @endif 
+                                    @endif " 
                                 id="passport_div">
                                     <label for="passport_no"
                                         class="block text-sm font-medium leading-5 text-gray-700">No. Passport  <span class="text-red-700">*</span></label>
@@ -1195,14 +1191,10 @@
                                     @if(is_null(auth()->user()->peribadi)) 
                                         hidden
                                     @else
-                                        @if(is_null(auth()->user()->spouse_ic_no))
-                                            hidden
+                                        @if(auth()->user()->peribadi->nationality == 'Ya')
+                                            block
                                         @else
-                                            @if(auth()->user()->peribadi->nationality == 'Ya')
-                                                block
-                                            @else
-                                                hidden
-                                            @endif
+                                            hidden
                                         @endif
                                     @endif" 
                                 id="spuose_ic_div">
@@ -1220,15 +1212,15 @@
 
                                 <div class="col-span-6 sm:col-span-3">
                                     <label for="spouse_phone"
-                                        class="block text-sm font-medium leading-5 text-gray-700">No Telefon (HP) - cth (0123456789)</label>
+                                        class="block text-sm font-medium leading-5 text-gray-700">No Telefon (HP) - cth (0123456789) <span class="text-red-700">*</span></label>
                                     <input id="spouse_phone" name="spouse_phone"
                                         value="{{ isset(auth()->user()->peribadi->spouse_phone) ? auth()->user()->peribadi->spouse_phone : old('spouse_phone') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                                         @error('spouse_phone')
-                                                    <p class="text-red-500 text-xs italic mt-4">
-                                                        {{ $message }}
-                                                    </p>
-                                                @enderror
+                                            <p class="text-red-500 text-xs italic mt-4">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-6">
@@ -1611,7 +1603,7 @@
         @enderror
 
         @error('spouse_phone')
-        $("#spouse_ic_no").addClass("border-red-500");
+        $("#spouse_phone").addClass("border-red-500");
         @enderror
 
         @error('spouse_profession')
