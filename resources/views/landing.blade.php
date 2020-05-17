@@ -157,7 +157,7 @@
                                     </a>
                                 </div>
                                 <p class="mt-1 max-w-2xl text-sm leading-5 text-gray-500">
-                                    Skim Pembiayaan Tekun Mobilepreneur.
+                                    Skim Pembiayaan TEKUN Mobilepreneur.
                                 </p>
                             </div>
                             <div class="px-4 py-5 sm:px-6">

@@ -61,7 +61,7 @@
                                         class="block text-sm font-medium leading-5 text-gray-700">Aktiviti Perniagaan/Projek <span class="text-red-700">*</span></label>
                                     <select id="business_activity" name="business_activity"
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
-                                        <option value="100478">E-Hailing</option>
+                                        <option value="100478">E-Hailing - motosikal</option>
                                     </select>
                                     @error('business_activity')
                                     <p class="text-red-500 text-xs italic mt-4">

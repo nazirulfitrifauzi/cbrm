@@ -108,7 +108,7 @@ class MobileController extends Controller
             $valid_hp = str_replace('-', '', $mob);
             $valid_hp = '6' . $mob;
             $destination = urlencode($valid_hp);
-            $message = 'TEKUN NASIONAL Mobilepreneur - Permohonan Mobilepreneur anda telah diterima dan sedang diproses.';
+            $message = 'TEKUN NASIONAL - Permohonan Pembiayaan TEKUN Mobilepreneur anda telah diterima dan sedang diproses.';
             $message = html_entity_decode($message, ENT_QUOTES, 'utf-8');
             $message = urlencode($message);
             $username = urlencode("JPDKTN2018");
@@ -167,7 +167,7 @@ class MobileController extends Controller
                 "postcode"                  => ['required', 'numeric', 'digits:5'],
                 "city"                      => ['required', 'string'],
                 "state"                     => ['required', 'alpha'],
-                "phone_hp"                  => ['required', 'numeric'],
+                "phone_hp"                  => ['required', 'min:10', 'numeric'],
                 "education"                 => ['required'],
                 "email"                     => ['required'],
                 "profession"                => ['required', 'string'],
@@ -175,9 +175,9 @@ class MobileController extends Controller
                 "spouse_type"               => ['required'],
                 "spouse_name"               => ['required', 'string'],
                 "nationality"               => ['required'],
-                "passport_no"               => ['required_if:nationality,==,Tidak'],
-                "spouse_ic_no"              => ['required_if:nationality,==,Ya'],
-                "spouse_phone"              => ['required'],
+                "passport_no"               => ['exclude_if:nationality,Ya', 'required_if:nationality,==,Tidak'],
+                "spouse_ic_no"              => ['exclude_if:nationality,Tidak', 'required_if:nationality,==,Ya', 'digits:12'],
+                "spouse_phone"              => ['required', 'min:10', 'numeric'],
                 "spouse_profession"         => ['required', 'string']
             ]);
         } else {
@@ -203,7 +203,7 @@ class MobileController extends Controller
                 "postcode"                  => ['required', 'numeric', 'digits:5'],
                 "city"                      => ['required', 'string'],
                 "state"                     => ['required', 'alpha'],
-                "phone_hp"                  => ['required', 'numeric'],
+                "phone_hp"                  => ['required', 'min:10', 'numeric'],
                 "education"                 => ['required'],
                 "email"                     => ['required'],
                 "profession"                => ['required', 'string'],
@@ -212,9 +212,9 @@ class MobileController extends Controller
                 "spouse_type"               => ['required'],
                 "spouse_name"               => ['required', 'string'],
                 "nationality"               => ['required'],
-                "passport_no"               => ['required_if:nationality,==,Tidak'],
-                "spouse_ic_no"              => ['required_if:nationality,==,Ya'],
-                "spouse_phone"              => ['required'],
+                "passport_no"               => ['exclude_if:nationality,Ya', 'required_if:nationality,==,Tidak'],
+                "spouse_ic_no"              => ['exclude_if:nationality,Tidak', 'required_if:nationality,==,Ya', 'digits:12'],
+                "spouse_phone"              => ['required', 'min:10', 'numeric'],
                 "spouse_profession"         => ['required', 'string']
             ]);
         }

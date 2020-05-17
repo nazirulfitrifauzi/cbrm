@@ -58,7 +58,7 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-20">
                 <div class="flex">
                     <h1 class="text-3xl leading-9 font-bold text-white">
-                        Skim Pembiayaan Tekun Mobilepreneur (Mobilepreneur)
+                        Skim Pembiayaan TEKUN Mobilepreneur
                     </h1>
 
                     @if(is_null(auth()->user()->scheme_code))
@@ -187,6 +187,7 @@
                             $errors->has('nationality') ||
                             $errors->has('passport_no') ||
                             $errors->has('spouse_ic_no') ||
+                            $errors->has('spouse_phone') ||
                             $errors->has('spouse_profession') ||
                             $errors->has('education')
                             )
@@ -268,7 +269,7 @@
                     @endif
                     >
                     <div class="sm:hidden mb-4 flex justify-between">
-                        <span class="inline-flex rounded-md shadow-sm">
+                        {{-- <span class="inline-flex rounded-md shadow-sm">
                             <a href="{{ asset('img') }}/cbrm/FAQ_cbrm.pdf" target="_blank" type="button"
                                 class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150">
                                 <svg class="-ml-0.5 mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
@@ -278,7 +279,7 @@
                                 </svg>
                                 FAQ
                             </a>
-                        </span>
+                        </span> --}}
                         <span class="inline-flex rounded-md shadow-sm" x-data="{ open: false }">
                             <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:border-green-700 focus:shadow-outline-green active:bg-green-700 transition ease-in-out duration-150
                                     @if(auth()->user()->completed === '1')
@@ -452,7 +453,7 @@
                             </button>
 
                             <div class="ml-auto">
-                                <span class="inline-flex rounded-md shadow-sm">
+                                {{-- <span class="inline-flex rounded-md shadow-sm">
                                     <a href="{{ asset('img') }}/cbrm/FAQ_cbrm.pdf" target="_blank" type="button"
                                         class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150">
                                         <svg class="-ml-0.5 mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
@@ -462,7 +463,7 @@
                                         </svg>
                                         FAQ
                                     </a>
-                                </span>
+                                </span> --}}
                                 <span class="inline-flex rounded-md shadow-sm" x-data="{ open: false }">
                                     <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:border-green-700 focus:shadow-outline-green active:bg-green-700 transition ease-in-out duration-150
                                             @if(auth()->user()->completed === '1')
