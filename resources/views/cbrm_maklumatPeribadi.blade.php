@@ -1175,9 +1175,9 @@
                                         @endif 
                                     @endif 
                                     
-                                    @error('passport_no')
-                                        block
-                                    @enderror" 
+                                    @error('spouse_ic_no')
+                                        hidden
+                                    @enderror"
                                 id="passport_div">
                                     <label for="passport_no"
                                         class="block text-sm font-medium leading-5 text-gray-700">No. Passport  <span class="text-red-700">*</span></label>
