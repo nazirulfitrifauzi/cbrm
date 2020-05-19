@@ -1209,7 +1209,7 @@
                                     <label for="spouse_ic_no"
                                         class="block text-sm font-medium leading-5 text-gray-700">No. KP (Baru) - cth (900000010000) <span class="text-red-700">*</span></label>
                                     <input id="spouse_ic_no" name="spouse_ic_no"
-                                        value="{{ isset(auth()->user()->peribadi->spouse_ic_no) ? auth()->user()->peribadi->spouse_ic_no : old('spouse_ic_no') }}"
+                                        value="{{ isset(auth()->user()->peribadi->spouse_ic_no) ? auth()->user()->peribadi->spouse_ic_no : '' }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                                         @error('spouse_ic_no')
                                                     <p class="text-red-500 text-xs italic mt-4">
