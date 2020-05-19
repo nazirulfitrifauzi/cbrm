@@ -167,7 +167,7 @@ class MobileController extends Controller
                 "postcode"                  => ['required', 'numeric', 'digits:5'],
                 "city"                      => ['required', 'string'],
                 "state"                     => ['required', 'alpha'],
-                "phone_hp"                  => ['required', 'min:10', 'numeric'],
+                "phone_hp"                  => ['required', 'digits_between:10,12'],
                 "education"                 => ['required'],
                 "email"                     => ['required'],
                 "profession"                => ['required', 'string'],
@@ -177,7 +177,7 @@ class MobileController extends Controller
                 "nationality"               => ['required'],
                 "passport_no"               => ['exclude_if:nationality,Ya', 'required_if:nationality,==,Tidak'],
                 "spouse_ic_no"              => ['exclude_if:nationality,Tidak', 'required_if:nationality,==,Ya', 'digits:12'],
-                "spouse_phone"              => ['required', 'min:10', 'numeric'],
+                "spouse_phone"              => ['required', 'digits_between:10,12'],
                 "spouse_profession"         => ['required', 'string']
             ]);
         } else {
@@ -203,7 +203,7 @@ class MobileController extends Controller
                 "postcode"                  => ['required', 'numeric', 'digits:5'],
                 "city"                      => ['required', 'string'],
                 "state"                     => ['required', 'alpha'],
-                "phone_hp"                  => ['required', 'min:10', 'numeric'],
+                "phone_hp"                  => ['required', 'digits_between:10,12'],
                 "education"                 => ['required'],
                 "email"                     => ['required'],
                 "profession"                => ['required', 'string'],
@@ -214,7 +214,7 @@ class MobileController extends Controller
                 "nationality"               => ['required'],
                 "passport_no"               => ['exclude_if:nationality,Ya', 'required_if:nationality,==,Tidak'],
                 "spouse_ic_no"              => ['exclude_if:nationality,Tidak', 'required_if:nationality,==,Ya', 'digits:12'],
-                "spouse_phone"              => ['required', 'min:10', 'numeric'],
+                "spouse_phone"              => ['required', 'digits_between:10,12'],
                 "spouse_profession"         => ['required', 'string']
             ]);
         }
@@ -319,7 +319,7 @@ class MobileController extends Controller
             'business_postcode'     => ['required', 'numeric', 'min:5'],
             'business_city'         => ['required', 'string'],
             'business_state'        => ['required', 'alpha'],
-            'business_phone_hp'     => ['required', 'numeric', 'min:10'],
+            'business_phone_hp'     => ['required', 'digits_between:10,12'],
             'business_premise'      => ['required'],
             'business_ownership'    => ['required'],
             'business_modal'        => ['required_if:business_ownership,==,Sendirian Berhad'],
