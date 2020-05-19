@@ -1173,7 +1173,11 @@
                                         @else 
                                             block 
                                         @endif 
-                                    @endif " 
+                                    @endif 
+                                    
+                                    @error('passport_no')
+                                        block
+                                    @enderror" 
                                 id="passport_div">
                                     <label for="passport_no"
                                         class="block text-sm font-medium leading-5 text-gray-700">No. Passport  <span class="text-red-700">*</span></label>
@@ -1196,7 +1200,11 @@
                                         @else
                                             hidden
                                         @endif
-                                    @endif" 
+                                    @endif
+                                    
+                                    @error('spouse_ic_no')
+                                        block
+                                    @enderror" 
                                 id="spuose_ic_div">
                                     <label for="spouse_ic_no"
                                         class="block text-sm font-medium leading-5 text-gray-700">No. KP (Baru) - cth (900000010000) <span class="text-red-700">*</span></label>
