@@ -82,29 +82,29 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        if (Daftar::where('no_kp', $data['ic_no'])->exists()) {
-            $status = Daftar::where('no_kp', $data['ic_no'])->value('status');
-            $submit_at = Daftar::where('no_kp', $data['ic_no'])->value('tarikh_submit');
-            $default = 1;
+        // if (Daftar::where('no_kp', $data['ic_no'])->exists()) {
+        //     $status = Daftar::where('no_kp', $data['ic_no'])->value('status');
+        //     $submit_at = Daftar::where('no_kp', $data['ic_no'])->value('tarikh_submit');
+        //     $default = 1;
 
-            return User::create([
-                'name' => $data['name'],
-                'email' => $data['email'],
-                'ic_no' => $data['ic_no'],
-                'password' => Hash::make($data['password']),
-                'completed' => $default,
-                'submit' => $default,
-                'status' => $status,
-                'submit_at' => $submit_at,
-                'flag' => $default
-            ]);
-        } else {
-            return User::create([
-                'name' => $data['name'],
-                'email' => $data['email'],
-                'ic_no' => $data['ic_no'],
-                'password' => Hash::make($data['password']),
-            ]);
-        }
+        //     return User::create([
+        //         'name' => $data['name'],
+        //         'email' => $data['email'],
+        //         'ic_no' => $data['ic_no'],
+        //         'password' => Hash::make($data['password']),
+        //         'completed' => $default,
+        //         'submit' => $default,
+        //         'status' => $status,
+        //         'submit_at' => $submit_at,
+        //         'flag' => $default
+        //     ]);
+        // } else {
+        return User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'ic_no' => $data['ic_no'],
+            'password' => Hash::make($data['password']),
+        ]);
+        // }
     }
 }
