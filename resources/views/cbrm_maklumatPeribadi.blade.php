@@ -45,7 +45,7 @@
 
                                 <div class="col-span-6 sm:col-span-3">
                                     <label for="tekun_branch"
-                                        class="block text-sm font-medium leading-5 text-gray-700">Cawangan <span class="text-red-700">*</span></label>
+                                        class="block text-sm font-medium leading-5 text-gray-700">Cawangan Berhampiran dengan Lokasi Perniagaan<span class="text-red-700">*</span></label>
                                     <select id="tekun_branch" name="tekun_branch"
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                                         <option value="">Sila Pilih Cawangan</option>
