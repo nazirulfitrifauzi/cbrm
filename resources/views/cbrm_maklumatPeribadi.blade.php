@@ -1167,8 +1167,10 @@
                                 <div class="col-span-6 sm:col-span-3 
                                     @if(is_null(auth()->user()->peribadi)) 
                                         hidden 
+                                    @elseif(is_null(auth()->user()->peribadi) && old('nationality') == 'Tidak')
+                                        block
                                     @else 
-                                        @if(auth()->user()->peribadi->nationality == 'Tidak' || old('nationality') == 'Tidak') 
+                                        @if(auth()->user()->peribadi->nationality == 'Tidak') 
                                             block
                                         @else 
                                             hidden
@@ -1190,8 +1192,10 @@
                                 <div class="col-span-6 sm:col-span-3
                                     @if(is_null(auth()->user()->peribadi)) 
                                         hidden
+                                    @elseif(is_null(auth()->user()->peribadi) && old('nationality') == 'Ya')
+                                        block
                                     @else
-                                        @if(auth()->user()->peribadi->nationality == 'Ya' || old('nationality') == 'Ya')
+                                        @if(auth()->user()->peribadi->nationality == 'Ya')
                                             block
                                         @else
                                             hidden
