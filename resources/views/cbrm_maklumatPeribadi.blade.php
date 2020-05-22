@@ -1168,16 +1168,12 @@
                                     @if(is_null(auth()->user()->peribadi)) 
                                         hidden 
                                     @else 
-                                        @if(auth()->user()->peribadi->nationality == 'Ya') 
-                                            hidden 
+                                        @if(auth()->user()->peribadi->nationality == 'Tidak' || old('nationality') == 'Tidak') 
+                                            block
                                         @else 
-                                            block 
+                                            hidden
                                         @endif 
-                                    @endif 
-                                    
-                                    @error('spouse_ic_no')
-                                        hidden
-                                    @enderror"
+                                    @endif "
                                 id="passport_div">
                                     <label for="passport_no"
                                         class="block text-sm font-medium leading-5 text-gray-700">No. Passport  <span class="text-red-700">*</span></label>
@@ -1195,16 +1191,12 @@
                                     @if(is_null(auth()->user()->peribadi)) 
                                         hidden
                                     @else
-                                        @if(auth()->user()->peribadi->nationality == 'Ya')
+                                        @if(auth()->user()->peribadi->nationality == 'Ya' || old('nationality') == 'Ya')
                                             block
                                         @else
                                             hidden
                                         @endif
-                                    @endif
-                                    
-                                    @error('spouse_ic_no')
-                                        block
-                                    @enderror" 
+                                    @endif " 
                                 id="spuose_ic_div">
                                     <label for="spouse_ic_no"
                                         class="block text-sm font-medium leading-5 text-gray-700">No. KP (Baru) - cth (900000010000) <span class="text-red-700">*</span></label>
