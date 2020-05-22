@@ -63,6 +63,7 @@
                                             >{{ $cawangans->namacawangan }}</option>
                                         @endforeach
                                     </select>
+
                                     @error('tekun_branch')
                                         <p class="text-red-500 text-xs italic mt-4">
                                             {{ $message }}
